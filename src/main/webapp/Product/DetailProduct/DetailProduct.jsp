@@ -400,7 +400,7 @@ a.active {
 	color: #000;
 	
 }
-
+ 
 .progress_td {
 	font-family:'Noto Sans KR', sans-serif;
 	text-align: right;

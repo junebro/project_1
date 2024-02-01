@@ -104,7 +104,7 @@
 		  -webkit-appearance: none;
 		  -moz-appearance: none;
 		  appearance: none;
-		}
+		} 
 		
 		/* select box 별모양*/
 		.sel_color {
