@@ -174,6 +174,84 @@ a {
 	border: 1px solid #d1d8dd;
 	box-shadow: 0 0 6px 1px rgb(0 0 0/ 30%);
 }
+
+/* css 전부 common에 있음 */
+.selectbox {
+	display: inline-block;
+	position: relative;
+	width: 150px;
+	border: 1px solid rgba(128, 128, 128, 0.3);
+	z-index: 1;
+	text-align: right;
+}
+
+.selectbox:before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 15px;
+	width: 0;
+	height: 0;
+	margin-top: -1px;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid #333;
+}
+
+.selectbox label {
+	position: absolute;
+	top: 1px;
+	left: 5px;
+	padding: .6em .5em;
+	color: #999;
+	z-index: -1;
+}
+
+.selectbox select {
+	width: 100%;
+	height: auto;
+	line-height: normal;
+	font-family: inherit;
+	padding: .6em .5em;
+	border: 0;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.sel_color {
+	width: 100px;
+	border-radius: 4%;
+	border: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+.sel_color label {
+	font-family: "Font Awesome 5 Free";
+	padding: .5em .5em;
+	font-weight: 900;
+	color: #000000;
+}
+
+.selectbox_star {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	width: 170px;
+	height: 43px;
+	padding-top: 3px;
+}
+
+.all_star {
+	width: 280px;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+}
+
+.all_star option {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+}
 </style>
 </head>
 <body>
@@ -287,22 +365,67 @@ a {
 	<div class="popup">
 		<form method="post" action="#">
 			<div class="container">
-			<br>
+				<br>
 				<h2>리뷰 작성하기</h2>
 				<table class="table table-hover">
 					<tbody>
 						<tr>
-							<td><input type="text" class="form-control"
-								placeholder="리뷰 제목" name="contentTitle" maxlength="40"></td>
+							<td>
+								<!-- 이 아래 전부 사용해야 함 -->
+								<div class="selectbox selectbox_star sel_color">
+									<label>별점</label> <select class="all_star">
+										<option selected="selected">별점</option>
+										<option>&#xf005 &#xf005 &#xf005 &#xf005 &#xf005</option>
+										<option>&#xf005 &#xf005 &#xf005 &#xf005</option>
+										<option>&#xf005 &#xf005 &#xf005</option>
+										<option>&#xf005 &#xf005</option>
+										<option>&#xf005</option>
+									</select>
+								</div> <script>
+									// SELECT BOX
+									$(document)
+											.ready(
+													function() {
+
+														var selectTarget = $('.selectbox select');
+
+														selectTarget
+																.on(
+																		'blur',
+																		function() {
+																			$(
+																					this)
+																					.parent()
+																					.removeClass(
+																							'focus');
+																		});
+
+														selectTarget
+																.change(function() {
+																	var select_name = $(
+																			this)
+																			.children(
+																					'option:selected')
+																			.text();
+																	$(this)
+																			.siblings(
+																					'label')
+																			.text(
+																					select_name);
+																});
+													});
+								</script>
+							</td>
 						</tr>
 						<tr>
-							<td><textarea class="form-control" placeholder="리뷰 내용을 작성하세요"
-									name="contentDetail" maxlength="270" style="height: 270px;"></textarea></td>
+							<td><textarea class="form-control"
+									placeholder="리뷰 내용을 작성하세요" name="contentDetail" maxlength="270"
+									style="height: 270px;"></textarea></td>
 						</tr>
 					</tbody>
 				</table>
 				<div style="text-align: right;">
-				<button type="submit" class="btn_white">올리기</button>
+					<button type="submit" class="btn_white">올리기</button>
 				</div>
 			</div>
 		</form>
