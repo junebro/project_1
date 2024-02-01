@@ -4,12 +4,16 @@
 <html>
 <head>
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- SELECT 별모양 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+
 <!-- 폰트 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 
-<!-- 상단 -->
+<!-- 상단 폰트 -->
 <!--  font-family: 'Kanit', sans-serif;  -->
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
 	
@@ -25,9 +29,11 @@
 <!-- font-family: 'Gothic A1', sans-serif; -->
 <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200&display=swap" rel="stylesheet">
 
-<!-- 버튼 -->
+<!-- 버튼 폰트 -->
 <!-- font-family: 'Black Han Sans', sans-serif; -->
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+
+
 
 <meta charset="UTF-8">
 <style>
