@@ -179,7 +179,7 @@ a {
 .selectbox {
 	display: inline-block;
 	position: relative;
-	width: 150px;
+	width: 80px;
 	border: 1px solid rgba(128, 128, 128, 0.3);
 	z-index: 1;
 	text-align: right;
@@ -196,15 +196,6 @@ a {
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
 	border-top: 5px solid #333;
-}
-
-.selectbox label {
-	position: absolute;
-	top: 1px;
-	left: 5px;
-	padding: .6em .5em;
-	color: #999;
-	z-index: -1;
 }
 
 .selectbox select {
@@ -243,7 +234,7 @@ a {
 }
 
 .all_star {
-	width: 280px;
+	width: 150px;
 	font-family: "Font Awesome 5 Free";
 	font-weight: 900;
 }
@@ -364,71 +355,43 @@ a {
 	</div>
 	<div class="popup">
 		<form method="post" action="#">
-			<div class="container">
-				<br>
-				<h2>리뷰 작성하기</h2>
-				<table class="table table-hover">
-					<tbody>
-						<tr>
-							<td>
-								<!-- 이 아래 전부 사용해야 함 -->
-								<div class="selectbox selectbox_star sel_color">
-									<label>별점</label> <select class="all_star">
-										<option selected="selected">별점</option>
-										<option>&#xf005 &#xf005 &#xf005 &#xf005 &#xf005</option>
-										<option>&#xf005 &#xf005 &#xf005 &#xf005</option>
-										<option>&#xf005 &#xf005 &#xf005</option>
-										<option>&#xf005 &#xf005</option>
-										<option>&#xf005</option>
-									</select>
-								</div> <script>
-									// SELECT BOX
-									$(document)
-											.ready(
-													function() {
-
-														var selectTarget = $('.selectbox select');
-
-														selectTarget
-																.on(
-																		'blur',
-																		function() {
-																			$(
-																					this)
-																					.parent()
-																					.removeClass(
-																							'focus');
-																		});
-
-														selectTarget
-																.change(function() {
-																	var select_name = $(
-																			this)
-																			.children(
-																					'option:selected')
-																			.text();
-																	$(this)
-																			.siblings(
-																					'label')
-																			.text(
-																					select_name);
-																});
-													});
-								</script>
-							</td>
-						</tr>
-						<tr>
-							<td><textarea class="form-control"
-									placeholder="리뷰 내용을 작성하세요" name="contentDetail" maxlength="270"
-									style="height: 270px;"></textarea></td>
-						</tr>
-					</tbody>
-				</table>
-				<div style="text-align: right;">
-					<button type="submit" class="btn_white">올리기</button>
-				</div>
+			<br>
+			<h2>리뷰 작성하기</h2>
+			<select class="all_star selectbox_star sel_color" style="margin-left:7px;">
+				<option selected="selected">&#xf005 &#xf005 &#xf005 &#xf005
+					&#xf005</option>
+				<option>&#xf005 &#xf005 &#xf005 &#xf005</option>
+				<option>&#xf005 &#xf005 &#xf005</option>
+				<option>&#xf005 &#xf005</option>
+				<option>&#xf005</option>
+			</select>
+			<table class="table table-hover">
+				<tbody>
+					<tr>
+						<td><textarea class="form-control" placeholder="리뷰 내용을 작성하세요"
+								name="contentDetail" maxlength="270" style="height: 270px;"></textarea></td>
+					</tr>
+				</tbody>
+			</table>
+			<div style="text-align: center">
+				<button type="submit" class="btn_white" style="margin-right: 20px">올리기</button>
+				<button type="submit" class="btn_black" style="margin-left: 20px">나가기</button>
 			</div>
 		</form>
 	</div>
+	<script>
+		/* SELECT BOX */
+		$(document).ready(function() {
+			var selectTarget = $('.selectbox select');
+			selectTarget.on('blur', function() {
+				$(this).parent().removeClass('focus');
+			});
+
+			selectTarget.change(function() {
+				var select_name = $(this).children('option:selected').text();
+				$(this).siblings('label').text(select_name);
+			});
+		});
+	</script>
 </body>
 </html>
