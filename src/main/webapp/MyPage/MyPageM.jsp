@@ -18,9 +18,12 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script type="text/javascript">
+	/* 리뷰보기, 주문보기 제어 함수 */
 	function toggleDiv() {
 		var mainDiv = document.getElementById("mainDiv");
 		var otherDiv = document.getElementById("otherDiv");
@@ -50,6 +53,12 @@
 		otherDiv.style.display = "block";
 
 	}
+	/* 리뷰 쓰기 함수 */
+	$(document).ready(function() {
+		$('#review_btn').click(function() {
+			$('.popup').show();
+		})
+	});
 </script>
 <style type="text/css">
 body {
@@ -66,14 +75,14 @@ h1 {
 }
 
 .orderTh { /* 주문내역 테이블 스타일 */
-	width: 15%;
+	width: 10%;
 	height: 15px;
 	text-align: center;
 	font-size: 14px;
 }
 
 .orderTd { /* 주문내역 테이블 스타일 */
-	width: 12%;
+	width: 10%;
 	height: 150px;
 	text-align: center;
 }
@@ -145,9 +154,25 @@ a {
 
 .sideBar {
 	position: fixed;
-	left: 80px; /* 왼쪽 여백 */
+	left: 40px; /* 왼쪽 여백 */
 	top: 50%;
 	transform: translateY(-50%);
+}
+/* 팝업 css 설정 */
+.popup {
+	display: none; /*hide setting*/
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 50%; /*가로길이 설정은 여기서*/
+	margin-left: -25%; /*width의 반만큼 음수로*/
+	height: 500px; /*세로길이 설정은 여기서*/
+	margin-top: -250px; /*height의 반만큼 음수로*/
+	z-index: 1000;
+	/*style*/
+	background: white;
+	border: 1px solid #d1d8dd;
+	box-shadow: 0 0 6px 1px rgb(0 0 0/ 30%);
 }
 </style>
 </head>
@@ -166,7 +191,7 @@ a {
 									src="https://cdn-icons-png.flaticon.com/128/4203/4203951.png">
 							</div>
 							<div
-								style="width: 70%; float: none; display: inline-block; text-align: center; font-size: 16px;margin-top:20px;">
+								style="width: 70%; float: none; display: inline-block; text-align: center; font-size: 16px; margin-top: 20px;">
 								안녕하세요. 고객이름 님!<br> 고객님의 회원등급은 일반회원 입니다.
 							</div>
 						</td>
@@ -177,7 +202,7 @@ a {
 									src="https://cdn-icons-png.flaticon.com/128/65/65998.png">
 							</div>
 							<div
-								style="width: 70%; float: none; display: inline-block; text-align: center;margin-top:20px;">
+								style="width: 70%; float: none; display: inline-block; text-align: center; margin-top: 20px;">
 								0회<br> 총 주문
 							</div>
 						</td>
@@ -190,7 +215,7 @@ a {
 	<div class="justify-content-center row">
 		<div class="col-sm-1"></div>
 		<div class="col-sm-10 justify-content-center d-flex">
-			<div class="bar col-sm-2 sideBar">
+			<div class="bar col-sm-1 sideBar">
 				<div class="spanbar" onclick="toggleReview()">
 					<a href="#">리뷰 보기</a>
 				</div>
@@ -210,8 +235,8 @@ a {
 				</div>
 				<br> <a href="#">회원정보수정</a><br> <a href="#">로그아웃</a><br>
 			</div>
-			<div class="col-sm-8" id="mainDiv">
-				<p class="maino">나의 구매내역</p>
+			<div class="col-sm-10" id="mainDiv">
+				<p class="maino">나의 구매 내역</p>
 				<br>
 				<table style="width: 100%">
 					<tbody>
@@ -222,21 +247,26 @@ a {
 							<th class="orderTh">옵션</th>
 							<th class="orderTh">수량</th>
 							<th class="orderTh">가격</th>
+							<th class="orderTh">리뷰</th>
 						</tr>
 						<tr class="underline">
-							<td class="orderTd" name="ORDCD">주문번호 ORDCD</td>
+							<td class="orderTd" id="ORDCD">주문번호 ORDCD</td>
 							<td class="orderTd"><img class="orderImg "
 								src="https://www.wadiz.kr/ft/images/green001/2023/0613/20230613092632647_6.gif"></td>
-							<td class="orderTd" style="width: 40%;">진흙 뭍히고 물<br>신발<br>음</td>
+							<td class="orderTd" style="width: 40%;">진흙 뭍히고 물<br>신발<br>음
+							</td>
 							<td class="orderTd">옵션</td>
 							<td class="orderTd">QYT 수량</td>
-							<td class="orderTd">PRICE 가격<br></td>
+							<td class="orderTd">PRICE 가격</td>
+							<td class="orderTd">
+								<button id="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
 						</tr>
-						
 					</tbody>
 				</table>
 			</div>
-			<div class="col-sm-8" id="otherDiv" style="display: none;">
+			<div class="col-sm-10" id="otherDiv" style="display: none;">
 				<p class="maino">리뷰 관리</p>
 				<hr class="disborder">
 				<br>
@@ -253,6 +283,29 @@ a {
 			</div>
 		</div>
 		<div class="col-sm-1"></div>
+	</div>
+	<div class="popup">
+		<form method="post" action="#">
+			<div class="container">
+			<br>
+				<h2>리뷰 작성하기</h2>
+				<table class="table table-hover">
+					<tbody>
+						<tr>
+							<td><input type="text" class="form-control"
+								placeholder="리뷰 제목" name="contentTitle" maxlength="40"></td>
+						</tr>
+						<tr>
+							<td><textarea class="form-control" placeholder="리뷰 내용을 작성하세요"
+									name="contentDetail" maxlength="270" style="height: 270px;"></textarea></td>
+						</tr>
+					</tbody>
+				</table>
+				<div style="text-align: right;">
+				<button type="submit" class="btn_white">올리기</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </body>
 </html>
