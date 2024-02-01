@@ -30,7 +30,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 
 <meta charset="UTF-8">
-<style> 
+<style>
 
 	/* 버튼 */
 	button {

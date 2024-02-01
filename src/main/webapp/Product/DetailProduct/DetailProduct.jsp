@@ -405,7 +405,7 @@ a.active {
 	font-family:'Noto Sans KR', sans-serif;
 	text-align: right;
 	font-size:15px;
-} 
+}
 
 
 
