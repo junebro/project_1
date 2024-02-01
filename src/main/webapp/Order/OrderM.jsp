@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문 정보</title>
+<title>주문 정보1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -57,9 +57,10 @@ tr, input, select {
 }
 
 .info {
-	background-color: #9999FF;
-	opacity: 0.5;
-	font-weight: bold;
+	background-color: #CCFFFF;
+	opacity: 1;
+	font-weight: none;
+	font-size : 12px;
 }
 
 .icon {
