@@ -57,6 +57,13 @@ div{
 .check, .thumbnail, .description { /* 체크박스, 사진, 설명 */
 	float: left;
 }
+.btnDelete{ /* 삭제표시 */
+	float: right;
+	font-size: 25px;
+	font-weight: bolder;
+	font-family: 'Kanit', sans-serif;
+	color: #5D5D5D;
+}
 input[type="checkbox"]{ /* 체크박스 */
 	width: 20px;
 	height: 20px;
@@ -318,98 +325,7 @@ a{ /* 링크 */
 									<li class="price"><span class="txtSecondary">-0</span>원</li>
 									<li>배송 :<span class="price">3,500원</span></li>
 								</div>
-							</div>
-							<div class="prdOption">
-								<span class="product displaynone">초간단 5분 조리! 돈까스 주먹</span>
-								<span class="optionStr">[옵션: 돈까스 주먹]</span>
-								<span class="displaynone">(2개)</span>
-							</div>
-							<div class="container-fluid">
-								<div class="qty_title">수량</div>
-								<div class="qty_updown">
-									<button class="down btn_white" onclick="Basket.outQuantityShortcut('quantity_id_0', 0);">-</button>
-									<input class="qty_number" name="quantity_name_0" size="2" value="2" type="text">
-									<button class="up btn_white" onclick="Basket.addQuantityShortcut('quantity_id_0', 0);">+</button>
-								</div>
-							</div>
-							<div class="sumPrice">
-								<span class="label">주문금액</span> <strong>13,600원</strong>
-							</div>
-							<div class="buttonGroup">
-								<button onclick="BasketNew.moveWish(0);" class="btn1 btn_white">관심상품</button>
-								<button onclick="Basket.orderBasketItem(0);" class="btn2 btn_white">주문하기</button>
-							</div>
-						</div>
-						<div id="collapseOne" class="accordion-collapse collapse show"
-							aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-							<div class="cart-subtitle">일반상품</div>
-							<div class="prdbox">
-								<div class="checkbox">							
-									<input type="checkbox" id="basket_chk_id_0"
-										name="basket_product_normal_type_normal" class="check">
-								</div>
-								<div class="thumbnail">
-									<a href="#"><img
-										src="https://post-phinf.pstatic.net/MjAxOTA4MTNfMjIg/MDAxNTY1NjYwNDE4NjY3.l7xSqzLFBIojMAa8xxfY_OzKucZb4FimEDq2eS2WHkYg.tyeXLu39J6qYdxke7FTEnSdxuKWEf2jM5BRdk5Ronowg.GIF/1565623714.gif?type=w500_q75"
-										width="150" height="150">
-									</a>
-								</div>
-								<div class="description">
-									<li class="list1">
-										<strong class="prdName" title="상품명" id="basket_prod_id_0">
-											<a href="#" class="ec-product-name">초간단 5분 조리! 돈까스 주먹</a>
-										</strong>
-									</li>								
-									<li class="price"><strong>13,600</strong>원</li>
-									<li class="price"><span class="txtSecondary">-0</span>원</li>
-									<li>배송 :<span class="price">3,500원</span></li>
-								</div>
-							</div>
-							<div class="prdOption">
-								<span class="product displaynone">초간단 5분 조리! 돈까스 주먹</span>
-								<span class="optionStr">[옵션: 돈까스 주먹]</span>
-								<span class="displaynone">(2개)</span>
-							</div>
-							<div class="container-fluid">
-								<div class="qty_title">수량</div>
-								<div class="qty_updown">
-									<button class="down btn_white" onclick="Basket.outQuantityShortcut('quantity_id_0', 0);">-</button>
-									<input class="qty_number" name="quantity_name_0" size="2" value="2" type="text">
-									<button class="up btn_white" onclick="Basket.addQuantityShortcut('quantity_id_0', 0);">+</button>
-								</div>
-							</div>
-							<div class="sumPrice">
-								<span class="label">주문금액</span> <strong>13,600원</strong>
-							</div>
-							<div class="buttonGroup">
-								<button onclick="BasketNew.moveWish(0);" class="btn1 btn_white">관심상품</button>
-								<button onclick="Basket.orderBasketItem(0);" class="btn2 btn_white">주문하기</button>
-							</div>
-						</div>
-						<div id="collapseOne" class="accordion-collapse collapse show"
-							aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-							<div class="cart-subtitle">일반상품</div>
-							<div class="prdbox">
-								<div class="checkbox">							
-									<input type="checkbox" id="basket_chk_id_0"
-										name="basket_product_normal_type_normal" class="check">
-								</div>
-								<div class="thumbnail">
-									<a href="#"><img
-										src="https://post-phinf.pstatic.net/MjAxOTA4MTNfMjIg/MDAxNTY1NjYwNDE4NjY3.l7xSqzLFBIojMAa8xxfY_OzKucZb4FimEDq2eS2WHkYg.tyeXLu39J6qYdxke7FTEnSdxuKWEf2jM5BRdk5Ronowg.GIF/1565623714.gif?type=w500_q75"
-										width="150" height="150">
-									</a>
-								</div>
-								<div class="description">
-									<li class="list1">
-										<strong class="prdName" title="상품명" id="basket_prod_id_0">
-											<a href="#" class="ec-product-name">초간단 5분 조리! 돈까스 주먹</a>
-										</strong>
-									</li>								
-									<li class="price"><strong>13,600</strong>원</li>
-									<li class="price"><span class="txtSecondary">-0</span>원</li>
-									<li>배송 :<span class="price">3,500원</span></li>
-								</div>
+								<a href="#none" onclick="Basket.deleteBasketItem(1);" class="btnDelete">X</a>
 							</div>
 							<div class="prdOption">
 								<span class="product displaynone">초간단 5분 조리! 돈까스 주먹</span>
