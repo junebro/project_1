@@ -408,7 +408,6 @@ a.active {
 }
 
 
-/**/
 
 .view_Board {
 	margin-top: 3%;
@@ -434,7 +433,6 @@ a.active {
 	font-family:'Noto Sans KR', sans-serif;
 	padding-right: 10%;
 }
-
 
 .border_date {
 	padding-right: 5%;
@@ -470,38 +468,6 @@ a.active {
 
 .Board_member_detail {
 	padding-top: 5%;
-}
-
-.view_sel {
-	width:100px;
-	border-radius: 4%;
-	border: 1px solid rgba(128, 128, 128, 0.3);
-}
-
-.view_sel label {
-	font-family: "Font Awesome 5 Free"; 
-	padding: .5em .5em;
-	font-weight:900; 
-	color: #000000;
-}
-
-.all_star {
-	width:280px; 
-	font-family: "Font Awesome 5 Free"; 
-	font-weight:900; 
-}
-
-.all_star option{
-	font-family: "Font Awesome 5 Free"; 
-	font-weight:900;
-}
-
-.selectbox_star {
-	font-family: "Font Awesome 5 Free"; 
-	font-weight:900;
-	width: 170px;
-	height: 43px;
-	padding-top: 3px;
 }
 
 .view_page {
@@ -1017,7 +983,7 @@ a.active {
 						<div class="view_hr_bt">
 							<br>
 							
-							<div class="selectbox view_sel">
+							<div class="selectbox sel_color">
 								<label>색상</label> 
 								<select>
 									<option select>색상</option>
@@ -1027,18 +993,18 @@ a.active {
 									<option>(91)Sliver</option>
 								</select>
 							</div>
-							<div class="selectbox selectbox_star view_sel">
+							<div class="selectbox selectbox_star sel_color">
 							<label>별점</label> 
 							<select class="all_star">
 								<option selected="selected" >별점</option>
-								<option>&#xf005 &#xf005 &#xf005 &#xf005 &#xf005</option>
-								<option>&#xf005 &#xf005 &#xf005 &#xf005</option>
-								<option>&#xf005 &#xf005 &#xf005</option>
-								<option>&#xf005 &#xf005</option>
-								<option>&#xf005</option>
+								<option value="five_star">&#xf005 &#xf005 &#xf005 &#xf005 &#xf005</option>
+								<option value="four_star">&#xf005 &#xf005 &#xf005 &#xf005</option>
+								<option value="three_star">&#xf005 &#xf005 &#xf005</option>
+								<option value="two_star">&#xf005 &#xf005</option>
+								<option value="one_star">&#xf005</option>
 							</select>
 							</div>
-							<div class="selectbox view_sel">
+							<div class="selectbox sel_color">
 								<label>사이즈</label> 
 								<select>
 									<option select>사이즈</option>

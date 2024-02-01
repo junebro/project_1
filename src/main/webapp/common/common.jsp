@@ -106,6 +106,39 @@
 		  appearance: none;
 		}
 		
+		/* select box 별모양*/
+		.sel_color {
+			width:100px;
+			border-radius: 4%;
+			border: 1px solid rgba(128, 128, 128, 0.3);
+		}
+		
+		.sel_color label {
+			font-family: "Font Awesome 5 Free"; 
+			padding: .5em .5em;
+			font-weight:900; 
+			color: #000000;
+		}
+		
+		.all_star {
+			width:280px; 
+			font-family: "Font Awesome 5 Free"; 
+			font-weight:900; 
+		}
+		
+		.all_star option{
+			font-family: "Font Awesome 5 Free"; 
+			font-weight:900;
+		}
+		
+		.selectbox_star {
+			font-family: "Font Awesome 5 Free"; 
+			font-weight:900;
+			width: 170px;
+			height: 43px;
+			padding-top: 3px;
+		}
+				
 </style>
 <title>Insert title here</title>
 </head>
