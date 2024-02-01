@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 정보1</title>
+<link href="./TabMenuCss.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -23,15 +24,89 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+<script type="text/javascript">
+	/* 데이터 전송 시 오류에 대한 함수 */
 	$(document).ready(function() {
+		var newph = "값을 입력하세요."
+		// 결제 버튼을 클릭 시 값이 비어있을 경우 작동하는 함수
+		$('#buy').click(function() {
+			// 입금자 정보가 비어있을 시
+			if ($('#inputdp').val() == '') {
+				$('#inputdp').addClass('focusError');
+				document.getElementById('inputdp').focus();
+				$('#inputdp').attr('placeholder', newph);
+			}
+			// 비회원 주문자 번호가 비어있을 시
+			if ($('#inputpn2').val() == '') {
+				$('#inputpn2').addClass('focusError');
+				document.getElementById('inputpn2').focus();
+				$('#inputpn2').attr('placeholder', newph);
+			} else if ($('#inputpn2').val().length < 8) { // 비회원 주문자 번호가 8글자미만일시
+				alert('너무 짧잖');
+				$('#inputpn2').addClass('focusError');
+				document.getElementById('inputpn2').focus();
+				$('#inputpn2').attr('placeholder', newph);
+			}
+			// 상세주소가 비어있을 시
+			if ($('#address-2').val() == '') {
+				$('#address-2').addClass('focusError');
+				document.getElementById('address-2').focus();
+				$('#address-2').attr('placeholder', newph);
+			}
+			// 받는사람 정보가 비어있을 시
+			if ($('#inputrc').val() == '') {
+				$('#inputrc').addClass('focusError');
+				document.getElementById('inputrc').focus();
+				$('#inputrc').attr('placeholder', newph);
+			}
+			// 주문자 이메일이 비어있을 시
+			if ($('#inputemail').val() == '') {
+				$('#inputemail').addClass('focusError');
+				document.getElementById('inputemail').focus();
+				$('#inputemail').attr('placeholder', newph);
+			}
+			// 주문자 정보가 비어있을 시
+			if ($('#inputid').val() == '') {
+				$('#inputid').addClass('focusError');
+				document.getElementById('inputid').focus();
+				$('#inputid').attr('placeholder', newph);
+			}
+		});
+		/* 새로 만든 탭 메뉴 함수  */
 		$("input").addClass("form-control");
+		var displayController = 'display:none;'
+		var displayOn = 'display:block;'
+		$('#tab1click').click(function() {
+			$('#tab1-li').addClass('selected')
+			$('#tab1').attr('style', displayOn)
+			$('#tab2-li').removeClass('selected')
+			$('#tab2').attr('style', displayController)
+			$('#tab3-li').removeClass('selected')
+			$('#tab3').attr('style', displayController)
+		})
+		$('#tab2click').click(function() {
+			$('#tab1-li').removeClass('selected')
+			$('#tab1').attr('style', displayController)
+			$('#tab2-li').addClass('selected')
+			$('#tab2').attr('style', displayOn)
+			$('#tab3-li').removeClass('selected')
+			$('#tab3').attr('style', displayController)
+		})
+		$('#tab3click').click(function() {
+			$('#tab1-li').removeClass('selected')
+			$('#tab1').attr('style', displayController)
+			$('#tab2-li').removeClass('selected')
+			$('#tab2').attr('style', displayController)
+			$('#tab3-li').addClass('selected')
+			$('#tab3').attr('style', displayOn)
+		})
 	});
+
+	/* 이전 탭 메뉴 함수 */
 	$(function() {
 		$("#tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
 		$("#tabs li").removeClass("ui-corner-top").addClass("ui-corner-left");
 	});
-
 	function execDaumPostcode() {
 		new daum.Postcode({
 			oncomplete : function(data) {
@@ -42,102 +117,6 @@
 	}
 </script>
 <style>
-body {
-	font-family: 'Noto Sans KR', sans-serif;
-}
-
-tr, input, select {
-	height: 50px;
-	width: 100%;
-}
-
-.distinct { /* 구분선 스타일 */
-	border-bottom: 1px solid rgba(128, 128, 128, 0.5);
-	margin-top: 10px;
-}
-
-.info {
-	background-color: #CCFFFF;
-	opacity: 1;
-	font-weight: none;
-	font-size : 12px;
-}
-
-.icon {
-	width: 30px;
-	height: 30px;
-}
-
-.mar {
-	margin-left: 15px;
-}
-
-.dark-nav {
-	color: white;
-	font-size: 30px;
-}
-
-.dark-nav1 {
-	color: white;
-	font-size: 20px;
-}
-
-.ui-tabs-vertical {
-	width: 55em;
-}
-
-.ui-tabs-vertical .ui-tabs-nav {
-	padding: .2em .1em .2em .2em;
-	float: left;
-	width: 12em;
-}
-
-.ui-tabs-vertical .ui-tabs-nav li {
-	clear: left;
-	width: 100%;
-	border-bottom-width: 1px !important;
-	border-right-width: 0 !important;
-	margin: 0 -1px .2em 0;
-}
-
-.ui-tabs-vertical .ui-tabs-nav li a {
-	display: block;
-}
-
-.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
-	padding-bottom: 0;
-	padding-right: .1em;
-	border-right-width: 1px;
-}
-
-.ui-tabs-vertical .ui-tabs-panel {
-	padding: 1em;
-	float: right;
-	width: 40em;
-}
-
-button {
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 1em;
-	cursor: pointer;
-	border-width: thin;
-}
-
-.btn_black {
-	padding: 5px 10px;
-	background-color: #000000;
-	color: #ffffff;
-}
-
-.paymentbar {
-	text-align: center;
-}
-
-.focusError {
-	border-color: red;
-	color: red;
-}
-
 .focusError {
 	border-color: red;
 	color: red;
@@ -146,67 +125,10 @@ button {
 .focusError::placeholder {
 	color: red;
 }
-
-.btn_black {
-	margin-botton:30px;
-	padding: 5px 10px;
-	background-color: #000000;
-	color: #ffffff;
-}
 </style>
 
 </head>
 <body>
-	<!-- 데이터 전송  -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			var newph = "값을 입력하세요."
-			// 결제 버튼을 클릭 시 값이 비어있을 경우 작동하는 함수
-			$('#buy').click(function() {
-				// 입금자 정보가 비어있을 시
-				if ($('#inputdp').val() == '') {
-					$('#inputdp').addClass('focusError');
-					document.getElementById('inputdp').focus();
-					$('#inputdp').attr('placeholder', newph);
-				}
-				// 비회원 주문자 번호가 비어있을 시
-				if ($('#inputpn2').val() == '') {
-					$('#inputpn2').addClass('focusError');
-					document.getElementById('inputpn2').focus();
-					$('#inputpn2').attr('placeholder', newph);
-				} else if ($('#inputpn2').val().length < 8) { // 비회원 주문자 번호가 8글자미만일시
-					alert('너무 짧잖');
-					$('#inputpn2').addClass('focusError');
-					document.getElementById('inputpn2').focus();
-					$('#inputpn2').attr('placeholder', newph);
-				}
-				// 상세주소가 비어있을 시
-				if ($('#address-2').val() == '') {
-					$('#address-2').addClass('focusError');
-					document.getElementById('address-2').focus();
-					$('#address-2').attr('placeholder', newph);
-				}
-				// 받는사람 정보가 비어있을 시
-				if ($('#inputrc').val() == '') {
-					$('#inputrc').addClass('focusError');
-					document.getElementById('inputrc').focus();
-					$('#inputrc').attr('placeholder', newph);
-				}
-				// 주문자 이메일이 비어있을 시
-				if ($('#inputemail').val() == '') {
-					$('#inputemail').addClass('focusError');
-					document.getElementById('inputemail').focus();
-					$('#inputemail').attr('placeholder', newph);
-				}
-				// 주문자 정보가 비어있을 시
-				if ($('#inputid').val() == '') {
-					$('#inputid').addClass('focusError');
-					document.getElementById('inputid').focus();
-					$('#inputid').attr('placeholder', newph);
-				}
-			});
-		});
-	</script>
 	<div style="background-color: white;"
 		class="justify-content-center row">
 		<div class="col-1">
@@ -325,7 +247,7 @@ button {
 					<tr style="height: 50px">
 						<td><span></span></td>
 						<td><input id="address-2" placeholder="상세주소" size="15"
-							type="text""></td>
+							type="text"></td>
 					</tr>
 					<tr style="height: 50px">
 						<td><span class="mar">휴대 전화</span></td>
@@ -440,69 +362,51 @@ button {
 				</tbody>
 			</table>
 			<hr class="distinct">
-			<table>
-				<tbody>
-					<tr style="height: 50px">
-						<td><span class="mar"
-							style="font-size: 24px; font-weight: bold;">결제 수단</span></td>
-					</tr>
-					<tr>
-						<td id="tabs" colspan="2">
-							<ul style="width: 100%;">
-								<li class="paymentbar"><a href="#tabs-1">무통장 입금</a></li>
-								<li class="paymentbar"><a href="#tabs-2">카카오 페이</a></li>
-								<li class="paymentbar"><a href="#tabs-3">신용 카드</a></li>
-							</ul>
-							<div id="tabs-1" style="width: 100%;">
-								<h3>무통장입금</h3>
-								<table class="col-12" style="">
-									<colgroup>
-										<col style="width: 20%;">
-										<col style="width: 80%">
-									</colgroup>
-									<tbody>
-										<tr style="height: 50px">
-											<td><span class="mar">입금은행 </span></td>
-											<td><form>
-													<select class="form-select" id="messageC"
-														style="width: 100%; margin: auto;">
-														<option>--입금 은행을 선택해주세요--</option>
-														<option>쓰레기은행 20240126</option>
-														<option>바보은행 32432432423432</option>
-														<option>뜨아악은행 67212212</option>
-													</select>
-												</form></td>
-										</tr>
-										<tr style="height: 50px">
-											<td><span class="mar">입금자명 </span></td>
-											<td><input id="inputdp" name="rname"
-												class="form-control" placeholder="입금자 이름" size="15" value=""
-												type="text" style="width: 100%; height: 50px;"></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div id="tabs-2" style="width: 100%;">
-								<h3>카카오 페이 결제</h3>
-								<p>-카카오톡 앱을 설치한 후, 최초 1회 카드 정보를 등록하셔야 사용 가능합니다.</p>
-								<p>-인터넷 익스플로러는 지원하지 않습니다.</p>
-								<p>-카카오머니로 결제 시, 현금영수증 방급은 (주)카카오페이에서 발급가능합니다..</p>
-							</div>
-							<div id="tabs-3" style="width: 100%;">
-								<h3>신용 카드 결제</h3>
-								<p>-소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</p>
-								<p>-결제 버튼을 누르시면 팝업 창이 생성됩니다.</p>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
+			<span class="mar" style="font-size: 24px; font-weight: bold;">결제
+				수단</span><br>
+			<br>
+			<div class="ec-base-tab typeLight">
+				<div class="menu">
+					<div id="tab1-li"><a id="tab1click" href="#tab1">무통장 입금</a></div>
+					<div id="tab2-li"><a id="tab2click" href="#tab2">카카오페이</a></div>
+					<div id="tab3-li"><a id="tab3click" href="#tab3">신용카드</a></div>
+				</div>
+			</div>
+			<br>
+			<div>
+				<div id="tab1">
+					<h3>무통장입금</h3>
+					<span class="mar">입금은행 </span>
+					<form>
+						<select class="form-select" id="messageC"
+							style="width: 100%; margin: auto;">
+							<option>--입금 은행을 선택해주세요--</option>
+							<option>쓰레기은행 20240126</option>
+							<option>바보은행 32432432423432</option>
+							<option>뜨아악은행 67212212</option>
+						</select>
+					</form>
+					<span class="mar">입금자명 </span> <input id="inputdp" name="rname"
+						class="form-control" placeholder="입금자 이름" size="15" value=""
+						type="text" style="width: 100%; height: 50px;">
+				</div>
+
+				<div id="tab2">
+					<h3>카카오 페이 결제</h3>
+					<p>-카카오톡 앱을 설치한 후, 최초 1회 카드 정보를 등록하셔야 사용 가능합니다.</p>
+					<p>-인터넷 익스플로러는 지원하지 않습니다.</p>
+					<p>-카카오머니로 결제 시, 현금영수증 방급은 (주)카카오페이에서 발급가능합니다..</p>
+				</div>
+				<div id="tab3">
+					<h3>신용 카드 결제</h3>
+					<p>-소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</p>
+					<p>-결제 버튼을 누르시면 팝업 창이 생성됩니다.</p>
+				</div>
+			</div>
 			<div class="justify-content-center row d-flex">
 				<div class="col-12" style="text-align: center;">
-					<button id="buy" type="button" class="btn_black" style="width:100%">?원 결제하기</button>
+					<button id="buy" type="button" class="btn_black"
+						style="width: 100%">?원 결제하기</button>
 				</div>
 			</div>
 			<div class="info">
