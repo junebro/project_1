@@ -125,8 +125,52 @@
 .focusError::placeholder {
 	color: red;
 }
+
 body {
 	font-family: 'Noto Sans KR', sans-serif;
+}
+/* 별점 css */
+#myform fieldset {
+	display: inline-block;
+	direction: rtl;
+	border: 0;
+}
+
+#myform fieldset legend {
+	text-align: right;
+}
+
+#myform input[type=radio] {
+	display: none;
+}
+
+#myform label {
+	font-size: 3em;
+	color: transparent;
+	text-shadow: 0 0 0 #f0f0f0;
+}
+
+#myform label:hover {
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+#myform label:hover ~ label {
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+#myform input[type=radio]:checked ~ label {
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+#reviewContents {
+	width: 100%;
+	height: 150px;
+	padding: 10px;
+	box-sizing: border-box;
+	border: solid 1.5px #D3D3D3;
+	border-radius: 5px;
+	font-size: 16px;
+	resize: none;
 }
 </style>
 
@@ -138,7 +182,7 @@ body {
 			<nav class="navbar navbar-expand-sm">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link"
-						href="./../Member/MyCart.jsp"><img class="icon"
+						href="javascript:history.back();"><img class="icon"
 							src="https://cdn-icons-png.freepik.com/256/10009/10009107.png?ga=GA1.1.1582875918.1706248960&semt=ais">
 					</a></li>
 				</ul>
@@ -147,7 +191,7 @@ body {
 		<div class="col-6">
 			<nav class="navbar navbar-expand-sm">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a class="nav-link" href="#"> <img
+					<li class="nav-item"><a class="nav-link" href="./../Member/MyCart.jsp"> <img
 							class="icon"
 							src="https://cdn-icons-png.freepik.com/256/12718/12718662.png">
 					</a></li>
@@ -412,7 +456,8 @@ body {
 					<p>-결제 버튼을 누르시면 팝업 창이 생성됩니다.</p>
 				</div>
 			</div>
-			<br><br>
+			<br>
+			<br>
 			<div class="justify-content-center row d-flex">
 				<div class="col-12" style="text-align: center;">
 					<button id="buy" type="button" class="btn_black"
