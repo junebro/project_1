@@ -173,6 +173,7 @@ a{ /* 링크 */
 	padding: 20px;
 	border: 1px solid #ddd;
 	font-size: 20px;
+	margin-bottom: 10px;
 }
 .ec-base-button .btn2{ /* 선택상품주문 */
 	width: 100%;
