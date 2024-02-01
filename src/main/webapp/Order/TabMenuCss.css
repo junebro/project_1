@@ -115,12 +115,6 @@ button {
 	border-width: thin;
 }
 
-.btn_black {
-	padding: 5px 10px;
-	background-color: #000000;
-	color: #ffffff;
-}
-
 .paymentbar {
 	text-align: center;
 }

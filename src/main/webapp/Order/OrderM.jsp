@@ -125,6 +125,9 @@
 .focusError::placeholder {
 	color: red;
 }
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
 </style>
 
 </head>
@@ -160,7 +163,8 @@
 		<div class="col-7">
 			<nav class="navbar navbar-expand-sm bg-dark text-center">
 				<ul class="navbar-nav mx-auto">
-					<li class="nav-item"><p class="nav-link dark-nav">주문/결제</p></li>
+					<li class="nav-item"><p class="nav-link dark-nav"
+							style="color: white; font-size: 30px;">주문/결제</p></li>
 				</ul>
 			</nav>
 		</div>
@@ -363,13 +367,18 @@
 			</table>
 			<hr class="distinct">
 			<span class="mar" style="font-size: 24px; font-weight: bold;">결제
-				수단</span><br>
-			<br>
+				수단</span><br> <br>
 			<div class="ec-base-tab typeLight">
 				<div class="menu">
-					<div id="tab1-li"><a id="tab1click" href="#tab1">무통장 입금</a></div>
-					<div id="tab2-li"><a id="tab2click" href="#tab2">카카오페이</a></div>
-					<div id="tab3-li"><a id="tab3click" href="#tab3">신용카드</a></div>
+					<div id="tab1-li">
+						<a id="tab1click" href="#tab1">무통장 입금</a>
+					</div>
+					<div id="tab2-li">
+						<a id="tab2click" href="#tab2">카카오페이</a>
+					</div>
+					<div id="tab3-li">
+						<a id="tab3click" href="#tab3">신용카드</a>
+					</div>
 				</div>
 			</div>
 			<br>
@@ -403,6 +412,7 @@
 					<p>-결제 버튼을 누르시면 팝업 창이 생성됩니다.</p>
 				</div>
 			</div>
+			<br><br>
 			<div class="justify-content-center row d-flex">
 				<div class="col-12" style="text-align: center;">
 					<button id="buy" type="button" class="btn_black"
