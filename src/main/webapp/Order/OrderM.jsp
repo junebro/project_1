@@ -182,7 +182,7 @@ body {
 			<nav class="navbar navbar-expand-sm">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link"
-						href="./../Member/MyCart.jsp"><img class="icon"
+						href="javascript:history.back();"><img class="icon"
 							src="https://cdn-icons-png.freepik.com/256/10009/10009107.png?ga=GA1.1.1582875918.1706248960&semt=ais">
 					</a></li>
 				</ul>
@@ -191,7 +191,7 @@ body {
 		<div class="col-6">
 			<nav class="navbar navbar-expand-sm">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a class="nav-link" href="#"> <img
+					<li class="nav-item"><a class="nav-link" href="./../Member/MyCart.jsp"> <img
 							class="icon"
 							src="https://cdn-icons-png.freepik.com/256/12718/12718662.png">
 					</a></li>
