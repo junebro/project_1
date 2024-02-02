@@ -55,7 +55,7 @@
 	}
 	/* 리뷰 쓰기 함수 */
 	$(document).ready(function() {
-		$('#review_btn').click(function() {
+		$('.review_btn').click(function() {
 			$('.popup').show();
 		})
 	});
@@ -297,7 +297,7 @@ a {
 				<div class="spanbar">
 					<a href="#">활동 정보</a>
 				</div>
-				<br> <a href="#">최근 본 상품</a><br> <br> <a href="#">좋아요한상품</a><br>
+				<br> <a href="./../Product/DetailProduct/DetailProduct.jsp">최근 본 상품</a><br> <br> <a href="./../Product/DetailProduct/DetailProduct.jsp">좋아요한상품</a><br>
 				<br> <a href="#">나의게시글</a><br>
 				<div class="spanbar">
 					<a href="#">내 정보</a>
@@ -328,7 +328,105 @@ a {
 							<td class="orderTd">1</td>
 							<td class="orderTd">109,000원</td>
 							<td class="orderTd">
-								<button id="review_btn" type="button" class="btn_white"
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">7474</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)
+							</td>
+							<td class="orderTd">(91)Silver, 280, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">99,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">6969</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)
+							</td>
+							<td class="orderTd">260, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">109,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">7474</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)
+							</td>
+							<td class="orderTd">(91)Silver, 280, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">99,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">6969</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)
+							</td>
+							<td class="orderTd">260, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">109,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">7474</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)
+							</td>
+							<td class="orderTd">(91)Silver, 280, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">99,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">6969</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)
+							</td>
+							<td class="orderTd">260, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">109,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">7474</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)
+							</td>
+							<td class="orderTd">(91)Silver, 280, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">99,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
 									style="font-size: 12px">리뷰 쓰기</button>
 							</td>
 						</tr>
