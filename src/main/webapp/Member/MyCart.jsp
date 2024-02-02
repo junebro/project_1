@@ -204,8 +204,8 @@ a{ /* 링크 */
 }
 .sticky {
 	position: absoulte;
-	width:300px;
-	height: 500px;
+	width:400px;
+	height: 400px;
 	padding: 10px;
 }
 /* 반응형 스타일 예시 -> 1200px 이하에서는 고정 요소가 아래에 배치됩니다. */
