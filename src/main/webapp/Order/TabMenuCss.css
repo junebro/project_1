@@ -50,6 +50,7 @@ div .menu {
 	text-align: center;
 	background: white;
 }
+
 .ec-base-tab .menu div.selected a {
 	position: relative;
 	top: -1px;
