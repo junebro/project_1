@@ -319,14 +319,14 @@ a {
 							<th class="orderTh">리뷰</th>
 						</tr>
 						<tr class="underline">
-							<td class="orderTd" id="ORDCD">주문번호 ORDCD</td>
+							<td class="orderTd" id="ORDCD">6969</td>
 							<td class="orderTd"><img class="orderImg "
-								src="https://www.wadiz.kr/ft/images/green001/2023/0613/20230613092632647_6.gif"></td>
-							<td class="orderTd" style="width: 40%;">진흙 뭍히고 물<br>신발<br>음
+								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)
 							</td>
-							<td class="orderTd">옵션</td>
-							<td class="orderTd">QYT 수량</td>
-							<td class="orderTd">PRICE 가격</td>
+							<td class="orderTd">260, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">109,000원</td>
 							<td class="orderTd">
 								<button id="review_btn" type="button" class="btn_white"
 									style="font-size: 12px">리뷰 쓰기</button>
