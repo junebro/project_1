@@ -1,0 +1,58 @@
+        .visualImg{
+            width: 850px;
+            height: 600px;
+        }
+        .visual {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            margin: 0px auto;
+            
+            
+            /*border-bottom: 2px solid darkgray;*/
+        }
+        .visual button{
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius:100%;
+            background:rgba(0,0,0,.2);
+            border: none;
+
+        }
+        .visual button.slick-prev{
+           
+            left: 0;
+            font-size:0; 
+            color:transparent;
+            
+        }
+        .visual button.slick-prev::before{
+           
+            content: "<";
+            font-size: 20px;
+            color: white;
+          
+           
+       }
+        .visual button.slick-next{
+           
+            right:0;
+            font-size:0; 
+            color:transparent;
+            
+            
+            
+        }
+
+        .visual button.slick-next::before {
+           
+            content: ">";
+            font-size: 20px;
+            color: white;
+          
+           
+       }
