@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 정보1</title>
-<link href="./TabMenuCss.css" rel="stylesheet">
+<link href="TabMenuCss.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -27,7 +27,7 @@
 <script type="text/javascript">
 	/* 데이터 전송 시 오류에 대한 함수 */
 	$(document).ready(function() {
-		var newph = "값을 입력하세요."
+		var newph = "필수 입력 사항입니다."
 		// 결제 버튼을 클릭 시 값이 비어있을 경우 작동하는 함수
 		$('#buy').click(function() {
 			// 입금자 정보가 비어있을 시
@@ -42,7 +42,7 @@
 				document.getElementById('inputpn2').focus();
 				$('#inputpn2').attr('placeholder', newph);
 			} else if ($('#inputpn2').val().length < 8) { // 비회원 주문자 번호가 8글자미만일시
-				alert('너무 짧잖');
+				alert('너무 짧습니다.');
 				$('#inputpn2').addClass('focusError');
 				document.getElementById('inputpn2').focus();
 				$('#inputpn2').attr('placeholder', newph);
@@ -125,8 +125,69 @@
 .focusError::placeholder {
 	color: red;
 }
+
 body {
 	font-family: 'Noto Sans KR', sans-serif;
+}
+/* 별점 css */
+#myform fieldset {
+	display: inline-block;
+	direction: rtl;
+	border: 0;
+}
+
+#myform fieldset legend {
+	text-align: right;
+}
+
+#myform input[type=radio] {
+	display: none;
+}
+
+#myform label {
+	font-size: 3em;
+	color: transparent;
+	text-shadow: 0 0 0 #f0f0f0;
+}
+
+#myform label:hover {
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+#myform label:hover ~ label {
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+#myform input[type=radio]:checked ~ label {
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+#reviewContents {
+	width: 100%;
+	height: 150px;
+	padding: 10px;
+	box-sizing: border-box;
+	border: solid 1.5px #D3D3D3;
+	border-radius: 5px;
+	font-size: 16px;
+	resize: none;
+}
+
+td span {
+	display: block;
+	margin-bottom: 10px; /* 간격을 조절할 수 있는 값 */
+}
+
+.inputTypeTextPay {
+	width: 100%;
+	height: 50px;
+	text-align: right;
+}
+
+#buy {
+	width: 100%;
+	height: 100px;
+	font-size: 24px;
 }
 </style>
 
@@ -138,7 +199,7 @@ body {
 			<nav class="navbar navbar-expand-sm">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link"
-						href="./../Member/MyCart.jsp"><img class="icon"
+						href="javascript:history.back();"><img class="icon"
 							src="https://cdn-icons-png.freepik.com/256/10009/10009107.png?ga=GA1.1.1582875918.1706248960&semt=ais">
 					</a></li>
 				</ul>
@@ -147,8 +208,8 @@ body {
 		<div class="col-6">
 			<nav class="navbar navbar-expand-sm">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a class="nav-link" href="#"> <img
-							class="icon"
+					<li class="nav-item"><a class="nav-link"
+						href="./../Member/MyCart.jsp"> <img class="icon"
 							src="https://cdn-icons-png.freepik.com/256/12718/12718662.png">
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -193,7 +254,7 @@ body {
 							<div class="input-group mt-3 mb-3 input-group-prepend">
 								<input id="inputemail" style="width: 70%" type="text"
 									class="form-control" placeholder="회원 정보를 통해 입력"> <select
-									class="form-select select-toggle" id="messageC"
+									class="form-select select-toggle"
 									style="width: 30%; margin: auto;">
 									<option>--메일 선택--</option>
 									<option>@naver.com</option>
@@ -207,7 +268,7 @@ body {
 						<td><span class="mar">휴대 전화</span></td>
 						<td>
 							<div class="input-group mt-3 mb-3 input-group-prepend">
-								<select class="form-select select-toggle" id="messageC"
+								<select class="form-select select-toggle"
 									style="width: 30%; margin: auto;">
 									<option>--번호 선택--</option>
 									<option>010</option>
@@ -257,7 +318,7 @@ body {
 						<td><span class="mar">휴대 전화</span></td>
 						<td>
 							<div class="input-group mt-3 mb-3 input-group-prepend">
-								<select class="form-select select-toggle" id="messageC"
+								<select class="form-select select-toggle"
 									style="width: 30%; margin: auto;">
 									<option>--번호 선택--</option>
 									<option>010</option>
@@ -299,12 +360,13 @@ body {
 						<td width="150px"><img
 							style="margin-left: 10px; margin-top: 10px; margin-bottom: 5px;"
 							width="120px" height="120px"
-							src="https://post-phinf.pstatic.net/MjAxOTA4MTNfMjIg/MDAxNTY1NjYwNDE4NjY3.l7xSqzLFBIojMAa8xxfY_OzKucZb4FimEDq2eS2WHkYg.tyeXLu39J6qYdxke7FTEnSdxuKWEf2jM5BRdk5Ronowg.GIF/1565623714.gif?type=w500_q75"></img>
+							src="https://image.nbkorea.com/NBRB_Product/20231215/NB20231215141218268001.jpg"></img>
 						</td>
-						<td><span>주문상품 이름</span><br> <span>주문옵션</span><br>
-							<span>주문수량</span><br></td>
+						<td><span>MTMORNDV 좆간지신발</span> <span
+							style="font-size: 0.8rem; font-weight: light;">[옵션 : 사이즈
+								255 , 발볼 D]</span> <span>수량: 1개</span><br></td>
 					</tr>
-					<tr style="height: 50px">
+					<tr>
 						<td colspan="2">
 							<nav
 								class="navbar navbar-expand-sm bg-light border justify-content-between">
@@ -330,25 +392,25 @@ body {
 					<col style="width: 80%">
 				</colgroup>
 				<tbody>
-					<tr style="height: 50px">
+					<tr>
 						<td><span class="mar">주문 상품</span></td>
-						<td><input name="rname" class="form-control"
+						<td><input name="rname" class="inputTypeTextPay"
 							disabled="disabled" placeholder="주문 상품 코드를 받아와서 입력될 예정" size="15"
-							value="" type="text" style="width: 100%; height: 50px;"></td>
+							value="262500원" type="text"></td>
 					</tr>
-					<tr style="height: 50px">
+					<tr>
 						<td><span class="mar">배송비</span></td>
-						<td><input name="rname" class="inputTypeText"
+						<td><input name="rname" class="inputTypeTextPay"
 							disabled="disabled" placeholder="배송비 정보를 받아와서 입력될 예정" size="15"
-							value="" type="text" style="width: 100%; height: 50px;"></td>
+							value="0원" type="text"></td>
 					</tr>
-					<tr style="height: 50px">
+					<tr>
 						<td><span class="mar">할인/부가결제</span></td>
-						<td><input name="rname" class="inputTypeText"
+						<td><input name="rname" class="inputTypeTextPay"
 							disabled="disabled" placeholder="회원 정보에 따른 할인량을 계산하여 입력될 예정"
-							size="15" value="" type="text" style="width: 100%; height: 50px;"></td>
+							size="15" value="회원 가입 환영 특가 10% 쿠폰 (26250원)" type="text"></td>
 					</tr>
-					<tr style="height: 50px">
+					<tr>
 						<td colspan="2">
 							<nav
 								class="navbar navbar-expand-sm bg-light border justify-content-between">
@@ -358,7 +420,7 @@ body {
 								</ul>
 								<ul class="navbar-nav">
 
-									<li class="nav-item" style="margin-right: 20px;">? 원</li>
+									<li class="nav-item" style="margin-right: 20px;">236250 원</li>
 								</ul>
 							</nav>
 						</td>
@@ -412,11 +474,11 @@ body {
 					<p>-결제 버튼을 누르시면 팝업 창이 생성됩니다.</p>
 				</div>
 			</div>
-			<br><br>
+			<br> <br>
 			<div class="justify-content-center row d-flex">
 				<div class="col-12" style="text-align: center;">
-					<button id="buy" type="button" class="btn_black"
-						style="width: 100%">?원 결제하기</button>
+					<button id="buy" type="button" class="btn_black">236250원
+						결제하기</button>
 				</div>
 			</div>
 			<div class="info">

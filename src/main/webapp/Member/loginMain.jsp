@@ -234,9 +234,9 @@ li {
 				</div>
 				<div class="customer">
 					<li class="nav-menu">
-						<a href="#">로그인</a>
-						<a href="#">회원가입</a>
-						<a href="#">
+						<a href="./loginMain.jsp">로그인</a>
+						<a href="./MemberJoin.jsp">회원가입</a>
+						<a href="./MyCart.jsp">
 							<span class="blind">장바구니</span>
 						</a>
 					</li>

@@ -55,7 +55,7 @@
 	}
 	/* 리뷰 쓰기 함수 */
 	$(document).ready(function() {
-		$('#review_btn').click(function() {
+		$('.review_btn').click(function() {
 			$('.popup').show();
 		})
 	});
@@ -179,7 +179,7 @@ a {
 .selectbox {
 	display: inline-block;
 	position: relative;
-	width: 150px;
+	width: 80px;
 	border: 1px solid rgba(128, 128, 128, 0.3);
 	z-index: 1;
 	text-align: right;
@@ -196,15 +196,6 @@ a {
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
 	border-top: 5px solid #333;
-}
-
-.selectbox label {
-	position: absolute;
-	top: 1px;
-	left: 5px;
-	padding: .6em .5em;
-	color: #999;
-	z-index: -1;
 }
 
 .selectbox select {
@@ -243,7 +234,7 @@ a {
 }
 
 .all_star {
-	width: 280px;
+	width: 150px;
 	font-family: "Font Awesome 5 Free";
 	font-weight: 900;
 }
@@ -306,7 +297,7 @@ a {
 				<div class="spanbar">
 					<a href="#">활동 정보</a>
 				</div>
-				<br> <a href="#">최근 본 상품</a><br> <br> <a href="#">좋아요한상품</a><br>
+				<br> <a href="./../Product/DetailProduct/DetailProduct.jsp">최근 본 상품</a><br> <br> <a href="./../Product/DetailProduct/DetailProduct.jsp">좋아요한상품</a><br>
 				<br> <a href="#">나의게시글</a><br>
 				<div class="spanbar">
 					<a href="#">내 정보</a>
@@ -328,16 +319,114 @@ a {
 							<th class="orderTh">리뷰</th>
 						</tr>
 						<tr class="underline">
-							<td class="orderTd" id="ORDCD">주문번호 ORDCD</td>
+							<td class="orderTd" id="ORDCD">6969</td>
 							<td class="orderTd"><img class="orderImg "
-								src="https://www.wadiz.kr/ft/images/green001/2023/0613/20230613092632647_6.gif"></td>
-							<td class="orderTd" style="width: 40%;">진흙 뭍히고 물<br>신발<br>음
+								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)
 							</td>
-							<td class="orderTd">옵션</td>
-							<td class="orderTd">QYT 수량</td>
-							<td class="orderTd">PRICE 가격</td>
+							<td class="orderTd">260, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">109,000원</td>
 							<td class="orderTd">
-								<button id="review_btn" type="button" class="btn_white"
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">7474</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)
+							</td>
+							<td class="orderTd">(91)Silver, 280, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">99,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">6969</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)
+							</td>
+							<td class="orderTd">260, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">109,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">7474</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)
+							</td>
+							<td class="orderTd">(91)Silver, 280, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">99,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">6969</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)
+							</td>
+							<td class="orderTd">260, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">109,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">7474</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)
+							</td>
+							<td class="orderTd">(91)Silver, 280, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">99,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">6969</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)
+							</td>
+							<td class="orderTd">260, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">109,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
+									style="font-size: 12px">리뷰 쓰기</button>
+							</td>
+						</tr>
+						<tr class="underline">
+							<td class="orderTd" id="ORDCD">7474</td>
+							<td class="orderTd"><img class="orderImg "
+								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
+							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)
+							</td>
+							<td class="orderTd">(91)Silver, 280, 2E</td>
+							<td class="orderTd">1</td>
+							<td class="orderTd">99,000원</td>
+							<td class="orderTd">
+								<button class="review_btn" type="button" class="btn_white"
 									style="font-size: 12px">리뷰 쓰기</button>
 							</td>
 						</tr>
@@ -364,71 +453,43 @@ a {
 	</div>
 	<div class="popup">
 		<form method="post" action="#">
-			<div class="container">
-				<br>
-				<h2>리뷰 작성하기</h2>
-				<table class="table table-hover">
-					<tbody>
-						<tr>
-							<td>
-								<!-- 이 아래 전부 사용해야 함 -->
-								<div class="selectbox selectbox_star sel_color">
-									<label>별점</label> <select class="all_star">
-										<option selected="selected">별점</option>
-										<option>&#xf005 &#xf005 &#xf005 &#xf005 &#xf005</option>
-										<option>&#xf005 &#xf005 &#xf005 &#xf005</option>
-										<option>&#xf005 &#xf005 &#xf005</option>
-										<option>&#xf005 &#xf005</option>
-										<option>&#xf005</option>
-									</select>
-								</div> <script>
-									// SELECT BOX
-									$(document)
-											.ready(
-													function() {
-
-														var selectTarget = $('.selectbox select');
-
-														selectTarget
-																.on(
-																		'blur',
-																		function() {
-																			$(
-																					this)
-																					.parent()
-																					.removeClass(
-																							'focus');
-																		});
-
-														selectTarget
-																.change(function() {
-																	var select_name = $(
-																			this)
-																			.children(
-																					'option:selected')
-																			.text();
-																	$(this)
-																			.siblings(
-																					'label')
-																			.text(
-																					select_name);
-																});
-													});
-								</script>
-							</td>
-						</tr>
-						<tr>
-							<td><textarea class="form-control"
-									placeholder="리뷰 내용을 작성하세요" name="contentDetail" maxlength="270"
-									style="height: 270px;"></textarea></td>
-						</tr>
-					</tbody>
-				</table>
-				<div style="text-align: right;">
-					<button type="submit" class="btn_white">올리기</button>
-				</div>
+			<br>
+			<h2>리뷰 작성하기</h2>
+			<select class="all_star selectbox_star sel_color" style="margin-left:7px;">
+				<option selected="selected">&#xf005 &#xf005 &#xf005 &#xf005
+					&#xf005</option>
+				<option>&#xf005 &#xf005 &#xf005 &#xf005</option>
+				<option>&#xf005 &#xf005 &#xf005</option>
+				<option>&#xf005 &#xf005</option>
+				<option>&#xf005</option>
+			</select>
+			<table class="table table-hover">
+				<tbody>
+					<tr>
+						<td><textarea class="form-control" placeholder="리뷰 내용을 작성하세요"
+								name="contentDetail" maxlength="270" style="height: 270px;"></textarea></td>
+					</tr>
+				</tbody>
+			</table>
+			<div style="text-align: center">
+				<button type="submit" class="btn_white" style="margin-right: 20px">올리기</button>
+				<button type="submit" class="btn_black" style="margin-left: 20px">나가기</button>
 			</div>
 		</form>
 	</div>
+	<script>
+		/* SELECT BOX */
+		$(document).ready(function() {
+			var selectTarget = $('.selectbox select');
+			selectTarget.on('blur', function() {
+				$(this).parent().removeClass('focus');
+			});
+
+			selectTarget.change(function() {
+				var select_name = $(this).children('option:selected').text();
+				$(this).siblings('label').text(select_name);
+			});
+		});
+	</script>
 </body>
 </html>
