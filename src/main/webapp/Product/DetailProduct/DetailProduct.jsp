@@ -27,6 +27,7 @@
 
 <title>상품 상세페이지</title>
 <style>
+
 header {
 	background-color: #333;
 	color: #fff;
@@ -56,14 +57,16 @@ header {
 
 
 .btn_buy {
-	padding: 16px 80px;
+	padding: 18px 80px;
 	background-color: #E97373;
 	color: #ffffff;
 	border: none;
 }
 
 .btn_Basket {
-	padding: 15px 23px;
+	padding: 16px 26px;
+	padding-bottom: 19px;
+	
 }
 
 /* 메인 이미지*/
@@ -125,10 +128,6 @@ header {
 	height: 20px;
 }
 
-#sel {
-	text-align: right;
-}
-
 .font-top {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 30px;
@@ -136,7 +135,9 @@ header {
 
 .fonttest {
 	font-family: 'Noto Serif KR', cursive;
-	font-size: 20px;
+	font-size: 18px;
+	text-align: center;
+	font-weight: bold;
 }
 
 .font_color {
@@ -152,16 +153,56 @@ header {
 	font-size: 30px
 }
 
-#sel {
-	padding-right:20px;
-	padding-top:10px;
-	padding-bottom:10px;
+.payment {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 10px;
 }
 
-.payment {
-	padding-right:20px;
-	padding-top:40px;
-	padding-bottom:30px;
+#total_name, #total_qt, #total_div_price {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#total_name {
+	padding-top: 10px;
+	padding-bottom: 2px;
+	text-align: left;
+}
+
+#total_qt {
+	padding-top: 5px;
+	padding-right:30px;
+	font-size: 20px;
+	text-align: center;
+}
+
+#total_div_price {
+	text-align: right;
+	font-size: 25px;
+}
+
+#color_area {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 23px;
+	text-align:right;
+}
+
+#color_area_name {
+	font-family: 'Noto Sans KR', sans-serif;
+	border: 1px solid #ddd; /* 이미지 주변에 테두리 설정 (선택사항) */
+	padding: 5px 20px;
+}
+
+#color_area_color {
+
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+/*
+
+#buy_count {
+	font-family: 'Noto Sans KR', sans-serif;
 	display: flex;
 }
 
@@ -171,22 +212,21 @@ header {
 	font-family: 'Noto Sans KR', sans-serif;
 	width:150px;
 	font-size: 15px;
-	color
 }
 
-#buy_count {
-	font-family: 'Noto Sans KR', sans-serif;
-	display: flex;
+#cnt_total {
+	padding-left : 10px;
+	padding-right : 10px;
+}
+
+.cnt_button {
 	border: 1px solid #ddd; 
+	padding-left : 10px;
+	padding-right : 10px;
+	padding-bottom : 4px;
 }
 
-#buy_price {
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 20px;
-	text-align:right;
-	width:150px;
-	padding-left: 30px;
-}
+
 
 #buy_del {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -195,25 +235,51 @@ header {
 }
 
 
-.cnt_button {
-	border: 1px solid #ddd; 
-	padding-left : 10px;
-	padding-right : 10px;
-}
-#cnt_total {
-	padding-left : 10px;
-	padding-right : 10px;
+
+#sel {
+	text-align: right;
+	padding-right:20px;
+	padding-top:10px;
+	padding-bottom:10px;
 }
 
-.buy_width {
-	padding-left : 10px;
-	padding-right : 10px;
-}
+
+*/
 
 
 .card_banner {
 	padding-top:1%;
 }
+
+
+
+/* 사이즈 영역 */
+#area_size {
+	display: flex;
+	flex-wrap: wrap; /* flex 요소들을 여러 줄로 랩핑할 수 있도록 설정 */
+	gap: 8px; /* 각 자식 <div> 사이의 간격을 띄우기 위해 gap 사용 */
+	padding-left:1%;
+}
+
+.btn_size {
+	font-family: 'Noto Sans KR', sans-serif;
+	border: 1px solid #ddd;
+	width: 80px;
+	height: 30px;
+	text-align: center;
+	font-size: 13px;
+	padding-top: 3px;
+}
+
+/* 줄바꿈 상위 div를 display: flex; 사용했기때문에 줄바꿈을 강제로 해줘야된다 */
+#newline {
+	display: flex;
+	flex-basis: 100%; /* 가로 폭을 100%로 설정하여 줄바꿈 */
+}
+
+
+
+
 
 
 
@@ -310,12 +376,13 @@ a.active {
 	font-size: 30px;
 }
 
-.view_hd_line {
-	border: 1px solid black;
+.black_hr_1px {
+	border-top: 1px solid rgb(43, 43, 43);
 }
-.buy_bt_line {
-	border: none; /* 기본 선 제거 */
-	border-top: 2px solid black; /* 원하는 색상의 선 지정 */
+
+
+.black_hr_2px {
+	border-top: 2px solid rgb(43, 43, 43);
 }
 
 .view_line {
@@ -408,7 +475,6 @@ a.active {
 }
 
 
-
 .view_Board {
 	margin-top: 3%;
 	margin-bottom: 3%;
@@ -481,11 +547,18 @@ a.active {
 }
 
 
+.dynamic-div {
+      position: relative; /* 상대 위치 지정 */
+      border: 1px solid #000;
+      padding: 10px;
+      margin: 5px;
+    }
+
 </style>
 </head>
-<body>
-
 	<script>
+	
+		
 		// 즐겨찾기 이미지 변경
 		function changeImage() {
 
@@ -534,7 +607,7 @@ a.active {
 			</div>
 			<br>
 			<div>
-				<span id="pro_price" class="price">99,000원</span> <br> <em class="">적립
+				<span id="pro_price" class="price">99000</span>원 <br> <em class="">적립
 					5,940 (6%)</em>
 			</div>
 
@@ -557,7 +630,7 @@ a.active {
 						data-price="99000.00" data-norprice="99000.00"
 						data-style-code="NBPFES152W" data-disp-name="W480KW5 (Uni, 4E)"
 						checked="checked" /> <label for="colCode_NBPFES152W10"
-						title="(10)White"><img
+						title="(10)White" onclick="test('(10)White')"><img
 							src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"
 							alt="(10)White" /></label></li>
 
@@ -565,7 +638,7 @@ a.active {
 						name="pr_color" value="10" data-info="(10)White"
 						data-price="99000.00" data-norprice="99000.00"
 						data-style-code="NBPFES152Z" data-disp-name="W480RG5 (Uni, 4E)" />
-						<label for="colCode_NBPFES152Z10" title="(10)White"><img
+						<label for="colCode_NBPFES152Z10" title="(20)White" onclick="test('(20)White')"><img
 							src="https://image.nbkorea.com/NBRB_Product/20240109/NB20240109142129747001.jpg"
 							alt="(10)White" /></label></li>
 
@@ -573,7 +646,7 @@ a.active {
 						name="pr_color" value="10" data-info="(15)Gray"
 						data-price="99000.00" data-norprice="99000.00"
 						data-style-code="NBPFES152G" data-disp-name="W480KR5 (Uni, 4E)" />
-						<label for="colCode_NBPFES152G15" title="(15)Gray"><img
+						<label for="colCode_NBPFES152G15" title="(15)Gray" onclick="test('(15)Gray')"><img
 							src="https://image.nbkorea.com/NBRB_Product/20240108/NB20240108103431052001.jpg"
 							alt="(15)Gray" /></label></li>
 
@@ -581,7 +654,7 @@ a.active {
 						name="pr_color" value="10" data-info="(19)Black"
 						data-price="99000.00" data-norprice="99000.00"
 						data-style-code="NBPFES152B" data-disp-name="W480KB5 (Uni, 4E)" />
-						<label for="colCode_NBPFES152B19" title="(19)Black"><img
+						<label for="colCode_NBPFES152B19" title="(19)Black" onclick="test('(19)Black')"><img
 							src="https://image.nbkorea.com/NBRB_Product/20231117/NB20231117165149911001.jpg"
 							alt="(19)Black" /></label></li>
 
@@ -589,59 +662,66 @@ a.active {
 						name="pr_color" value="10" data-info="(35)Beige"
 						data-price="99000.00" data-norprice="99000.00"
 						data-style-code="NBPFES152A" data-disp-name="W480KO5 (Uni, 4E)" />
-						<label for="colCode_NBPFES152A35" title="(35)Beige"><img
+						<label for="colCode_NBPFES152A35" title="(35)Beige" onclick="test('(35)Beige')"><img
 							src="https://image.nbkorea.com/NBRB_Product/20240108/NB20240108104823860001.jpg"
 							alt="(35)Beige" /></label>
 					</li>
 				</ul>
 			</div>
 
-			<div id="sel">
-				<div class="selectbox" >
-					<label>색상 선택</label> 
-					<select id="sel_color">
-						<option select>색상</option>
-						<option>(16)L/Gray</option>
-						<option>(20)Red</option>
-						<option>(50)Blue</option>
-						<option>(91)Sliver</option>
-					</select>
-				</div>
-				<div class="selectbox">
-					<label>사이즈 선택</label> 
-					<select id="sel_size" onchange=getSelectedValue()>
-						<option select>사이즈</option>
-						<option>250</option>
-						<option>255</option>
-						<option>260</option>
-						<option>265</option>
-						<option>270</option>
-						<option>275</option>
-						<option>280</option>
-						<option>285</option>
-						<option>290</option>
-					</select>
-				</div>
+			<div id="color_area"><span id="color_area_color">(10)White</span>&nbsp|&nbsp<span id="color_area_name"></span></div>
+			
+			<div id="area_size">
+				<%
+				    // 임의의 배열 생성 줄바꿈을 위해 맨처음(0)의 값을 임의로 지정
+				    String[] size = {"230", "235", "240", "245", "250", "255", "260", "265", "270", "275", "280", "285", "290"};
+				    request.setAttribute("size", size);
+				%>
+				<!-- 줄바꿈을 위한 columnSu -->
+				<c:set var="columnSu" value="5" />
+				<c:forEach var="size" items="${size}" varStatus="status">
+					<a href="#link"><div class="btn_size" onclick="sizeBuy(${size});">${size}</div></a>
+					<c:if test="${status.index mod columnSu == 4}">
+						<div id="newline"></div>
+					</c:if>
+				</c:forEach>
 			</div>
+			
+			<br>
+			
 			<div class="total_buy_page">
 				<div class="underline"></div>
-				<div id="buy_payment"class="payment" style="display:">
-					<div id="buy_name">1</div>
-					<div id="buy_count">
-						<div class="cnt_button"onclick='count("plus")'>+</div>
-						<div id='cnt_total'>1</div>
-						<div class="cnt_button"onclick='count("minus")'>-</div>
-					</div>
-					<div id="buy_price">3</div>
-					<div class="buy_width"></div>
-					<div id="buy_del">
-						<a href="#link" onclick="fn_del()">
-							<span>x</span>
-						</a>
-					</div>	
+				 <div id=sourceDiv style="display:">
+				 	<!-- 동적으로 만들어 주기때문에 주석처리 -->
+					<!--<div id="buy_payment"class="payment" >
+						<div id="buy_name">1</div>
+						<div id="buy_count">
+							<div class="cnt_button"onclick='count("minus")'>-</div>
+							<div id='cnt_total'>1</div>
+							<div class="cnt_button"onclick='count("plus")'>+</div>
+						</div>
+						<div id="total_qt">3</div>
+						
+						<div id="buy_del">
+							<input id='hdn_id' type='hidden' value='main'>
+							<a href="#link" onclick="fn_del(hdn_id.value)">
+								<span>x</span>
+							</a>
+						</div>	
+					</div>-->
 				</div>
 			</div>
-			<hr class="buy_bt_line">
+			
+			<div id="total_class" style="display:none"> 
+				<div class="black_hr_2px"></div>
+				<div class="payment">
+					<div id=total_name>합계</div>
+					<div style="width:140px"></div>
+					<div id="total_qt" style="width:50px">0</div>
+					<div id="total_div_price" style="width:180px;"><span id="total_price">0</span>원</div>
+				</div>
+			</div>
+			<br>
 			<div>
 				<div class="card_banner">
 					<a href="https://www.nbkorea.com/etc/collection.action?collectionIdx=5365" data-gtag-idx="fo_detail_2" data-gtag-label="Wearable tech, 1906R">
@@ -656,7 +736,7 @@ a.active {
 					<img src="https://image.nbkorea.com/NBRB_Banner/20240129/NB20240129142525506001.jpg" alt="The MADE in USA, 990v6 restock"/>
 				</div>
 			</div>
-			<br> <br> <br>
+			<br>
 			<div class="div_btn">
 				<button class="btn_white btn_Basket">장바구니</button>
 				<button class="btn_buy">구 매</button>
@@ -679,8 +759,245 @@ a.active {
 			}
 		});
 		
-		// 사이즈 선택시 구매창을 뿌려준다.
-		function getSelectedValue() {
+		function test(val){
+			
+			var color = val.substring(4);
+			var can = document.getElementById("color_area_name");
+			
+			can.style.backgroundColor = color;
+		    
+			var can = document.getElementById('color_area_color');
+			can.innerText = val;
+			
+		}
+		
+		
+		function fn_count(type) {
+
+			var clickedElementId = event.target.id;
+			var keyArray = clickedElementId.split('/');
+
+			var color = keyArray[0];
+			var value = keyArray[1];
+			var size = keyArray[2];
+			
+			var cnt_total = color + '/' + size;
+			
+			var cnt = document.getElementById(cnt_total);
+			var num = cnt.innerText;
+			var total_num = total_qt.innerText;
+			
+			var id_price = document.getElementById('pro_price');	     
+			var total_price = document.getElementById('total_price');	     
+			var price = id_price.innerHTML;
+
+			if(type === 'plus') {
+				num = parseInt(num) + 1;
+				total_num = parseInt(total_num) + 1
+			}else if(type === 'minus')  {
+				if(num > 1) {
+					num = parseInt(num) - 1;
+					total_num = parseInt(total_num) - 1;
+				} 
+			}
+			total_qt.innerText = total_num;
+			cnt.innerText = num;
+			
+			total_price.innerText = price * total_num;
+		}
+		
+		// x누르면 태그 삭제
+		function fn_del() {
+		
+			var clickedButton = event.target;
+			var Id = clickedButton.parentNode.id;
+
+			var keyArray = Id.split('/');
+			var color = keyArray[0];
+			var value = keyArray[1];
+			var size = keyArray[2];
+			
+			var divId = color + '/buy_payment/' + size;
+			var Div = document.getElementById(divId);
+			
+			//size
+			var clickedElementId = event.target.id;
+			var cnt = document.getElementById(color + '/' + size).innerText;
+			var total = total_qt.innerText;
+			
+			var id_price = document.getElementById('pro_price');	     
+			var price = id_price.innerHTML;
+			
+			var total_price = document.getElementById('total_price');	     
+			
+			if (Div) {
+				Div.remove();
+				total_qt.innerText = total - cnt;
+				
+				total_price.innerText = total_price.innerText - (price * cnt);
+			}
+		}
+
+		var count = 0;
+		
+		function sizeBuy(size) {
+		
+			var total_qt = document.getElementById('total_qt');
+			var total_num = total_qt.innerText;
+			
+			var id_price = document.getElementById('pro_price');	     
+			var price = id_price.innerHTML;
+			
+			var can = document.getElementById('color_area_color');
+			var color = can.innerText;
+			
+			var S_key = color + '/' + size;
+			var size_key = document.getElementById(S_key);
+			var can = document.getElementById('buy_name' + size);
+			
+			if (size_key) {
+				
+				var cnt = size_key.innerText;
+				cnt = parseInt(cnt) + 1;
+
+				size_key.innerText = cnt;
+				
+			} else {
+
+				var total_class = document.getElementById('total_class');
+				total_class.style.display = '';
+
+				// 클릭한 상품의 정보를 가져와서 상세 정보를 표시하는 div에 추가
+				var productDetailsDiv = document.getElementById('sourceDiv');
+				var newProductDiv = document.createElement('div');
+	
+				var subDiv1 = document.createElement('div');
+	
+			    subDiv1.id = color + '/buy_payment/' + size; 
+			    subDiv1.classList.add('payment_d');  		    
+			    subDiv1.style.display = 'flex';  
+			    //subDiv1.style.justifyContent = 'space-between';
+			    subDiv1.style.paddingTop = '10px';  
+			    subDiv1.style.paddingBottom = '10px';  
+			    
+			    var subDiv2 = document.createElement('div');
+			    
+			    subDiv2.id = 'buy_name' + size;  
+			    subDiv2.style.color = '#7D7D7D';
+			    subDiv2.style.paddingTop = '2%';  
+			    subDiv2.style.fontFamily = 'Noto Sans KR, sans-serif';
+			    subDiv2.style.width = '180px';
+			    subDiv2.style.fontSize = '15px';
+			    subDiv2.innerHTML = '<p>' + size+'/'+ color + '</p>';
+			    
+			    var subDiv3 = document.createElement('div');
+			    
+			    subDiv3.id = 'buy_count' + count;
+			    subDiv3.style.fontFamily = 'Noto Sans KR, sans-serif';
+			    subDiv3.style.display = 'flex';  // display: flex; 추가
+			    
+			    var subDiv4 = document.createElement('div');
+			    
+			    subDiv4.id = color + '/p_button/' + size; 
+			    subDiv4.classList.add('cnt_button'); 
+			    subDiv4.style.paddingLeft = '10px';  
+			    subDiv4.style.paddingRight = '10px';  
+			    subDiv4.style.border = '1px solid #ddd';
+			    subDiv4.innerHTML = '+';
+			    subDiv4.onclick = function() {
+			    	fn_count("plus");
+			    };
+	
+			    var subDiv4_a = document.createElement('a');
+			    subDiv4_a.href = '#link';
+	
+				var subDiv5 = document.createElement('div');
+			    
+				subDiv5.id = color + '/' + size;
+			    subDiv5.style.paddingLeft = '10px';  
+			    subDiv5.style.paddingRight = '10px';  
+			    subDiv5.innerHTML = '<p>' + 1 + '</p>';
+			    subDiv5.style.width = '35px';
+			    subDiv5.style.textAlign = 'center';
+	
+				var subDiv6 = document.createElement('div');
+			    
+				subDiv6.classList.add('cnt_button');  // 클래스 추가
+				
+				subDiv6.id = color + '/m_button/' + size; 
+				subDiv6.style.paddingLeft = '10px';  
+				subDiv6.style.paddingRight = '10px';  
+				subDiv6.style.border = '1px solid #ddd';
+				subDiv6.innerHTML = '-';
+				subDiv6.onclick = function() {
+					fn_count("minus");
+			    };
+	
+			    var subDiv6_a = document.createElement('a');
+			    subDiv6_a.href = '#link';
+	
+				var subDiv7 = document.createElement('div');
+				
+				subDiv7.id = color + '/buy_price/' + size;
+				subDiv7.style.fontFamily = 'Noto Sans KR, sans-serif';
+				subDiv7.style.fontSize = '20px';
+				subDiv7.style.textAlign = 'right';
+				subDiv7.style.width = '150px';
+				subDiv7.style.marginLeft = '10px';
+				subDiv7.innerHTML = price;
+	
+	
+				var subDiv9 = document.createElement('span');
+				subDiv9.id = color + '/x/' + size;  
+				
+				subDiv9.innerHTML = 'x';
+				
+				var subDiv9_a = document.createElement('a');
+				subDiv9_a.style.marginRight= '1px';
+				subDiv9_a.id = color + '/'+count+'/' + size;  
+				subDiv9_a.href = '#link';
+				//var myLinkElement = document.getElementById('key'+count);
+				subDiv9_a.onclick = function() {
+					fn_del();
+			    };
+				
+		
+			    var subDiv10 = document.createElement('div');
+			    
+				subDiv10.id = 'buy_del' + count;  
+				subDiv10.style.fontFamily = 'Noto Sans KR, sans-serif';
+				subDiv10.style.paddingLeft = '10px';
+				//subDiv10.style.width = '30px';
+	
+				subDiv1.appendChild(subDiv2);
+				subDiv3.appendChild(subDiv4);
+				subDiv3.appendChild(subDiv6_a);
+				subDiv3.appendChild(subDiv5);
+				subDiv3.appendChild(subDiv4_a);
+				subDiv6_a.appendChild(subDiv6);
+				subDiv4_a.appendChild(subDiv4);
+				subDiv1.appendChild(subDiv3);
+				subDiv1.appendChild(subDiv7);
+				subDiv9_a.appendChild(subDiv9);
+				subDiv10.appendChild(subDiv9_a);
+				subDiv1.appendChild(subDiv10);
+			    newProductDiv.appendChild(subDiv1);
+			    productDetailsDiv.appendChild(newProductDiv);
+	
+				count ++;
+			}
+
+			total_num = parseInt(total_num) + 1
+			total_qt.innerText = total_num;
+			
+			//var id_price = document.getElementById('pro_price');	     
+			var total_price = document.getElementById('total_price');	     
+			//var price = id_price.innerHTML;
+			total_price.innerText = price * total_num;
+			
+			
+			
+			
 			
 			var payment = document.getElementById("buy_payment");
 
@@ -688,45 +1005,24 @@ a.active {
 				payment.style.display = "";
 			}
 
-			var id_sz = document.getElementById('sel_color');
-			var id_cr = document.getElementById('sel_size');
-			var id_price = document.getElementById('pro_price');
+			var id_cr = document.getElementById('sel_color');
 			
+			
+			var price = id_price.innerHTML;
 			var cr = id_cr.value;
-	        var sz = id_sz.value;
-	        var price = id_price.innerHTML;
-			
-			var buy_name = document.getElementById('buy_name');
-			var buy_price = document.getElementById('buy_price');
 
-	        buy_name.innerHTML = sz + "/" + cr;
-	        buy_price.innerHTML = price;
+			var buy_name = document.getElementById('buy_name');
+			var total_qt = document.getElementById('total_qt');
+
+	        buy_name.innerHTML = size + "/" + cr;
+	        total_qt.innerHTML = price;
 		}
 		
-		function count(type) {
-			
-			var cnt = document.getElementById('cnt_total');
-			var num = cnt.innerText;
-			  
-			if(type === 'plus') {
-				num = parseInt(num) + 1;
-			}else if(type === 'minus')  {
-				if(num > 1) {
-					num = parseInt(num) - 1;
-				} 
-			}
-		  
-			cnt.innerText = num;
-		}
-		// x누르면 태그 숨김
-		function fn_del() {
-			var payment = document.getElementById("buy_payment");
-			payment.style.display = "none";
-		}
-
+		
+		
 		// SELECT BOX
 		$(document).ready(function() {
-
+	
 			var selectTarget = $('.selectbox select');
 
 			selectTarget.on('blur', function() {
@@ -740,610 +1036,545 @@ a.active {
 		});
 	</script>
 
+	<div class="tab_box">
+		<ul>
+			<li class="active"><a id="text-to-change" href="#pr_details"
+				data-gtag-idx="fo_detail_3" data-gtag-label="상품정보">상품정보</a></li>
+			<li><a href="#pr_main_review" data-gtag-idx="fo_detail_3"
+				data-gtag-label="상품리뷰">상품리뷰 (102)</a></li>
+			<li><a href="#pr_inquiry" data-gtag-idx="fo_detail_3"
+				data-gtag-label="상품문의">상품문의 (0)</a></li>
+		</ul>
+		<hr style="width:100%">
+	</div>
 
 	<div class="product_bottom">
 		<div class="sticky_wrap" style="top: 0px;">
-			<div class="inner">
-				<div class="tab_box">
-					<ul>
-						<li class="active"><a id="text-to-change" href="#pr_details"
-							data-gtag-idx="fo_detail_3" data-gtag-label="상품정보">상품정보</a></li>
-						<li><a href="#pr_main_review" data-gtag-idx="fo_detail_3"
-							data-gtag-label="상품리뷰">상품리뷰 (102)</a></li>
-						<li><a href="#pr_inquiry" data-gtag-idx="fo_detail_3"
-							data-gtag-label="상품문의">상품문의 (0)</a></li>
-					</ul>
-					<hr>
-				</div>
+		
 
-				<div>
-				</div>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br> <br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br> <br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
+			<div id="pr_details" style="margin-bottom:100px; text-align:center" id="prodAddInfo_wrap">
+				<br><br><br><br><br>
+				<img src="https://image.nbkorea.com/NBRB_ProductAddInfo/20231115/NB20231115091820646001.jpg">
+			</div>
 
-				<div id="pr_main_review" class="section Re_review">
-					<br>
-					<br>
-					<br>
-					<h3 class="sec_tit">상품리뷰</h3>
-					<hr>
-					<div class="review_sec01">
-						<div class="pr_infoReview">
-							<div class="box">
-								<p class="lh_28">
-									구매확정 후 <span class="col_red"> <em class="font_pro">30</em>일
-										이내에
-									</span> 상품평 작성 시,&nbsp;<span class="col_red">최대 <em
-										class="font_pro">2,000</em> 마일리지의 혜택을 드립니다.
-									</span> <br> 작성하신 상품평에 대한 마일리지 지급은 작성후 <em class="font_pro">15</em>일
-									이내로 적립됩니다.
-								</p>
-							</div>
-							<div class="border_box">
-								<p class="review_mile_guide dp_i">
-									<span>일반리뷰 <em class="font_pro">500 </em>마일리지
-									</span> <span>포토리뷰 <em class="font_pro">1,000 </em>마일리지
-									</span> <span>스타일리뷰 <em class="font_pro col_red">2,000 </em>마일리지
-									</span>
-								</p>
-								<!-- 20191011 추가 :: S -->
-								<div class="hoverIcon">
-									<p>
-										<img
-											src="https://image.nbkorea.com/NBRB_PC/product/review/hoverIcon.png"
-											alt="" />
-									<div class="off">
-										<ul>
-											<li>
-												<p>[스타일 리뷰 기준]</p> <!-- 20200511 수정 :: S -->
-												<ol>
-													<li>1) 구매하신 상품을 착용한 전신 컷 (얼굴 제외 가능, 어깨부터 발끝까지 보이게끔 촬영한
-														사진)</li>
-													<li>2) 세트나 한 쌍의 상품인 경우, 양 쪽이 모두 보이도록 촬영한 사진 (신발, 양말 등)</li>
-													<li>3) 스타일링을 보여줄 수 있는 사진 (실내복 착용이나 신발 없는 전신 사진은 포토리뷰로
-														간주됩니다.)</li>
-													<li>4) 상품 형태와 컬러 식별이 가능한 사진</li>
-													<li>5) 10자 이상의 상품에 대한 후기</li>
-												</ol>
-											</li>
-											<li>
-												<p>[포토 리뷰 기준]</p>
-												<ol>
-													<li>1) 구매하신 상품이 모두 나오게 촬영한 사진</li>
-													<li>2) 포장을 제거하고 상품의 전체가 보이게 촬영한 사진</li>
-													<li>3) 세트나 한 쌍의 상품인 경우, 양 쪽이 모두 보이도록 촬영한 사진 (신발, 양말 등)</li>
-													<li>4) 상품 형태와 컬러 식별이 가능한 사진</li>
-													<li>5) 10자 이상의 상품에 대한 후기</li>
-												</ol>
-											</li>
-											<!-- 20200511 수정 :: E -->
-										</ul>
-									</div>
+			<div id="pr_main_review" class="section Re_review">
+				<br>
+				<br>
+				<br>
+				<br>
+				<h3 class="sec_tit">상품리뷰</h3>
+				<div class="black_hr_1px" />
+				<br>
+				<div class="review_sec01">
+					<div class="pr_infoReview">
+						<div class="box">
+							<p class="lh_28">
+								구매확정 후 <span class="col_red"> <em class="font_pro">30</em>일
+									이내에
+								</span> 상품평 작성 시,&nbsp;<span class="col_red">최대 <em
+									class="font_pro">2,000</em> 마일리지의 혜택을 드립니다.
+								</span> <br> 작성하신 상품평에 대한 마일리지 지급은 작성후 <em class="font_pro">15</em>일
+								이내로 적립됩니다.
+							</p>
+						</div>
+						<div class="border_box">
+							<p class="review_mile_guide dp_i">
+								<span>일반리뷰 <em class="font_pro">500 </em>마일리지
+								</span> <span>포토리뷰 <em class="font_pro">1,000 </em>마일리지
+								</span> <span>스타일리뷰 <em class="font_pro col_red">2,000 </em>마일리지
+								</span>
+							</p>
+							<!-- 20191011 추가 :: S -->
+							<div class="hoverIcon">
+								<p>
+									<img
+										src="https://image.nbkorea.com/NBRB_PC/product/review/hoverIcon.png"
+										alt="" />
+								<div class="off">
+									<ul>
+										<li>
+											<p>[스타일 리뷰 기준]</p> <!-- 20200511 수정 :: S -->
+											<ol>
+												<li>1) 구매하신 상품을 착용한 전신 컷 (얼굴 제외 가능, 어깨부터 발끝까지 보이게끔 촬영한
+													사진)</li>
+												<li>2) 세트나 한 쌍의 상품인 경우, 양 쪽이 모두 보이도록 촬영한 사진 (신발, 양말 등)</li>
+												<li>3) 스타일링을 보여줄 수 있는 사진 (실내복 착용이나 신발 없는 전신 사진은 포토리뷰로
+													간주됩니다.)</li>
+												<li>4) 상품 형태와 컬러 식별이 가능한 사진</li>
+												<li>5) 10자 이상의 상품에 대한 후기</li>
+											</ol>
+										</li>
+										<li>
+											<p>[포토 리뷰 기준]</p>
+											<ol>
+												<li>1) 구매하신 상품이 모두 나오게 촬영한 사진</li>
+												<li>2) 포장을 제거하고 상품의 전체가 보이게 촬영한 사진</li>
+												<li>3) 세트나 한 쌍의 상품인 경우, 양 쪽이 모두 보이도록 촬영한 사진 (신발, 양말 등)</li>
+												<li>4) 상품 형태와 컬러 식별이 가능한 사진</li>
+												<li>5) 10자 이상의 상품에 대한 후기</li>
+											</ol>
+										</li>
+										<!-- 20200511 수정 :: E -->
+									</ul>
 								</div>
-								<!-- E :: 20191011 추가 -->
 							</div>
+							<!-- E :: 20191011 추가 -->
 						</div>
 					</div>
+				</div>
 
-					<div id="pr_review" class="section">
-						<br>
-						<br>
-						<br>
-						<h3 class="view_tit">REVIEW(114)</h3>
-						<hr class="view_hd_line">
-						
-						<div class="view_hd_top">
-							<div class="view_left">
-								<div class="view_left_top">
-									<div class="view_left_star">
-										<svg xmlns="http://www.w3.org/2000/svg"
-											xmlns:xlink="http://www.w3.org/1999/xlink" width="50"
-											height="50" viewBox="0 0 20 20"
-											class="crema_product_reviews_score_star_wrapper__star "
-											style="fill: rgb(0, 0, 0); width: 100%; height: 100%;">
-											<defs>
-												<path id="star-full"
-											d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z" />
-											</defs>
-											<use xlink:href="#star-full" />
-										</svg>
-									</div>
-									<div class="view_left_grade">
-										5.0
-									</div>
+				<div id="pr_review" class="section">
+					<br>
+					<br>
+					<br>
+					<h3 class="view_tit">REVIEW(114)</h3>
+					<div class="black_hr_2px"></div>
+					
+					<div class="view_hd_top">
+						<div class="view_left">
+							<div class="view_left_top">
+								<div class="view_left_star">
+									<svg xmlns="http://www.w3.org/2000/svg"
+										xmlns:xlink="http://www.w3.org/1999/xlink" width="50"
+										height="50" viewBox="0 0 20 20"
+										class="crema_product_reviews_score_star_wrapper__star "
+										style="fill: rgb(0, 0, 0); width: 100%; height: 100%;">
+										<defs>
+											<path id="star-full"
+										d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z" />
+										</defs>
+										<use xlink:href="#star-full" />
+									</svg>
 								</div>
-								<div class="view_left_bottom">
-									<span class="font_pro font_pro_view_left_bottom">99%</span>의 구매자가 이 상품을 좋아합니다.
+								<div class="view_left_grade">
+									5.0
 								</div>
 							</div>
-							<div class="view_center"></div>
-							<div class="view_right">
-								<table width=330px; align="center">
-									<tr>
-										<td  class="progress_td">아주 좋아요</td>
-										<td>
-											<div class="progress-bar">
-												<div class="progress" style="width: 80%;"></div>
-												<div class="percentage"></div>
-											</div>
-										</td>
-										<td class="progress_td">144</td>
-									</tr>
-									<tr>
-										<td class="progress_td">맘에 들어요</td>
-										<td>
-											<div class="progress-bar">
-												<div class="progress" style="width: 70%;"></div>
-												<div class="percentage"></div>
-											</div>
-										</td>
-										<td class="progress_td">2</td>
-									</tr>
-									<tr>
-										<td class="progress_td">보통이에요</td>
-										<td>
-											<div class="progress-bar">
-												<div class="progress" style="width: 60%;"></div>
-												<div class="percentage"></div>
-											</div>
-										</td>
-										<td class="progress_td">123</td>
-									</tr>
-									<tr>
-										<td class="progress_td">그냥 그래요</td>
-										<td>
-											<div class="progress-bar">
-												<div class="progress" style="width: 50%;"></div>
-												<div class="percentage"></div>
-											</div>
-										</td>
-										<td class="progress_td">22</td>
-									</tr>
-									<tr>
-										<td class="progress_td">별로에요</td>
-										<td>
-											<div class="progress-bar">
-												<div class="progress" style="width: 30%;"></div>
-												<div class="percentage"></div>
-											</div>
-										</td>
-										<td class="progress_td">1</td>
-									</tr>
-								</table>
+							<div class="view_left_bottom">
+								<span class="font_pro font_pro_view_left_bottom">99%</span>의 구매자가 이 상품을 좋아합니다.
 							</div>
 						</div>
+						<div class="view_center"></div>
+						<div class="view_right">
+							<table width=330px; align="center">
+								<tr>
+									<td  class="progress_td">아주 좋아요</td>
+									<td>
+										<div class="progress-bar">
+											<div class="progress" style="width: 80%;"></div>
+											<div class="percentage"></div>
+										</div>
+									</td>
+									<td class="progress_td">144</td>
+								</tr>
+								<tr>
+									<td class="progress_td">맘에 들어요</td>
+									<td>
+										<div class="progress-bar">
+											<div class="progress" style="width: 70%;"></div>
+											<div class="percentage"></div>
+										</div>
+									</td>
+									<td class="progress_td">2</td>
+								</tr>
+								<tr>
+									<td class="progress_td">보통이에요</td>
+									<td>
+										<div class="progress-bar">
+											<div class="progress" style="width: 60%;"></div>
+											<div class="percentage"></div>
+										</div>
+									</td>
+									<td class="progress_td">123</td>
+								</tr>
+								<tr>
+									<td class="progress_td">그냥 그래요</td>
+									<td>
+										<div class="progress-bar">
+											<div class="progress" style="width: 50%;"></div>
+											<div class="percentage"></div>
+										</div>
+									</td>
+									<td class="progress_td">22</td>
+								</tr>
+								<tr>
+									<td class="progress_td">별로에요</td>
+									<td>
+										<div class="progress-bar">
+											<div class="progress" style="width: 30%;"></div>
+											<div class="percentage"></div>
+										</div>
+									</td>
+									<td class="progress_td">1</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					
+					<div class="view_line"></div>
+					
+					<div class="view_hr_bt">
+						<br>
 						
+						<div class="selectbox sel_color">
+							<label>색상</label> 
+							<select>
+								<option select>색상</option>
+								<option><a><img src="./../../Image/bht.png"" /></span></a></option>
+								<option>(20)Red</option>
+								<option>(50)Blue</option>
+								<option>(91)Sliver</option>
+							</select>
+						</div>
+						<div class="selectbox selectbox_star sel_color">
+						<label>별점</label> 
+						<select class="all_star">
+							<option selected="selected" >별점</option>
+							<option value="five_star">&#xf005 &#xf005 &#xf005 &#xf005 &#xf005</option>
+							<option value="four_star">&#xf005 &#xf005 &#xf005 &#xf005</option>
+							<option value="three_star">&#xf005 &#xf005 &#xf005</option>
+							<option value="two_star">&#xf005 &#xf005</option>
+							<option value="one_star">&#xf005</option>
+						</select>
+						</div>
+						<div class="selectbox sel_color">
+							<label>사이즈</label> 
+							<select>
+								<option select>사이즈</option>
+								<option>250</option>
+								<option>255</option>
+								<option>260</option>
+								<option>265</option>
+								<option>270</option>
+								<option>275</option>
+								<option>280</option>
+								<option>285</option>
+								<option>290</option>
+							</select>
+						</div>
+						<br><br>
 						<div class="view_line"></div>
 						
-						<div class="view_hr_bt">
-							<br>
-							
-							<div class="selectbox sel_color">
-								<label>색상</label> 
-								<select>
-									<option select>색상</option>
-									<option><a><img src="./../../Image/bht.png"" /></span></a></option>
-									<option>(20)Red</option>
-									<option>(50)Blue</option>
-									<option>(91)Sliver</option>
-								</select>
-							</div>
-							<div class="selectbox selectbox_star sel_color">
-							<label>별점</label> 
-							<select class="all_star">
-								<option selected="selected" >별점</option>
-								<option value="five_star">&#xf005 &#xf005 &#xf005 &#xf005 &#xf005</option>
-								<option value="four_star">&#xf005 &#xf005 &#xf005 &#xf005</option>
-								<option value="three_star">&#xf005 &#xf005 &#xf005</option>
-								<option value="two_star">&#xf005 &#xf005</option>
-								<option value="one_star">&#xf005</option>
-							</select>
-							</div>
-							<div class="selectbox sel_color">
-								<label>사이즈</label> 
-								<select>
-									<option select>사이즈</option>
-									<option>250</option>
-									<option>255</option>
-									<option>260</option>
-									<option>265</option>
-									<option>270</option>
-									<option>275</option>
-									<option>280</option>
-									<option>285</option>
-									<option>290</option>
-								</select>
-							</div>
-							<br><br>
-							<div class="view_line"></div>
-							
-							
+						
 
-				
-							<div class="view_Board">
-								<div class="view_Board_left">
-									<div class="border_top">
-										<div id="view_star0" class="view_star"></div>
-										<div class="border_date">2024.01.30</div>
-									</div>
-									<br>
-									<div class="border_main">
-										가볍고 발볼도 편하고 좋아요<br>
-										딸이 맘에 들어해요
-									</div>
-									<br>
-									<div class="inq_img">
-										<img src="./../../Image/board.jpg" alt="board">
-									</div>
-									
+			
+						<div class="view_Board">
+							<div class="view_Board_left">
+								<div class="border_top">
+									<div id="view_star0" class="view_star"></div>
+									<div class="border_date">2024.01.30</div>
 								</div>
-								
-								<div class="view_center"></div>
-								<div class="view_Board_right">
-									<div class="Board_member">
-										<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-										<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-										<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-										<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-										<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-									</div>
-								</div>
-								
-							</div>
-				
-							<div class="view_line"></div>
-							
-							
-							<div class="view_Board">
-								<div class="view_Board_left">
-									<div class="border_top">
-										<div id="view_star1" class="view_star"></div>
-										<div class="border_date">2024.01.30</div>
-									</div>
-									<br>
-									<div class="border_main">
-										가볍고 발볼도 편하고 좋아요<br>
-										딸이 맘에 들어해요
-									</div>
-									<br>
-									<div class="inq_img">
-										<img src="./../../Image/board.jpg" alt="board">
-									</div>
-									
-								</div>
-								
-								<div class="view_center"></div>
-								<div class="view_Board_right">
-									<div class="Board_member">
-										<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-										<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-										<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-										<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-										<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-									</div>
-								</div>
-								
-							</div>
-				
-							<div class="view_line"></div>
-							
-							<div class="view_Board">
-								<div class="view_Board_left">
-									<div class="border_top">
-										<div id="view_star2" class="view_star"></div>
-										<div class="border_date">2024.01.30</div>
-									</div>
-									<br>
-									<div class="border_main">
-										가볍고 발볼도 편하고 좋아요<br>
-										딸이 맘에 들어해요
-									</div>
-									<br>
-									<div class="inq_img">
-										<img src="./../../Image/board.jpg" alt="board">
-									</div>
-									
-								</div>
-								
-								<div class="view_center"></div>
-								<div class="view_Board_right">
-									<div class="Board_member">
-										<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-										<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-										<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-										<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-										<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-									</div>
-								</div>
-								
-							</div>
-				
-							<div class="view_line"></div>
-							
-							<div class="view_Board">
-								<div class="view_Board_left">
-									<div class="border_top">
-										<div id="view_star3" class="view_star"></div>
-										<div class="border_date">2024.01.30</div>
-									</div>
-									<br>
-									<div class="border_main">
-										가볍고 발볼도 편하고 좋아요<br>
-										딸이 맘에 들어해요
-									</div>
-									<br>
-									<div class="inq_img">
-										<img src="./../../Image/board.jpg" alt="board">
-									</div>
-									
-								</div>
-								
-								<div class="view_center"></div>
-								<div class="view_Board_right">
-									<div class="Board_member">
-										<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-										<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-										<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-										<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-										<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-									</div>
-								</div>
-								
-							</div>
-				
-							<div class="view_line"></div>
-							
-							<div class="view_Board">
-								<div class="view_Board_left">
-									<div class="border_top">
-										<div id="view_star4" class="view_star"></div>
-										<div class="border_date">2024.01.30</div>
-									</div>
-									<br>
-									<div class="border_main">
-										가볍고 발볼도 편하고 좋아요<br>
-										딸이 맘에 들어해요
-									</div>
-									<br>
-									<div class="inq_img">
-										<img src="./../../Image/board.jpg" alt="board">
-									</div>
-									
-								</div>
-								
-								<div class="view_center"></div>
-								<div class="view_Board_right">
-									<div class="Board_member">
-										<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-										<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-										<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-										<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-										<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-									</div>
-								</div>
-								
-							</div>
-				
-							<div class="view_line"></div>
-							
-							<div class="view_Board">
-								<div class="view_Board_left">
-									<div class="border_top">
-										<div id="view_star5" class="view_star"></div>
-										<div class="border_date">2024.01.30</div>
-									</div>
-									<br>
-									<div class="border_main">
-										가볍고 발볼도 편하고 좋아요<br>
-										딸이 맘에 들어해요
-									</div>
-									<br>
-									<div class="inq_img">
-										<img src="./../../Image/board.jpg" alt="board">
-									</div>
-									
-								</div>
-								
-								<div class="view_center"></div>
-								<div class="view_Board_right">
-									<div class="Board_member">
-										<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-										<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-										<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-										<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-										<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-									</div>
-								</div>
-								
-							</div>
-				
-							<div class="view_line"></div>
-							<div class="view_page">
-								<ul class="pagination">
-								  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-								  <li class="page-item"><a class="page-link" href="#">1</a></li>
-								  <li class="page-item"><a class="page-link" href="#">2</a></li>
-								  <li class="page-item"><a class="page-link" href="#">3</a></li>
-								  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-								</ul>
-							</div>
-						</div>
-						<!-- 
-							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 100%; height: 100%;">
-								<defs>
-									<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
-								</defs>
-								<use xlink:href="#star-full"/>
-							</svg>
-							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 100%; height: 100%;">
-							    <defs>
-							        <path id="a" fill="#E8E8E8" d="M10.003 1.667c.27 0 .539.148.677.442l2.165 4.59 4.84.74c.622.095.87.894.42 1.352l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382c0-9.166 0-13.897.002-14.191z"></path>
-							        <path id="c" d="M7.157 6.698l2.165-4.59a.746.746 0 0 1 .688-.441c-.007.294-.01 5.025-.01 14.19L5.673 18.24c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"></path>
-							    </defs>
-							    <use xlink:href="#a"></use>
-							    <use xlink:href="#c"></use>
-							</svg> -->
-
-					</div>
-				</div>
-
-				<div style="display: none"; id="five_star" >
-					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
-						<defs>
-							<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
-						</defs>
-						<use xlink:href="#star-full"/>
-					</svg>
-					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
-						<defs>
-							<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
-						</defs>
-						<use xlink:href="#star-full"/>
-					</svg>
-					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
-						<defs>
-							<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
-						</defs>
-						<use xlink:href="#star-full"/>
-					</svg>
-					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
-						<defs>
-							<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
-						</defs>
-						<use xlink:href="#star-full"/>
-					</svg>
-					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
-						<defs>
-							<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
-						</defs>
-						<use xlink:href="#star-full"/>
-					</svg>
-				</div>
-				
-				
-				<script>
-					
-					for ( var i = 0; i < 6; i ++ ) {
-						// JavaScript 코드
-				     	var five_star = document.getElementById('five_star');
-				     	var view_star = document.getElementById('view_star'+i);
-				
-				     	// <div>의 내용을 가져와서 <p> 태그에 넣기
-				     	var divContent = five_star.innerHTML;
-				     	view_star.innerHTML = divContent + "아주 좋아요";	
-					}
-
-			    </script>
-				
-				<div class="height"></div>
-
-				<!-- #pr_inquiry 상품문의 없을 때-->
-				<div id="pr_inquiry" class="section" style="min-height: 850px;">
-					<br>
-					<br>
-					<br>
-					
-					<h3 class="sec_tit">상품문의</h3>
-					<hr>
-					<div class="grid-container">
-						<div class="grid_btm"></div>
-						<div class="grid_btm">
-							<div class="inq_none">
-								<div class="inq_img_q">
-									<img src="./../../Image/QA.png" alt="QA">
-								</div>
-								<br> <strong>상품 관련 <span>궁금한 점</span>이 있으신가요?
-								</strong>
-								<ul>
-									<li>상품에 대한 문의를 남겨 주시면 회원 정보에 등록된 메일 주소로 답변이 발송됩니다.</li>
-									<li>주문/배송/반품 등 일반 문의는 1:1 문의를 이용해 주시기 바랍니다.</li>
-									<li>상품에 대한 허위 정보, 광고성 글은 사전 통보 없이 임의로 삭제될 수 있습니다.</li>
-								</ul>
 								<br>
+								<div class="border_main">
+									가볍고 발볼도 편하고 좋아요<br>
+									딸이 맘에 들어해요
+								</div>
 								<br>
-								<div class="">
-									<a href="https://www.nbkorea.com/support/searchFaqList.action"
-										class="inq_a_btn">자주 묻는 질문 찾기 </a> <a
-										href="https://www.nbkorea.com/my/qna/searchQuestionList.action"
-										class="inq_a_btn">1:1 문의하기</a>
+								<div class="inq_img">
+									<img src="./../../Image/board.jpg" alt="board">
+								</div>
+								
+							</div>
+							
+							<div class="view_center"></div>
+							<div class="view_Board_right">
+								<div class="Board_member">
+									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
+									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
+									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
+									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
+									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
 								</div>
 							</div>
+							
 						</div>
-						<div class="grid_btm"></div>
-
+			
+						<div class="view_line"></div>
+						
+						
+						<div class="view_Board">
+							<div class="view_Board_left">
+								<div class="border_top">
+									<div id="view_star1" class="view_star"></div>
+									<div class="border_date">2024.01.30</div>
+								</div>
+								<br>
+								<div class="border_main">
+									가볍고 발볼도 편하고 좋아요<br>
+									딸이 맘에 들어해요
+								</div>
+								<br>
+								<div class="inq_img">
+									<img src="./../../Image/board.jpg" alt="board">
+								</div>
+								
+							</div>
+							
+							<div class="view_center"></div>
+							<div class="view_Board_right">
+								<div class="Board_member">
+									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
+									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
+									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
+									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
+									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
+								</div>
+							</div>
+							
+						</div>
+			
+						<div class="view_line"></div>
+						
+						<div class="view_Board">
+							<div class="view_Board_left">
+								<div class="border_top">
+									<div id="view_star2" class="view_star"></div>
+									<div class="border_date">2024.01.30</div>
+								</div>
+								<br>
+								<div class="border_main">
+									가볍고 발볼도 편하고 좋아요<br>
+									딸이 맘에 들어해요
+								</div>
+								<br>
+								<div class="inq_img">
+									<img src="./../../Image/board.jpg" alt="board">
+								</div>
+								
+							</div>
+							
+							<div class="view_center"></div>
+							<div class="view_Board_right">
+								<div class="Board_member">
+									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
+									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
+									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
+									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
+									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
+								</div>
+							</div>
+							
+						</div>
+			
+						<div class="view_line"></div>
+						
+						<div class="view_Board">
+							<div class="view_Board_left">
+								<div class="border_top">
+									<div id="view_star3" class="view_star"></div>
+									<div class="border_date">2024.01.30</div>
+								</div>
+								<br>
+								<div class="border_main">
+									가볍고 발볼도 편하고 좋아요<br>
+									딸이 맘에 들어해요
+								</div>
+								<br>
+								<div class="inq_img">
+									<img src="./../../Image/board.jpg" alt="board">
+								</div>
+								
+							</div>
+							
+							<div class="view_center"></div>
+							<div class="view_Board_right">
+								<div class="Board_member">
+									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
+									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
+									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
+									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
+									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
+								</div>
+							</div>
+							
+						</div>
+			
+						<div class="view_line"></div>
+						
+						<div class="view_Board">
+							<div class="view_Board_left">
+								<div class="border_top">
+									<div id="view_star4" class="view_star"></div>
+									<div class="border_date">2024.01.30</div>
+								</div>
+								<br>
+								<div class="border_main">
+									가볍고 발볼도 편하고 좋아요<br>
+									딸이 맘에 들어해요
+								</div>
+								<br>
+								<div class="inq_img">
+									<img src="./../../Image/board.jpg" alt="board">
+								</div>
+								
+							</div>
+							
+							<div class="view_center"></div>
+							<div class="view_Board_right">
+								<div class="Board_member">
+									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
+									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
+									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
+									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
+									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
+								</div>
+							</div>
+							
+						</div>
+			
+						<div class="view_line"></div>
+						
+						<div class="view_Board">
+							<div class="view_Board_left">
+								<div class="border_top">
+									<div id="view_star5" class="view_star"></div>
+									<div class="border_date">2024.01.30</div>
+								</div>
+								<br>
+								<div class="border_main">
+									가볍고 발볼도 편하고 좋아요<br>
+									딸이 맘에 들어해요
+								</div>
+								<br>
+								<div class="inq_img">
+									<img src="./../../Image/board.jpg" alt="board">
+								</div>
+								
+							</div>
+							
+							<div class="view_center"></div>
+							<div class="view_Board_right">
+								<div class="Board_member">
+									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
+									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
+									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
+									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
+									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
+								</div>
+							</div>
+							
+						</div>
+			
+						<div class="view_line"></div>
+						<div class="view_page">
+							<ul class="pagination">
+							  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+							  <li class="page-item"><a class="page-link" href="#">1</a></li>
+							  <li class="page-item"><a class="page-link" href="#">2</a></li>
+							  <li class="page-item"><a class="page-link" href="#">3</a></li>
+							  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+							</ul>
+						</div>
 					</div>
-
-					<br> <br>
-					<hr>
+					<!-- 
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 100%; height: 100%;">
+							<defs>
+								<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
+							</defs>
+							<use xlink:href="#star-full"/>
+						</svg>
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 100%; height: 100%;">
+						    <defs>
+						        <path id="a" fill="#E8E8E8" d="M10.003 1.667c.27 0 .539.148.677.442l2.165 4.59 4.84.74c.622.095.87.894.42 1.352l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382c0-9.166 0-13.897.002-14.191z"></path>
+						        <path id="c" d="M7.157 6.698l2.165-4.59a.746.746 0 0 1 .688-.441c-.007.294-.01 5.025-.01 14.19L5.673 18.24c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"></path>
+						    </defs>
+						    <use xlink:href="#a"></use>
+						    <use xlink:href="#c"></use>
+						</svg> -->
 
 				</div>
-				<!-- // #pr_inquiry 상품문의 없을 때 -->
 			</div>
+
+			<div style="display: none"; id="five_star" >
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
+					<defs>
+						<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
+					</defs>
+					<use xlink:href="#star-full"/>
+				</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
+					<defs>
+						<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
+					</defs>
+					<use xlink:href="#star-full"/>
+				</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
+					<defs>
+						<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
+					</defs>
+					<use xlink:href="#star-full"/>
+				</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
+					<defs>
+						<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
+					</defs>
+					<use xlink:href="#star-full"/>
+				</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
+					<defs>
+						<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
+					</defs>
+					<use xlink:href="#star-full"/>
+				</svg>
+			</div>
+				
+				
+			<script>
+				
+				for ( var i = 0; i < 6; i ++ ) {
+					// JavaScript 코드
+			     	var five_star = document.getElementById('five_star');
+			     	var view_star = document.getElementById('view_star'+i);
+			
+			     	// <div>의 내용을 가져와서 <p> 태그에 넣기
+			     	var divContent = five_star.innerHTML;
+			     	view_star.innerHTML = divContent + "아주 좋아요";	
+				}
+
+		    </script>
+			
+			<div class="height"></div>
+
+			<!-- #pr_inquiry 상품문의 없을 때-->
+			<div id="pr_inquiry" class="section" style="min-height: 850px;">
+				<br>
+				<br>
+				<br>
+				<br>
+				
+				<h3 class="sec_tit">상품문의</h3>
+				<div class="black_hr_1px" />
+				<div class="grid-container">
+					<div class="grid_btm"></div>
+					<div class="grid_btm">
+						<div class="inq_none">
+							<div class="inq_img_q">
+								<img src="./../../Image/QA.png" alt="QA">
+							</div>
+							<br>
+							<strong>상품 관련 <span>궁금한 점</span>이 있으신가요?</strong>
+							<br><br>
+							<ul>
+								<li>상품에 대한 문의를 남겨 주시면 회원 정보에 등록된 메일 주소로 답변이 발송됩니다.</li>
+								<li>주문/배송/반품 등 일반 문의는 1:1 문의를 이용해 주시기 바랍니다.</li>
+								<li>상품에 대한 허위 정보, 광고성 글은 사전 통보 없이 임의로 삭제될 수 있습니다.</li>
+							</ul>
+							<br>
+							<br>
+							<div class="">
+								<a href="https://www.nbkorea.com/support/searchFaqList.action"
+									class="inq_a_btn">자주 묻는 질문 찾기 </a> <a
+									href="https://www.nbkorea.com/my/qna/searchQuestionList.action"
+									class="inq_a_btn">1:1 문의하기</a>
+							</div>
+						</div>
+					</div>
+					<div class="grid_btm"></div>
+				</div>
+				<br><br>
+				<hr>
+			</div>
+			<!-- // #pr_inquiry 상품문의 없을 때 -->
 		</div>
 	</div>
 
@@ -1379,8 +1610,6 @@ a.active {
 			});
 		});
 	</script>
-
 </body>
-
 
 </html>
