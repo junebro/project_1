@@ -47,13 +47,14 @@
 	}
 	
 	.btn_white {
+		font-family: 'Noto Sans KR', sans-serif;
 		padding: 5px 10px;
 		background-color: #FFFFFF;
 		color: #000000;
-		
 	}
 	
 	.btn_black {
+		font-family: 'Noto Sans KR', sans-serif;
 		padding: 5px 10px;
 		background-color: #000000;
 		color: #ffffff;
@@ -62,6 +63,7 @@
 	/* 회색선 */
 	.underline {
 		border-bottom: 1px solid rgba(128, 128, 128, 0.5); /* 투명도를 포함한 회색 선 */
+		margin-bottom: 10px; /* 선 위의 간격 조절 */
 		margin-top: 10px; /* 선 위의 간격 조절 */
 	}
 	
