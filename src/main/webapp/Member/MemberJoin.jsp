@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp"%>
+<%@ page import="com.shopping.model.bean.Member"%>
+<%@ page import="com.shopping.model.dao.MemberDao"%>
+
+<%
+Member bean = new Member();
+MemberDao dao = new MemberDao();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,26 +22,37 @@
 
 <!-- 상단 -->
 <!--  font-family: 'Kanit', sans-serif;  -->
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
-	
+<link
+	href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap"
+	rel="stylesheet">
+
 <!--  헤더 / 탭 메뉴 / 배너,썸네일 등 소개 문구 / 상품소개 타이틀 문구 -->
 <!-- font-family: 'Noto Sans KR', sans-serif; -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
+	rel="stylesheet">
 
 <!-- 상품 상세 페이지 -->
 <!-- font-family: 'Noto Sans KR', sans-serif; -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
+	rel="stylesheet">
 
 <!-- 이용약관, 개인정보처리방침, 개인정보 수집 이용동의 박스 -->
 <!-- font-family: 'Gothic A1', sans-serif; -->
-<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200&display=swap"
+	rel="stylesheet">
 
 <!-- 버튼 -->
 <!-- font-family: 'Black Han Sans', sans-serif; -->
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
+	rel="stylesheet">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
 <style>
 * {
@@ -47,96 +66,117 @@ body {
 	font-family: 'Noto Sans KR', sans-serif;
 	text-align: center;
 }
-.contents h2{ /* 회원가입 */
+
+.contents h2 { /* 회원가입 */
 	font-size: 40px;
 	margin-bottom: 30px;
 	margin-top: 100px;
 }
-.section li{ /* 페이지 진행과정 */
+
+.section li { /* 페이지 진행과정 */
 	font-size: 15px;
 	color: #BDBDBD;
-	display : inline;
+	display: inline;
 	padding: 5px;
 }
-.section .selected{ /* 현재 페이지 */
+
+.section .selected { /* 현재 페이지 */
 	color: black;
 }
-.titleArea{ /* 기본정보, 추가정보 */
+
+.titleArea { /* 기본정보, 추가정보 */
 	margin: auto;
 }
-.titleArea h3{ /* 기본정보 */
-	text-align : left;
+
+.titleArea h3 { /* 기본정보 */
+	text-align: left;
 	margin-top: 30px;
 }
-.titleArea li{ /* 필수입력사항 */
-	text-align : right;
+
+.titleArea li { /* 필수입력사항 */
+	text-align: right;
 	color: #A6A6A6;
 }
+
 .required::marker { /* 리스트 마커 색상 설정 */
-    color: red; 
+	color: red;
 }
-table{
-	width : 800px;
-	margin-left:auto;
-	margin-right:auto;
+
+table {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
 	border-left: none;
 	border-right: none;
 	border-top: 1px solid rgba(128, 128, 128, 0.5);
 }
-tr{ /* 행 */
-    border-bottom: 1px solid rgba(128, 128, 128, 0.5); /* 투명도를 포함한 회색 선 */
-    margin-top: 10px; /* 선 위의 간격 조절 */
-    
+
+tr { /* 행 */
+	border-bottom: 1px solid rgba(128, 128, 128, 0.5); /* 투명도를 포함한 회색 선 */
+	margin-top: 10px; /* 선 위의 간격 조절 */
 }
-th{ /* 1열 */
+
+th { /* 1열 */
 	padding: 15px;
 	margin: auto;
 	background-color: #F6F6F6;
 	width: 200px;
-	text-align : left;
+	text-align: left;
 }
-td{ /* 2열 */
+
+td { /* 2열 */
 	text-align: left;
 	padding: 15px;
 	margin: auto;
 }
-table li, .txtInfo{ /* 1열, 아이디/비번 부가설명 */
+
+table li, .txtInfo { /* 1열, 아이디/비번 부가설명 */
 	color: #5D5D5D;
 }
-table .notrequired{ /* 추가정보 1열 */
+
+table .notrequired { /* 추가정보 1열 */
 	text-align: left;
 	list-style: none;
 }
-table .inputTypeText{ /* 2열 입력칸 */
+
+table .inputTypeText { /* 2열 입력칸 */
 	border: 1px groove #BDBDBD;
 	width: 400px;
 	padding: 10px;
 }
-#mobile1, #mobile2, #mobile3{ /* 휴대전화 입력칸 */
+
+#mobile1, #mobile2, #mobile3 { /* 휴대전화 입력칸 */
 	border: 1px groove #BDBDBD;
 	width: 30%;
 	height: 40px;
 }
-.ec-address li{ /* 주소칸 */
+
+.ec-address li { /* 주소칸 */
 	list-style: none;
 	margin-left: -30px;
 	margin-top: 5px;
 }
-#sample6_postcode, #sample6_address, #sample6_extraAddress{ /* 주소 입력칸 */
+
+#sample6_postcode, #sample6_address, #sample6_extraAddress {
+	/* 주소 입력칸 */
 	background-color: #F6F6F6;
 	border: 1px solid #BDBDBD;
 }
-#postBtn{ /* 주소검색 버튼 */
+
+#postBtn { /* 주소검색 버튼 */
 	width: 87px;
 	height: 43px;
 }
-#sample6_address{ /* 기본주소 칸 */
+
+#sample6_address { /* 기본주소 칸 */
 	width: 500px;
 }
-#sample6_detailAddress, #sample6_extraAddress{ /* 나머지주소, 참고항목 */
+
+#sample6_detailAddress, #sample6_extraAddress { /* 나머지주소, 참고항목 */
 	width: 248px;
-	display : inline;
+	display: inline;
 }
+
 button {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 1em;
@@ -144,9 +184,11 @@ button {
 	border-width: thin;
 	border: 1px groove #BDBDBD;
 }
-.btnBasic{
+
+.btnBasic {
 	margin-left: 10px;
 }
+
 .btn_white {
 	padding: 20px 50px;
 	background-color: #FFFFFF;
@@ -155,6 +197,7 @@ button {
 	width: 400px;
 	text-decoration: none;
 }
+
 .btn_black {
 	padding: 20px 50px;
 	background-color: #000000;
@@ -162,20 +205,24 @@ button {
 	border: 1px groove #BDBDBD;
 	text-decoration: none;
 }
-.desc{ /* (선택) */
+
+.desc { /* (선택) */
 	font-size: 15px;
 	color: #BDBDBD;
 }
-#is_sex0, #is_sex1{ /* 성별 라디오 */
+
+#is_sex0, #is_sex1 { /* 성별 라디오 */
 	margin-left: 10px;
 }
-.gBottom{ /* 하단 버튼 */
+
+.gBottom { /* 하단 버튼 */
 	margin-top: 100px;
 	margin-bottom: 100px;
 }
 </style>
 
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -300,143 +347,148 @@ button {
 </script>
 </head>
 <body>
-	<div class="container">
-		<div class="contents">
-			<h2>회원 가입</h2>
-		</div>
-		<div class="section">
-			<ol class="step">
-				<li>1.약관동의 ></li>
-				<li class="selected">2.정보입력 ></li>
-				<li>3.가입완료</li>
-			</ol>
-		</div>
-		<div class="titleArea" style="width: 800px">
-			<h3>기본정보</h3>
-			<li class="required">필수입력사항</li>
-		</div>
-		<div>
+	<form method="post" action="<%=withFormTag %>">
+	<input type="hidden" name="command" value="meInsert" >
+		<div class="container">
+			<div class="contents">
+				<h2>회원 가입</h2>
+			</div>
+			<div class="section">
+				<ol class="step">
+					<li>1.약관동의 ></li>
+					<li class="selected">2.정보입력 ></li>
+					<li>3.가입완료</li>
+				</ol>
+			</div>
+			<div class="titleArea" style="width: 800px">
+				<h3>기본정보</h3>
+				<li class="required">필수입력사항</li>
+			</div>
+
 			<div>
-			<table>
-				<tr>
-					<th scope="row">
-						<li class="required id">아이디</li>
-					</th>
-					<td>
-						<input id="member_id" name="member_id" class="inputTypeText" type="text">
-						<div class="txtInfo">(영문소문자/숫자, 4~16자)</div>
-						<p id="idMsg" class="txtInfo txtSuccess"></p>
-					</td>
-	            </tr>
-	            <tr>
-	            	<th scope="row">
-	            		<li class="required password">비밀번호</li>
-	            	</th>
-	            	<td>
-	            		<input id="member_password" name="member_password" class="inputTypeText" type="text">
-						<div class="txtInfo">(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10~16자)</div>
-						<p id="passwordMsg" class="txtInfo txtSuccess"></p>
-					</td>
-				</tr>
-	            <tr>
-	            	<th scope="row">
-	            		<li class="required password check">비밀번호 확인</li>
-	            	</th>
-	            	<td>
-	            		<input id="member_password_check" name="member_password_check" class="inputTypeText" type="text">
-						<p id="passwordCheckMsg" class="txtInfo txtSuccess"></p>
-					</td>
-				</tr>
-				<tr>
-	            	<th scope="row">
-	            		<li class="required name">이름</li>
-	            	</th>
-	            	<td>
-	            		<input id="member_name" name="member_name" class="inputTypeText" type="text">
-						<p id="nameMsg" class="txtInfo txtSuccess"></p>
-					</td>
-				</tr>
-				<tr>
-	            	<th scope="row">
-	            		<li class="required address">주소</li>
-	            	</th>
-	            	<td class="formMultiple">
-	            		<ul class="ec-address">
-	            			<li id="join_zipcode_wrap">
-	                			<input id="sample6_postcode" name="postcode1" placeholder="우편번호" class="inputTypeText" type="text" readonly="readonly" onclick="sample6_execDaumPostcode()">
-	                			<button id="postBtn" class="btnBasic" type="button" onclick= "sample6_execDaumPostcode()" style="cursor: pointer">주소검색</button>
-	            			</li>
-	            			<li id="join_baseAddr_wrap">
-	                			<input id="sample6_address" name="addr1" placeholder="기본주소" class="inputTypeText" type="text" readonly="readonly" onclick="sample6_execDaumPostcode()">
-	           				</li>
-	           				<li id="join_detailAddr_wrap">
-	               				<input id="sample6_detailAddress" name="addr2" placeholder="나머지 주소(선택 입력 가능)" class="inputTypeText" type="text">
-	               				<input type="text" id="sample6_extraAddress" placeholder="참고항목" class="inputTypeText" type="text" readonly="readonly">
-	            			</li>
-	            		</ul>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						<li class="required handphone">휴대전화</li>				
-					</th>
-					<td class="formGroup code">
-	                    <select id="mobile1" name="mobile[]">
-							<option value="010">010</option>
-							<option value="011">011</option>
-							<option value="016">016</option>
-							<option value="017">017</option>
-							<option value="018">018</option>
-							<option value="019">019</option>
-						</select>-
-						<input id="mobile2" name="mobile[]" maxlength="4" type="text">-
-						<input id="mobile3" name="mobile[]" maxlength="4" type="text">
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						<li class="required email" alt="필수">이메일
-					</th>
-					<td>
-					<input id="email1" name="email1" class="inputTypeText" type="text">
-					<p class="txtInfo" id="emailMsg"></p>
-					</td>
-				</tr>
-			</table>
+				<div>
+					<table>
+						<tr>
+							<th scope="row">
+								<li class="required id">아이디</li>
+							</th>
+							<td><input id="member_id" name="MBRID" class="inputTypeText"
+								type="text">
+								<div class="txtInfo">(영문소문자/숫자, 4~16자)</div>
+								<p id="idMsg" class="txtInfo txtSuccess"></p></td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<li class="required password">비밀번호</li>
+							</th>
+							<td><input id="member_password" name="MBRPW"
+								class="inputTypeText" type="text">
+								<div class="txtInfo">(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10~16자)</div>
+								<p id="passwordMsg" class="txtInfo txtSuccess"></p></td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<li class="required password check">비밀번호 확인</li>
+							</th>
+							<td><input id="member_password_check"
+								name="member_password_check" class="inputTypeText" type="text">
+								<p id="passwordCheckMsg" class="txtInfo txtSuccess"></p></td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<li class="required name">이름</li>
+							</th>
+							<td><input id="member_name" name="MBRNM"
+								class="inputTypeText" type="text">
+								<p id="nameMsg" class="txtInfo txtSuccess"></p></td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<li class="required address">주소</li>
+							</th>
+							<td class="formMultiple">
+								<ul class="ec-address">
+									<li id="join_zipcode_wrap"><input id="sample6_postcode"
+										name="MBRAR1" placeholder="우편번호" class="inputTypeText"
+										type="text" readonly="readonly"
+										onclick="sample6_execDaumPostcode()">
+										<button id="postBtn" class="btnBasic" type="button"
+											onclick="sample6_execDaumPostcode()" style="cursor: pointer">주소검색</button>
+									</li>
+									<li id="join_baseAddr_wrap"><input id="sample6_address"
+										name="MBRAR2" placeholder="기본주소" class="inputTypeText"
+										type="text" readonly="readonly"
+										onclick="sample6_execDaumPostcode()"></li>
+									<li id="join_detailAddr_wrap"><input
+										id="sample6_detailAddress" name="MBRAR3"
+										placeholder="나머지 주소(선택 입력 가능)" class="inputTypeText"
+										type="text"> <input type="text"
+										id="sample6_extraAddress" placeholder="참고항목"
+										class="inputTypeText" type="text" readonly="readonly">
+									</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<li class="required handphone">휴대전화</li>
+							</th>
+							<td class="formGroup code"><select id="mobile1"
+								name="mobile1">
+									<option value="010">010</option>
+									<option value="011">011</option>
+									<option value="016">016</option>
+									<option value="017">017</option>
+									<option value="018">018</option>
+									<option value="019">019</option>
+							</select>- <input id="mobile2" name="mobile2" maxlength="4" type="text" value="">-
+								<input id="mobile3" name="mobile3" maxlength="4" type="text" value="">
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<li class="required email" alt="필수">이메일
+							</th>
+							<td><input id="email1" name="MBREM" class="inputTypeText"
+								type="text">
+								<p class="txtInfo" id="emailMsg"></p></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+
+			<div class="titleArea" style="width: 800px">
+				<h3>
+					추가정보 <span class="desc">(선택)</span>
+				</h3>
+			</div>
+			<div>
+				<table>
+					<tr>
+						<th scope="row">
+							<li class="notrequired gender">성별
+						</th>
+						<td><input id="is_sex0" name="is_sex" value="남자"
+							type="radio" autocomplete="off"> <label for="is_sex0">남자</label>
+							<input id="is_sex1" name="is_sex" value="여자" type="radio"
+							autocomplete="off"> <label for="is_sex1">여자</label></td>
+					</tr>
+					<tr>
+						<th scope="row">
+							<li class="notrequired birth">생년월일
+						</th>
+						<td class="formGroup date"><input type="text"
+							class="inputTypeText" id="birth" name="MBRBT"></td>
+					</tr>
+				</table>
 			</div>
 		</div>
-		<div class="titleArea" style="width: 800px">
-			<h3>추가정보
-				<span class="desc">(선택)</span>
-			</h3>
+		<div class="gBottom">
+			<a href="#none" class="btn_white"
+				onclick="history.go(-1); return false;">취소</a> <a href="#none"
+				class="btn_black" onclick="memberJoinAction()"><button type="submit">가입하기</button></a>
 		</div>
-		<div>
-			<table>
-			<tr>
-				<th scope="row">
-					<li class="notrequired gender">성별
-				</th>
-                <td>
-                <input id="is_sex0" name="is_sex" value="M" type="radio" autocomplete="off">
-                	<label for="is_sex0">남자</label>
-				<input id="is_sex1" name="is_sex" value="F" type="radio" autocomplete="off">
-					<label for="is_sex1">여자</label>
-				</td>
-            </tr>
-            <tr>
-				<th scope="row">
-					<li class="notrequired birth">생년월일
-				</th>
-                <td class="formGroup date">
-	                <input type="text" class="inputTypeText" id="birth" name="birth">
-                </td>
-            </tr>
-			</table>
-		</div>
-	</div>
-	<div class="gBottom">
-        <a href="#none" class="btn_white" onclick="history.go(-1); return false;">취소</a>
-        <a href="#none" class="btn_black" onclick="memberJoinAction()">가입하기</a>
-    </div>
+	</form>
 </body>
 </html>
