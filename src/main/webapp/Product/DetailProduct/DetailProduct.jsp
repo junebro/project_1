@@ -629,7 +629,7 @@ a.active {
 				<br>
 				<ul class="items">
 
-					<li><input type="radio" id="colCode_NBPFES152W10" 
+					<li><input type="radio" id="colCode_NBPFES152W10"
 						name="pr_color" value="10" data-info="(10)White"
 						data-price="99000.00" data-norprice="99000.00"
 						data-style-code="NBPFES152W" data-disp-name="W480KW5 (Uni, 4E)"

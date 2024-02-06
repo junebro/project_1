@@ -1,4 +1,4 @@
-# 구현해야 할 목록입니다.1
+# 구현해야 할 목록입니다.
 # order section
 #OrderC=com.shopping.order.OrderController 
 # product section

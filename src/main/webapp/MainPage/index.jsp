@@ -49,7 +49,7 @@
     <link rel="stylesheet" type="text/css" href="./alleffect/SlideImg.css">
     <script src="./alleffect/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="./alleffect/slick.min.js"></script>
- 
+  
     
 </head>
 <body>
