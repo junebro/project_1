@@ -21,7 +21,7 @@ public class SuperDao {
 		if(mode==null || mode.equals("all") || mode.equals("null") || mode.equals("") ) {
 		} else {
 			//전체 모드가 아니면 
-			sql += " WHERE " + mode + "LIKE '%" + keyword + "%'";
+			sql += " WHERE " + mode + " LIKE '%" + keyword + "%'";
 		}
 		
 		System.out.println("sql 구문\n" + sql);
