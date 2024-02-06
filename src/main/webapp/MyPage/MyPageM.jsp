@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
 <%@ include file="./../common/common.jsp"%>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -167,7 +169,7 @@ a {
 	top: 50%;
 	width: 50%; /*가로길이 설정은 여기서*/
 	margin-left: -25%; /*width의 반만큼 음수로*/
-	height: 500px; /*세로길이 설정은 여기서*/
+	height: 550px; /*세로길이 설정은 여기서*/
 	margin-top: -250px; /*height의 반만큼 음수로*/
 	z-index: 1000;
 	/*style*/
@@ -298,7 +300,9 @@ a {
 				<div class="spanbar">
 					<a href="#">활동 정보</a>
 				</div>
-				<br> <a href="./../Product/DetailProduct/DetailProduct.jsp">최근 본 상품</a><br> <br> <a href="./../Product/DetailProduct/DetailProduct.jsp">좋아요한상품</a><br>
+				<br> <a href="./../Product/DetailProduct/DetailProduct.jsp">최근
+					본 상품</a><br> <br> <a
+					href="./../Product/DetailProduct/DetailProduct.jsp">좋아요한상품</a><br>
 				<br> <a href="#">나의게시글</a><br>
 				<div class="spanbar">
 					<a href="#">내 정보</a>
@@ -323,8 +327,7 @@ a {
 							<td class="orderTd" id="ORDCD">6969</td>
 							<td class="orderTd"><img class="orderImg "
 								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)
-							</td>
+							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)</td>
 							<td class="orderTd">260, 2E</td>
 							<td class="orderTd">1</td>
 							<td class="orderTd">109,000원</td>
@@ -337,8 +340,7 @@ a {
 							<td class="orderTd" id="ORDCD">7474</td>
 							<td class="orderTd"><img class="orderImg "
 								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)
-							</td>
+							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)</td>
 							<td class="orderTd">(91)Silver, 280, 2E</td>
 							<td class="orderTd">1</td>
 							<td class="orderTd">99,000원</td>
@@ -351,8 +353,7 @@ a {
 							<td class="orderTd" id="ORDCD">6969</td>
 							<td class="orderTd"><img class="orderImg "
 								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)
-							</td>
+							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)</td>
 							<td class="orderTd">260, 2E</td>
 							<td class="orderTd">1</td>
 							<td class="orderTd">109,000원</td>
@@ -365,8 +366,7 @@ a {
 							<td class="orderTd" id="ORDCD">7474</td>
 							<td class="orderTd"><img class="orderImg "
 								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)
-							</td>
+							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)</td>
 							<td class="orderTd">(91)Silver, 280, 2E</td>
 							<td class="orderTd">1</td>
 							<td class="orderTd">99,000원</td>
@@ -379,8 +379,7 @@ a {
 							<td class="orderTd" id="ORDCD">6969</td>
 							<td class="orderTd"><img class="orderImg "
 								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)
-							</td>
+							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)</td>
 							<td class="orderTd">260, 2E</td>
 							<td class="orderTd">1</td>
 							<td class="orderTd">109,000원</td>
@@ -393,8 +392,7 @@ a {
 							<td class="orderTd" id="ORDCD">7474</td>
 							<td class="orderTd"><img class="orderImg "
 								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)
-							</td>
+							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)</td>
 							<td class="orderTd">(91)Silver, 280, 2E</td>
 							<td class="orderTd">1</td>
 							<td class="orderTd">99,000원</td>
@@ -407,8 +405,7 @@ a {
 							<td class="orderTd" id="ORDCD">6969</td>
 							<td class="orderTd"><img class="orderImg "
 								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)
-							</td>
+							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)</td>
 							<td class="orderTd">260, 2E</td>
 							<td class="orderTd">1</td>
 							<td class="orderTd">109,000원</td>
@@ -421,8 +418,7 @@ a {
 							<td class="orderTd" id="ORDCD">7474</td>
 							<td class="orderTd"><img class="orderImg "
 								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)
-							</td>
+							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)</td>
 							<td class="orderTd">(91)Silver, 280, 2E</td>
 							<td class="orderTd">1</td>
 							<td class="orderTd">99,000원</td>
@@ -456,7 +452,8 @@ a {
 		<form method="post" action="#">
 			<br>
 			<h2>리뷰 작성하기</h2>
-			<select class="all_star selectbox_star sel_color" style="margin-left:7px;">
+			<select class="all_star selectbox_star sel_color"
+				style="margin-left: 7px;">
 				<option selected="selected">&#xf005 &#xf005 &#xf005 &#xf005
 					&#xf005</option>
 				<option>&#xf005 &#xf005 &#xf005 &#xf005</option>
@@ -472,9 +469,15 @@ a {
 					</tr>
 				</tbody>
 			</table>
+			<div style="text-align: left; margin-left:30px;">
+				<button type="submit" class="btn_white">파일선택</button>
+				<button type="submit" class="btn_white">파일선택</button>
+				<button type="submit" class="btn_white">파일선택</button>
+			</div>
+			<hr>
 			<div style="text-align: center">
 				<button type="submit" class="btn_white" style="margin-right: 20px">올리기</button>
-				<button type="submit" class="btn_black" style="margin-left: 20px">나가기</button>
+				<button type="reset" class="btn_black" style="margin-left: 20px">나가기</button>
 			</div>
 		</form>
 	</div>

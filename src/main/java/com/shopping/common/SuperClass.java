@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.shopping.model.bean.Member;
+
 //import com.shopping.model.bean.Member;
 
 // 하위 컨드롤러 들이 공통적으로 사용하는 기능을 여기에 명시하도록 합니다.
@@ -17,7 +19,7 @@ public class SuperClass implements SuperController{
 	protected HttpSession session;
 
 	// 로그인 여부를 파악하는 변수
-	//protected Member loginfo = null;
+	protected Member loginfo ;
 	
 	public String getUrlInfomation(String todoCommand) {
 		// todoCommand " todolist.txt 파일에 명시된 커맨드 이름
@@ -34,7 +36,7 @@ public class SuperClass implements SuperController{
 		// 미로그인시 적절한 메시지를 보여 주고, 로그인 페이지로 이동합니다.
 		String message = "로그인이 필요한 서비스입니다.";
 		this.setAlertMessage(message);
-		this.gotoPage("member/meLoginForm.jsp");
+		this.gotoPage("Member/loginMain.jsp");
 	}
 	
 	@Override
@@ -42,7 +44,7 @@ public class SuperClass implements SuperController{
 		this.request = request;
 		this.response = response;
 		this.session = request.getSession();
-		//this.loginfo = (Member)session.getAttribute("loginfo");
+		this.loginfo = (Member)session.getAttribute("loginfo");
 	}
 	
 	@Override
@@ -50,7 +52,7 @@ public class SuperClass implements SuperController{
 		this.request = request;
 		this.response = response;
 		this.session = request.getSession();
-		//this.loginfo = (Member)session.getAttribute("loginfo");
+		this.loginfo = (Member)session.getAttribute("loginfo");
 	}
 
 	public void setAlertMessage(String message) {

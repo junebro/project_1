@@ -8,10 +8,13 @@
 <%@ page import="com.shopping.model.bean.Member"%>
 
 <%
-	OrderDao dao=new OrderDao();
-	Order bean = new Order();
-	Member beanM= new Member();
-	MemberDao mdao = new MemberDao();
+OrderDao dao = new OrderDao();
+Order bean = new Order();
+Member beanM = new Member();
+MemberDao mdao = new MemberDao();
+
+session.getAttribute("MBRID");
+session.getAttribute("loginfo");
 %>
 
 <!DOCTYPE html>
@@ -36,6 +39,8 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="jquery.js"></script>
+<script src="parsley.min.js"></script>
 <script type="text/javascript">
 	/* 데이터 전송 시 오류에 대한 함수 */
 	$(document).ready(function() {
@@ -43,46 +48,72 @@
 		// 결제 버튼을 클릭 시 값이 비어있을 경우 작동하는 함수
 		$('#buy').click(function() {
 			// 입금자 정보가 비어있을 시
-			if ($('#inputdp').val() == '') {
+			if ($('#inputdp').val() == '' && document.getElementById('tab1-li').classList.contains('selected') ) {
 				$('#inputdp').addClass('focusError');
 				document.getElementById('inputdp').focus();
 				$('#inputdp').attr('placeholder', newph);
+				return false;
+			}else{
+				$('#inputdp').removeClass('focusError');
+				$('#inputdp').removeAttr('placeholder', newph);
 			}
 			// 비회원 주문자 번호가 비어있을 시
 			if ($('#inputpn2').val() == '') {
 				$('#inputpn2').addClass('focusError');
 				document.getElementById('inputpn2').focus();
 				$('#inputpn2').attr('placeholder', newph);
+				return false;
 			} else if ($('#inputpn2').val().length < 8) { // 비회원 주문자 번호가 8글자미만일시
 				alert('너무 짧습니다.');
 				$('#inputpn2').addClass('focusError');
 				document.getElementById('inputpn2').focus();
 				$('#inputpn2').attr('placeholder', newph);
+			}else{
+				$('#inputpn2').removeClass('focusError');
+				$('#inputpn2').removeAttr('placeholder', newph);
 			}
 			// 상세주소가 비어있을 시
 			if ($('#address-2').val() == '') {
 				$('#address-2').addClass('focusError');
 				document.getElementById('address-2').focus();
 				$('#address-2').attr('placeholder', newph);
+				return false;
+			}else{
+				$('#address-2').removeClass('focusError');
+				$('#address-2').removeAttr('placeholder', newph);
 			}
 			// 받는사람 정보가 비어있을 시
 			if ($('#inputrc').val() == '') {
 				$('#inputrc').addClass('focusError');
 				document.getElementById('inputrc').focus();
 				$('#inputrc').attr('placeholder', newph);
+				return false;
+			}else{
+				$('#inputrc').removeClass('focusError');
+				$('#inputrc').removeAttr('placeholder', newph);
 			}
-			// 주문자 이메일이 비어있을 시
+			
+			/* 주문자 이메일이 비어있을 시
 			if ($('#inputemail').val() == '') {
 				$('#inputemail').addClass('focusError');
 				document.getElementById('inputemail').focus();
 				$('#inputemail').attr('placeholder', newph);
+				return false;
+			}else{
+				$('#inputemail').removeClass('focusError');
+				$('#inputemail').removeAttr('placeholder', newph);
 			}
 			// 주문자 정보가 비어있을 시
 			if ($('#inputid').val() == '') {
 				$('#inputid').addClass('focusError');
 				document.getElementById('inputid').focus();
 				$('#inputid').attr('placeholder', newph);
-			}
+			}else{
+				$('#inputid').removeClass('focusError');
+				$('#inputid').removeAttr('placeholder', newph);
+				return false;
+			}*/
+			return true;
 		});
 		/* 새로 만든 탭 메뉴 함수  */
 		$("input").addClass("form-control");
@@ -129,6 +160,123 @@
 	}
 </script>
 <style>
+div .menu {
+	list-style-type: none;
+}
+
+/* 메뉴 탭에 대한 css */
+#tab1, #tab2, #tab3 {
+	width: 100%;
+	display: none;
+}
+
+.ec-base-tab {
+	position: relative;
+}
+
+.ec-base-tab .menu {
+	border: 1px solid #cbcdce;
+	border-bottom-color: #202020;
+	background: white;
+	box-sizing: border-box;
+}
+
+.ec-base-tab .menu:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.ec-base-tab .menu div {
+	float: left;
+	border-left: 1px solid #cbcdce;
+	background: #f2f2f2;
+}
+
+.ec-base-tab .menu div a {
+	display: block;
+	min-width: 187px;
+	margin: 0 0 0 -1px;
+	padding: 12px 5px 11px;
+	border-right: 1px solid #cbcdce;
+	color: #707070;
+	text-decoration: none;
+	outline: 0;
+	text-align: center;
+	background: white;
+}
+
+.ec-base-tab .menu div.selected a {
+	position: relative;
+	top: -1px;
+	left: -2px;
+	margin: 0 0 -1px;
+	border: 1px solid #202020;
+	border-bottom: 0;
+	color: #fff;
+	font-weight: bold;
+	background: #4a5164;
+}
+
+.ec-base-tab .menu div.selected:first-child a {
+	left: -1px;
+}
+
+tr, input, select {
+	height: 50px;
+	width: 100%;
+}
+
+.distinct {
+	/* 구분선 스타일 */
+	border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+	margin-top: 10px;
+}
+
+.info {
+	background-color: #CCFFFF;
+	opacity: 1;
+	font-weight: none;
+	font-size: 12px;
+}
+
+.icon {
+	width: 30px;
+	height: 30px;
+}
+
+.mar {
+	margin-left: 15px;
+}
+
+.dark-nav {
+	color: white;
+	font-size: 30px;
+}
+
+.dark-nav1 {
+	color: white;
+	font-size: 20px;
+}
+
+button {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1em;
+	cursor: pointer;
+	border-width: thin;
+}
+
+.paymentbar {
+	text-align: center;
+}
+
+.btn_black {
+	margin-bottom: 30px;
+	padding: 5px 10px;
+	background-color: #000000;
+	color: #ffffff;
+}
+
 .focusError {
 	border-color: red;
 	color: red;
@@ -206,7 +354,7 @@ td span {
 </head>
 <body>
 	<form action="<%=withFormTag%>" method="post">
-	<input type="hidden" name="command" value="OrderC">
+		<input type="hidden" name="command" value="OrderC">
 		<div style="background-color: white;"
 			class="justify-content-center row">
 			<div class="col-1">
@@ -260,21 +408,16 @@ td span {
 						<tr style="height: 50px">
 							<td><span class="mar">주문자</span></td>
 							<td><input id="inputid" placeholder="회원 정보를 통해 입력" size="15"
-								value="<%=beanM.getMBRNM() %>" name="MBRNM" type="text" style="width: 100%;"></td>
+								value="${sessionScope.loginfo.MBRID}" name="MBRNM" type="text"
+								style="width: 100%;" class="form-control"></td>
 						</tr>
 						<tr>
 							<td><span class="mar">이메일</span></td>
 							<td>
 								<div class="input-group mt-3 mb-3 input-group-prepend">
-									<input id="inputemail" style="width: 70%" type="text"
-										class="form-control" placeholder="회원 정보를 통해 입력"> <select
-										class="form-select select-toggle"
-										style="width: 30%; margin: auto;">
-										<option>--메일 선택--</option>
-										<option>@naver.com</option>
-										<option>@gmail.com</option>
-										<option>@daum.net</option>
-									</select>
+									<input id="inputemail" style="width: 100%" type="text"
+										value="${sessionScope.loginfo.MBREM}" class="form-control"
+										placeholder="회원 정보를 통해 입력">
 								</div>
 							</td>
 						</tr>
@@ -282,14 +425,9 @@ td span {
 							<td><span class="mar">휴대 전화</span></td>
 							<td>
 								<div class="input-group mt-3 mb-3 input-group-prepend">
-									<select class="form-select select-toggle"
-										style="width: 30%; margin: auto;">
-										<option>--번호 선택--</option>
-										<option>010</option>
-										<option>011</option>
-										<option>070</option>
-									</select> <input id="inputpn" style="width: 70%" type="text"
-										class="form-control" placeholder="회원 정보를 통해 입력">
+									<input id="inputpn" style="width: 100%" type="text"
+										value="${sessionScope.loginfo.MBRHP}" class="form-control"
+										placeholder="회원 정보를 통해 입력">
 								</div>
 							</td>
 						</tr>
@@ -338,7 +476,7 @@ td span {
 										<option>010</option>
 										<option>011</option>
 										<option>070</option>
-									</select> <input id="inputpn2" style="width: 70%" type="text"
+									</select> <input id="inputpn2" style="width: 70%" type="text" maxlength="8"
 										class="form-control" placeholder="-없이 번호를 입력해주세요.">
 								</div>
 							</td>
@@ -491,7 +629,7 @@ td span {
 				<br> <br>
 				<div class="justify-content-center row d-flex">
 					<div class="col-12" style="text-align: center;">
-						
+
 						<button id="buy" type="submit" class="btn_black">236250원
 							결제하기</button>
 					</div>
