@@ -1,46 +1,46 @@
 package com.shopping.model.bean;
 
 public class Order {
-	private String ordcd;
-	private String mbrcd;
-	private String ordtp;
-	private String orddt;
+	private String ORDCD;
+	private String MBRID;
+	private String ORDTP;
+	private String ORDDT;
 	
 	public Order() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Order(String ordcd, String mbrcd, String ordtp, String orddt) {
-		super();
-		this.ordcd = ordcd;
-		this.mbrcd = mbrcd;
-		this.ordtp = ordtp;
-		this.orddt = orddt;
+
+	public String getORDCD() {
+		return ORDCD;
+	}
+
+	public void setORDCD(String oRDCD) {
+		ORDCD = oRDCD;
+	}
+
+	public String getMBRID() {
+		return MBRID;
+	}
+
+	public void setMBRID(String mBRCD) {
+		MBRID = mBRCD;
+	}
+
+	public String getORDTP() {
+		return ORDTP;
+	}
+
+	public void setORDTP(String oRDTP) {
+		ORDTP = oRDTP;
+	}
+
+	public String getORDDT() {
+		return ORDDT;
+	}
+
+	public void setORDDT(String oRDDT) {
+		ORDDT = oRDDT;
 	}
 	
-	public String getOrdcd() {
-		return ordcd;
-	}
-	public void setOrdcd(String ordcd) {
-		this.ordcd = ordcd;
-	}
-	public String getMbrcd() {
-		return mbrcd;
-	}
-	public void setMbrcd(String mbrcd) {
-		this.mbrcd = mbrcd;
-	}
-	public String getOrdtp() {
-		return ordtp;
-	}
-	public void setOrdtp(String ordtp) {
-		this.ordtp = ordtp;
-	}
-	public String getOrddt() {
-		return orddt;
-	}
-	public void setOrddt(String orddt) {
-		this.orddt = orddt;
-	}
 	
 }

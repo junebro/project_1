@@ -11,22 +11,43 @@ import com.shopping.model.bean.Order;
 
 public class OrderDao extends SuperDao {
 
+	public int insertData(String sessionid) throws Exception {
+		String sql = " INSERT INTO TORD (ORDCD, MBRID, ORDDT)";
+		sql += " SELECT TO_CHAR(SYSDATE, 'YYMMDD') || LPAD(FLOOR(DBMS_RANDOM.VALUE * 10000), 4, '0') AS generated_number, ? , SYSDATE";
+		sql += " FROM DUAL WHERE TO_CHAR(SYSDATE, 'YYMMDD') || LPAD(FLOOR(DBMS_RANDOM.VALUE * 10000), 4, '0') NOT IN (SELECT ORDCD FROM TORD)";
+
+		int cnt = -1;
+
+		PreparedStatement pstmt = null;
+		Member bean = new Member();
+		
+
+		conn = super.getConnection();
+		conn.setAutoCommit(false);
+
+		pstmt = conn.prepareStatement(sql);
+
+		pstmt.setString(1, bean.getMBRID());
+
+		cnt = pstmt.executeUpdate();
+		conn.commit();
+
+		if (pstmt != null) {
+			pstmt.close();
+		}
+		if (conn != null) {
+			conn.close();
+		}
+
+		return cnt;
+
+	}
+
 	private Order resultSetBeanO(ResultSet rs) {
 		try {
 			Order bean = new Order();
-			bean.setMbrcd(rs.getString("mbrcd"));
-			return bean;
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	private Member resultSetBeanM(ResultSet rs) {
-		try {
-			Member bean = new Member();
 			return bean;
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -34,9 +55,7 @@ public class OrderDao extends SuperDao {
 	}
 
 	public int updateDate(Order bean) {
-		
-		
-		
+
 		String sql = " ";
 		sql += " ";
 		sql += " ";
@@ -72,45 +91,6 @@ public class OrderDao extends SuperDao {
 		}
 
 		return cnt;
-	}
-
-	public Member getDataByMbrcd(String mbrcd) {
-		// 고객 코드를 이용해 고객 정보를 가져옵니다.
-		String sql = "select * from TMBR ";
-		sql += " where mbrcd = ? ;";
-
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		Member bean = null;
-
-		super.conn = super.getConnection();
-		try {
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mbrcd);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				bean = this.resultSetBeanM(rs);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (pstmt != null) {
-					pstmt.close();
-				}
-				super.closeConnection();
-
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-
-		return bean;
 	}
 
 	public List<Order> getDataList() {
