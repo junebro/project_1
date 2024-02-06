@@ -382,7 +382,7 @@ button {
 									<option>@gmail.com</option>
 									<option>@daum.net</option>
 							</select>
-								<div class="failure-message7 hide">필수입력사항입니다.</div></td>
+							<div class="failure-message7 hide">필수입력사항입니다.</div></td>
 						</tr>
 					</table>
 				</div>

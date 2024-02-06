@@ -27,7 +27,19 @@ public class MemberInsertController extends SuperClass {
 		bean.setMBRNM(request.getParameter("MBRNM"));
 		bean.setMBRHP(request.getParameter("MBRHP"));
 		bean.setMBRBT(request.getParameter("MBRBT"));
-		bean.setMBREM(request.getParameter("MBREM"));
+		
+		String depart = "";
+		String email = request.getParameter("MBREM01");
+		// <select>태그의 전공에 따라 depart에 다르게 저장
+        if (email.equals("@naver.com")) {
+            depart="@naver.com";
+        } else if (email.equals("@gmail.com")){
+            depart="@gmail.com";
+        } else if (email.equals("@daum.net")){
+            depart="@daum.net";
+        };
+        
+		bean.setMBREM(request.getParameter("MBREM") + request.getParameter("MBREM01"));
 		bean.setMBRAR("우편번호 : " +
 				request.getParameter("MBRAR1")+", 기본주소 :  "+
 				request.getParameter("MBRAR2")+" "+
