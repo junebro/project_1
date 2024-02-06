@@ -1,12 +1,12 @@
 # 구현해야 할 목록입니다.
 # member section
-meLogin=com.shopping.member.MemberLoginController
+#meLogin=com.shopping.member.MemberLoginController
 #meLogout=com.shopping.member.MemberLogoutController
-meInsert=com.shopping.member.MemberInsertController
+#meInsert=com.shopping.member.MemberInsertController
 # order section
-OrderC=com.shopping.order.OrderController
+#OrderC=com.shopping.order.OrderController 
 # product section
-prList=com.shopping.controller.product.ProductListController
+DetailProduct=com.shopping.controller.product.ProductDetailController
 # view section
 #vwList=com.shopping.controller.view.ViewListController
 #vwExam01=com.shopping.controller.view.View01ListController
@@ -14,3 +14,9 @@ prList=com.shopping.controller.product.ProductListController
 #vwExam03=com.shopping.controller.view.View03ListController
 #vwExam04=com.shopping.controller.view.View04ListController
 #vwExam05=com.shopping.controller.view.View05ListController
+# board section
+#boInsert=com.shopping.controller.board.BoardInsertController
+#boUpdate=com.shopping.controller.board.BoardUpdateController
+#boList=com.shopping.controller.board.BoardListController
+#boDelete=com.shopping.controller.board.BoardDeleteController
+#boDetail=com.shopping.controller.board.BoardDetailController
