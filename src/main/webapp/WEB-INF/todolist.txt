@@ -1,8 +1,4 @@
-# 구현해야 할 목록입니다.
-# member section
-#meLogin=com.shopping.member.MemberLoginController
-#meLogout=com.shopping.member.MemberLogoutController
-#meInsert=com.shopping.member.MemberInsertController
+# 구현해야 할 목록입니다
 # order section
 #OrderC=com.shopping.order.OrderController 
 # product section
@@ -20,3 +16,11 @@ DetailProduct=com.shopping.controller.product.ProductDetailController
 #boList=com.shopping.controller.board.BoardListController
 #boDelete=com.shopping.controller.board.BoardDeleteController
 #boDetail=com.shopping.controller.board.BoardDetailController
+# member section
+meLogin=com.shopping.controller.member.MemberLoginController
+meLogout=com.shopping.controller.member.MemberLogoutController
+meJoin=com.shopping.controller.member.MemberJoinController
+# mypage section
+myUpdate=com.shopping.controller.member.MypageUpdateController
+myDelete=com.shopping.controller.member.MypageDeleteController
+myDetail=com.shopping.controller.member.MypageDetailController

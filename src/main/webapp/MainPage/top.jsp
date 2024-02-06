@@ -17,16 +17,9 @@
 	    height: 181px;
 	    margin: 0 0 10px 0;
 	    /* border-bottom: 20px solid rgb(0,0,0); */
-	    border: 2px solid rgb(192, 192, 192);
+	    /* border: 2px solid rgb(192, 192, 192); */
 	}
-	#topwrap{
-	    position: fixed;
-	    width: 100%;
-	    height: 180px;
-	    background-color: white;
-	    text-align: center;
-	    z-index: 99;
-	}
+	
 	.topmenu ul{
 	    list-style: none;
 	    float: right;
@@ -65,10 +58,7 @@
 	    padding: 25px;
 	}
 	*/
-	.menuwrap {
-	    position: fixed;
-	    text-align: center;
-	}
+	
 	/* Style The Dropdown Button */
 	.dropbtn {
 	  background-color:rgb(255, 255, 255); /*#191970*/
@@ -150,6 +140,13 @@
 		*/
 		margin-bottom: 10px;
 	}
+	
+	/* 회색선 */
+	.underline {
+		border-bottom: 1px solid rgba(128, 128, 128, 0.5); /* 투명도를 포함한 회색 선 */
+		margin-bottom: 10px; /* 선 위의 간격 조절 */
+		margin-top: 20px; /* 선 위의 간격 조절 */
+	}
     </style>
  
   <section id="topwrap">
@@ -196,7 +193,7 @@
             <!-- 
           <div class="dropdown-content">
               <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
+              <a href="#">Link 2</a> 
               <a href="#">Link 3</a>
           </div>-->
         </div>
@@ -220,10 +217,7 @@
               <a href="#">Link 3</a>
             </div>-->
          </div>
-
+		<div class="underline"></div>
      </div>
    </section>
-         <div class="hidden"></div>
-     
-        
           
