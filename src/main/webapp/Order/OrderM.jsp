@@ -15,7 +15,6 @@ MemberDao mdao = new MemberDao();
 
 session.getAttribute("MBRID");
 session.getAttribute("loginfo");
-
 %>
 
 <!DOCTYPE html>
@@ -40,6 +39,8 @@ session.getAttribute("loginfo");
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="jquery.js"></script>
+<script src="parsley.min.js"></script>
 <script type="text/javascript">
 	/* 데이터 전송 시 오류에 대한 함수 */
 	$(document).ready(function() {
@@ -47,46 +48,72 @@ session.getAttribute("loginfo");
 		// 결제 버튼을 클릭 시 값이 비어있을 경우 작동하는 함수
 		$('#buy').click(function() {
 			// 입금자 정보가 비어있을 시
-			if ($('#inputdp').val() == '') {
+			if ($('#inputdp').val() == '' && document.getElementById('tab1-li').classList.contains('selected') ) {
 				$('#inputdp').addClass('focusError');
 				document.getElementById('inputdp').focus();
 				$('#inputdp').attr('placeholder', newph);
+				return false;
+			}else{
+				$('#inputdp').removeClass('focusError');
+				$('#inputdp').removeAttr('placeholder', newph);
 			}
 			// 비회원 주문자 번호가 비어있을 시
 			if ($('#inputpn2').val() == '') {
 				$('#inputpn2').addClass('focusError');
 				document.getElementById('inputpn2').focus();
 				$('#inputpn2').attr('placeholder', newph);
+				return false;
 			} else if ($('#inputpn2').val().length < 8) { // 비회원 주문자 번호가 8글자미만일시
 				alert('너무 짧습니다.');
 				$('#inputpn2').addClass('focusError');
 				document.getElementById('inputpn2').focus();
 				$('#inputpn2').attr('placeholder', newph);
+			}else{
+				$('#inputpn2').removeClass('focusError');
+				$('#inputpn2').removeAttr('placeholder', newph);
 			}
 			// 상세주소가 비어있을 시
 			if ($('#address-2').val() == '') {
 				$('#address-2').addClass('focusError');
 				document.getElementById('address-2').focus();
 				$('#address-2').attr('placeholder', newph);
+				return false;
+			}else{
+				$('#address-2').removeClass('focusError');
+				$('#address-2').removeAttr('placeholder', newph);
 			}
 			// 받는사람 정보가 비어있을 시
 			if ($('#inputrc').val() == '') {
 				$('#inputrc').addClass('focusError');
 				document.getElementById('inputrc').focus();
 				$('#inputrc').attr('placeholder', newph);
+				return false;
+			}else{
+				$('#inputrc').removeClass('focusError');
+				$('#inputrc').removeAttr('placeholder', newph);
 			}
-			// 주문자 이메일이 비어있을 시
+			
+			/* 주문자 이메일이 비어있을 시
 			if ($('#inputemail').val() == '') {
 				$('#inputemail').addClass('focusError');
 				document.getElementById('inputemail').focus();
 				$('#inputemail').attr('placeholder', newph);
+				return false;
+			}else{
+				$('#inputemail').removeClass('focusError');
+				$('#inputemail').removeAttr('placeholder', newph);
 			}
 			// 주문자 정보가 비어있을 시
 			if ($('#inputid').val() == '') {
 				$('#inputid').addClass('focusError');
 				document.getElementById('inputid').focus();
 				$('#inputid').attr('placeholder', newph);
-			}
+			}else{
+				$('#inputid').removeClass('focusError');
+				$('#inputid').removeAttr('placeholder', newph);
+				return false;
+			}*/
+			return true;
 		});
 		/* 새로 만든 탭 메뉴 함수  */
 		$("input").addClass("form-control");
@@ -382,14 +409,15 @@ td span {
 							<td><span class="mar">주문자</span></td>
 							<td><input id="inputid" placeholder="회원 정보를 통해 입력" size="15"
 								value="${sessionScope.loginfo.MBRID}" name="MBRNM" type="text"
-								style="width: 100%;"></td>
+								style="width: 100%;" class="form-control"></td>
 						</tr>
 						<tr>
 							<td><span class="mar">이메일</span></td>
 							<td>
 								<div class="input-group mt-3 mb-3 input-group-prepend">
-									<input id="inputemail" style="width: 100%" type="text" value="${sessionScope.loginfo.MBREM}"
-										class="form-control" placeholder="회원 정보를 통해 입력">
+									<input id="inputemail" style="width: 100%" type="text"
+										value="${sessionScope.loginfo.MBREM}" class="form-control"
+										placeholder="회원 정보를 통해 입력">
 								</div>
 							</td>
 						</tr>
@@ -397,8 +425,9 @@ td span {
 							<td><span class="mar">휴대 전화</span></td>
 							<td>
 								<div class="input-group mt-3 mb-3 input-group-prepend">
-									<input id="inputpn" style="width: 100%" type="text" value="${sessionScope.loginfo.MBRHP}"
-										class="form-control" placeholder="회원 정보를 통해 입력">
+									<input id="inputpn" style="width: 100%" type="text"
+										value="${sessionScope.loginfo.MBRHP}" class="form-control"
+										placeholder="회원 정보를 통해 입력">
 								</div>
 							</td>
 						</tr>

@@ -34,6 +34,8 @@ public class OrderController extends SuperClass {
 
 		dao.insertData(super.loginfo.getMBRID());
 		System.out.println(super.loginfo.getMBRID());
+		
+		
 	}
 
 }
