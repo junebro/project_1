@@ -476,7 +476,7 @@ td span {
 										<option>010</option>
 										<option>011</option>
 										<option>070</option>
-									</select> <input id="inputpn2" style="width: 70%" type="text"
+									</select> <input id="inputpn2" style="width: 70%" type="text" maxlength="8"
 										class="form-control" placeholder="-없이 번호를 입력해주세요.">
 								</div>
 							</td>
