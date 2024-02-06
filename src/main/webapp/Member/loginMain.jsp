@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ include file="./../common/common.jsp" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <!-- 폰트 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,23 +19,33 @@
 
 <!-- 상단 -->
 <!--  font-family: 'Kanit', sans-serif;  -->
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
-	
+<link
+	href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap"
+	rel="stylesheet">
+
 <!--  헤더 / 탭 메뉴 / 배너,썸네일 등 소개 문구 / 상품소개 타이틀 문구 -->
 <!-- font-family: 'Noto Sans KR', sans-serif; -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
+	rel="stylesheet">
 
 <!-- 상품 상세 페이지 -->
 <!-- font-family: 'Noto Sans KR', sans-serif; -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
+	rel="stylesheet">
 
 <!-- 이용약관, 개인정보처리방침, 개인정보 수집 이용동의 박스 -->
 <!-- font-family: 'Gothic A1', sans-serif; -->
-<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200&display=swap"
+	rel="stylesheet">
 
 <!-- 버튼 -->
 <!-- font-family: 'Black Han Sans', sans-serif; -->
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
+	rel="stylesheet">
 
 
 <title>Insert title here</title>
@@ -54,7 +67,7 @@ body {
 	height: 350px;
 	padding: 40px;
 	box-sizing: border-box;
-	margin:0 auto;
+	margin: 0 auto;
 	margin-top: 100px;
 }
 
@@ -170,95 +183,94 @@ body {
 .header .customer {
 	text-align: right;
 }
-.header .customer a{
+
+.header .customer a {
 	margin-right: 30px;
 }
+
 li {
 	list-style-type: none;
 	list-style: none;
 }
-.header .collapse{
+
+.header .collapse {
 	margin-left: 70px;
 }
-.header .collapse li{
+
+.header .collapse li {
 	margin-left: 50px;
 }
 </style>
 </head>
 <body>
-	<div class="header">
-		<nav class="navbar navbar-expand-sm fixed-top">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">늒발란스</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="collapsibleNavbar">
-					<ul class="navbar-nav">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown">Men</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">링크1</a></li>
-								<li><a class="dropdown-item" href="#">링크2</a></li>
-								<li><a class="dropdown-item" href="#">링크3</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown">Women</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">링크1</a></li>
-								<li><a class="dropdown-item" href="#">링크2</a></li>
-								<li><a class="dropdown-item" href="#">링크3</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown">Kid</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">링크1</a></li>
-								<li><a class="dropdown-item" href="#">링크2</a></li>
-								<li><a class="dropdown-item" href="#">링크3</a></li>
-							</ul>
-						</li>
-						<li class="nav-search dropdown"><a
-							class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown">검색</a>
-							<ul class="dropdown-menu">
-								<input class="form-control me-2" type="text" placeholder="검색">
-							</ul>
-						</li>
-					</ul>
+	
+		<div class="header">
+			<nav class="navbar navbar-expand-sm fixed-top">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">늒발란스</a>
+					<button class="navbar-toggler" type="button"
+						data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="collapsibleNavbar">
+						<ul class="navbar-nav">
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown">Men</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="#">링크1</a></li>
+									<li><a class="dropdown-item" href="#">링크2</a></li>
+									<li><a class="dropdown-item" href="#">링크3</a></li>
+								</ul></li>
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown">Women</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="#">링크1</a></li>
+									<li><a class="dropdown-item" href="#">링크2</a></li>
+									<li><a class="dropdown-item" href="#">링크3</a></li>
+								</ul></li>
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown">Kid</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="#">링크1</a></li>
+									<li><a class="dropdown-item" href="#">링크2</a></li>
+									<li><a class="dropdown-item" href="#">링크3</a></li>
+								</ul></li>
+							<li class="nav-search dropdown"><a
+								class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown">검색</a>
+								<ul class="dropdown-menu">
+									<input class="form-control me-2" type="text" placeholder="검색">
+								</ul></li>
+						</ul>
+					</div>
+					<div class="customer">
+						<li class="nav-menu"><a href="./loginMain.jsp">로그인</a> <a
+							href="./MemberJoin.jsp">회원가입</a> <a href="./MyCart.jsp"> <span
+								class="blind">장바구니</span>
+						</a></li>
+					</div>
 				</div>
-				<div class="customer">
-					<li class="nav-menu">
-						<a href="./loginMain.jsp">로그인</a>
-						<a href="./MemberJoin.jsp">회원가입</a>
-						<a href="./MyCart.jsp">
-							<span class="blind">장바구니</span>
-						</a>
-					</li>
+			</nav>
+		</div>
+		<div class="login-wrapper">
+			<h2>LOG IN</h2>
+			<form method="post" action="<%=withFormTag %>" id="login-form">
+			<input type="hidden" name="command" value="meLogin">
+				<input type="text" name="MBRID" placeholder="아이디"> <input
+					type="password" name="MBRPW" placeholder="비밀번호"> <label
+					for="remember-check"> <input type="checkbox"
+					id="remember-check">아이디 저장하기 <a
+					href="/customer/direct.FindID.action" class="alink">아이디/비밀번호 찾기</a>
+				</label> <input type="submit" value="로그인" class="login-default">
+				<div class="nonMembers_txt">
+					<a href="/noncustomer/findNonCustomerOrder.action" class="blink">비회원
+						주문조회</a>
 				</div>
-			</div>
-		</nav>
-	</div>
-	<div class="login-wrapper">
-		<h2>LOG IN</h2>
-		<form method="post" action="서버의url" id="login-form">
-			<input type="text" name="userName" placeholder="아이디"> <input
-				type="password" name="userPassword" placeholder="비밀번호"> <label
-				for="remember-check"> <input type="checkbox"
-				id="remember-check">아이디 저장하기 <a
-				href="/customer/direct.FindID.action" class="alink">아이디/비밀번호 찾기</a>
-			</label>
-			<input type="submit" value="로그인" class="login-default">
-			<div class="nonMembers_txt">
-				<a href="/noncustomer/findNonCustomerOrder.action" class="blink">비회원
-					주문조회</a>
-			</div>
-		</form>
-	</div>
+			</form>
+		</div>
+	
 </body>
 </html>

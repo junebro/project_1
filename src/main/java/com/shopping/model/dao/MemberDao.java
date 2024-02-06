@@ -116,10 +116,10 @@ public class MemberDao extends SuperDao {
 			pstmt.setInt(7, bean.getMBRPT());
 			pstmt.setString(8, bean.getMBRBT());
 			pstmt.setString(9, bean.getMBRGD());
-
+			
 			cnt = pstmt.executeUpdate();
 			conn.commit();
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
@@ -137,7 +137,7 @@ public class MemberDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
-
+		System.out.println("인서트 데이타 메소드 호출됨\n");
 		return cnt;
 	}
 

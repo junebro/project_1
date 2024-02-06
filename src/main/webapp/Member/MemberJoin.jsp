@@ -409,18 +409,18 @@ button {
 							<td class="formMultiple">
 								<ul class="ec-address">
 									<li id="join_zipcode_wrap"><input id="sample6_postcode"
-										name="postcode1" placeholder="우편번호" class="inputTypeText"
+										name="MBRAR1" placeholder="우편번호" class="inputTypeText"
 										type="text" readonly="readonly"
 										onclick="sample6_execDaumPostcode()">
 										<button id="postBtn" class="btnBasic" type="button"
 											onclick="sample6_execDaumPostcode()" style="cursor: pointer">주소검색</button>
 									</li>
 									<li id="join_baseAddr_wrap"><input id="sample6_address"
-										name="addr1" placeholder="기본주소" class="inputTypeText"
+										name="MBRAR2" placeholder="기본주소" class="inputTypeText"
 										type="text" readonly="readonly"
 										onclick="sample6_execDaumPostcode()"></li>
 									<li id="join_detailAddr_wrap"><input
-										id="sample6_detailAddress" name="addr2"
+										id="sample6_detailAddress" name="MBRAR3"
 										placeholder="나머지 주소(선택 입력 가능)" class="inputTypeText"
 										type="text"> <input type="text"
 										id="sample6_extraAddress" placeholder="참고항목"
@@ -434,15 +434,15 @@ button {
 								<li class="required handphone">휴대전화</li>
 							</th>
 							<td class="formGroup code"><select id="mobile1"
-								name="mobile[]">
+								name="mobile1">
 									<option value="010">010</option>
 									<option value="011">011</option>
 									<option value="016">016</option>
 									<option value="017">017</option>
 									<option value="018">018</option>
 									<option value="019">019</option>
-							</select>- <input id="mobile2" name="mobile[]" maxlength="4" type="text">-
-								<input id="mobile3" name="mobile[]" maxlength="4" type="text">
+							</select>- <input id="mobile2" name="mobile2" maxlength="4" type="text" value="">-
+								<input id="mobile3" name="mobile3" maxlength="4" type="text" value="">
 							</td>
 						</tr>
 						<tr>
@@ -469,9 +469,9 @@ button {
 						<th scope="row">
 							<li class="notrequired gender">성별
 						</th>
-						<td><input id="is_sex0" name="is_sex" value="MBRGD"
+						<td><input id="is_sex0" name="is_sex" value="남자"
 							type="radio" autocomplete="off"> <label for="is_sex0">남자</label>
-							<input id="is_sex1" name="is_sex" value="F" type="radio"
+							<input id="is_sex1" name="is_sex" value="여자" type="radio"
 							autocomplete="off"> <label for="is_sex1">여자</label></td>
 					</tr>
 					<tr>

@@ -27,7 +27,18 @@ public class MemberInsertController extends SuperClass {
 		bean.setMBRNM(request.getParameter("MBRNM"));
 		bean.setMBRHP(request.getParameter("MBRHP"));
 		bean.setMBRBT(request.getParameter("MBRBT"));
-
+		bean.setMBREM(request.getParameter("MBREM"));
+		bean.setMBRAR("우편번호 : " +
+				request.getParameter("MBRAR1")+", 기본주소 :  "+
+				request.getParameter("MBRAR2")+" "+
+				request.getParameter("MBRAR3")
+				);
+		bean.setMBRHP(request.getParameter("mobile1")+"-"
+				+request.getParameter("mobile2")+"-"
+				+request.getParameter("mobile3")
+				);
+		bean.setMBRGD(request.getParameter("is_sex")
+				);
 		int cnt = dao.insertData(bean);
 
 		if (cnt == 1) { // 인서트 성공

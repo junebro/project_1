@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.shopping.utility.MyUtility;
   
-@WebServlet(urlPatterns = {"/Shopping", "/Member", "Order"},
+@WebServlet(urlPatterns = {"/Shopping", "/Member"},
 	initParams = {
 			@WebInitParam(name = "todolist", value ="/WEB-INF/todolist.txt")
 	}
