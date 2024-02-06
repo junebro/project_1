@@ -25,7 +25,6 @@ public class OrderDao extends SuperDao {
 	private Member resultSetBeanM(ResultSet rs) {
 		try {
 			Member bean = new Member();
-			bean.setMBRCD(rs.getString("mbrcd"));
 			return bean;
 			
 		} catch (Exception e) {

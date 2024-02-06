@@ -1,7 +1,6 @@
 package com.shopping.model.bean;
 
 public class Member {
-	private String MBRCD; // 고객 코드
 	private String MBRID; // 고객 아이디
 	private String MBRNM; // 이름
 	private String MBRPW; // 비번
@@ -15,10 +14,9 @@ public class Member {
 	
 	
 	
-	public Member(String mBRCD, String mBRID, String mBRNM, String mBRPW, String mBRAR, String mBRHP, String mBREM,
+	public Member(String mBRID, String mBRNM, String mBRPW, String mBRAR, String mBRHP, String mBREM,
 			int mBRPT, String mBRBT, String mBRGD) {
 		super();
-		MBRCD = mBRCD;
 		MBRID = mBRID;
 		MBRNM = mBRNM;
 		MBRPW = mBRPW;
@@ -30,12 +28,7 @@ public class Member {
 		MBRGD = mBRGD;
 	}
 	
-	public String getMBRCD() {
-		return MBRCD;
-	}
-	public void setMBRCD(String mBRCD) {
-		MBRCD = mBRCD;
-	}
+	
 	public String getMBRID() {
 		return MBRID;
 	}

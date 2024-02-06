@@ -58,8 +58,8 @@ public class SuperDao {
 	public Connection getConnection() {
 		// 접속 객체를 구해줍니다.
 		String url = "jdbc:oracle:thin:@localhost:1521:xe" ;
-		String id = "shopping" ;
-		String password = "oracle" ;
+		String id = "suho" ;
+		String password = "hello" ;
 		
 		try {
 			conn = DriverManager.getConnection(url, id, password) ;

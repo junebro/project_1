@@ -14,10 +14,6 @@ public class OrderController extends SuperClass{
 		super.doPost(request, response);
 		
 		System.out.println("오더컨트롤러 포스트 호출");
-		
-		
-		
-		System.out.println(request.getParameter("MBRNM"));
 	}
 
 	@Override
