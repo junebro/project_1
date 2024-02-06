@@ -192,8 +192,8 @@ button {
 }
 
 .failure-message, .failure-message2, .failure-message3,
-	.failure-message4, .failure-message5, .failure-message6,
-	.failure-message7 {
+.failure-message4, .failure-message5, .failure-message6,
+.failure-message7 {
 	color: red;
 }
 </style>
@@ -366,8 +366,8 @@ button {
 									<option value="018">018</option>
 									<option value="019">019</option>
 							</select>- <input id="mobile2" name="mobile2" maxlength="4" type="text"
-								onkeyup="hptest()">- <input id="mobile3" name="mobile3"
-								maxlength="4" type="text" onkeyup="hptest()">
+								onkeyup="hptest()" onkeypress="return checkNumber(event)">- <input id="mobile3" name="mobile3"
+								maxlength="4" type="text" onkeyup="hptest()" onkeypress="return checkNumber(event)">
 								<div class="failure-message6 hide">필수입력사항입니다.</div></td>
 						</tr>
 						<tr>
@@ -540,6 +540,15 @@ button {
 			FailureMessage6.classList.add('hide');
 		}
 	}
+	
+	function checkNumber(event) {
+		if(event.key === '.' 
+		     || event.key === '-'
+		     || event.key >= 0 && event.key <= 9) {
+		    return true;
+		}
+		return false;
+	}  
 	// 이메일
 	let inputEm = document.getElementById('email1');
 	let FailureMessage7 = document.querySelector('.failure-message7');
@@ -550,200 +559,195 @@ button {
 	}
 </script>
 <script  type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$('#join')
-								.click(
-										function() {
-
-											// 아이디
-											let inputId = document
-													.getElementById('member_id');
-											let FailureMessage = document
-													.querySelector('.failure-message');
-
-											function idLength(value) {
-												return value.length >= 4
-														&& value.length <= 16
-											}
-											;
-
-											function onlyNumberAndEnglish(str) {
-												return /^[a-z0-9][a-z0-9]*$/
-														.test(str);
-											}
-
-											if (inputId.value == "") {
-												inputId.focus();
-												inputId.scrollIntoView({
-													block : "center"
-												});
-												FailureMessage.classList
-														.remove('hide');
-												return false;
-											} else if (onlyNumberAndEnglish(inputId.value) === false) {
-												inputId.focus();
-												inputId.scrollIntoView({
-													block : "center"
-												});
-												FailureMessage.classList
-														.remove('hide');
-												return false;
-											} else if (idLength(inputId.value) === false) {
-												inputId.focus();
-												inputId.scrollIntoView({
-													block : "center"
-												});
-												FailureMessage.classList
-														.remove('hide');
-												return false;
-											}
-
-											// 비밀번호
-											let inputPw = document
-													.getElementById('member_password');
-											let FailureMessage2 = document
-													.querySelector('.failure-message2');
-
-											function strongPassword(str) {
-												return /^(?!((?:[A-Za-z]+)|(?:[~!@#$%^&*()_+=]+)|(?:[0-9]+))$)[A-Za-z\d~!@#$%^&*()_+=]{10,16}$/
-														.test(str);
-											}
-
-											if (inputPw.value == '') {
-												inputPw.focus();
-												inputPw.scrollIntoView({
-													block : "center"
-												});
-												FailureMessage2.classList
-														.remove('hide');
-												return false;
-											} else if (strongPassword(inputPw.value) == false) {
-												inputPw.focus();
-												inputPw.scrollIntoView({
-													block : "center"
-												});
-												FailureMessage2.classList
-														.remove('hide');
-												return false;
-											}
-
-											// 비밀번호 확인
-											let inputPw2 = document
-													.getElementById('member_password_check');
-											let FailureMessage3 = document
-													.querySelector('.failure-message3');
-
-											function isMatch(password1,
-													password2) {
-												return password1 === password2;
-											}
-
-											if (inputPw2.value == '') {
-												inputPw2.focus();
-												inputPw2.scrollIntoView({
-													block : "center"
-												});
-												FailureMessage3.classList
-														.remove('hide');
-												return false;
-											} else if (isMatch(inputPw.value,
-													inputPw2.value) == false) {
-												inputPw2.focus();
-												inputPw2.scrollIntoView({
-													block : "center"
-												});
-												FailureMessage3.classList
-														.remove('hide');
-												return false;
-											}
-
-											// 이름
-											let inputNm = document
-													.getElementById('member_name');
-											let FailureMessage4 = document
-													.querySelector('.failure-message4');
-
-											if (inputNm.value == '') {
-												inputNm.focus();
-												inputNm.scrollIntoView({
-													block : "center"
-												});
-												FailureMessage4.classList
-														.remove('hide');
-												return false;
-											}
-											// 주소
-											let inputAr = document
-													.getElementById('sample6_detailAddress');
-											let FailureMessage5 = document
-													.querySelector('.failure-message5');
-
-											if (inputAr.value == '') {
-												inputAr.focus();
-												inputAr.scrollIntoView({
-													block : "center"
-												});
-												FailureMessage5.classList
-														.remove('hide');
-												return false;
-											}
-											// 휴대전화
-											let inputHp = document
-													.getElementById('mobile2');
-											let inputHp2 = document
-													.getElementById('mobile3');
-											let FailureMessage6 = document
-													.querySelector('.failure-message6');
-
-											if (inputHp.value == '') {
-												inputHp.focus();
-												inputHp.scrollIntoView({
-													block : "center"
-												});
-												FailureMessage6.classList
-														.remove('hide');
-												return false;
-											}
-											if (inputHp2.value == '') {
-												inputHp2.focus();
-												inputHp.scrollIntoView({
-													block : "center"
-												});
-												FailureMessage6.classList
-														.remove('hide');
-												return false;
-											}
-
-											// 이메일
-											let inputEm = document
-													.getElementById('email1');
-											let inputEm2 = document
-													.getElementById('email2');
-											let FailureMessage7 = document
-													.querySelector('.failure-message7');
-
-											if (inputEm.value == '') {
-												inputEm.focus();
-												inputEm.scrollIntoView({
-													block : "center"
-												});
-												FailureMessage7.classList
-														.remove('hide');
-												return false;
-											}
-											if (inputEm2.value == '--메일 선택--') {
-												inputEm.focus();
-												inputEm.scrollIntoView({
-													block : "center"
-												});
-												FailureMessage7.classList
-														.remove('hide');
-												return false;
-											}
-										})
-					})
+$(document).ready(function() {
+	$('#join').click(function() {
+		// 아이디
+		let inputId = document
+				.getElementById('member_id');
+		let FailureMessage = document
+				.querySelector('.failure-message');
+	
+		function idLength(value) {
+			return value.length >= 4
+					&& value.length <= 16
+		}
+		;
+	
+		function onlyNumberAndEnglish(str) {
+			return /^[a-z0-9][a-z0-9]*$/
+					.test(str);
+		}
+	
+		if (inputId.value == "") {
+			inputId.focus();
+			inputId.scrollIntoView({
+				block : "center"
+			});
+			FailureMessage.classList
+					.remove('hide');
+			return false;
+		} else if (onlyNumberAndEnglish(inputId.value) === false) {
+			inputId.focus();
+			inputId.scrollIntoView({
+				block : "center"
+			});
+			FailureMessage.classList
+					.remove('hide');
+			return false;
+		} else if (idLength(inputId.value) === false) {
+			inputId.focus();
+			inputId.scrollIntoView({
+				block : "center"
+			});
+			FailureMessage.classList
+					.remove('hide');
+			return false;
+		}
+	
+		// 비밀번호
+		let inputPw = document
+				.getElementById('member_password');
+		let FailureMessage2 = document
+				.querySelector('.failure-message2');
+	
+		function strongPassword(str) {
+			return /^(?!((?:[A-Za-z]+)|(?:[~!@#$%^&*()_+=]+)|(?:[0-9]+))$)[A-Za-z\d~!@#$%^&*()_+=]{10,16}$/
+					.test(str);
+		}
+	
+		if (inputPw.value == '') {
+			inputPw.focus();
+			inputPw.scrollIntoView({
+				block : "center"
+			});
+			FailureMessage2.classList
+					.remove('hide');
+			return false;
+		} else if (strongPassword(inputPw.value) == false) {
+			inputPw.focus();
+			inputPw.scrollIntoView({
+				block : "center"
+			});
+			FailureMessage2.classList
+					.remove('hide');
+			return false;
+		}
+	
+		// 비밀번호 확인
+		let inputPw2 = document
+				.getElementById('member_password_check');
+		let FailureMessage3 = document
+				.querySelector('.failure-message3');
+	
+		function isMatch(password1,
+				password2) {
+			return password1 === password2;
+		}
+	
+		if (inputPw2.value == '') {
+			inputPw2.focus();
+			inputPw2.scrollIntoView({
+				block : "center"
+			});
+			FailureMessage3.classList
+					.remove('hide');
+			return false;
+		} else if (isMatch(inputPw.value,
+				inputPw2.value) == false) {
+			inputPw2.focus();
+			inputPw2.scrollIntoView({
+				block : "center"
+			});
+			FailureMessage3.classList
+					.remove('hide');
+			return false;
+		}
+	
+		// 이름
+		let inputNm = document
+				.getElementById('member_name');
+		let FailureMessage4 = document
+				.querySelector('.failure-message4');
+	
+		if (inputNm.value == '') {
+			inputNm.focus();
+			inputNm.scrollIntoView({
+				block : "center"
+			});
+			FailureMessage4.classList
+					.remove('hide');
+			return false;
+		}
+		// 주소
+		let inputAr = document
+				.getElementById('sample6_detailAddress');
+		let FailureMessage5 = document
+				.querySelector('.failure-message5');
+	
+		if (inputAr.value == '') {
+			inputAr.focus();
+			inputAr.scrollIntoView({
+				block : "center"
+			});
+			FailureMessage5.classList
+					.remove('hide');
+			return false;
+		}
+		// 휴대전화
+		let inputHp = document
+				.getElementById('mobile2');
+		let inputHp2 = document
+				.getElementById('mobile3');
+		let FailureMessage6 = document
+				.querySelector('.failure-message6');
+	
+		if (inputHp.value == '') {
+			inputHp.focus();
+			inputHp.scrollIntoView({
+				block : "center"
+			});
+			FailureMessage6.classList
+					.remove('hide');
+			return false;
+		}
+		if (inputHp2.value == '') {
+			inputHp2.focus();
+			inputHp.scrollIntoView({
+				block : "center"
+			});
+			FailureMessage6.classList
+					.remove('hide');
+			return false;
+		}
+	
+		// 이메일
+		let inputEm = document
+				.getElementById('email1');
+		let inputEm2 = document
+				.getElementById('email2');
+		let FailureMessage7 = document
+				.querySelector('.failure-message7');
+	
+		if (inputEm.value == '') {
+			inputEm.focus();
+			inputEm.scrollIntoView({
+				block : "center"
+			});
+			FailureMessage7.classList
+					.remove('hide');
+			return false;
+		}
+		if (inputEm2.value == '--메일 선택--') {
+			inputEm.focus();
+			inputEm.scrollIntoView({
+				block : "center"
+			});
+			FailureMessage7.classList
+					.remove('hide');
+			return false;
+		}
+	})
+})
 </script>
 
 </html>
