@@ -29,10 +29,10 @@
 <style>
 
 header {
-	background-color: #333;
-	color: #fff;
-	text-align: center;
-	padding: 1em;
+	/*background-color: #333;*/
+	/*color: #fff;*/
+	/*text-align: center;
+	padding: 1em;*/
 }
 
 .product_top {
@@ -553,6 +553,10 @@ a.active {
       padding: 10px;
       margin: 5px;
     }
+    
+    
+
+	
 
 </style>
 </head>
@@ -574,7 +578,7 @@ a.active {
 	</script>
 
 	<header>
-		<h1>상품 상세페이지</h1>
+		<jsp:include page="./../../MainPage/top.jsp" />
 	</header>
 <body>
 	<div class="product_top">

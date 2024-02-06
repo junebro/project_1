@@ -23,6 +23,23 @@
 %>
 <!DOCTYPE html>
 <html lang="ko">
+<style>
+
+.menuwrap {
+	    position: fixed;
+	    text-align: center;
+	}
+	
+	#topwrap{
+	    position: fixed;
+	    width: 100%;
+	    height: 180px;
+	    background-color: white;
+	    text-align: center;
+	    z-index: 99;
+	}
+	
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -36,7 +53,9 @@
     
 </head>
 <body>
+	 
    <jsp:include page="top.jsp" />
+   <div class="hidden"></div>
    <section class="visual">
       <div><img class="visualImg" src="./img/main1.jpg"></div>
       <div><img class="visualImg" src="./img/main2.jpg"></div>
