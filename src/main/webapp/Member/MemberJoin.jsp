@@ -376,7 +376,7 @@ button {
 							</th>
 							<td><input id="email1" name="MBREM" class="inputTypeText"
 								type="text" onkeyup="emtest()"> <select
-								class="required email" id="email2">
+								class="required email" id="email2" name="MBREM01">
 									<option>--메일 선택--</option>
 									<option>@naver.com</option>
 									<option>@gmail.com</option>
