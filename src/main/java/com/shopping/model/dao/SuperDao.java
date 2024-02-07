@@ -89,6 +89,21 @@ public class SuperDao {
 			e.printStackTrace();
 		}
 	}
+	public Connection JgetConnection() {
+		// 접속 객체를 구해줍니다.
+		String url = "jdbc:oracle:thin:@localhost:1521:xe" ;
+		String id = "oneproject" ;
+		String password = "oracle" ;
+		
+		try {
+			conn = DriverManager.getConnection(url, id, password) ;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return conn ;
+	}	
+	
 	
 
 }
