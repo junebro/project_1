@@ -24,7 +24,7 @@
 
 
 
-select PROPR PROIMG PROCMN from trpo;
+select PROPR PROIMG PROCMN from Tpro;
 <%-- 상품설명PROCMN  이미지경로PROIMG1  가격PROPR --%>
 <!DOCTYPE html>
 <html lang="ko">
