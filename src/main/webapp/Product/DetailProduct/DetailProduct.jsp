@@ -136,6 +136,16 @@ header {
 	height: 20px;
 }
 
+.twitter-image {
+	width: 22px;
+	height: 19px;
+}
+
+.facebook-image {
+	width: 45px;
+	height: 45px;
+}
+
 .font-top {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 30px;
@@ -154,11 +164,18 @@ header {
 
 .font_pro {
 	font-weight: bold;
+	font-family: 'Kanit', sans-serif;
 }
 
 .price {
-	font-family: 'Noto Serif KR', cursive;
-	font-size: 30px
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 30px;
+}
+
+.save_point{
+	font-family: 'Noto Sans KR', sans-serif;
+	color: B5B4B4;
+	font-size: 15px;
 }
 
 .payment {
@@ -563,43 +580,48 @@ a.active {
     }
     
     
+/* 하단 상품 리뷰 */
+.review01_box {
+	font-family: 'Gothic A1', sans-serif;
+	font-weight: bold;
+}
 
-	
+.btn_select {
+	text-align: right;
+	padding: 8px 20px;
+}
 
 </style>
 </head>
 	<script>
+		
+		var LK = `${bean.LK}`;
 	
 		// 클라이언트 측 JavaScript
-		function changeImage1(pronm) {
+		function changeImage(pronm) {
 
-		    $.ajax({
+			if (LK) {
+				//alert("삭제" + LK);
+				var URL = '<%=notWithFormTag%>liDelete';
+				LK = null;
+				document.getElementById("ht-image").src = "./Image/bht.png";
+			} else {
+				//alert("저장" + LK);
+				var URL = '<%=notWithFormTag%>liInsert';
+				LK = "LK";	
+				document.getElementById("ht-image").src = "./Image/ht.png";
+			}
+
+			$.ajax({
 		        type: 'GET',
-		        url: '<%=notWithFormTag%>liInUp', // 서버에서 처리할 엔드포인트
+		        url: URL,
 		        data: { pronm: pronm },
-		        success: function() {
-		            // 서버에서 받은 데이터 처리
-		            alert("찜");
-		        },
 		        error: function(xhr, status, error) {
 		            console.error(error);
 		        }
 		    });
 		}
 	
-		
-		// 즐겨찾기 이미지 변경
-		function changeImage() {
-
-			var chk = document.getElementById("ht-image").src;
-
-			if (chk.endsWith('bht.png')) {
-				document.getElementById("ht-image").src = "./Image/ht.png";
-			} else {
-				document.getElementById("ht-image").src = "./Image/bht.png";
-			}
-			// 첫 번째 이미지의 src 값을 변경합니다.
-		}
 	</script>
 
 	<header>
@@ -608,18 +630,13 @@ a.active {
 <body>
 	<div class="product_top">
 		<div class="big-image-container">
-			<img class="big-image"
-				src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"
-				alt="">
+			<img class="big-image" src="./Image/Detail_main/2.Lifestyle/${bean.PROIMG}" alt="">
 		</div>
 		<div class="text-container">
-			<h1 class="font-top">${bean.PRONM}</h1>
+			<h1 class="font-top">${bean.PRONM} | ${bean.PROCD}</h1>
 			<div class="marketing" id="iconOpt">
-				<img
-					src="https://image.nbkorea.com/NBRB_Icon/NB20180727200053137001.png"
-					alt="270130"> <img
-					src="https://image.nbkorea.com/NBRB_Icon/NB20180727200034090001.png"
-					alt="270130">
+				<img src="https://image.nbkorea.com/NBRB_Icon/NB20180727200053137001.png" alt="270130"> 
+				<img src="https://image.nbkorea.com/NBRB_Icon/NB20180727200034090001.png" alt="270130">
 			</div>
 		
 			<br>
@@ -631,13 +648,23 @@ a.active {
 				</div>
 				<div class="a">
 					<a><img class="ht-image" id="ht-image"
-						src="./../../Image/bht.png" onclick="changeImage1('U996')" /></span></a>
+						src="" onclick="changeImage('${bean.PRONM}')" /></a>
+					
+					&nbsp;&nbsp;<span style="color:#B5B4B4;">|</span>
+					<a href="https://www.facebook.com/?locale=ko_KR" target="_blank"><img class="facebook-image" src="./Image/facebook.png" alt="facebook"></a>
+					<a href="https://twitter.com/?lang=ko" target="_blank"><img class="twitter-image" src="./Image/twitter.png" alt="twitter"></a>
+						
+						
 				</div>
 			</div>
 			<br>
 			<div>
-				<span id="pro_price" class="price">${bean.PROPR}</span>원 <br> <em class="">적립
-					${bean.PROPNT}</em>
+		
+				<span id="pro_price" class="price">${bean.PROPR}</span>
+				<span style="font-family: 'Noto Sans KR', sans-serif;">원</span> 
+				<br> 
+				<span class="save_point">적립</span>
+				<span class="save_point" style="color:#8D8D8D;">${bean.PROPNT}P</span>
 			</div>
 
 			<div class="underline"></div>
@@ -659,7 +686,7 @@ a.active {
 							<li>
 								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" checked="checked" /> 
 								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
-									<img src="./Image/Detail_main/2.Lifestyle/${bean_cr.PROIMG}" alt="(10)White" />
+									<img src="./Image/Detail_main/2.Lifestyle/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
 								</label>
 							</li>
 						</c:if>
@@ -668,7 +695,7 @@ a.active {
 							<li>
 								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" /> 
 								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
-									<img src="./Image/Detail_main/2.Lifestyle/${bean_cr.PROIMG}" alt="(10)White" />
+									<img src="./Image/Detail_main/2.Lifestyle/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
 								</label>
 							</li>
 						</c:if>
@@ -678,7 +705,7 @@ a.active {
 				</ul>
 			</div>
 
-			<div id="color_area"><span id="color_area_color">(10)White</span>&nbsp|&nbsp<span id="color_area_name"></span></div>
+			<div id="color_area"><span id="color_area_color">${bean.PROCR}</span>&nbsp|&nbsp<span id="color_area_name"></span></div>
 			
 			<div id="area_size">
 			
@@ -750,7 +777,20 @@ a.active {
 	</div>
 
 	<script>
-
+		// 첫 시작 찜이미지 설정
+		var LK = `${bean.LK}`;
+		var chk = document.getElementById("ht-image").src;
+		
+		if (LK) {
+			document.getElementById("ht-image").src = "./Image/ht.png";
+		} else {
+			document.getElementById("ht-image").src = "./Image/bht.png";
+		}
+		
+		// 첫 시작 컬러값 설정
+		var sColor = `${bean.PROCR}`;
+		document.getElementById("color_area_name").style.backgroundColor = sColor;
+		
 		// 이미지 클릭시 큰 이미지로 출력
 		const itemsContainer = document.querySelector('.items');
 		const bigImage = document.querySelector('.big-image');
@@ -1071,60 +1111,49 @@ a.active {
 				<h3 class="sec_tit">상품리뷰</h3>
 				<div class="black_hr_1px" />
 				<br>
-				<div class="review_sec01">
+				<div class="review_sec">
 					<div class="pr_infoReview">
-						<div class="box">
-							<p class="lh_28">
-								구매확정 후 <span class="col_red"> <em class="font_pro">30</em>일
-									이내에
-								</span> 상품평 작성 시,&nbsp;<span class="col_red">최대 <em
-									class="font_pro">2,000</em> 마일리지의 혜택을 드립니다.
-								</span> <br> 작성하신 상품평에 대한 마일리지 지급은 작성후 <em class="font_pro">15</em>일
-								이내로 적립됩니다.
-							</p>
+						<div class="review01_box">
+							구매확정 후 <span style="color:red"> <em class="font_pro">30</em>일 이내에</span> 상품평 작성 시,&nbsp;<span style="color:red">최대 <em class="font_pro">2,000</em> 마일리지의 혜택을 드립니다.</span> 
+							<br> 
+							작성하신 상품평에 대한 마일리지 지급은 작성후 <em style="color:red">15</em>일 이내로 적립됩니다.
 						</div>
-						<div class="border_box">
-							<p class="review_mile_guide dp_i">
-								<span>일반리뷰 <em class="font_pro">500 </em>마일리지
-								</span> <span>포토리뷰 <em class="font_pro">1,000 </em>마일리지
-								</span> <span>스타일리뷰 <em class="font_pro col_red">2,000 </em>마일리지
-								</span>
-							</p>
-							<!-- 20191011 추가 :: S -->
-							<div class="hoverIcon">
+						<br>
+						<div class="review01_box">
+								<span>일반리뷰 <em class="font_pro">500 </em>마일리지</span> 
+								<span>포토리뷰 <em class="font_pro">1,000 </em>마일리지</span> 
+								<span>스타일리뷰 <em class="font_pro" style="color:red">2,000 </em>마일리지</span>
+								
+							<div class="">
 								<p>
-									<img
-										src="https://image.nbkorea.com/NBRB_PC/product/review/hoverIcon.png"
-										alt="" />
-								<div class="off">
+								<div class="">
 									<ul>
 										<li>
-											<p>[스타일 리뷰 기준]</p> <!-- 20200511 수정 :: S -->
+											<p class="review01_box">[스타일 리뷰 기준]</p>
 											<ol>
-												<li>1) 구매하신 상품을 착용한 전신 컷 (얼굴 제외 가능, 어깨부터 발끝까지 보이게끔 촬영한
+												<li> 구매하신 상품을 착용한 전신 컷 (얼굴 제외 가능, 어깨부터 발끝까지 보이게끔 촬영한
 													사진)</li>
-												<li>2) 세트나 한 쌍의 상품인 경우, 양 쪽이 모두 보이도록 촬영한 사진 (신발, 양말 등)</li>
-												<li>3) 스타일링을 보여줄 수 있는 사진 (실내복 착용이나 신발 없는 전신 사진은 포토리뷰로
+												<li> 세트나 한 쌍의 상품인 경우, 양 쪽이 모두 보이도록 촬영한 사진 (신발, 양말 등)</li>
+												<li> 스타일링을 보여줄 수 있는 사진 (실내복 착용이나 신발 없는 전신 사진은 포토리뷰로
 													간주됩니다.)</li>
-												<li>4) 상품 형태와 컬러 식별이 가능한 사진</li>
-												<li>5) 10자 이상의 상품에 대한 후기</li>
+												<li> 상품 형태와 컬러 식별이 가능한 사진</li>
+												<li> 10자 이상의 상품에 대한 후기</li>
 											</ol>
 										</li>
+										<br>
 										<li>
-											<p>[포토 리뷰 기준]</p>
+											<p class="review01_box">[포토 리뷰 기준]</p>
 											<ol>
-												<li>1) 구매하신 상품이 모두 나오게 촬영한 사진</li>
-												<li>2) 포장을 제거하고 상품의 전체가 보이게 촬영한 사진</li>
-												<li>3) 세트나 한 쌍의 상품인 경우, 양 쪽이 모두 보이도록 촬영한 사진 (신발, 양말 등)</li>
-												<li>4) 상품 형태와 컬러 식별이 가능한 사진</li>
-												<li>5) 10자 이상의 상품에 대한 후기</li>
+												<li> 구매하신 상품이 모두 나오게 촬영한 사진</li>
+												<li> 포장을 제거하고 상품의 전체가 보이게 촬영한 사진</li>
+												<li> 세트나 한 쌍의 상품인 경우, 양 쪽이 모두 보이도록 촬영한 사진 (신발, 양말 등)</li>
+												<li> 상품 형태와 컬러 식별이 가능한 사진</li>
+												<li> 10자 이상의 상품에 대한 후기</li>
 											</ol>
 										</li>
-										<!-- 20200511 수정 :: E -->
 									</ul>
 								</div>
 							</div>
-							<!-- E :: 20191011 추가 -->
 						</div>
 					</div>
 				</div>
@@ -1258,12 +1287,10 @@ a.active {
 								<option>290</option>
 							</select>
 						</div>
+						<button  class="btn_black btn_select">검 색</button>
 						<br><br>
 						<div class="view_line"></div>
-						
-						
-
-			
+		
 						<div class="view_Board">
 							<div class="view_Board_left">
 								<div class="border_top">
@@ -1555,7 +1582,7 @@ a.active {
 					<div class="grid_btm">
 						<div class="inq_none">
 							<div class="inq_img_q">
-								<img src="./../../Image/QA.png" alt="QA">
+								<img src="./Image/QA.png" alt="QA">
 							</div>
 							<br>
 							<strong>상품 관련 <span>궁금한 점</span>이 있으신가요?</strong>

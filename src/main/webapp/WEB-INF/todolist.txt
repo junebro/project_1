@@ -3,7 +3,7 @@
 #OrderC=com.shopping.order.OrderController 
 # product section
 #Product=com.shopping.product.ProductController
-DetailProduct=com.shopping.controller.product.ProductDetailController
+DetailProduct=com.shopping.product.ProductDetailController
 # view section
 #vwList=com.shopping.view.ViewListController
 #vwExam01=com.shopping.view.View01ListController
@@ -26,4 +26,5 @@ meInsert=com.shopping.member.MemberInsertController
 #myDelete=com.shopping.member.MypageDeleteController
 #myDetail=com.shopping.member.MypageDetailController
 # like section
-liInUp=com.shopping.like.LikeInUpController
+liInsert=com.shopping.like.LikeInsertController
+liDelete=com.shopping.like.LikeDeleteController

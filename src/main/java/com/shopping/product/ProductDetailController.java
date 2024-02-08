@@ -1,4 +1,4 @@
-package com.shopping.controller.product;
+package com.shopping.product;
 
 import java.util.List;
 
@@ -22,16 +22,17 @@ public class ProductDetailController extends SuperClass{
 		
 		// 상품 조회
 		String pronm = request.getParameter("pronm");
-		System.out.println("pronm : " + pronm );
+		String mbrid = "aaa";
+		
 		ProductDetailDao dao = new ProductDetailDao();
-		List<Product> dataList = dao.getDataList(pronm);
+		List<Product> dataList = dao.getDataList(pronm, mbrid);
 		
 
 		// 사이즈 조회
-		Product firstProduct = dataList.get(0);
+		Product firstData = dataList.get(0);
 	    
-	    int SSZ = firstProduct.getPROSSZ(); 
-	    int ESZ = firstProduct.getPROESZ(); 
+	    int SSZ = firstData.getPROSSZ(); 
+	    int ESZ = firstData.getPROESZ(); 
 	    
 	    ItemDao Idao = new ItemDao();
 		

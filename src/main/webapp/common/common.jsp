@@ -64,8 +64,6 @@ String notWithFormTag = withFormTag + "?command=";
 	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
 	rel="stylesheet">
 
-
-
 <meta charset="UTF-8">
 <style>
 
