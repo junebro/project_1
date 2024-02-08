@@ -1,3 +1,6 @@
+<%@page import="com.shopping.model.dao.ProductDetailDao"%>
+<%@page import="com.shopping.model.bean.Product"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,6 +27,11 @@
 <!-- 페이징 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<c:set var="bean" value="${requestScope.dataList[0]}" />
+<c:set var="dataList" value="${requestScope.dataList}" />
+
 
 <title>상품 상세페이지</title>
 <style>
@@ -562,6 +570,23 @@ a.active {
 </head>
 	<script>
 	
+		// 클라이언트 측 JavaScript
+		function changeImage1(pronm) {
+
+		    $.ajax({
+		        type: 'GET',
+		        url: '<%=notWithFormTag%>liInUp', // 서버에서 처리할 엔드포인트
+		        data: { pronm: pronm },
+		        success: function() {
+		            // 서버에서 받은 데이터 처리
+		            alert("찜");
+		        },
+		        error: function(xhr, status, error) {
+		            console.error(error);
+		        }
+		    });
+		}
+	
 		
 		// 즐겨찾기 이미지 변경
 		function changeImage() {
@@ -569,16 +594,16 @@ a.active {
 			var chk = document.getElementById("ht-image").src;
 
 			if (chk.endsWith('bht.png')) {
-				document.getElementById("ht-image").src = "./../../Image/ht.png";
+				document.getElementById("ht-image").src = "./Image/ht.png";
 			} else {
-				document.getElementById("ht-image").src = "./../../Image/bht.png";
+				document.getElementById("ht-image").src = "./Image/bht.png";
 			}
 			// 첫 번째 이미지의 src 값을 변경합니다.
 		}
 	</script>
 
 	<header>
-		<jsp:include page="./../../MainPage/top.jsp" />
+		<%-- <jsp:include page="./../../MainPage/top.jsp" />--%>
 	</header>
 <body>
 	<div class="product_top">
@@ -588,7 +613,7 @@ a.active {
 				alt="">
 		</div>
 		<div class="text-container">
-			<h1 class="font-top">W480KW5 (Uni, 4E)</h1>
+			<h1 class="font-top">${bean.PRONM}</h1>
 			<div class="marketing" id="iconOpt">
 				<img
 					src="https://image.nbkorea.com/NBRB_Icon/NB20180727200053137001.png"
@@ -606,13 +631,13 @@ a.active {
 				</div>
 				<div class="a">
 					<a><img class="ht-image" id="ht-image"
-						src="./../../Image/bht.png" onclick="changeImage()" /></span></a>
+						src="./../../Image/bht.png" onclick="changeImage1('U996')" /></span></a>
 				</div>
 			</div>
 			<br>
 			<div>
-				<span id="pro_price" class="price">99000</span>원 <br> <em class="">적립
-					5,940 (6%)</em>
+				<span id="pro_price" class="price">${bean.PROPR}</span>원 <br> <em class="">적립
+					${bean.PROPNT}</em>
 			</div>
 
 			<div class="underline"></div>
@@ -628,63 +653,39 @@ a.active {
 			<div class="color">
 				<br>
 				<ul class="items">
-
-					<li><input type="radio" id="colCode_NBPFES152W10" 
-						name="pr_color" value="10" data-info="(10)White"
-						data-price="99000.00" data-norprice="99000.00"
-						data-style-code="NBPFES152W" data-disp-name="W480KW5 (Uni, 4E)"
-						checked="checked" /> <label for="colCode_NBPFES152W10"
-						title="(10)White" onclick="test('(10)White')"><img
-							src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"
-							alt="(10)White" /></label></li>
-
-					<li><input type="radio" id="colCode_NBPFES152Z10"
-						name="pr_color" value="10" data-info="(10)White"
-						data-price="99000.00" data-norprice="99000.00"
-						data-style-code="NBPFES152Z" data-disp-name="W480RG5 (Uni, 4E)" />
-						<label for="colCode_NBPFES152Z10" title="(20)White" onclick="test('(20)White')"><img
-							src="https://image.nbkorea.com/NBRB_Product/20240109/NB20240109142129747001.jpg"
-							alt="(10)White" /></label></li>
-
-					<li><input type="radio" id="colCode_NBPFES152G15"
-						name="pr_color" value="10" data-info="(15)Gray"
-						data-price="99000.00" data-norprice="99000.00"
-						data-style-code="NBPFES152G" data-disp-name="W480KR5 (Uni, 4E)" />
-						<label for="colCode_NBPFES152G15" title="(15)Gray" onclick="test('(15)Gray')"><img
-							src="https://image.nbkorea.com/NBRB_Product/20240108/NB20240108103431052001.jpg"
-							alt="(15)Gray" /></label></li>
-
-					<li><input type="radio" id="colCode_NBPFES152B19"
-						name="pr_color" value="10" data-info="(19)Black"
-						data-price="99000.00" data-norprice="99000.00"
-						data-style-code="NBPFES152B" data-disp-name="W480KB5 (Uni, 4E)" />
-						<label for="colCode_NBPFES152B19" title="(19)Black" onclick="test('(19)Black')"><img
-							src="https://image.nbkorea.com/NBRB_Product/20231117/NB20231117165149911001.jpg"
-							alt="(19)Black" /></label></li>
-
-					<li><input type="radio" id="colCode_NBPFES152A35"
-						name="pr_color" value="10" data-info="(35)Beige"
-						data-price="99000.00" data-norprice="99000.00"
-						data-style-code="NBPFES152A" data-disp-name="W480KO5 (Uni, 4E)" />
-						<label for="colCode_NBPFES152A35" title="(35)Beige" onclick="test('(35)Beige')"><img
-							src="https://image.nbkorea.com/NBRB_Product/20240108/NB20240108104823860001.jpg"
-							alt="(35)Beige" /></label>
-					</li>
+					<c:forEach var="bean_cr" items="${requestScope.dataList}" varStatus="status">
+						
+						<c:if test="${status.index == 0}">
+							<li>
+								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" checked="checked" /> 
+								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
+									<img src="./Image/Detail_main/2.Lifestyle/${bean_cr.PROIMG}" alt="(10)White" />
+								</label>
+							</li>
+						</c:if>
+						
+						<c:if test="${status.index != 0}">
+							<li>
+								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" /> 
+								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
+									<img src="./Image/Detail_main/2.Lifestyle/${bean_cr.PROIMG}" alt="(10)White" />
+								</label>
+							</li>
+						</c:if>
+					
+					
+					</c:forEach>
 				</ul>
 			</div>
 
 			<div id="color_area"><span id="color_area_color">(10)White</span>&nbsp|&nbsp<span id="color_area_name"></span></div>
 			
 			<div id="area_size">
-				<%
-				    // 임의의 배열 생성 줄바꿈을 위해 맨처음(0)의 값을 임의로 지정
-				    String[] size = {"230", "235", "240", "245", "250", "255", "260", "265", "270", "275", "280", "285", "290"};
-				    request.setAttribute("size", size);
-				%>
+			
 				<!-- 줄바꿈을 위한 columnSu -->
 				<c:set var="columnSu" value="5" />
-				<c:forEach var="size" items="${size}" varStatus="status">
-					<a href="#link"><div class="btn_size" onclick="sizeBuy(${size});">${size}</div></a>
+				<c:forEach var="size" items="${requestScope.sizeList}" varStatus="status">
+					<a href="#link"><div class="btn_size" onclick="sizeBuy(${size.ITMNM});">${size.ITMNM}</div></a>
 					<c:if test="${status.index mod columnSu == 4}">
 						<div id="newline"></div>
 					</c:if>
@@ -764,8 +765,8 @@ a.active {
 		});
 		
 		function test(val){
-			
-			var color = val.substring(4);
+		
+			var color = val//.substring(4);
 			var can = document.getElementById("color_area_name");
 			
 			can.style.backgroundColor = color;
@@ -964,7 +965,7 @@ a.active {
 				subDiv9_a.onclick = function() {
 					fn_del();
 			    };
-				
+						
 		
 			    var subDiv10 = document.createElement('div');
 			    
@@ -1058,7 +1059,8 @@ a.active {
 
 			<div id="pr_details" style="margin-bottom:100px; text-align:center" id="prodAddInfo_wrap">
 				<br><br><br><br><br>
-				<img src="https://image.nbkorea.com/NBRB_ProductAddInfo/20231115/NB20231115091820646001.jpg">
+				${bean.PROIMG1}
+				<img src="./Image/Details/2.Lifestyle/${bean.PROIMG1}">
 			</div>
 
 			<div id="pr_main_review" class="section Re_review">

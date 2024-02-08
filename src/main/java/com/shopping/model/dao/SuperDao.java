@@ -56,10 +56,11 @@ public class SuperDao {
 	}
 	
 	public Connection getConnection() {
+		System.out.println("접속접속접속접속접속접속접속접속접속접속접속접속접속접속접속접속접속접속");
 		// 접속 객체를 구해줍니다.
 		String url = "jdbc:oracle:thin:@localhost:1521:xe" ;
-		String id = "suho" ;
-		String password = "hello" ;
+		String id = "oneproject" ;
+		String password = "oracle" ;
 		
 		try {
 			conn = DriverManager.getConnection(url, id, password) ;
