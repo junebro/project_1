@@ -598,7 +598,7 @@ a.active {
 		var LK = `${bean.LK}`;
 	
 		// 클라이언트 측 JavaScript
-		function changeImage(pronm) {
+		function changeImage(pronm) { 
 
 			if (LK) {
 				//alert("삭제" + LK);
