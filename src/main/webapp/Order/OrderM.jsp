@@ -43,107 +43,137 @@ session.getAttribute("loginfo");
 <script src="parsley.min.js"></script>
 <script type="text/javascript">
 	/* 데이터 전송 시 오류에 대한 함수 */
-	$(document).ready(function() {
-		var newph = "필수 입력 사항입니다."
-		// 결제 버튼을 클릭 시 값이 비어있을 경우 작동하는 함수
-		$('#buy').click(function() {
-			// 입금자 정보가 비어있을 시
-			if ($('#inputdp').val() == '' && document.getElementById('tab1-li').classList.contains('selected') ) {
-				$('#inputdp').addClass('focusError');
-				document.getElementById('inputdp').focus();
-				$('#inputdp').attr('placeholder', newph);
-				return false;
-			}else{
-				$('#inputdp').removeClass('focusError');
-				$('#inputdp').removeAttr('placeholder', newph);
-			}
-			// 비회원 주문자 번호가 비어있을 시
-			if ($('#inputpn2').val() == '') {
-				$('#inputpn2').addClass('focusError');
-				document.getElementById('inputpn2').focus();
-				$('#inputpn2').attr('placeholder', newph);
-				return false;
-			} else if ($('#inputpn2').val().length < 8) { // 비회원 주문자 번호가 8글자미만일시
-				alert('너무 짧습니다.');
-				$('#inputpn2').addClass('focusError');
-				document.getElementById('inputpn2').focus();
-				$('#inputpn2').attr('placeholder', newph);
-			}else{
-				$('#inputpn2').removeClass('focusError');
-				$('#inputpn2').removeAttr('placeholder', newph);
-			}
-			// 상세주소가 비어있을 시
-			if ($('#address-2').val() == '') {
-				$('#address-2').addClass('focusError');
-				document.getElementById('address-2').focus();
-				$('#address-2').attr('placeholder', newph);
-				return false;
-			}else{
-				$('#address-2').removeClass('focusError');
-				$('#address-2').removeAttr('placeholder', newph);
-			}
-			// 받는사람 정보가 비어있을 시
-			if ($('#inputrc').val() == '') {
-				$('#inputrc').addClass('focusError');
-				document.getElementById('inputrc').focus();
-				$('#inputrc').attr('placeholder', newph);
-				return false;
-			}else{
-				$('#inputrc').removeClass('focusError');
-				$('#inputrc').removeAttr('placeholder', newph);
-			}
-			
-			/* 주문자 이메일이 비어있을 시
-			if ($('#inputemail').val() == '') {
-				$('#inputemail').addClass('focusError');
-				document.getElementById('inputemail').focus();
-				$('#inputemail').attr('placeholder', newph);
-				return false;
-			}else{
-				$('#inputemail').removeClass('focusError');
-				$('#inputemail').removeAttr('placeholder', newph);
-			}
-			// 주문자 정보가 비어있을 시
-			if ($('#inputid').val() == '') {
-				$('#inputid').addClass('focusError');
-				document.getElementById('inputid').focus();
-				$('#inputid').attr('placeholder', newph);
-			}else{
-				$('#inputid').removeClass('focusError');
-				$('#inputid').removeAttr('placeholder', newph);
-				return false;
-			}*/
-			return true;
-		});
-		/* 새로 만든 탭 메뉴 함수  */
-		$("input").addClass("form-control");
-		var displayController = 'display:none;'
-		var displayOn = 'display:block;'
-		$('#tab1click').click(function() {
-			$('#tab1-li').addClass('selected')
-			$('#tab1').attr('style', displayOn)
-			$('#tab2-li').removeClass('selected')
-			$('#tab2').attr('style', displayController)
-			$('#tab3-li').removeClass('selected')
-			$('#tab3').attr('style', displayController)
-		})
-		$('#tab2click').click(function() {
-			$('#tab1-li').removeClass('selected')
-			$('#tab1').attr('style', displayController)
-			$('#tab2-li').addClass('selected')
-			$('#tab2').attr('style', displayOn)
-			$('#tab3-li').removeClass('selected')
-			$('#tab3').attr('style', displayController)
-		})
-		$('#tab3click').click(function() {
-			$('#tab1-li').removeClass('selected')
-			$('#tab1').attr('style', displayController)
-			$('#tab2-li').removeClass('selected')
-			$('#tab2').attr('style', displayController)
-			$('#tab3-li').addClass('selected')
-			$('#tab3').attr('style', displayOn)
-		})
-	});
+	$(document)
+			.ready(
+					function() {
+						var newph = "필수 입력 사항입니다."
+						// 결제 버튼을 클릭 시 값이 비어있을 경우 작동하는 함수
+						$('#buy')
+								.click(
+										function() {
+											// 입금자 정보가 비어있을 시
+											if ($('#inputdp').val() == ''
+													&& document
+															.getElementById('tab1-li').classList
+															.contains('selected')) {
+												$('#inputdp').addClass(
+														'focusError');
+												document.getElementById(
+														'inputdp').focus();
+												$('#inputdp').attr(
+														'placeholder', newph);
+												return false;
+											} else {
+												$('#inputdp').removeClass(
+														'focusError');
+												$('#inputdp').removeAttr(
+														'placeholder', newph);
+											}
+											// 비회원 주문자 번호가 비어있을 시
+											if ($('#inputpn2').val() == '') {
+												$('#inputpn2').addClass(
+														'focusError');
+												document.getElementById(
+														'inputpn2').focus();
+												$('#inputpn2').attr(
+														'placeholder', newph);
+												return false;
+											} else if ($('#inputpn2').val().length < 8) { // 비회원 주문자 번호가 8글자미만일시
+												alert('너무 짧습니다.');
+												$('#inputpn2').addClass(
+														'focusError');
+												document.getElementById(
+														'inputpn2').focus();
+												$('#inputpn2').attr(
+														'placeholder', newph);
+											} else {
+												$('#inputpn2').removeClass(
+														'focusError');
+												$('#inputpn2').removeAttr(
+														'placeholder', newph);
+											}
+											// 상세주소가 비어있을 시
+											if ($('#address-2').val() == '') {
+												$('#address-2').addClass(
+														'focusError');
+												document.getElementById(
+														'address-2').focus();
+												$('#address-2').attr(
+														'placeholder', newph);
+												return false;
+											} else {
+												$('#address-2').removeClass(
+														'focusError');
+												$('#address-2').removeAttr(
+														'placeholder', newph);
+											}
+											// 받는사람 정보가 비어있을 시
+											if ($('#inputrc').val() == '') {
+												$('#inputrc').addClass(
+														'focusError');
+												document.getElementById(
+														'inputrc').focus();
+												$('#inputrc').attr(
+														'placeholder', newph);
+												return false;
+											} else {
+												$('#inputrc').removeClass(
+														'focusError');
+												$('#inputrc').removeAttr(
+														'placeholder', newph);
+											}
+
+											/* 주문자 이메일이 비어있을 시
+											if ($('#inputemail').val() == '') {
+												$('#inputemail').addClass('focusError');
+												document.getElementById('inputemail').focus();
+												$('#inputemail').attr('placeholder', newph);
+												return false;
+											}else{
+												$('#inputemail').removeClass('focusError');
+												$('#inputemail').removeAttr('placeholder', newph);
+											}
+											// 주문자 정보가 비어있을 시
+											if ($('#inputid').val() == '') {
+												$('#inputid').addClass('focusError');
+												document.getElementById('inputid').focus();
+												$('#inputid').attr('placeholder', newph);
+											}else{
+												$('#inputid').removeClass('focusError');
+												$('#inputid').removeAttr('placeholder', newph);
+												return false;
+											}*/
+											return true;
+										});
+						/* 새로 만든 탭 메뉴 함수  */
+						$("input").addClass("form-control");
+						var displayController = 'display:none;'
+						var displayOn = 'display:block;'
+						$('#tab1click').click(function() {
+							$('#tab1-li').addClass('selected')
+							$('#tab1').attr('style', displayOn)
+							$('#tab2-li').removeClass('selected')
+							$('#tab2').attr('style', displayController)
+							$('#tab3-li').removeClass('selected')
+							$('#tab3').attr('style', displayController)
+						})
+						$('#tab2click').click(function() {
+							$('#tab1-li').removeClass('selected')
+							$('#tab1').attr('style', displayController)
+							$('#tab2-li').addClass('selected')
+							$('#tab2').attr('style', displayOn)
+							$('#tab3-li').removeClass('selected')
+							$('#tab3').attr('style', displayController)
+						})
+						$('#tab3click').click(function() {
+							$('#tab1-li').removeClass('selected')
+							$('#tab1').attr('style', displayController)
+							$('#tab2-li').removeClass('selected')
+							$('#tab2').attr('style', displayController)
+							$('#tab3-li').addClass('selected')
+							$('#tab3').attr('style', displayOn)
+						})
+					});
 
 	/* 이전 탭 메뉴 함수 */
 	$(function() {
@@ -158,8 +188,6 @@ session.getAttribute("loginfo");
 			}
 		}).open();
 	}
-	
-	
 </script>
 <style>
 div .menu {
@@ -478,8 +506,9 @@ td span {
 										<option>010</option>
 										<option>011</option>
 										<option>070</option>
-									</select> <input id="inputpn2" style="width: 70%" type="text" maxlength="8"
-										class="form-control" placeholder="-없이 번호를 입력해주세요.">
+									</select> <input id="inputpn2" style="width: 70%" type="text"
+										maxlength="8" class="form-control"
+										placeholder="-없이 번호를 입력해주세요.">
 								</div>
 							</td>
 						</tr>
@@ -510,16 +539,20 @@ td span {
 								<h4 style="margin: 20px;">주문 상품</h4>
 							</td>
 						</tr>
-						<tr>
-							<td width="150px"><img
-								style="margin-left: 10px; margin-top: 10px; margin-bottom: 5px;"
-								width="120px" height="120px"
-								src="https://image.nbkorea.com/NBRB_Product/20231215/NB20231215141218268001.jpg"></img>
-							</td>
-							<td><span>MTMORNDV 좆간지신발</span> <span
-								style="font-size: 0.8rem; font-weight: light;">[옵션 : 사이즈
-									255 , 발볼 D]</span> <span>수량: 1개</span><br></td>
-						</tr>
+						<!-- 상품쪽 완성되면 넣을 예정 -->
+						<c:forEach items="${items}" var="pro" varStatus="status">
+							<tr>
+								<td width="150px"><img
+									style="margin-left: 10px; margin-top: 10px; margin-bottom: 5px;"
+									width="120px" height="120px"
+									src="${proimg }"></img>
+								</td>
+								<td><span>${pronm }</span> <span
+									style="font-size: 0.8rem; font-weight: light;">${pordetail}
+									</span> <span>${proqty }</span><br></td>
+							</tr>
+						</c:forEach>
+
 						<tr>
 							<td colspan="2">
 								<nav

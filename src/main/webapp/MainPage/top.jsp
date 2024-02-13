@@ -183,17 +183,17 @@ section {
 <section id="topwrap">
 	<nav class="topmenu">
 		<ul>
-			<li><a href="Member/MemberJoin.jsp">회원가입&nbsp;</a></li>
-			<li><a href="Member/loginMain.jsp">로그인&nbsp;</a></li>
-			<li><a href="Member/MyCart.jsp">장바구니&nbsp;</a></li>
-			<li><a href="MyPage/MyPageM.jsp">주문조회&nbsp;</a></li>
+			<li><a href="${pageContext.request.contextPath}/Member/MemberJoin.jsp">회원가입&nbsp;</a></li>
+			<li><a href="${pageContext.request.contextPath}/Member/loginMain.jsp">로그인&nbsp;</a></li>
+			<li><a href="${pageContext.request.contextPath}/Member/MyCart.jsp">장바구니&nbsp;</a></li>
+			<li><a href="${pageContext.request.contextPath}/MyPage/MyPageM.jsp">주문조회&nbsp;</a></li>
 			<li><a href="#">최근본상품&nbsp;</a></li>
 			<li style="border: none;"><a href="#">고객센터&nbsp;</a></li>
 		</ul>
 	</nav>
 	<br>
 	<div style="display:flex; justify-content: center; width:100%;background-color:white;">
-	<img id="topimage" src="Image/2main.png">
+	<img id="topimage" src="${pageContext.request.contextPath}/Image/2main.png">
 	<br>
 	</div>
 	

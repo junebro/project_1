@@ -58,12 +58,12 @@ session.setAttribute("imgPath", imgPath);
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>You and I Shopping</title>
 <script src="MainPage/alleffect/jquery-3.4.1.js"></script>
-<link rel="stylesheet" href="MainPage/alleffect/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/MainPage/alleffect/main.css">
 <link rel="stylesheet" type="text/css"
-	href="MainPage/alleffect/main.css">
+	href="${pageContext.request.contextPath}/MainPage/alleffect/top.css">
 <link rel="stylesheet" type="text/css"
-	href="MainPage/alleffect/main.css">
-<script type="text/javascript" src="MainPage/alleffect/slick.min.js"></script>
+	href="${pageContext.request.contextPath}/MainPage/alleffect/main.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/MainPage/alleffect/slick.min.js"></script>
 
 
 </head>
@@ -93,31 +93,31 @@ session.setAttribute("imgPath", imgPath);
 		<!-- The slideshow/carousel -->
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img class="d-block" src="MainPage/img/main1.jpg"
+				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main1.jpg"
 					style="width: 100%;">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block" src="MainPage/img/main2.jpg"
+				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main2.jpg"
 					style="width: 100%;">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block" src="MainPage/img/main3.jpg"
+				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main3.jpg"
 					style="width: 100%;">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block" src="MainPage/img/main4.jpg"
+				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main4.jpg"
 					style="width: 100%;">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block" src="MainPage/img/main5.jpg"
+				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main5.jpg"
 					style="width: 100%;">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block" src="MainPage/img/main6.jpg"
+				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main6.jpg"
 					style="width: 100%;">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block" src="MainPage/img/main7.jpg"
+				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main7.jpg"
 					style="width: 100%;">
 			</div>
 		</div>
@@ -143,7 +143,7 @@ session.setAttribute("imgPath", imgPath);
 						<div class="thumbnail">
 							<%-- <a href="./img/${list}"> <img src="./img/${list}" alt="Product">--%>
 							<a href="<%=notWithFormTag%>DetailProduct&pronm=U996"> <img
-								src="MainPage/img/${list}" alt="Product">
+								src="${pageContext.request.contextPath}/MainPage/img/${list}" alt="Product">
 								<div class="description">
 									<p>상품 설명 란</p>
 								</div>
