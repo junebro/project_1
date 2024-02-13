@@ -247,8 +247,8 @@ li {
 						</ul>
 					</div>
 					<div class="customer">
-						<li class="nav-menu"><a href="./loginMain.jsp">로그인</a> <a
-							href="./MemberJoin.jsp">회원가입</a> <a href="./MyCart.jsp"> <span
+						<li class="nav-menu"><a href="MainPage/index.jsp">로그인</a> <a
+							href="Member/MemberJoin.jsp">회원가입</a> <a href="Member/MyCart.jsp"> <span
 								class="blind">장바구니</span>
 						</a></li>
 					</div>
