@@ -31,7 +31,7 @@ public class FrontController extends HttpServlet{
 		this.todolist = config.getInitParameter("todolist");
 		
 		//애플리케이션의 전체 경로를 매개 변수로 넘겨 줍니다.
-		System.out.println("1111111111111111111");
+		
 		this.todolistMap = MyUtility.getTodolistMap(application.getRealPath(todolist));
 		
 		System.out.println("todolist Map size : " + todolistMap.size());
@@ -49,14 +49,14 @@ public class FrontController extends HttpServlet{
 		
 		// controller는 해당 command에 상응하는 하위 컨트롤러 객체 입니다.
 		SuperController contorller = this.todolistMap.get(command);
-		System.out.println("1300000000000000000000000000000");
+		
 		if (contorller != null) {
-			System.out.println("1400000000000000000000000000000");
+			
 			try {
 				String method = request.getMethod().toLowerCase();
-				System.out.println("1500000000000000000000000000000");
+				
 				if(method.equals("get")) {
-					System.out.println("1600000000000000000000000000000");
+					
 					contorller.doGet(request, response);
 					System.out.println(contorller.getClass() + " get 메소드 호출됨");
 					
