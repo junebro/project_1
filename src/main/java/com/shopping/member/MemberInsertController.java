@@ -42,7 +42,7 @@ public class MemberInsertController extends SuperClass {
 		bean.setMBREM(request.getParameter("MBREM") + request.getParameter("MBREM01"));
 		bean.setMBRAR("우편번호 : " +
 				request.getParameter("MBRAR1"));
-		bean.setMBRAR1(", 기본주소 :  "+
+		bean.setMBRAR1("기본주소 :  "+
 				request.getParameter("MBRAR2")+" "+
 				request.getParameter("MBRAR3")
 				);
