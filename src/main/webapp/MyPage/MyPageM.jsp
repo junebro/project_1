@@ -423,7 +423,7 @@ button {
 	color: red;
 }
 
-.main-page {
+.main-page { 
 	margin : 110px;
 	padding-left: 120px;
 }
