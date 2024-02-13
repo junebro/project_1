@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.shopping.utility.MyUtility;
   
-@WebServlet(urlPatterns = {"/Shopping", "/Member"},
+@WebServlet(urlPatterns = {"/Shopping_project", "/Member"},
 	initParams = {
 			@WebInitParam(name = "todolist", value ="/WEB-INF/todolist.txt")
 	}
 )
 public class FrontController extends HttpServlet{
-	
+
 	private String todolist = null;	// 할일을 명시해둔 장부 파일
 	private Map<String, SuperController> todolistMap = null;
 	
@@ -31,6 +31,7 @@ public class FrontController extends HttpServlet{
 		this.todolist = config.getInitParameter("todolist");
 		
 		//애플리케이션의 전체 경로를 매개 변수로 넘겨 줍니다.
+		
 		this.todolistMap = MyUtility.getTodolistMap(application.getRealPath(todolist));
 		
 		System.out.println("todolist Map size : " + todolistMap.size());

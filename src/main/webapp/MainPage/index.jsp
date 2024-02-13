@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList"%>
+<%@ include file="./../common/common.jsp"%>
 <%
  	ArrayList<String> imgPath = new ArrayList<String>();
 	
@@ -38,7 +39,9 @@
 	    text-align: center;
 	    z-index: 99;
 	}
-	
+.visual {
+	margin-top:100px;
+}
 </style>
 <head>
     <meta charset="UTF-8">
@@ -56,6 +59,7 @@
 	 
    <jsp:include page="top.jsp" />
    <div class="hidden"></div>
+   <br><br><br>
    <section class="visual">
       <div><img class="visualImg" src="./img/main1.jpg"></div>
       <div><img class="visualImg" src="./img/main2.jpg"></div>
@@ -78,7 +82,8 @@
  				<div class="columnwrap">
 					<div class="column">
 						<div class="thumbnail">
-							<a href="./img/${list}"> <img src="./img/${list}" alt="Product">
+							<%-- <a href="./img/${list}"> <img src="./img/${list}" alt="Product">--%>
+							<a href="<%=notWithFormTag%>DetailProduct&pronm=U996"> <img src="./img/${list}" alt="Product">
 								<div class="description">
 									<p> 상품 설명 란</p>
 								</div>

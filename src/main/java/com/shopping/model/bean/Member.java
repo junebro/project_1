@@ -5,6 +5,7 @@ public class Member {
 	private String MBRNM; // 이름
 	private String MBRPW; // 비번
 	private String MBRAR; // 주소
+	private String MBRAR1; // 주소
 	private String MBRHP; // 전화번호
 	private String MBREM; // 이메일
 	private int MBRPT; // 포인트
@@ -14,13 +15,14 @@ public class Member {
 	
 	
 	
-	public Member(String mBRID, String mBRNM, String mBRPW, String mBRAR, String mBRHP, String mBREM,
+	public Member(String mBRID, String mBRNM, String mBRPW, String mBRAR, String mBRAR1,String mBRHP, String mBREM,
 			int mBRPT, String mBRBT, String mBRGD) {
 		super();
 		MBRID = mBRID;
 		MBRNM = mBRNM;
 		MBRPW = mBRPW;
 		MBRAR = mBRAR;
+		MBRAR = mBRAR1;
 		MBRHP = mBRHP;
 		MBREM = mBREM;
 		MBRPT = mBRPT;
@@ -52,6 +54,12 @@ public class Member {
 	}
 	public void setMBRAR(String mBRAR) {
 		MBRAR = mBRAR;
+	}
+	public String getMBRAR1() {
+		return MBRAR1;
+	}
+	public void setMBRAR1(String mBRAR1) {
+		MBRAR1 = mBRAR1;
 	}
 	public String getMBRHP() {
 		return MBRHP;

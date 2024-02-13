@@ -6,7 +6,7 @@
 <%
 // appName : 애플리케이션 컨텍스트 이름(프로젝트 이름)
 String appName = request.getContextPath();
-String mappingName = "/Shopping"; // in FrontController.java file
+String mappingName = "/Shopping_project"; // in FrontController.java file
 
 // 폼 태그에서 사용할 전역 변수
 String withFormTag = appName + mappingName;
@@ -63,8 +63,6 @@ String notWithFormTag = withFormTag + "?command=";
 <link
 	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
 	rel="stylesheet">
-
-
 
 <meta charset="UTF-8">
 <style>

@@ -1,3 +1,6 @@
+<%@page import="com.shopping.model.dao.ProductDetailDao"%>
+<%@page import="com.shopping.model.bean.Product"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,6 +27,11 @@
 <!-- 페이징 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<c:set var="bean" value="${requestScope.dataList[0]}" />
+<c:set var="dataList" value="${requestScope.dataList}" />
+
 
 <title>상품 상세페이지</title>
 <style>
@@ -128,6 +136,16 @@ header {
 	height: 20px;
 }
 
+.twitter-image {
+	width: 22px;
+	height: 19px;
+}
+
+.facebook-image {
+	width: 45px;
+	height: 45px;
+}
+
 .font-top {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 30px;
@@ -146,11 +164,18 @@ header {
 
 .font_pro {
 	font-weight: bold;
+	font-family: 'Kanit', sans-serif;
 }
 
 .price {
-	font-family: 'Noto Serif KR', cursive;
-	font-size: 30px
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 30px;
+}
+
+.save_point{
+	font-family: 'Noto Sans KR', sans-serif;
+	color: B5B4B4;
+	font-size: 15px;
 }
 
 .payment {
@@ -555,46 +580,63 @@ a.active {
     }
     
     
+/* 하단 상품 리뷰 */
+.review01_box {
+	font-family: 'Gothic A1', sans-serif;
+	font-weight: bold;
+}
 
-	
+.btn_select {
+	text-align: right;
+	padding: 8px 20px;
+}
 
 </style>
 </head>
 	<script>
-	
 		
-		// 즐겨찾기 이미지 변경
-		function changeImage() {
+		var LK = `${bean.LK}`;
+	
+		// 클라이언트 측 JavaScript
+		function changeImage(pronm) { 
 
-			var chk = document.getElementById("ht-image").src;
-
-			if (chk.endsWith('bht.png')) {
-				document.getElementById("ht-image").src = "./../../Image/ht.png";
+			if (LK) {
+				//alert("삭제" + LK);
+				var URL = '<%=notWithFormTag%>liDelete';
+				LK = null;
+				document.getElementById("ht-image").src = "./Image/bht.png";
 			} else {
-				document.getElementById("ht-image").src = "./../../Image/bht.png";
+				//alert("저장" + LK);
+				var URL = '<%=notWithFormTag%>liInsert';
+				LK = "LK";	
+				document.getElementById("ht-image").src = "./Image/ht.png";
 			}
-			// 첫 번째 이미지의 src 값을 변경합니다.
+
+			$.ajax({
+		        type: 'GET',
+		        url: URL,
+		        data: { pronm: pronm },
+		        error: function(xhr, status, error) {
+		            console.error(error);
+		        }
+		    });
 		}
+	
 	</script>
 
 	<header>
-		<jsp:include page="./../../MainPage/top.jsp" />
+		<%-- <jsp:include page="./../../MainPage/top.jsp" />--%>
 	</header>
 <body>
 	<div class="product_top">
 		<div class="big-image-container">
-			<img class="big-image"
-				src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"
-				alt="">
+			<img class="big-image" src="./Image/Detail_main/${bean.PROIMG}" alt="">
 		</div>
 		<div class="text-container">
-			<h1 class="font-top">W480KW5 (Uni, 4E)</h1>
+			<h1 class="font-top">${bean.PRONM} | ${bean.PROCD}</h1>
 			<div class="marketing" id="iconOpt">
-				<img
-					src="https://image.nbkorea.com/NBRB_Icon/NB20180727200053137001.png"
-					alt="270130"> <img
-					src="https://image.nbkorea.com/NBRB_Icon/NB20180727200034090001.png"
-					alt="270130">
+				<img src="https://image.nbkorea.com/NBRB_Icon/NB20180727200053137001.png" alt="270130"> 
+				<img src="https://image.nbkorea.com/NBRB_Icon/NB20180727200034090001.png" alt="270130">
 			</div>
 		
 			<br>
@@ -606,13 +648,23 @@ a.active {
 				</div>
 				<div class="a">
 					<a><img class="ht-image" id="ht-image"
-						src="./../../Image/bht.png" onclick="changeImage()" /></span></a>
+						src="" onclick="changeImage('${bean.PRONM}')" /></a>
+					
+					&nbsp;&nbsp;<span style="color:#B5B4B4;">|</span>
+					<a href="https://www.facebook.com/?locale=ko_KR" target="_blank"><img class="facebook-image" src="./Image/facebook.png" alt="facebook"></a>
+					<a href="https://twitter.com/?lang=ko" target="_blank"><img class="twitter-image" src="./Image/twitter.png" alt="twitter"></a>
+						
+						
 				</div>
 			</div>
 			<br>
 			<div>
-				<span id="pro_price" class="price">99000</span>원 <br> <em class="">적립
-					5,940 (6%)</em>
+		
+				<span id="pro_price" class="price">${bean.PROPR}</span>
+				<span style="font-family: 'Noto Sans KR', sans-serif;">원</span> 
+				<br> 
+				<span class="save_point">적립</span>
+				<span class="save_point" style="color:#8D8D8D;">${bean.PROPNT}P</span>
 			</div>
 
 			<div class="underline"></div>
@@ -628,63 +680,39 @@ a.active {
 			<div class="color">
 				<br>
 				<ul class="items">
-
-					<li><input type="radio" id="colCode_NBPFES152W10" 
-						name="pr_color" value="10" data-info="(10)White"
-						data-price="99000.00" data-norprice="99000.00"
-						data-style-code="NBPFES152W" data-disp-name="W480KW5 (Uni, 4E)"
-						checked="checked" /> <label for="colCode_NBPFES152W10"
-						title="(10)White" onclick="test('(10)White')"><img
-							src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"
-							alt="(10)White" /></label></li>
-
-					<li><input type="radio" id="colCode_NBPFES152Z10"
-						name="pr_color" value="10" data-info="(10)White"
-						data-price="99000.00" data-norprice="99000.00"
-						data-style-code="NBPFES152Z" data-disp-name="W480RG5 (Uni, 4E)" />
-						<label for="colCode_NBPFES152Z10" title="(20)White" onclick="test('(20)White')"><img
-							src="https://image.nbkorea.com/NBRB_Product/20240109/NB20240109142129747001.jpg"
-							alt="(10)White" /></label></li>
-
-					<li><input type="radio" id="colCode_NBPFES152G15"
-						name="pr_color" value="10" data-info="(15)Gray"
-						data-price="99000.00" data-norprice="99000.00"
-						data-style-code="NBPFES152G" data-disp-name="W480KR5 (Uni, 4E)" />
-						<label for="colCode_NBPFES152G15" title="(15)Gray" onclick="test('(15)Gray')"><img
-							src="https://image.nbkorea.com/NBRB_Product/20240108/NB20240108103431052001.jpg"
-							alt="(15)Gray" /></label></li>
-
-					<li><input type="radio" id="colCode_NBPFES152B19"
-						name="pr_color" value="10" data-info="(19)Black"
-						data-price="99000.00" data-norprice="99000.00"
-						data-style-code="NBPFES152B" data-disp-name="W480KB5 (Uni, 4E)" />
-						<label for="colCode_NBPFES152B19" title="(19)Black" onclick="test('(19)Black')"><img
-							src="https://image.nbkorea.com/NBRB_Product/20231117/NB20231117165149911001.jpg"
-							alt="(19)Black" /></label></li>
-
-					<li><input type="radio" id="colCode_NBPFES152A35"
-						name="pr_color" value="10" data-info="(35)Beige"
-						data-price="99000.00" data-norprice="99000.00"
-						data-style-code="NBPFES152A" data-disp-name="W480KO5 (Uni, 4E)" />
-						<label for="colCode_NBPFES152A35" title="(35)Beige" onclick="test('(35)Beige')"><img
-							src="https://image.nbkorea.com/NBRB_Product/20240108/NB20240108104823860001.jpg"
-							alt="(35)Beige" /></label>
-					</li>
+					<c:forEach var="bean_cr" items="${requestScope.dataList}" varStatus="status">
+						
+						<c:if test="${status.index == 0}">
+							<li>
+								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" checked="checked" /> 
+								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
+									<img src="./Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
+								</label>
+							</li>
+						</c:if>
+						
+						<c:if test="${status.index != 0}">
+							<li>
+								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" /> 
+								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
+									<img src="./Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
+								</label>
+							</li>
+						</c:if>
+					
+					
+					</c:forEach>
 				</ul>
 			</div>
 
-			<div id="color_area"><span id="color_area_color">(10)White</span>&nbsp|&nbsp<span id="color_area_name"></span></div>
+			<div id="color_area"><span id="color_area_color">${bean.PROCR}</span>&nbsp|&nbsp<span id="color_area_name"></span></div>
 			
 			<div id="area_size">
-				<%
-				    // 임의의 배열 생성 줄바꿈을 위해 맨처음(0)의 값을 임의로 지정
-				    String[] size = {"230", "235", "240", "245", "250", "255", "260", "265", "270", "275", "280", "285", "290"};
-				    request.setAttribute("size", size);
-				%>
+			
 				<!-- 줄바꿈을 위한 columnSu -->
 				<c:set var="columnSu" value="5" />
-				<c:forEach var="size" items="${size}" varStatus="status">
-					<a href="#link"><div class="btn_size" onclick="sizeBuy(${size});">${size}</div></a>
+				<c:forEach var="size" items="${requestScope.sizeList}" varStatus="status">
+					<a href="#link"><div class="btn_size" onclick="sizeBuy(${size.ITMNM});">${size.ITMNM}</div></a>
 					<c:if test="${status.index mod columnSu == 4}">
 						<div id="newline"></div>
 					</c:if>
@@ -749,7 +777,20 @@ a.active {
 	</div>
 
 	<script>
-
+		// 첫 시작 찜이미지 설정
+		var LK = `${bean.LK}`;
+		var chk = document.getElementById("ht-image").src;
+		
+		if (LK) {
+			document.getElementById("ht-image").src = "./Image/ht.png";
+		} else {
+			document.getElementById("ht-image").src = "./Image/bht.png";
+		}
+		
+		// 첫 시작 컬러값 설정
+		var sColor = `${bean.PROCR}`;
+		document.getElementById("color_area_name").style.backgroundColor = sColor;
+		
 		// 이미지 클릭시 큰 이미지로 출력
 		const itemsContainer = document.querySelector('.items');
 		const bigImage = document.querySelector('.big-image');
@@ -764,8 +805,8 @@ a.active {
 		});
 		
 		function test(val){
-			
-			var color = val.substring(4);
+		
+			var color = val//.substring(4);
 			var can = document.getElementById("color_area_name");
 			
 			can.style.backgroundColor = color;
@@ -794,8 +835,17 @@ a.active {
 			var id_price = document.getElementById('pro_price');	     
 			var total_price = document.getElementById('total_price');	     
 			var price = id_price.innerHTML;
-
+			
+			//var S_key = color + '/' + size;
+			//var size_key = document.getElementById(S_key);
+			//var sz = size_key.innerHTML; 
+			
 			if(type === 'plus') {
+				//if (sz == '4') {
+				//	alert("123");
+				//	return;
+				//}
+				
 				num = parseInt(num) + 1;
 				total_num = parseInt(total_num) + 1
 			}else if(type === 'minus')  {
@@ -845,7 +895,7 @@ a.active {
 		var count = 0;
 		
 		function sizeBuy(size) {
-		
+
 			var total_qt = document.getElementById('total_qt');
 			var total_num = total_qt.innerText;
 			
@@ -861,13 +911,20 @@ a.active {
 			
 			if (size_key) {
 				
+				var sz = size_key.innerHTML; 
+				
+				if (sz == '4') {
+					alert("123");
+					return;
+				}
+				
 				var cnt = size_key.innerText;
 				cnt = parseInt(cnt) + 1;
 
 				size_key.innerText = cnt;
 				
 			} else {
-
+				
 				var total_class = document.getElementById('total_class');
 				total_class.style.display = '';
 
@@ -964,7 +1021,7 @@ a.active {
 				subDiv9_a.onclick = function() {
 					fn_del();
 			    };
-				
+						
 		
 			    var subDiv10 = document.createElement('div');
 			    
@@ -1058,7 +1115,8 @@ a.active {
 
 			<div id="pr_details" style="margin-bottom:100px; text-align:center" id="prodAddInfo_wrap">
 				<br><br><br><br><br>
-				<img src="https://image.nbkorea.com/NBRB_ProductAddInfo/20231115/NB20231115091820646001.jpg">
+				${bean.PROIMG1}
+				<img src="./Image/Details/${bean.PROIMG1}">
 			</div>
 
 			<div id="pr_main_review" class="section Re_review">
@@ -1069,60 +1127,49 @@ a.active {
 				<h3 class="sec_tit">상품리뷰</h3>
 				<div class="black_hr_1px" />
 				<br>
-				<div class="review_sec01">
+				<div class="review_sec">
 					<div class="pr_infoReview">
-						<div class="box">
-							<p class="lh_28">
-								구매확정 후 <span class="col_red"> <em class="font_pro">30</em>일
-									이내에
-								</span> 상품평 작성 시,&nbsp;<span class="col_red">최대 <em
-									class="font_pro">2,000</em> 마일리지의 혜택을 드립니다.
-								</span> <br> 작성하신 상품평에 대한 마일리지 지급은 작성후 <em class="font_pro">15</em>일
-								이내로 적립됩니다.
-							</p>
+						<div class="review01_box">
+							구매확정 후 <span style="color:red"> <em class="font_pro">30</em>일 이내에</span> 상품평 작성 시,&nbsp;<span style="color:red">최대 <em class="font_pro">2,000</em> 마일리지의 혜택을 드립니다.</span> 
+							<br> 
+							작성하신 상품평에 대한 마일리지 지급은 작성후 <em style="color:red">15</em>일 이내로 적립됩니다.
 						</div>
-						<div class="border_box">
-							<p class="review_mile_guide dp_i">
-								<span>일반리뷰 <em class="font_pro">500 </em>마일리지
-								</span> <span>포토리뷰 <em class="font_pro">1,000 </em>마일리지
-								</span> <span>스타일리뷰 <em class="font_pro col_red">2,000 </em>마일리지
-								</span>
-							</p>
-							<!-- 20191011 추가 :: S -->
-							<div class="hoverIcon">
+						<br>
+						<div class="review01_box">
+								<span>일반리뷰 <em class="font_pro">500 </em>마일리지</span> 
+								<span>포토리뷰 <em class="font_pro">1,000 </em>마일리지</span> 
+								<span>스타일리뷰 <em class="font_pro" style="color:red">2,000 </em>마일리지</span>
+								
+							<div class="">
 								<p>
-									<img
-										src="https://image.nbkorea.com/NBRB_PC/product/review/hoverIcon.png"
-										alt="" />
-								<div class="off">
+								<div class="">
 									<ul>
 										<li>
-											<p>[스타일 리뷰 기준]</p> <!-- 20200511 수정 :: S -->
+											<p class="review01_box">[스타일 리뷰 기준]</p>
 											<ol>
-												<li>1) 구매하신 상품을 착용한 전신 컷 (얼굴 제외 가능, 어깨부터 발끝까지 보이게끔 촬영한
+												<li> 구매하신 상품을 착용한 전신 컷 (얼굴 제외 가능, 어깨부터 발끝까지 보이게끔 촬영한
 													사진)</li>
-												<li>2) 세트나 한 쌍의 상품인 경우, 양 쪽이 모두 보이도록 촬영한 사진 (신발, 양말 등)</li>
-												<li>3) 스타일링을 보여줄 수 있는 사진 (실내복 착용이나 신발 없는 전신 사진은 포토리뷰로
+												<li> 세트나 한 쌍의 상품인 경우, 양 쪽이 모두 보이도록 촬영한 사진 (신발, 양말 등)</li>
+												<li> 스타일링을 보여줄 수 있는 사진 (실내복 착용이나 신발 없는 전신 사진은 포토리뷰로
 													간주됩니다.)</li>
-												<li>4) 상품 형태와 컬러 식별이 가능한 사진</li>
-												<li>5) 10자 이상의 상품에 대한 후기</li>
+												<li> 상품 형태와 컬러 식별이 가능한 사진</li>
+												<li> 10자 이상의 상품에 대한 후기</li>
 											</ol>
 										</li>
+										<br>
 										<li>
-											<p>[포토 리뷰 기준]</p>
+											<p class="review01_box">[포토 리뷰 기준]</p>
 											<ol>
-												<li>1) 구매하신 상품이 모두 나오게 촬영한 사진</li>
-												<li>2) 포장을 제거하고 상품의 전체가 보이게 촬영한 사진</li>
-												<li>3) 세트나 한 쌍의 상품인 경우, 양 쪽이 모두 보이도록 촬영한 사진 (신발, 양말 등)</li>
-												<li>4) 상품 형태와 컬러 식별이 가능한 사진</li>
-												<li>5) 10자 이상의 상품에 대한 후기</li>
+												<li> 구매하신 상품이 모두 나오게 촬영한 사진</li>
+												<li> 포장을 제거하고 상품의 전체가 보이게 촬영한 사진</li>
+												<li> 세트나 한 쌍의 상품인 경우, 양 쪽이 모두 보이도록 촬영한 사진 (신발, 양말 등)</li>
+												<li> 상품 형태와 컬러 식별이 가능한 사진</li>
+												<li> 10자 이상의 상품에 대한 후기</li>
 											</ol>
 										</li>
-										<!-- 20200511 수정 :: E -->
 									</ul>
 								</div>
 							</div>
-							<!-- E :: 20191011 추가 -->
 						</div>
 					</div>
 				</div>
@@ -1256,12 +1303,10 @@ a.active {
 								<option>290</option>
 							</select>
 						</div>
+						<button  class="btn_black btn_select">검 색</button>
 						<br><br>
 						<div class="view_line"></div>
-						
-						
-
-			
+		
 						<div class="view_Board">
 							<div class="view_Board_left">
 								<div class="border_top">
@@ -1553,7 +1598,7 @@ a.active {
 					<div class="grid_btm">
 						<div class="inq_none">
 							<div class="inq_img_q">
-								<img src="./../../Image/QA.png" alt="QA">
+								<img src="./Image/QA.png" alt="QA">
 							</div>
 							<br>
 							<strong>상품 관련 <span>궁금한 점</span>이 있으신가요?</strong>

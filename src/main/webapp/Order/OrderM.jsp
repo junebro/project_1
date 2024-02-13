@@ -158,6 +158,8 @@ session.getAttribute("loginfo");
 			}
 		}).open();
 	}
+	
+	
 </script>
 <style>
 div .menu {

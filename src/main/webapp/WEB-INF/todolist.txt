@@ -2,25 +2,29 @@
 # order section
 #OrderC=com.shopping.order.OrderController 
 # product section
-DetailProduct=com.shopping.controller.product.ProductDetailController
+#Product=com.shopping.product.ProductController
+DetailProduct=com.shopping.product.ProductDetailController
 # view section
-#vwList=com.shopping.controller.view.ViewListController
-#vwExam01=com.shopping.controller.view.View01ListController
-#vwExam02=com.shopping.controller.view.View02ListController
-#vwExam03=com.shopping.controller.view.View03ListController
-#vwExam04=com.shopping.controller.view.View04ListController
-#vwExam05=com.shopping.controller.view.View05ListController
+#vwList=com.shopping.view.ViewListController
+#vwExam01=com.shopping.view.View01ListController
+#vwExam02=com.shopping.view.View02ListController
+#vwExam03=com.shopping.view.View03ListController
+#vwExam04=com.shopping.view.View04ListController
+#vwExam05=com.shopping.view.View05ListController
 # board section
-#boInsert=com.shopping.controller.board.BoardInsertController
-#boUpdate=com.shopping.controller.board.BoardUpdateController
-#boList=com.shopping.controller.board.BoardListController
-#boDelete=com.shopping.controller.board.BoardDeleteController
-#boDetail=com.shopping.controller.board.BoardDetailController
+#boInsert=com.shopping.board.BoardInsertController
+#boUpdate=com.shopping.board.BoardUpdateController
+#boList=com.shopping.board.BoardListController
+#boDelete=com.shopping.board.BoardDeleteController
+#boDetail=com.shopping.board.BoardDetailController
 # member section
-meLogin=com.shopping.controller.member.MemberLoginController
-meLogout=com.shopping.controller.member.MemberLogoutController
-meJoin=com.shopping.controller.member.MemberJoinController
+meLogin=com.shopping.member.MemberLoginController
+#meLogout=com.shopping.member.MemberLogoutController
+meInsert=com.shopping.member.MemberInsertController
 # mypage section
-myUpdate=com.shopping.controller.member.MypageUpdateController
-myDelete=com.shopping.controller.member.MypageDeleteController
-myDetail=com.shopping.controller.member.MypageDetailController
+#myUpdate=com.shopping.member.MypageUpdateController
+#myDelete=com.shopping.member.MypageDeleteController
+#myDetail=com.shopping.member.MypageDetailController
+# like section
+liInsert=com.shopping.like.LikeInsertController
+liDelete=com.shopping.like.LikeDeleteController

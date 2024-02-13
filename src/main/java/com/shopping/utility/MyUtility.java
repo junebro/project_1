@@ -14,18 +14,20 @@ public class MyUtility {
 		Map<String, SuperController> map = new HashMap<String, SuperController>();
 
 		Properties prop = getPropertiesData(filename);
-
+		
 		Enumeration<Object> keys = prop.keys();
-
+		
 		while (keys.hasMoreElements()) {
-
+			
 			String command = keys.nextElement().toString();
 			String className = prop.getProperty(command);
-
+			System.out.println("className :" + className );	
+			
 			try {
+				
 				Class<?> handleClass = Class.forName(className);
 				SuperController instance = (SuperController) handleClass.newInstance();
-
+				
 				map.put(command, instance);
 
 			} catch (Exception e) {
@@ -50,13 +52,17 @@ public class MyUtility {
 			System.out.println("prop.size() : " + prop.size());
 
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		} finally {
+			
 			try {
 				if (fis != null) {
+					
 					fis.close();
 				}
 			} catch (Exception e2) {
+				
 				e2.printStackTrace();
 			}
 		}
