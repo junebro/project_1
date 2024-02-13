@@ -13,6 +13,7 @@ body {
 .menuwrap {
 	width: 100%;
 	text-align: center;
+	margin-top:100px;
 }
 
 .hidden {
@@ -35,12 +36,13 @@ a:visited {
 .topmenu ul {
 	list-style: none;
 	float: right;
-	margin-right: 15px;
+	margin-right: 10px;
 }
 
 .topmenu li {
 	display: inline-block;
-	border-right: 1px solid rgba(128, 128, 128, 0.5);
+	border-right: 0px solid rgba(128, 128, 128, 0.5);
+	height: 20px;
 }
 
 .topmenu li:hover {
@@ -104,6 +106,7 @@ a:visited {
 .dropdown {
 	position: relative;
 	display: inline-block;
+	
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -165,6 +168,11 @@ a:visited {
 section {
 	font-family: 'Kanit', sans-serif;
 }
+
+#topimage {
+	width:300px;
+	height:150px;
+}
 </style>
 <link
 	href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap"
@@ -183,10 +191,16 @@ section {
 			<li style="border: none;"><a href="#">고객센터&nbsp;</a></li>
 		</ul>
 	</nav>
-	<h1 class="title">우리동네 신발</h1>
+	<br>
+	<div style="display:flex; justify-content: center; width:100%;background-color:white;">
+	<img id="topimage" src="./../Image/2main.png">
+	<br>
+	</div>
+	
+	
 	<!-- <header>
     </header> -->
-	<div class="menuwrap">
+	<div style="background-color:white;">
 		<div class="dropdown">
 			<button class="dropbtn"
 				onclick="location.href='http://www.naver.com'">Home</button>

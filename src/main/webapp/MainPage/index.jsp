@@ -39,7 +39,9 @@
 	    text-align: center;
 	    z-index: 99;
 	}
-	
+.visual {
+	margin-top:100px;
+}
 </style>
 <head>
     <meta charset="UTF-8">
@@ -57,6 +59,7 @@
 	 
    <jsp:include page="top.jsp" />
    <div class="hidden"></div>
+   <br><br><br>
    <section class="visual">
       <div><img class="visualImg" src="./img/main1.jpg"></div>
       <div><img class="visualImg" src="./img/main2.jpg"></div>
