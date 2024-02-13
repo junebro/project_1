@@ -14,10 +14,10 @@ public class MemberDao extends SuperDao {
 	}
 	
 	public int updateData(Member bean) {
-		String sql = " update TMBR set MBRNM=?, MBRPW=?, MBRAR=?, MBRAR1=?,MBRHP=?, MBREM=?, MBRPT=?, MBRBT=?, MBRGD=?";
+		String sql = " update TMBR set MBRNM=?, MBRPW=?, MBRAR=?, MBRAR1=?, MBRAR2=?, MBRHP=?, MBREM=?, MBRPT=?, MBRBT=?, MBRGD=?";
 		sql += " where MBRID = ? ";
 		PreparedStatement pstmt = null;
-		int cnt = -12;
+		int cnt = -13;
 		try {
 			super.conn = super.getConnection();
 			conn.setAutoCommit(false);
@@ -27,11 +27,12 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(2, bean.getMBRPW());
 			pstmt.setString(3, bean.getMBRAR());
 			pstmt.setString(4, bean.getMBRAR1());
-			pstmt.setString(5, bean.getMBRHP());
-			pstmt.setString(6, bean.getMBREM());
-			pstmt.setInt(7, bean.getMBRPT());
-			pstmt.setString(8, bean.getMBRBT());
-			pstmt.setString(9, bean.getMBRID());
+			pstmt.setString(5, bean.getMBRAR2());
+			pstmt.setString(6, bean.getMBRHP());
+			pstmt.setString(7, bean.getMBREM());
+			pstmt.setInt(8, bean.getMBRPT());
+			pstmt.setString(9, bean.getMBRBT());
+			pstmt.setString(10, bean.getMBRID());
 
 			cnt = pstmt.executeUpdate();
 			conn.commit();
@@ -95,11 +96,11 @@ public class MemberDao extends SuperDao {
 
 	public int insertData(Member bean) {
 
-		String sql = " insert into TMBR(MBRID, MBRNM, MBRPW, MBRAR, MBRAR1,MBRHP, MBREM, MBRPT, MBRBT, MBRGD)";
-		sql += " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = " insert into TMBR(MBRID, MBRNM, MBRPW, MBRAR, MBRAR1, MBRAR2, MBRHP, MBREM, MBRPT, MBRBT, MBRGD)";
+		sql += " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement pstmt = null;
-		int cnt = -11;
+		int cnt = -12;
 
 		try {
 			super.conn = super.getConnection();
@@ -113,11 +114,12 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(3, bean.getMBRPW());
 			pstmt.setString(4, bean.getMBRAR());
 			pstmt.setString(5, bean.getMBRAR1());
-			pstmt.setString(6, bean.getMBRHP());
-			pstmt.setString(7, bean.getMBREM());
-			pstmt.setInt(8, bean.getMBRPT());
-			pstmt.setString(9, bean.getMBRBT());
-			pstmt.setString(10, bean.getMBRGD());
+			pstmt.setString(6, bean.getMBRAR2());
+			pstmt.setString(7, bean.getMBRHP());
+			pstmt.setString(8, bean.getMBREM());
+			pstmt.setInt(9, bean.getMBRPT());
+			pstmt.setString(10, bean.getMBRBT());
+			pstmt.setString(11, bean.getMBRGD());
 			
 			cnt = pstmt.executeUpdate();
 			conn.commit();
@@ -192,7 +194,8 @@ public class MemberDao extends SuperDao {
 			bean.setMBRNM(rs.getString("MBRNM"));
 			bean.setMBRPW(rs.getString("MBRPW"));
 			bean.setMBRAR(rs.getString("MBRAR"));
-			bean.setMBRAR(rs.getString("MBRAR1"));
+			bean.setMBRAR1(rs.getString("MBRAR1"));
+			bean.setMBRAR2(rs.getString("MBRAR2"));
 			bean.setMBRHP(rs.getString("MBRHP"));
 			bean.setMBREM(rs.getString("MBREM"));
 			bean.setMBRPT(rs.getInt("MBRPT"));
