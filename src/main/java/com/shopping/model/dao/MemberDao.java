@@ -14,7 +14,7 @@ public class MemberDao extends SuperDao {
 	}
 	
 	public int updateData(Member bean) {
-		String sql = " update TMBR set MBRNM=?, MBRPW=?, MBRAR=?, MBRHP=?, MBREM=?, MBRPT=?, MBRBT=?, MBRGD=?";
+		String sql = " update TMBR set MBRNM=?, MBRPW=?, MBRAR=?, MBRAR1=?,MBRHP=?, MBREM=?, MBRPT=?, MBRBT=?, MBRGD=?";
 		sql += " where MBRID = ? ";
 		PreparedStatement pstmt = null;
 		int cnt = -11;
@@ -26,6 +26,7 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(1, bean.getMBRNM());
 			pstmt.setString(2, bean.getMBRPW());
 			pstmt.setString(3, bean.getMBRAR());
+			pstmt.setString(3, bean.getMBRAR1());
 			pstmt.setString(4, bean.getMBRHP());
 			pstmt.setString(5, bean.getMBREM());
 			pstmt.setInt(6, bean.getMBRPT());
@@ -94,8 +95,8 @@ public class MemberDao extends SuperDao {
 
 	public int insertData(Member bean) {
 
-		String sql = " insert into TMBR(MBRID, MBRNM, MBRPW, MBRAR, MBRHP, MBREM, MBRPT, MBRBT, MBRGD)";
-		sql += " values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = " insert into TMBR(MBRID, MBRNM, MBRPW, MBRAR, MBRAR1,MBRHP, MBREM, MBRPT, MBRBT, MBRGD)";
+		sql += " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement pstmt = null;
 		int cnt = -10;
@@ -111,6 +112,7 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(2, bean.getMBRNM());
 			pstmt.setString(3, bean.getMBRPW());
 			pstmt.setString(4, bean.getMBRAR());
+			pstmt.setString(4, bean.getMBRAR1());
 			pstmt.setString(5, bean.getMBRHP());
 			pstmt.setString(6, bean.getMBREM());
 			pstmt.setInt(7, bean.getMBRPT());
@@ -190,6 +192,7 @@ public class MemberDao extends SuperDao {
 			bean.setMBRNM(rs.getString("MBRNM"));
 			bean.setMBRPW(rs.getString("MBRPW"));
 			bean.setMBRAR(rs.getString("MBRAR"));
+			bean.setMBRAR(rs.getString("MBRAR1"));
 			bean.setMBRHP(rs.getString("MBRHP"));
 			bean.setMBREM(rs.getString("MBREM"));
 			bean.setMBRPT(rs.getInt("MBRPT"));
