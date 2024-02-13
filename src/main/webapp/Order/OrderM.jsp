@@ -450,23 +450,23 @@ td span {
 						<tr style="height: 50px">
 							<td><span class="mar">받는사람 </span></td>
 							<td><input id="inputrc" placeholder="받는분 성함" size="15"
-								value="" type="text""></td>
+								value="${sessionScope.loginfo.MBRNM}" type="text""></td>
 						</tr>
 						<tr style="height: 50px">
 							<td><span class="mar">주소</span></td>
 							<td><input type="button" onclick="execDaumPostcode()"
 								value="우편번호 찾기"> <input type="text" id="zip-code"
-								placeholder="우편번호" disabled="disabled"></td>
+								placeholder="우편번호" disabled="disabled" value="${sessionScope.loginfo.MBRAR}"></td>
 						</tr>
 						<tr style="height: 50px">
 							<td><span></span></td>
 							<td><input id="address-1" placeholder="도로명주소" size="15"
-								type="text" style="width: 100%;" disabled="disabled"></td>
+								type="text" style="width: 100%;" disabled="disabled" value="${sessionScope.loginfo.MBRAR1}"></td>
 						</tr>
 						<tr style="height: 50px">
 							<td><span></span></td>
 							<td><input id="address-2" placeholder="상세주소" size="15"
-								type="text"></td>
+								type="text" value="${sessionScope.loginfo.MBRAR2}"></td>
 						</tr>
 						<tr style="height: 50px">
 							<td><span class="mar">휴대 전화</span></td>
