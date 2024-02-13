@@ -648,9 +648,7 @@ a.active {
 					<em class="num"><span>평점</span>/5</em> <a>(0)</a>
 				</div>
 				<div class="a">
-					<a><img class="ht-image" id="ht-image"
-						src="" onclick="changeImage('${bean.PRONM}')" /></a>
-					
+					<a><img class="ht-image" id="ht-image" src="" onclick="changeImage('${bean.PRONM}')" /></a>
 					&nbsp;&nbsp;<span style="color:#B5B4B4;">|</span>
 					<a href="https://www.facebook.com/?locale=ko_KR" target="_blank"><img class="facebook-image" src="${pageContext.request.contextPath}/Image/facebook.png" alt="facebook"></a>
 					<a href="https://twitter.com/?lang=ko" target="_blank"><img class="twitter-image" src="${pageContext.request.contextPath}/Image/twitter.png" alt="twitter"></a>
@@ -685,8 +683,9 @@ a.active {
 						
 						<c:if test="${status.index == 0}">
 							<li>
-								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" checked="checked" /> 
-								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
+								<%-- <input type="radio" id="colCode_${status.index}" name="pr_color" value="10" checked="checked" />--%> 
+								<input type="radio" id="${bean_cr.PROCD}" name="pr_color" value="10" checked="checked" /> 
+								<label for="${bean_cr.PROCD}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
 									<img src="${pageContext.request.contextPath}/Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
 								</label>
 							</li>
@@ -694,8 +693,8 @@ a.active {
 						
 						<c:if test="${status.index != 0}">
 							<li>
-								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" /> 
-								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
+								<input type="radio" id="${bean_cr.PROCD}" name="pr_color" value="10" /> 
+								<label for="${bean_cr.PROCD}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
 									<img src="${pageContext.request.contextPath}/Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
 								</label>
 							</li>
@@ -819,7 +818,7 @@ a.active {
 		
 		
 		function fn_count(type) {
-
+			
 			var clickedElementId = event.target.id;
 			var keyArray = clickedElementId.split('/');
 
@@ -837,24 +836,28 @@ a.active {
 			var total_price = document.getElementById('total_price');	     
 			var price = id_price.innerHTML;
 			
-			//var S_key = color + '/' + size;
-			//var size_key = document.getElementById(S_key);
-			//var sz = size_key.innerHTML; 
+			var S_key = color + '/' + size;
+			var size_key = document.getElementById(S_key);
+			var sz = size_key.innerHTML; 
 			
 			if(type === 'plus') {
-				//if (sz == '4') {
-				//	alert("123");
-				//	return;
-				//}
+				
+				if (sz == '5') {
+					alert("해당 상품은 최대 5pcs까지 구매 가능합니다.");
+					return;
+				}
 				
 				num = parseInt(num) + 1;
 				total_num = parseInt(total_num) + 1
-			}else if(type === 'minus')  {
+				
+			} else if(type === 'minus')  {
+				
 				if(num > 1) {
 					num = parseInt(num) - 1;
 					total_num = parseInt(total_num) - 1;
 				} 
 			}
+			
 			total_qt.innerText = total_num;
 			cnt.innerText = num;
 			
@@ -896,7 +899,9 @@ a.active {
 		var count = 0;
 		
 		function sizeBuy(size) {
-
+			
+			var check_id = document.querySelector('input[name="pr_color"]:checked').id;
+			
 			var total_qt = document.getElementById('total_qt');
 			var total_num = total_qt.innerText;
 			
@@ -914,8 +919,8 @@ a.active {
 				
 				var sz = size_key.innerHTML; 
 				
-				if (sz == '4') {
-					alert("123");
+				if (sz == '5') {
+					alert("해당 상품은 최대 5pcs까지 구매 가능합니다.");
 					return;
 				}
 				
@@ -936,7 +941,7 @@ a.active {
 				var subDiv1 = document.createElement('div');
 	
 			    subDiv1.id = color + '/buy_payment/' + size; 
-			    subDiv1.classList.add('payment_d');  		    
+			    //subDiv1.classList.add('payment_d');  		    
 			    subDiv1.style.display = 'flex';  
 			    //subDiv1.style.justifyContent = 'space-between';
 			    subDiv1.style.paddingTop = '10px';  
@@ -1030,6 +1035,10 @@ a.active {
 				subDiv10.id = 'buy_del' + count;  
 				subDiv10.style.fontFamily = 'Noto Sans KR, sans-serif';
 				subDiv10.style.paddingLeft = '10px';
+				
+				var subDiv11 = document.createElement('div');
+				subDiv11.id = color +'/' + check_id + '/' + size;  
+				subDiv11.classList.add('payment_d');
 				//subDiv10.style.width = '30px';
 	
 				subDiv1.appendChild(subDiv2);
@@ -1044,6 +1053,7 @@ a.active {
 				subDiv9_a.appendChild(subDiv9);
 				subDiv10.appendChild(subDiv9_a);
 				subDiv1.appendChild(subDiv10);
+				subDiv1.appendChild(subDiv11);
 			    newProductDiv.appendChild(subDiv1);
 			    productDetailsDiv.appendChild(newProductDiv);
 	
@@ -1053,18 +1063,16 @@ a.active {
 			total_num = parseInt(total_num) + 1
 			total_qt.innerText = total_num;
 			
-			//var id_price = document.getElementById('pro_price');	     
 			var total_price = document.getElementById('total_price');	     
-			//var price = id_price.innerHTML;
 			total_price.innerText = price * total_num;
 			
-	
+			/*
 			var payment = document.getElementById("buy_payment");
 
 			if(payment.style.display == "none") {
 				payment.style.display = "";
 			}
-
+			
 			var id_cr = document.getElementById('sel_color');
 			
 			
@@ -1075,12 +1083,12 @@ a.active {
 			var total_qt = document.getElementById('total_qt');
 
 	        buy_name.innerHTML = size + "/" + cr;
-	        total_qt.innerHTML = price;
+	        total_qt.innerHTML = price;*/
 		}
 		
 		
 		function fn_buy() {
-			alert("구매 버튼");
+	
 			
 			var parent_div = document.getElementById('sourceDiv');
             
@@ -1089,12 +1097,18 @@ a.active {
             var child_qt = parent_div.getElementsByClassName('buy_qt');
             var child_cnt = child_div.length;
 
-            for (var i = 0; i < child_cnt; i++) {
-                var childDiv = child_div[i];
-                var childqt = child_qt[i].innerText;
-                var childId = childDiv.id;
-                console.log('Child div ID: ' + childId + '/' + childqt);
-            }
+			if ( child_cnt > 0 ) {
+	
+				for (var i = 0; i < child_cnt; i++) {
+	                var childDiv = child_div[i];
+	                var childqt = child_qt[i].innerText;
+	                var childId = childDiv.id;
+	                console.log('Child div ID: ' + childId + '/' + childqt);
+	            }
+			} else {
+				alert("상품을 선택해 주세요.");
+			}
+            
 		}
 		
 		
