@@ -604,12 +604,13 @@ a.active {
 				//alert("삭제" + LK);
 				var URL = '<%=notWithFormTag%>liDelete';
 				LK = null;
-				document.getElementById("ht-image").src = "./Image/bht.png";
+				document.getElementById("ht-image").src = "${pageContext.request.contextPath}/Image/bht.png";
+				
 			} else {
 				//alert("저장" + LK);
 				var URL = '<%=notWithFormTag%>liInsert';
 				LK = "LK";	
-				document.getElementById("ht-image").src = "./Image/ht.png";
+				document.getElementById("ht-image").src = "${pageContext.request.contextPath}/Image/ht.png";
 			}
 
 			$.ajax({
@@ -630,7 +631,7 @@ a.active {
 <body>
 	<div class="product_top">
 		<div class="big-image-container">
-			<img class="big-image" src="./Image/Detail_main/${bean.PROIMG}" alt="">
+			<img class="big-image" src="${pageContext.request.contextPath}/Image/Detail_main/${bean.PROIMG}" alt="">
 		</div>
 		<div class="text-container">
 			<h1 class="font-top">${bean.PRONM} | ${bean.PROCD}</h1>
@@ -651,8 +652,8 @@ a.active {
 						src="" onclick="changeImage('${bean.PRONM}')" /></a>
 					
 					&nbsp;&nbsp;<span style="color:#B5B4B4;">|</span>
-					<a href="https://www.facebook.com/?locale=ko_KR" target="_blank"><img class="facebook-image" src="./Image/facebook.png" alt="facebook"></a>
-					<a href="https://twitter.com/?lang=ko" target="_blank"><img class="twitter-image" src="./Image/twitter.png" alt="twitter"></a>
+					<a href="https://www.facebook.com/?locale=ko_KR" target="_blank"><img class="facebook-image" src="${pageContext.request.contextPath}/Image/facebook.png" alt="facebook"></a>
+					<a href="https://twitter.com/?lang=ko" target="_blank"><img class="twitter-image" src="${pageContext.request.contextPath}/Image/twitter.png" alt="twitter"></a>
 						
 						
 				</div>
@@ -686,7 +687,7 @@ a.active {
 							<li>
 								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" checked="checked" /> 
 								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
-									<img src="./Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
+									<img src="${pageContext.request.contextPath}/Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
 								</label>
 							</li>
 						</c:if>
@@ -695,7 +696,7 @@ a.active {
 							<li>
 								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" /> 
 								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
-									<img src="./Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
+									<img src="${pageContext.request.contextPath}/Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
 								</label>
 							</li>
 						</c:if>
@@ -782,9 +783,9 @@ a.active {
 		var chk = document.getElementById("ht-image").src;
 		
 		if (LK) {
-			document.getElementById("ht-image").src = "./Image/ht.png";
+			document.getElementById("ht-image").src = "${pageContext.request.contextPath}/Image/ht.png";
 		} else {
-			document.getElementById("ht-image").src = "./Image/bht.png";
+			document.getElementById("ht-image").src = "${pageContext.request.contextPath}/Image/bht.png";
 		}
 		
 		// 첫 시작 컬러값 설정
@@ -1136,7 +1137,7 @@ a.active {
 			<div id="pr_details" style="margin-bottom:100px; text-align:center" id="prodAddInfo_wrap">
 				<br><br><br><br><br>
 				${bean.PROIMG1}
-				<img src="./Image/Details/${bean.PROIMG1}">
+				<img src="${pageContext.request.contextPath}/Image/Details/${bean.PROIMG1}">
 			</div>
 
 			<div id="pr_main_review" class="section Re_review">
