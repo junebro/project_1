@@ -426,7 +426,7 @@ button {
 .main-page { 
 	margin : 110px;
 	padding-left: 120px;
-}
+} 
 </style>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
