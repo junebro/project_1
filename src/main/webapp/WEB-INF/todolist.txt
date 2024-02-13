@@ -19,10 +19,10 @@ DetailProduct=com.shopping.product.ProductDetailController
 #boDetail=com.shopping.board.BoardDetailController
 # member section
 meLogin=com.shopping.member.MemberLoginController
-#meLogout=com.shopping.member.MemberLogoutController
+meLogout=com.shopping.member.MemberLogoutController
 meInsert=com.shopping.member.MemberInsertController
 # mypage section
-#myUpdate=com.shopping.member.MypageUpdateController
+myUpdate=com.shopping.member.MypageUpdateController
 #myDelete=com.shopping.member.MypageDeleteController
 #myDetail=com.shopping.member.MypageDetailController
 # like section

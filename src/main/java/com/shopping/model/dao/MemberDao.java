@@ -32,7 +32,8 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(7, bean.getMBREM());
 			pstmt.setInt(8, bean.getMBRPT());
 			pstmt.setString(9, bean.getMBRBT());
-			pstmt.setString(10, bean.getMBRID());
+			pstmt.setString(10, bean.getMBRGD());
+			pstmt.setString(11, bean.getMBRID());
 
 			cnt = pstmt.executeUpdate();
 			conn.commit();
