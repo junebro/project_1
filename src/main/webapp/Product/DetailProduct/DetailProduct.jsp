@@ -630,7 +630,7 @@ a.active {
 <body>
 	<div class="product_top">
 		<div class="big-image-container">
-			<img class="big-image" src="./Image/Detail_main/2.Lifestyle/${bean.PROIMG}" alt="">
+			<img class="big-image" src="./Image/Detail_main/${bean.PROIMG}" alt="">
 		</div>
 		<div class="text-container">
 			<h1 class="font-top">${bean.PRONM} | ${bean.PROCD}</h1>
@@ -686,7 +686,7 @@ a.active {
 							<li>
 								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" checked="checked" /> 
 								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
-									<img src="./Image/Detail_main/2.Lifestyle/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
+									<img src="./Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
 								</label>
 							</li>
 						</c:if>
@@ -695,7 +695,7 @@ a.active {
 							<li>
 								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" /> 
 								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
-									<img src="./Image/Detail_main/2.Lifestyle/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
+									<img src="./Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
 								</label>
 							</li>
 						</c:if>
@@ -835,8 +835,17 @@ a.active {
 			var id_price = document.getElementById('pro_price');	     
 			var total_price = document.getElementById('total_price');	     
 			var price = id_price.innerHTML;
-
+			
+			//var S_key = color + '/' + size;
+			//var size_key = document.getElementById(S_key);
+			//var sz = size_key.innerHTML; 
+			
 			if(type === 'plus') {
+				//if (sz == '4') {
+				//	alert("123");
+				//	return;
+				//}
+				
 				num = parseInt(num) + 1;
 				total_num = parseInt(total_num) + 1
 			}else if(type === 'minus')  {
@@ -886,7 +895,7 @@ a.active {
 		var count = 0;
 		
 		function sizeBuy(size) {
-		
+
 			var total_qt = document.getElementById('total_qt');
 			var total_num = total_qt.innerText;
 			
@@ -902,13 +911,20 @@ a.active {
 			
 			if (size_key) {
 				
+				var sz = size_key.innerHTML; 
+				
+				if (sz == '4') {
+					alert("123");
+					return;
+				}
+				
 				var cnt = size_key.innerText;
 				cnt = parseInt(cnt) + 1;
 
 				size_key.innerText = cnt;
 				
 			} else {
-
+				
 				var total_class = document.getElementById('total_class');
 				total_class.style.display = '';
 
@@ -1100,7 +1116,7 @@ a.active {
 			<div id="pr_details" style="margin-bottom:100px; text-align:center" id="prodAddInfo_wrap">
 				<br><br><br><br><br>
 				${bean.PROIMG1}
-				<img src="./Image/Details/2.Lifestyle/${bean.PROIMG1}">
+				<img src="./Image/Details/${bean.PROIMG1}">
 			</div>
 
 			<div id="pr_main_review" class="section Re_review">
