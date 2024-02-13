@@ -756,22 +756,22 @@ a.active {
 			<br>
 			<div>
 				<div class="card_banner">
-					<a href="https://www.nbkorea.com/etc/collection.action?collectionIdx=5365" data-gtag-idx="fo_detail_2" data-gtag-label="Wearable tech, 1906R">
+					<a href="https://www.nbkorea.com/etc/collection.action?collectionIdx=5365" data-gtag-idx="fo_detail_2" data-gtag-label="Wearable tech, 1906R"></a>
 					<img src="https://image.nbkorea.com/NBRB_Banner/20240112/NB20240112094037484001.jpg" alt="Wearable tech, 1906R"/>	
 				</div>
 				<div class="card_banner">
-					<a href="https://www.nbkorea.com/collection/HERITAGEDROP1.action" data-gtag-idx="fo_detail_2" data-gtag-label="New Balance HERITAGE DROP1">
+					<a href="https://www.nbkorea.com/collection/HERITAGEDROP1.action" data-gtag-idx="fo_detail_2" data-gtag-label="New Balance HERITAGE DROP1"></a>
 					<img src="https://image.nbkorea.com/NBRB_Banner/20240119/NB20240119125937348001.jpg" alt="New Balance HERITAGE DROP1"/>
 				</div>
 				<div class="card_banner">
-					<a href="https://www.nbkorea.com/etc/collection.action?collectionIdx=5362" data-gtag-idx="fo_detail_2" data-gtag-label="The MADE in USA, 990v6 restock">
+					<a href="https://www.nbkorea.com/etc/collection.action?collectionIdx=5362" data-gtag-idx="fo_detail_2" data-gtag-label="The MADE in USA, 990v6 restock"></a>
 					<img src="https://image.nbkorea.com/NBRB_Banner/20240129/NB20240129142525506001.jpg" alt="The MADE in USA, 990v6 restock"/>
 				</div>
 			</div>
 			<br>
 			<div class="div_btn">
 				<button class="btn_white btn_Basket">장바구니</button>
-				<button class="btn_buy">구 매</button>
+				<button class="btn_buy" onclick="fn_buy()">구 매</button>
 			</div>
 		</div>
 	</div>
@@ -975,6 +975,7 @@ a.active {
 				var subDiv5 = document.createElement('div');
 			    
 				subDiv5.id = color + '/' + size;
+				subDiv5.classList.add('buy_qt'); 
 			    subDiv5.style.paddingLeft = '10px';  
 			    subDiv5.style.paddingRight = '10px';  
 			    subDiv5.innerHTML = '<p>' + 1 + '</p>';
@@ -1056,10 +1057,7 @@ a.active {
 			//var price = id_price.innerHTML;
 			total_price.innerText = price * total_num;
 			
-			
-			
-			
-			
+	
 			var payment = document.getElementById("buy_payment");
 
 			if(payment.style.display == "none") {
@@ -1080,6 +1078,24 @@ a.active {
 		}
 		
 		
+		function fn_buy() {
+			alert("구매 버튼");
+			
+			var parent_div = document.getElementById('sourceDiv');
+            
+            // Get child divs
+            var child_div = parent_div.getElementsByClassName('payment_d');
+            var child_qt = parent_div.getElementsByClassName('buy_qt');
+            var child_cnt = child_div.length;
+
+            for (var i = 0; i < child_cnt; i++) {
+                var childDiv = child_div[i];
+                var childqt = child_qt[i].innerText;
+                var childId = childDiv.id;
+                console.log('Child div ID: ' + childId + '/' + childqt);
+            }
+		}
+		
 		
 		// SELECT BOX
 		$(document).ready(function() {
@@ -1095,6 +1111,10 @@ a.active {
 				$(this).siblings('label').text(select_name);
 			});
 		});
+		
+		
+		
+		
 	</script>
 
 	<div class="tab_box">
