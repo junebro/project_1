@@ -184,11 +184,11 @@ button {
 	height: 43px;
 	padding-top: 3px;
 }
+
 </style>
 <title>Insert title here</title>
 
 </head>
 <body>
-
 </body>
 </html>

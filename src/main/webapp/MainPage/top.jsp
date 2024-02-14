@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%
+// appName : 애플리케이션 컨텍스트 이름(프로젝트 이름)
+String appName = request.getContextPath();
+String mappingName = "/Shopping_project"; // in FrontController.java file
+
+// 폼 태그에서 사용할 전역 변수
+String withFormTag = appName + mappingName;
+
+// 폼 태그가 아닌 곳에서 사용할 전역 변수
+String notWithFormTag = withFormTag + "?command=";
+
+//out.print("컨텍스트 이름 : " + appName + "<br/>");
+//out.print("mappingName : " + mappingName + "<br/>");
+//out.print("withFormTag : " + withFormTag + "<br/>");
+//out.print("notWithFormTag : " + notWithFormTag + "<br/>");
+%>
 <style>
 * {
 	box-sizing: border-box;
@@ -13,7 +31,7 @@ body {
 .menuwrap {
 	width: 100%;
 	text-align: center;
-	margin-top:100px;
+	margin-top: 100px;
 }
 
 .hidden {
@@ -106,7 +124,6 @@ a:visited {
 .dropdown {
 	position: relative;
 	display: inline-block;
-	
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -170,8 +187,8 @@ section {
 }
 
 #topimage {
-	width:300px;
-	height:150px;
+	width: 300px;
+	height: 150px;
 }
 </style>
 <link
@@ -183,24 +200,38 @@ section {
 <section id="topwrap">
 	<nav class="topmenu">
 		<ul>
-			<li><a href="${pageContext.request.contextPath}/Member/MemberJoin.jsp">회원가입&nbsp;</a></li>
-			<li><a href="${pageContext.request.contextPath}/Member/loginMain.jsp">로그인&nbsp;</a></li>
-			<li><a href="${pageContext.request.contextPath}/Member/MyCart.jsp">장바구니&nbsp;</a></li>
-			<li><a href="${pageContext.request.contextPath}/MyPage/MyPageM.jsp">주문조회&nbsp;</a></li>
-			<li><a href="#">최근본상품&nbsp;</a></li>
-			<li style="border: none;"><a href="#">고객센터&nbsp;</a></li>
+			<li><a
+				href="${pageContext.request.contextPath}/Member/MemberJoin.jsp">회원가입&nbsp;</a></li>
+			<c:choose>
+				<c:when test="${sessionScope.loginfo.MBRID != null}">
+					<li><a href="<%=notWithFormTag%>meLogout">로그아웃&nbsp;</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a
+						href="${pageContext.request.contextPath}/Member/loginMain.jsp">로그인&nbsp;</a></li>
+				</c:otherwise>
+			</c:choose>
+			<li><a
+				href="${pageContext.request.contextPath}/Member/MyCart.jsp">장바구니&nbsp;</a></li>
+			<li><a
+				href="${pageContext.request.contextPath}/MyPage/MyPageM.jsp">주문조회&nbsp;</a></li>
+			<li><a
+				href="${pageContext.request.contextPath}/MyPage/MyPageM.jsp">최근본상품&nbsp;</a></li>
+			<li><a
+				href="${pageContext.request.contextPath}/MyPage/MyPageM.jsp">고객센터&nbsp;</a></li>
 		</ul>
 	</nav>
 	<br>
-	<div style="display:flex; justify-content: center; width:100%;background-color:white;">
-	<img id="topimage" src="${pageContext.request.contextPath}/Image/2main.png">
-	<br>
+	<div
+		style="display: flex; justify-content: center; width: 100%; background-color: white;">
+		<img id="topimage"
+			src="${pageContext.request.contextPath}/Image/2main.png"> <br>
 	</div>
-	
-	
+
+
 	<!-- <header>
     </header> -->
-	<div style="background-color:white;">
+	<div style="background-color: white;">
 		<div class="dropdown">
 			<button class="dropbtn"
 				onclick="location.href='http://www.naver.com'">Home</button>
