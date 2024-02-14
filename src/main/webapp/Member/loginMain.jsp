@@ -71,7 +71,6 @@ body {
 	padding: 40px;
 	box-sizing: border-box;
 	margin: 0 auto;
-	margin-top: 100px;
 }
 
 .login-wrapper>h2 {
@@ -80,7 +79,7 @@ body {
 	font-weight: bolder;
 	color: #000000;
 	margin-bottom: 30px;
-	margin-top: 100px;
+	margin-top: 80px;
 }
 
 #login-form>input {
@@ -103,7 +102,7 @@ body {
 	background-color: #000000;
 	margin-top: 20px;
 }
-
+/*
 #login-form>.login-kakao {
 	color: #000000;
 	font-size: 16px;
@@ -125,7 +124,7 @@ body {
 	margin-top: 20px;
 	border: 1px solid black;
 }
-
+*/
 #login-form>input[type="checkbox"] {
 	display: none;
 }
@@ -162,47 +161,6 @@ body {
 	margin-top: 30px;
 	font-size: 20px;
 }
-
-.header {
-	height: 75px;
-	padding: 1rem;
-	font-weight: bold;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	font-family: 'Noto Sans KR', sans-serif;
-}
-
-.header a {
-	color: #000000;
-	text-decoration-line: none;
-	font-size: 20px;
-}
-
-.header .customer {
-	text-align: right;
-}
-
-.header .customer a {
-	margin-right: 30px;
-}
-
-li {
-	list-style-type: none;
-	list-style: none;
-}
-
-.header .collapse {
-	margin-left: 70px;
-}
-
-.header .collapse li {
-	margin-left: 50px;
-}
 </style>
 </head>
 
@@ -215,58 +173,7 @@ li {
 </script>
 
 <body>
-	<div class="header">
-		<nav class="navbar navbar-expand-sm fixed-top">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">늒발란스</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="collapsibleNavbar">
-					<ul class="navbar-nav">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown">Men</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">링크1</a></li>
-								<li><a class="dropdown-item" href="#">링크2</a></li>
-								<li><a class="dropdown-item" href="#">링크3</a></li>
-							</ul></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown">Women</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">링크1</a></li>
-								<li><a class="dropdown-item" href="#">링크2</a></li>
-								<li><a class="dropdown-item" href="#">링크3</a></li>
-							</ul></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown">Kid</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">링크1</a></li>
-								<li><a class="dropdown-item" href="#">링크2</a></li>
-								<li><a class="dropdown-item" href="#">링크3</a></li>
-							</ul></li>
-						<li class="nav-search dropdown"><a
-							class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown">검색</a>
-							<ul class="dropdown-menu">
-								<input class="form-control me-2" type="text" placeholder="검색">
-							</ul></li>
-					</ul>
-				</div>
-				<div class="customer">
-					<li class="nav-menu"><a href="MainPage/index.jsp">로그인</a> <a
-						href="Member/MemberJoin.jsp">회원가입</a> <a href="Member/MyCart.jsp">
-							<span class="blind">장바구니</span>
-					</a></li>
-				</div>
-			</div>
-		</nav>
-	</div>
-
+	<jsp:include page="./../MainPage/top.jsp" />
 	<div class="login-wrapper">
 		<h2>LOG IN</h2>
 		<form method="post" action="<%=withFormTag%>" id="login-form">
