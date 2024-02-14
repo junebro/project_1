@@ -31,7 +31,7 @@ public class SuperDao {
 		int cnt = -1;
 		
 		try {
-			this.conn = this.getConnection();
+			this.conn = this.JgetConnection();
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
@@ -52,6 +52,7 @@ public class SuperDao {
 				e2.printStackTrace();
 			}
 		}
+		System.out.println("총갯수: "+ cnt);
 		return cnt;
 	}
 	
@@ -91,7 +92,7 @@ public class SuperDao {
 	}
 	public Connection JgetConnection() {
 		// 접속 객체를 구해줍니다.
-		String url = "jdbc:oracle:thin:@localhost:1521:xe" ;
+		String url = "jdbc:oracle:thin:@192.168.0.86:1521:xe" ;
 		String id = "oneproject" ;
 		String password = "oracle" ;
 		

@@ -25,7 +25,7 @@ public class SuperClass implements SuperController{
 		// todoCommand " todolist.txt 파일에 명시된 커맨드 이름
 		// 커맨드 이름을 사용하여 웹 주소 형식의 FullName을 반환해 줍니다.
 		String appName = this.request.getContextPath();	// in file common.jsp
-		String mappingName = "/Shopping" ; // url Pattern in file FrontController
+		String mappingName = "/Shopping_project" ; // url Pattern in file FrontController
 		
 		String fullAddress = appName + mappingName + "?command=" + todoCommand;
 		System.out.println("요청 url 전체 경로명:\n" + fullAddress);
