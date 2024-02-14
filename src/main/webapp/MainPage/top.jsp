@@ -64,11 +64,18 @@ a:visited {
 	font-size: 13px;
 }
 
-.topmenu a:hover {
+.topmenu .libt:hover {
 	font-weight: bold;
 	color: rgb(23, 84, 176);
 }
 
+.libt {
+	border: 0;
+	outline: 0;
+	background-color: white;
+	color: rgba(128, 128, 128);
+	font-size: 13px;
+}
 /*
 	header{
 	    opacity: 0.7;
@@ -144,7 +151,6 @@ a:visited {
 	color: #e6e6fa;
 }
 
-
 /* 회색선 */
 .underline {
 	border-bottom: 1px solid rgba(128, 128, 128, 0.5); /* 투명도를 포함한 회색 선 */
@@ -165,30 +171,43 @@ section {
 	href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap"
 	rel="stylesheet">
 <script type="text/javascript">
-	
+	function call_confirm() {
+		if (confirm("로그인 하시겠습니까?")) {
+			location.href = '${pageContext.request.contextPath}/Member/loginMain.jsp';
+		}
+	}	
 </script>
 <section id="topwrap">
 	<nav class="topmenu">
 		<ul>
-			<li><a
-				href="${pageContext.request.contextPath}/Member/MemberJoin.jsp">회원가입&nbsp;</a></li>
+			<li><button type="button" onclick="location.href='${pageContext.request.contextPath}/Member/MemberJoin.jsp'"
+							class="libt">회원가입&nbsp;</button></li>
 			<c:choose>
 				<c:when test="${sessionScope.loginfo.MBRID != null}">
-					<li><a href="<%=notWithFormTag%>meLogout">로그아웃&nbsp;</a></li>
+				<li><button type="button" onclick="location.href = '<%=notWithFormTag%>meLogout'"
+							class="libt">로그아웃&nbsp;</button></li>
+					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/Member/MyCart.jsp'"
+							class="libt">장바구니&nbsp;</button></li>
+					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/MyPage/MyPageM.jsp'"
+							class="libt">주문조회&nbsp;</button></li>
+					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/MyPage/MyPageM.jsp'"
+							class="libt">최근본상품&nbsp;</button></li>
+					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/MyPage/MyPageM.jsp'"
+							class="libt">고객센터&nbsp;</button></li>
 				</c:when>
 				<c:otherwise>
 					<li><a
 						href="${pageContext.request.contextPath}/Member/loginMain.jsp">로그인&nbsp;</a></li>
+					<li><button type="button" onclick="call_confirm()"
+							class="libt">장바구니&nbsp;</button></li>
+					<li><button type="button" onclick="call_confirm()"
+							class="libt">주문조회&nbsp;</button></li>
+					<li><button type="button" onclick="call_confirm()"
+							class="libt">최근본상품&nbsp;</button></li>
+					<li><button type="button" onclick="call_confirm()"
+							class="libt">고객센터&nbsp;</button></li>
 				</c:otherwise>
 			</c:choose>
-			<li><a
-				href="${pageContext.request.contextPath}/Member/MyCart.jsp">장바구니&nbsp;</a></li>
-			<li><a
-				href="${pageContext.request.contextPath}/MyPage/MyPageM.jsp">주문조회&nbsp;</a></li>
-			<li><a
-				href="${pageContext.request.contextPath}/MyPage/MyPageM.jsp">최근본상품&nbsp;</a></li>
-			<li><a
-				href="${pageContext.request.contextPath}/MyPage/MyPageM.jsp">고객센터&nbsp;</a></li>
 		</ul>
 	</nav>
 	<br>

@@ -448,7 +448,7 @@ button {
 	<div class="justify-content-center row">
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">
-			<h1>마이 쇼핑'${message}'</h1>
+			<h1>마이 쇼핑</h1>
 			<table class="Myt">
 				<tbody>
 					<tr>
