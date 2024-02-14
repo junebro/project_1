@@ -25,6 +25,10 @@ public class MemberLoginController extends SuperClass {
 		
 		MemberDao dao = new MemberDao();
 		Member bean = dao.getDataByIdAndPassword(MBRID, MBRPW);
+
+		String Message = "안됨";
+		request.setAttribute("Message", Message);
+		
 		if (bean == null) { // 로그인 실패
 			System.out.println("로그인 실패");
 			super.setAlertMessage("로그인 정보가 잘못되었습니다.");

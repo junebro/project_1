@@ -49,6 +49,8 @@
 	rel="stylesheet">
 
 
+<c:set var="Message" value="${requestScope.Message}" />
+
 <title>Insert title here</title>
 <style type="text/css">
 * {
@@ -203,6 +205,15 @@ li {
 }
 </style>
 </head>
+
+<script>
+
+	var message = "${requestScope.Message}";
+	if (message != "") {
+		alert(message);
+	}
+</script>
+
 <body>
 	<div class="header">
 		<nav class="navbar navbar-expand-sm fixed-top">
@@ -265,30 +276,14 @@ li {
 				for="remember-check"> <input type="checkbox"
 				id="remember-check">아이디 저장하기 <a
 				href="/customer/direct.FindID.action" class="alink">아이디/비밀번호 찾기</a>
-			</label> <input type="submit" value="로그인" class="login-default" id="submitbt"
-				onclick="validbt()">
+			</label> <input type="submit" value="로그인" class="login-default" id="submitbt">
 			<div class="nonMembers_txt">
 				<a href="/noncustomer/findNonCustomerOrder.action" class="blink">비회원
 					주문조회</a>
 			</div>
 		</form>
 	</div>
-	<script>
-	function validbt() {
-	    var alertMessage = '<%=session.getAttribute("alertMessage")%>';
-			if (alertMessage != '로그인 정보가 잘못되었습니다.') {
-				//document.getElementById("login-form").submit();
-			} else {
-				alert('123123');
-				alert('로그인 정보가 잘못되었습니다.');
-			}
-		}
-	</script>
+	
 
-	<%
-	if(session.getAttribute("alertMessage")=="로그인 정보가 잘못되었습니다."){
-		session.setAttribute("alertMessage", "");
-	}
-	%>
 </body>
 </html>
