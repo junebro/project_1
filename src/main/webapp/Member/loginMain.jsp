@@ -122,6 +122,10 @@ body {
 </head>
 
 <script>
+	var message = "${requestScope.Message}";
+	if (message != "") {
+		alert(message);
+	}
 	$(function() {
 
 		fnInit();
