@@ -8,54 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- 폰트 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-
-<!-- 상단 -->
-<!--  font-family: 'Kanit', sans-serif;  -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap"
-	rel="stylesheet">
-
-<!--  헤더 / 탭 메뉴 / 배너,썸네일 등 소개 문구 / 상품소개 타이틀 문구 -->
-<!-- font-family: 'Noto Sans KR', sans-serif; -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
-	rel="stylesheet">
-
-<!-- 상품 상세 페이지 -->
-<!-- font-family: 'Noto Sans KR', sans-serif; -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
-	rel="stylesheet">
-
-<!-- 이용약관, 개인정보처리방침, 개인정보 수집 이용동의 박스 -->
-<!-- font-family: 'Gothic A1', sans-serif; -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200&display=swap"
-	rel="stylesheet">
-
-<!-- 버튼 -->
-<!-- font-family: 'Black Han Sans', sans-serif; -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
-	rel="stylesheet">
-
-
 <c:set var="Message" value="${requestScope.Message}" />
 
 <title>Insert title here</title>
 <style type="text/css">
 * {
-	padding: 0;
-	margin: 0;
 	border: none;
 }
 
@@ -161,6 +118,7 @@ body {
 	margin-top: 30px;
 	font-size: 20px;
 }
+
 </style>
 </head>
 
@@ -177,16 +135,16 @@ body {
 	<div class="login-wrapper">
 		<h2>LOG IN</h2>
 		<form method="post" action="<%=withFormTag%>" id="login-form">
-			<input type="hidden" name="command" value="meLogin"> <input
-				type="text" name="MBRID" placeholder="아이디"> <input
-				type="password" name="MBRPW" placeholder="비밀번호"> <label
-				for="remember-check"> <input type="checkbox"
-				id="remember-check">아이디 저장하기 <a
-				href="/customer/direct.FindID.action" class="alink">아이디/비밀번호 찾기</a>
-			</label> <input type="submit" value="로그인" class="login-default" id="submitbt">
+			<input type="hidden" name="command" value="meLogin">
+			<input type="text" name="MBRID" placeholder="아이디">
+			<input type="password" name="MBRPW" placeholder="비밀번호">
+				<label for="remember-check">
+					<input type="checkbox" id="remember-check">아이디 저장하기
+					<a href="/customer/direct.FindID.action" class="alink">아이디/비밀번호 찾기</a>
+				</label>
+			<input type="submit" value="로그인" class="login-default" id="submitbt">
 			<div class="nonMembers_txt">
-				<a href="/noncustomer/findNonCustomerOrder.action" class="blink">비회원
-					주문조회</a>
+				<a href="/noncustomer/findNonCustomerOrder.action" class="blink">비회원 주문조회</a>
 			</div>
 		</form>
 	</div>
