@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="./../common/common.jsp" %>
+<%@ include file="./../common/common.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -203,74 +204,91 @@ li {
 </style>
 </head>
 <body>
-	
-		<div class="header">
-			<nav class="navbar navbar-expand-sm fixed-top">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="#">늒발란스</a>
-					<button class="navbar-toggler" type="button"
-						data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="collapsibleNavbar">
-						<ul class="navbar-nav">
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" href="#" role="button"
-								data-bs-toggle="dropdown">Men</a>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">링크1</a></li>
-									<li><a class="dropdown-item" href="#">링크2</a></li>
-									<li><a class="dropdown-item" href="#">링크3</a></li>
-								</ul></li>
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" href="#" role="button"
-								data-bs-toggle="dropdown">Women</a>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">링크1</a></li>
-									<li><a class="dropdown-item" href="#">링크2</a></li>
-									<li><a class="dropdown-item" href="#">링크3</a></li>
-								</ul></li>
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" href="#" role="button"
-								data-bs-toggle="dropdown">Kid</a>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">링크1</a></li>
-									<li><a class="dropdown-item" href="#">링크2</a></li>
-									<li><a class="dropdown-item" href="#">링크3</a></li>
-								</ul></li>
-							<li class="nav-search dropdown"><a
-								class="nav-link dropdown-toggle" href="#" role="button"
-								data-bs-toggle="dropdown">검색</a>
-								<ul class="dropdown-menu">
-									<input class="form-control me-2" type="text" placeholder="검색">
-								</ul></li>
-						</ul>
-					</div>
-					<div class="customer">
-						<li class="nav-menu"><a href="MainPage/index.jsp">로그인</a> <a
-							href="Member/MemberJoin.jsp">회원가입</a> <a href="Member/MyCart.jsp"> <span
-								class="blind">장바구니</span>
-						</a></li>
-					</div>
+	<div class="header">
+		<nav class="navbar navbar-expand-sm fixed-top">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">늒발란스</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="collapsibleNavbar">
+					<ul class="navbar-nav">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown">Men</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">링크1</a></li>
+								<li><a class="dropdown-item" href="#">링크2</a></li>
+								<li><a class="dropdown-item" href="#">링크3</a></li>
+							</ul></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown">Women</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">링크1</a></li>
+								<li><a class="dropdown-item" href="#">링크2</a></li>
+								<li><a class="dropdown-item" href="#">링크3</a></li>
+							</ul></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown">Kid</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">링크1</a></li>
+								<li><a class="dropdown-item" href="#">링크2</a></li>
+								<li><a class="dropdown-item" href="#">링크3</a></li>
+							</ul></li>
+						<li class="nav-search dropdown"><a
+							class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown">검색</a>
+							<ul class="dropdown-menu">
+								<input class="form-control me-2" type="text" placeholder="검색">
+							</ul></li>
+					</ul>
 				</div>
-			</nav>
-		</div>
-		<div class="login-wrapper">
-			<h2>LOG IN</h2>
-			<form method="post" action="<%=withFormTag %>" id="login-form">
-			<input type="hidden" name="command" value="meLogin">
-				<input type="text" name="MBRID" placeholder="아이디"> <input
-					type="password" name="MBRPW" placeholder="비밀번호"> <label
-					for="remember-check"> <input type="checkbox"
-					id="remember-check">아이디 저장하기 <a
-					href="/customer/direct.FindID.action" class="alink">아이디/비밀번호 찾기</a>
-				</label> <input type="submit" value="로그인" class="login-default">
-				<div class="nonMembers_txt">
-					<a href="/noncustomer/findNonCustomerOrder.action" class="blink">비회원
-						주문조회</a>
+				<div class="customer">
+					<li class="nav-menu"><a href="MainPage/index.jsp">로그인</a> <a
+						href="Member/MemberJoin.jsp">회원가입</a> <a href="Member/MyCart.jsp">
+							<span class="blind">장바구니</span>
+					</a></li>
 				</div>
-			</form>
-		</div>
-	
+			</div>
+		</nav>
+	</div>
+
+	<div class="login-wrapper">
+		<h2>LOG IN</h2>
+		<form method="post" action="<%=withFormTag%>" id="login-form">
+			<input type="hidden" name="command" value="meLogin"> <input
+				type="text" name="MBRID" placeholder="아이디"> <input
+				type="password" name="MBRPW" placeholder="비밀번호"> <label
+				for="remember-check"> <input type="checkbox"
+				id="remember-check">아이디 저장하기 <a
+				href="/customer/direct.FindID.action" class="alink">아이디/비밀번호 찾기</a>
+			</label> <input type="submit" value="로그인" class="login-default" id="submitbt"
+				onclick="validbt()">
+			<div class="nonMembers_txt">
+				<a href="/noncustomer/findNonCustomerOrder.action" class="blink">비회원
+					주문조회</a>
+			</div>
+		</form>
+	</div>
+	<script>
+	function validbt() {
+	    var alertMessage = '<%=session.getAttribute("alertMessage")%>';
+			if (alertMessage != '로그인 정보가 잘못되었습니다.') {
+				//document.getElementById("login-form").submit();
+			} else {
+				alert('123123');
+				alert('로그인 정보가 잘못되었습니다.');
+			}
+		}
+	</script>
+
+	<%
+	if(session.getAttribute("alertMessage")=="로그인 정보가 잘못되었습니다."){
+		session.setAttribute("alertMessage", "");
+	}
+	%>
 </body>
 </html>
