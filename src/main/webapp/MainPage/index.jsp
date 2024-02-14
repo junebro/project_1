@@ -58,10 +58,47 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	height: 500px;
 }
 #demo {
-	width: 60%;
+	width: 1000px;
 	display: flex;
 	margin:auto;
 }
+
+.detail{
+	 display: flex;
+	 justify-content: space-between;
+	 margin: 10px;
+	 margin-left: 30px;
+	 margin-right: 30px;
+}
+
+.description {
+	box-sizing: border-box; /* 테두리와 패딩을 포함하여 너비 계산 */
+	color: black;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+.PRONM {
+	 margin-left: 30px;
+	 margin-right: 30px;
+	 font-family: 'Noto Sans KR', sans-serif;
+}
+
+.thumbnail {
+	position: relative; /* 포지션 상대적으로 설정 */
+	display: inline-block;
+}
+.overlay-image {
+	position: absolute; /* 절대 위치 설정 */
+	top: 20px; /* 상단에 위치 */
+	right: 20px; /* 왼쪽에 위치 */
+	/*height: auto;  이미지의 비율을 유지하면서 크기 조정 */
+}
+
+.main-image {
+	/* 기본 이미지에 대한 스타일링 (예: 최대 너비 설정 등) */
+	max-width: 100%;
+	height: auto;
+}
+    
 </style>
 <head>
 <meta charset="UTF-8">
@@ -87,7 +124,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	<br>
 	<!-- Carousel -->
 	<div id="demo" class="carousel slide" data-bs-ride="carousel" >
-
+	
 		<!-- Indicators/dots -->
 		<div class="carousel-indicators" >
 			<button type="button" data-bs-target="#demo" data-bs-slide-to="0"
@@ -102,33 +139,21 @@ ArrayList<String> imgPath = new ArrayList<String>();
 		</div>
 
 		<!-- The slideshow/carousel -->
-		<div class="carousel-inner">
+		<div class="carousel-inner" >
 			<div class="carousel-item active">
-				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main1.jpg"
+				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240213/NB20240213093206542001.jpg"
 					style="width: 100%;">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main2.jpg"
+				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240207/NB20240207145118557001.jpg"
 					style="width: 100%;">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main3.jpg"
+				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240119/NB20240119111110780001.jpg"
 					style="width: 100%;">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main4.jpg"
-					style="width: 100%;">
-			</div>
-			<div class="carousel-item">
-				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main5.jpg"
-					style="width: 100%;">
-			</div>
-			<div class="carousel-item">
-				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main6.jpg"
-					style="width: 100%;">
-			</div>
-			<div class="carousel-item">
-				<img class="d-block" src="${pageContext.request.contextPath}/MainPage/img/main7.jpg"
+				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240207/NB20240207144546818001.jpg"
 					style="width: 100%;">
 			</div>
 		</div>
@@ -155,9 +180,18 @@ ArrayList<String> imgPath = new ArrayList<String>();
 						<div class="thumbnail">
 							<%-- <a href="./img/${list}"> <img src="./img/${list}" alt="Product">--%>
 							<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}"> 
-							<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product">
-								<div class="description">
-									<p>상품 설명 란</p>
+							<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
+							<img src="${pageContext.request.contextPath}/Image/bht.png" alt="ht Icon" style="width: 50px;height: 50px;" class="overlay-image">
+								<div class="PRONM" style="text-align:left; color:black">
+									${product.PRONM} 
+								</div>
+								<div class="detail">
+									<div class="description" style="color:#A5A5A5;">
+										${product.PROCD}
+									</div>
+									<div class="description">
+										${product.PROPR}원
+									</div>
 								</div>
 							</a>
 						</div>
