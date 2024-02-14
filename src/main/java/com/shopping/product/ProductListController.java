@@ -34,6 +34,7 @@ public class ProductListController extends SuperClass{
 		
 //		int beginRow = 1 ;
 //		int endRow = 6 ;
+		/*
 		List<Product> dataList = dao.getDataList(paging);
 		
 		System.out.println("상품 목록 개수 : " + dataList.size());
@@ -41,6 +42,6 @@ public class ProductListController extends SuperClass{
 		request.setAttribute("paging", paging);
 		request.setAttribute("dataList", dataList); // 상품 목록 request 영역에 바인딩
 		
-		super.gotoPage(PREFIX + "prList.jsp");
+		super.gotoPage(PREFIX + "prList.jsp");*/
 	}
 }

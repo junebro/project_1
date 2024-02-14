@@ -193,53 +193,45 @@ public class ProductDao extends SuperDao {
 		return cnt ;
 	}	
 	
-	public List<Product> getDataList(Paging paging){
-		String sql = " select PROTP, PROCD, PRONM, PROSSZ, PROESZ, PROCR, PROPR, PROIMG, PROIMG1, PROIMG2, PROIMG3, PROPNT, PROCMN" ;
-		sql += " from (select rank() over(order by PROCD desc) as ranking, PROTP, PROCD, PRONM, PROSSZ, PROESZ, PROCR, PROPR, PROIMG, PROIMG1, PROIMG2, PROIMG23, PROPNT, PROCMN" ;
-		sql += " from products " ;
+	public List<Product> getDataList(){
 		
-		// 필드 검색을 위하여 mode 변수로 분기 처리하도록 합니다.
-		String mode = paging.getMode() ;
-		String keyword = paging.getKeyword() ;
-		
-		if(mode==null || mode.equals("all") || mode.equals("null") || mode.equals("")) {			
-		}else { // 전체 모드가 아니면
-			sql += " where " + mode + " like '%" + keyword + "%'" ; 
-		}
-		
-		sql += " )" ;
-		sql += " where ranking between ? and ?" ;
-		
-		PreparedStatement pstmt = null ;
-		ResultSet rs = null ;		
-		List<Product> dataList = new ArrayList<Product>() ;
-		
-		super.conn = super.getConnection() ;
-		
+		String sql = "select * from TPRO ";
+		PreparedStatement pstmt = null; // 문장 객체
+		ResultSet rs = null;
+
+		List<Product> dataList = new ArrayList<Product>();
+
+		super.conn = super.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, paging.getBeginRow());
-			pstmt.setInt(2, paging.getEndRow());
-			
+
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				Product bean = this.resultSet2Bean(rs) ;
-				
-				dataList.add(bean) ;
-			}			
-		} catch (SQLException e) { 
+
+			// 요소들 읽어서 컬렉션에 담습니다.
+			while (rs.next()) {
+				Product bean = this.resultSet2Bean(rs);
+
+				dataList.add(bean);
+			}
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(rs != null) {rs.close();}
-				if(pstmt != null) {pstmt.close();}
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
 				super.closeConnection();
+
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}
-		return dataList ;
+
+		return dataList;
 	}		
 	
 	public List<Product> getDataList(int beginRow, int endRow){
@@ -281,6 +273,7 @@ public class ProductDao extends SuperDao {
 	}	
 	
 	private Product resultSet2Bean(ResultSet rs) {
+	
 		try {
 			Product bean = new Product() ;
 			
@@ -297,6 +290,7 @@ public class ProductDao extends SuperDao {
 			bean.setPROIMG3(rs.getString("PROIMG3"));
 			bean.setPROPNT(rs.getInt("PROPNT"));
 			bean.setPROCMN(rs.getString("PROCMN"));
+			
 			return bean ;
 			
 		} catch (Exception e) {
