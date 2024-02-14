@@ -32,11 +32,6 @@ String notWithFormTag = withFormTag + "?command=";
 	/* border-bottom: 20px solid rgb(0,0,0); */
 	/* border: 2px solid rgb(192, 192, 192); */
 }
-
-a:visited {
-	text-decoration: none;
-}
-
 .topmenu ul {
 	list-style: none;
 	float: right;
@@ -52,16 +47,6 @@ a:visited {
 .topmenu li:hover {
 	font-weight: bold;
 	color: rgb(23, 84, 176);
-}
-
-.topmenu a:link {
-	color: rgb(0, 0, 0);
-}
-
-.topmenu a {
-	text-decoration: none;
-	color: rgba(128, 128, 128, 0.5);
-	font-size: 13px;
 }
 
 .topmenu .libt:hover {
@@ -196,8 +181,9 @@ section {
 							class="libt">고객센터&nbsp;</button></li>
 				</c:when>
 				<c:otherwise>
-					<li><a
-						href="${pageContext.request.contextPath}/Member/loginMain.jsp">로그인&nbsp;</a></li>
+					<li><button type="button" onclick="location.href='${pageContext.request.contextPath}/Member/loginMain.jsp'"
+							class="libt">로그인&nbsp;</button>
+					</li>
 					<li><button type="button" onclick="call_confirm()"
 							class="libt">장바구니&nbsp;</button></li>
 					<li><button type="button" onclick="call_confirm()"
