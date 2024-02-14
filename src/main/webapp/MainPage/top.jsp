@@ -74,7 +74,7 @@ a:visited {
 
 .topmenu a {
 	text-decoration: none;
-	font-size: 0.8em;
+	font-size: 13px;
 }
 
 .topmenu a:hover {

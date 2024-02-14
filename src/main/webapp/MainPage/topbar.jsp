@@ -43,7 +43,7 @@ String notWithFormTag = withFormTag + "?command=";
 
 /* 글자 스타일 지정 */
 .topmenu a {
-	font-size: 0.8em;
+	font-size: 13px;
 	text-decoration: none;
 	color: rgba(128, 128, 128, 0.5);
 }
