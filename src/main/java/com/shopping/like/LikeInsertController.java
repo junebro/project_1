@@ -15,7 +15,7 @@ public class LikeInsertController extends SuperClass{
 		System.out.println("LikeInsertController 성공 get");
 		
 		String pronm = request.getParameter("pronm");
-		String mbrid = "aaa";
+		String mbrid = request.getParameter("mbrid");
 		
 		LikeDao ldao = new LikeDao();
 		int cnt = ldao.insertLike(pronm, mbrid);

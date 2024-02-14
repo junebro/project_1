@@ -22,7 +22,7 @@ public class ProductDetailController extends SuperClass{
 		
 		// 상품 조회
 		String pronm = request.getParameter("pronm");
-		String mbrid = "aaa";
+		String mbrid = request.getParameter("mbrid");
 		
 		ProductDetailDao dao = new ProductDetailDao();
 		List<Product> dataList = dao.getDataList(pronm, mbrid);

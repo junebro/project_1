@@ -15,7 +15,7 @@ public class LikeDeleteController extends SuperClass{
 		System.out.println("LikeDeleteController 성공 get");
 		
 		String pronm = request.getParameter("pronm");
-		String mbrid = "aaa";
+		String mbrid = request.getParameter("mbrid");
 		
 		LikeDao ldao = new LikeDao();
 		int cnt = ldao.deleteLike(pronm, mbrid);

@@ -1,3 +1,4 @@
+<%@page import="com.shopping.model.bean.Product_main"%>
 <%@page import="com.shopping.model.bean.Product"%>
 <%@page import="java.util.List"%>
 <%@page import="com.shopping.model.dao.ProductDao"%>
@@ -8,9 +9,11 @@
 <%@ include file="./../common/common.jsp"%>
 
 <%
-	ProductDao dao = new ProductDao();	
-	List<Product> dataList = dao.getDataList();
+	ProductDao dao = new ProductDao();
+	String mbrid = (String)session.getAttribute("MBRID");
+	List<Product_main> dataList = dao.getDataList(mbrid);
 %>
+
 <!-- 
 
 ArrayList<String> imgPath = new ArrayList<String>();
@@ -67,8 +70,8 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	 display: flex;
 	 justify-content: space-between;
 	 margin: 10px;
-	 margin-left: 30px;
-	 margin-right: 30px;
+	 margin-left: 23px;
+	 margin-right: 23px;
 }
 
 .description {
@@ -77,8 +80,8 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	font-family: 'Noto Sans KR', sans-serif;
 }
 .PRONM {
-	 margin-left: 30px;
-	 margin-right: 30px;
+	 margin-left: 20px;
+	 margin-right: 20px;
 	 font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -88,14 +91,14 @@ ArrayList<String> imgPath = new ArrayList<String>();
 }
 .overlay-image {
 	position: absolute; /* 절대 위치 설정 */
-	top: 20px; /* 상단에 위치 */
-	right: 20px; /* 왼쪽에 위치 */
+	top: 12px; /* 상단에 위치 */
+	right: 23px; /* 왼쪽에 위치 */
 	/*height: auto;  이미지의 비율을 유지하면서 크기 조정 */
 }
 
 .main-image {
 	/* 기본 이미지에 대한 스타일링 (예: 최대 너비 설정 등) */
-	max-width: 100%;
+	max-width: 90%;
 	height: auto;
 }
     
@@ -179,15 +182,21 @@ ArrayList<String> imgPath = new ArrayList<String>();
 					<div class="column">
 						<div class="thumbnail">
 							<%-- <a href="./img/${list}"> <img src="./img/${list}" alt="Product">--%>
-							<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}"> 
+							<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
 							<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
-							<img src="${pageContext.request.contextPath}/Image/bht.png" alt="ht Icon" style="width: 50px;height: 50px;" class="overlay-image">
+							<c:if test="${product.LK == 'LK'}">
+								<img src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image">
+							</c:if>				
+							<c:if test="${product.LK != 'LK'}">
+								<img src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image">
+							</c:if>					
+							
 								<div class="PRONM" style="text-align:left; color:black">
-									${product.PRONM} 
+									
 								</div>
 								<div class="detail">
 									<div class="description" style="color:#A5A5A5;">
-										${product.PROCD}
+										${product.PRONM}
 									</div>
 									<div class="description">
 										${product.PROPR}원

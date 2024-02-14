@@ -39,6 +39,8 @@ public class MemberLoginController extends SuperClass {
 			// loginfo 속성을 사용하여 현재 로그인 상태를 확인할 수 있습니다.
 			super.setAlertMessage("");
 			super.session.setAttribute("loginfo", bean);
+			
+			session.setAttribute("MBRID", MBRID);
 			System.out.println("로그인 성공");
 			// 로그인 성공 이후 상품 목록 페이지로 이동합니다.
 			super.gotoPage("/MainPage/index.jsp");

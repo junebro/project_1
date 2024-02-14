@@ -599,7 +599,9 @@ a.active {
 	
 		// 클라이언트 측 JavaScript
 		function changeImage(pronm) { 
-
+			
+			var mbrid = "${sessionScope.loginfo.MBRID}";
+			
 			if (LK) {
 				//alert("삭제" + LK);
 				var URL = '<%=notWithFormTag%>liDelete';
@@ -616,7 +618,7 @@ a.active {
 			$.ajax({
 		        type: 'GET',
 		        url: URL,
-		        data: { pronm: pronm },
+		        data: { pronm: pronm, mbrid: mbrid },
 		        error: function(xhr, status, error) {
 		            console.error(error);
 		        }
@@ -1150,7 +1152,6 @@ a.active {
 
 			<div id="pr_details" style="margin-bottom:100px; text-align:center" id="prodAddInfo_wrap">
 				<br><br><br><br><br>
-				${bean.PROIMG1}
 				<img src="${pageContext.request.contextPath}/Image/Details/${bean.PROIMG1}">
 			</div>
 
