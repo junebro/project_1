@@ -26,14 +26,13 @@ public class MemberLoginController extends SuperClass {
 		MemberDao dao = new MemberDao();
 		Member bean = dao.getDataByIdAndPassword(MBRID, MBRPW);
 
-		String Message = "안됨";
-		request.setAttribute("Message", Message);
-		
 		if (bean == null) { // 로그인 실패
-			System.out.println("로그인 실패");
+			
+			String Message = "안됨";
+			request.setAttribute("Message", Message);
+			
 			super.setAlertMessage("로그인 정보가 잘못되었습니다.");
 			super.gotoPage("Member/loginMain.jsp");
-			System.out.println(session.getAttribute("alertMessage"));
 
 		} else { // 로그인 성공
 			// session 영역(scope)에 나의 로그인 정보를 저장(바인딩)합니다.
