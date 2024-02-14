@@ -8,6 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
+	.tableWrap th{
+		height: 50px;
+		background-color: #191970; 
+	}
 	.tableWrap{
 		/* border: 1px solid red; */
 		text-align: center;
@@ -61,8 +66,6 @@
 					<th>답글</th>
 				</tr>
 				</thead>
-				
-				
 				<tbody>
 				<c:forEach var="bean" items="${abc}">
 				<tr>
@@ -82,8 +85,6 @@
 				</tr>
 				</c:forEach>
 				</tbody>
-				
-								
 			</table>
 			${requestScope.paging.pagingHtml}	
 	</div>
