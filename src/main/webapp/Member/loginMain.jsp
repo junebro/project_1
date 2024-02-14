@@ -118,15 +118,78 @@ body {
 	margin-top: 30px;
 	font-size: 20px;
 }
-
 </style>
 </head>
 
 <script>
+	$(function() {
 
-	var message = "${requestScope.Message}";
-	if (message != "") {
-		alert(message);
+		fnInit();
+
+	});
+
+	function frm_check() {
+		saveid();
+	}
+
+	function fnInit() {
+		var cookieid = getCookie("remember-check");
+		console.log(cookieid);
+		if (cookieid != "") {
+			$("input:checkbox[id='remember-check']").prop("checked", true);
+			$('#MBRID').val(cookieid);
+		}
+
+	}
+
+	function setCookie(name, value, expiredays) {
+		var todayDate = new Date();
+		todayDate.setTime(todayDate.getTime() + 0);
+		if (todayDate > expiredays) {
+			document.cookie = name + "=" + escape(value) + "; path=/; expires="
+					+ expiredays + ";";
+		} else if (todayDate < expiredays) {
+			todayDate.setDate(todayDate.getDate() + expiredays);
+			document.cookie = name + "=" + escape(value) + "; path=/; expires="
+					+ todayDate.toGMTString() + ";";
+		}
+
+		console.log(document.cookie);
+	}
+
+	function getCookie(Name) {
+		var search = Name + "=";
+		console.log("search : " + search);
+
+		if (document.cookie.length > 0) { // 쿠키가 설정되어 있다면 
+			offset = document.cookie.indexOf(search);
+			console.log("offset : " + offset);
+			if (offset != -1) { // 쿠키가 존재하면 
+				offset += search.length;
+				// set index of beginning of value
+				end = document.cookie.indexOf(";", offset);
+				console.log("end : " + end);
+				// 쿠키 값의 마지막 위치 인덱스 번호 설정 
+				if (end == -1)
+					end = document.cookie.length;
+				console.log("end위치  : " + end);
+
+				return unescape(document.cookie.substring(offset, end));
+			}
+		}
+		return "";
+	}
+
+	function saveid() {
+		var expdate = new Date();
+		if ($("#remember-check").is(":checked")) {
+			expdate.setTime(expdate.getTime() + 1000 * 3600 * 24 * 30);
+			setCookie("remember-check", $("#MBRID").val(), expdate);
+		} else {
+			expdate.setTime(expdate.getTime() - 1000 * 3600 * 24 * 30);
+			setCookie("remember-check", $("#MBRID").val(), expdate);
+
+		}
 	}
 </script>
 
@@ -134,21 +197,22 @@ body {
 	<jsp:include page="./../MainPage/top.jsp" />
 	<div class="login-wrapper">
 		<h2>LOG IN</h2>
-		<form method="post" action="<%=withFormTag%>" id="login-form">
-			<input type="hidden" name="command" value="meLogin">
-			<input type="text" name="MBRID" placeholder="아이디">
-			<input type="password" name="MBRPW" placeholder="비밀번호">
-				<label for="remember-check">
-					<input type="checkbox" id="remember-check">아이디 저장하기
-					<a href="/customer/direct.FindID.action" class="alink">아이디/비밀번호 찾기</a>
-				</label>
-			<input type="submit" value="로그인" class="login-default" id="submitbt">
+		<form method="post" action="<%=withFormTag%>" id="login-form"
+			onsubmit="return frm_check();">
+			<input type="hidden" name="command" value="meLogin"> <input
+				type="text" name="MBRID" placeholder="아이디" id="MBRID"> <input
+				type="password" name="MBRPW" placeholder="비밀번호"> <label
+				for="remember-check"> <input type="checkbox"
+				id="remember-check">아이디 저장하기 <a
+				href="/customer/direct.FindID.action" class="alink">아이디/비밀번호 찾기</a>
+			</label> <input type="submit" value="로그인" class="login-default" id="submitbt">
 			<div class="nonMembers_txt">
-				<a href="/noncustomer/findNonCustomerOrder.action" class="blink">비회원 주문조회</a>
+				<a href="/noncustomer/findNonCustomerOrder.action" class="blink">비회원
+					주문조회</a>
 			</div>
 		</form>
 	</div>
-	
+
 
 </body>
 </html>
