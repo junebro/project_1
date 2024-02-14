@@ -28,7 +28,7 @@ public class MemberLoginController extends SuperClass {
 
 		if (bean == null) { // 로그인 실패
 			
-			String Message = "안됨";
+			String Message = "아이디 또는 비밀번호가 일치하지 않습니다.";
 			request.setAttribute("Message", Message);
 			
 			super.setAlertMessage("로그인 정보가 잘못되었습니다.");
