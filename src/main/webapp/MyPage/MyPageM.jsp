@@ -444,6 +444,7 @@ button {
 </script>
 </head>
 <body>
+<jsp:include page="./..//MainPage/topbar.jsp"></jsp:include>
 	<div class="justify-content-center row">
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">

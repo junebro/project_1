@@ -19,13 +19,8 @@ String notWithFormTag = withFormTag + "?command=";
 //out.print("notWithFormTag : " + notWithFormTag + "<br/>");
 %>
 <style>
-* {
-	box-sizing: border-box;
-}
-
 body {
 	font-family: 'Noto Serif KR', serif;
-	margin: 0;
 }
 
 .menuwrap {
@@ -40,11 +35,6 @@ body {
 	margin: 0 0 10px 0;
 	/* border-bottom: 20px solid rgb(0,0,0); */
 	/* border: 2px solid rgb(192, 192, 192); */
-}
-
-a {
-	text-decoration: none;
-	color: rgba(128, 128, 128, 0.5);
 }
 
 a:visited {
@@ -74,6 +64,7 @@ a:visited {
 
 .topmenu a {
 	text-decoration: none;
+	color: rgba(128, 128, 128, 0.5);
 	font-size: 13px;
 }
 
@@ -82,10 +73,6 @@ a:visited {
 	color: rgb(23, 84, 176);
 }
 
-.title {
-	clear: both;
-	text-align: center;
-}
 /*
 	header{
 	    opacity: 0.7;
@@ -161,19 +148,6 @@ a:visited {
 	color: #e6e6fa;
 }
 
-.middelContents {
-	/*background-color: rgb(71, 71, 71);*/
-	color: rgb(0, 0, 0);
-	font-size: 25px;
-	font-weight: bolder;
-	width: 100%;
-	text-align: center;
-	/*
-		border-bottom: 5px solid white;
-		border-right: 5px solid white;
-		*/
-	margin-bottom: 10px;
-}
 
 /* 회색선 */
 .underline {
