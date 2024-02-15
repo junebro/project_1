@@ -31,7 +31,7 @@
 
 <c:set var="bean" value="${requestScope.dataList[0]}" />
 <c:set var="dataList" value="${requestScope.dataList}" />
-
+<c:set var="dataTest" value="${requestScope.dataTest}" />
 
 <title>상품 상세페이지</title>
 <style>
@@ -689,7 +689,6 @@ a.active {
 				<br>
 				<ul class="items">
 					<c:forEach var="bean_cr" items="${requestScope.dataList}" varStatus="status">
-						
 						<c:if test="${status.index == 0}">
 							<li>
 								<%-- <input type="radio" id="colCode_${status.index}" name="pr_color" value="10" checked="checked" />--%> 
@@ -1349,214 +1348,49 @@ a.active {
 						<button  class="btn_black btn_select">검 색</button>
 						<br><br>
 						<div class="view_line"></div>
-		
-						<div class="view_Board">
-							<div class="view_Board_left">
-								<div class="border_top">
-									<div id="view_star0" class="view_star"></div>
-									<div class="border_date">2024.01.30</div>
-								</div>
-								<br>
-								<div class="border_main">
-									가볍고 발볼도 편하고 좋아요<br>
-									딸이 맘에 들어해요
-								</div>
-								<br>
-								<div class="inq_img">
-									<img src="./../../Image/board.jpg" alt="board">
+						
+						<c:forEach var="views" items="${requestScope.dataTest['resultSetViews']}" varStatus="status">
+						
+							<div class="view_Board">
+								<div class="view_Board_left">
+									<div class="border_top">
+										<div id="view_star${status.index}" class="view_star"></div>
+										<div class="border_date">${views['RVWDT']}</div>
+									</div>
+									<br>
+									<div class="border_main">
+										${views['RVWCT']}
+									</div>
+									<br>
+									<div class="inq_img">
+										<c:if test="${views['RVWIMG1']!=null}">
+											<img src="${pageContext.request.contextPath}/Image/Reviews/${views['RVWIMG1']}" alt="${views['RVWIMG1']}">
+										</c:if>
+										<c:if test="${views['RVWIMG2']!=null}">
+											<img src="${pageContext.request.contextPath}/Image/Reviews/${views['RVWIMG2']}" alt="${views['RVWIMG2']}">
+										</c:if>
+										<c:if test="${views['RVWIMG3']!=null}">
+											<img src="${pageContext.request.contextPath}/Image/Reviews/${views['RVWIMG3']}" alt="${views['RVWIMG3']}">
+										</c:if>
+									</div>
+									
 								</div>
 								
-							</div>
-							
-							<div class="view_center"></div>
-							<div class="view_Board_right">
-								<div class="Board_member">
-									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
+								<div class="view_center"></div>
+								<div class="view_Board_right">
+									<div class="Board_member">
+										<div class="Board_member_detail">${views['MBRID']}님의 리뷰입니다.</div>
+										<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
+										<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
+										<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
+										<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
+									</div>
 								</div>
 							</div>
-							
-						</div>
-			
-						<div class="view_line"></div>
+				
+							<div class="view_line"></div>
+						</c:forEach>
 						
-						
-						<div class="view_Board">
-							<div class="view_Board_left">
-								<div class="border_top">
-									<div id="view_star1" class="view_star"></div>
-									<div class="border_date">2024.01.30</div>
-								</div>
-								<br>
-								<div class="border_main">
-									가볍고 발볼도 편하고 좋아요<br>
-									딸이 맘에 들어해요
-								</div>
-								<br>
-								<div class="inq_img">
-									<img src="./../../Image/board.jpg" alt="board">
-								</div>
-								
-							</div>
-							
-							<div class="view_center"></div>
-							<div class="view_Board_right">
-								<div class="Board_member">
-									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-								</div>
-							</div>
-							
-						</div>
-			
-						<div class="view_line"></div>
-						
-						<div class="view_Board">
-							<div class="view_Board_left">
-								<div class="border_top">
-									<div id="view_star2" class="view_star"></div>
-									<div class="border_date">2024.01.30</div>
-								</div>
-								<br>
-								<div class="border_main">
-									가볍고 발볼도 편하고 좋아요<br>
-									딸이 맘에 들어해요
-								</div>
-								<br>
-								<div class="inq_img">
-									<img src="./../../Image/board.jpg" alt="board">
-								</div>
-								
-							</div>
-							
-							<div class="view_center"></div>
-							<div class="view_Board_right">
-								<div class="Board_member">
-									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-								</div>
-							</div>
-							
-						</div>
-			
-						<div class="view_line"></div>
-						
-						<div class="view_Board">
-							<div class="view_Board_left">
-								<div class="border_top">
-									<div id="view_star3" class="view_star"></div>
-									<div class="border_date">2024.01.30</div>
-								</div>
-								<br>
-								<div class="border_main">
-									가볍고 발볼도 편하고 좋아요<br>
-									딸이 맘에 들어해요
-								</div>
-								<br>
-								<div class="inq_img">
-									<img src="./../../Image/board.jpg" alt="board">
-								</div>
-								
-							</div>
-							
-							<div class="view_center"></div>
-							<div class="view_Board_right">
-								<div class="Board_member">
-									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-								</div>
-							</div>
-							
-						</div>
-			
-						<div class="view_line"></div>
-						
-						<div class="view_Board">
-							<div class="view_Board_left">
-								<div class="border_top">
-									<div id="view_star4" class="view_star"></div>
-									<div class="border_date">2024.01.30</div>
-								</div>
-								<br>
-								<div class="border_main">
-									가볍고 발볼도 편하고 좋아요<br>
-									딸이 맘에 들어해요
-								</div>
-								<br>
-								<div class="inq_img">
-									<img src="./../../Image/board.jpg" alt="board">
-								</div>
-								
-							</div>
-							
-							<div class="view_center"></div>
-							<div class="view_Board_right">
-								<div class="Board_member">
-									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-								</div>
-							</div>
-							
-						</div>
-			
-						<div class="view_line"></div>
-						
-						<div class="view_Board">
-							<div class="view_Board_left">
-								<div class="border_top">
-									<div id="view_star5" class="view_star"></div>
-									<div class="border_date">2024.01.30</div>
-								</div>
-								<br>
-								<div class="border_main">
-									가볍고 발볼도 편하고 좋아요<br>
-									딸이 맘에 들어해요
-								</div>
-								<br>
-								<div class="inq_img">
-									<img src="./../../Image/board.jpg" alt="board">
-								</div>
-								
-							</div>
-							
-							<div class="view_center"></div>
-							<div class="view_Board_right">
-								<div class="Board_member">
-									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-								</div>
-							</div>
-							
-						</div>
-			
-						<div class="view_line"></div>
-						<div class="view_page">
-							<ul class="pagination">
-							  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-							  <li class="page-item"><a class="page-link" href="#">1</a></li>
-							  <li class="page-item"><a class="page-link" href="#">2</a></li>
-							  <li class="page-item"><a class="page-link" href="#">3</a></li>
-							  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-							</ul>
-						</div>
 					</div>
 					<!-- 
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 100%; height: 100%;">
@@ -1610,17 +1444,20 @@ a.active {
 				</svg>
 			</div>
 				
-				
+			<c:set var="rsViews" value="${fn:length(requestScope.dataTest['resultSetViews'])}" />	
 			<script>
-				
-				for ( var i = 0; i < 6; i ++ ) {
+			
+				var rsViews = ${rsViews};
+
+				for (var i = 0; i < rsViews+1; i++) {
+
 					// JavaScript 코드
 			     	var five_star = document.getElementById('five_star');
-			     	var view_star = document.getElementById('view_star'+i);
-			
+			     	var view_star = document.getElementById("view_star" + i);
+
 			     	// <div>의 내용을 가져와서 <p> 태그에 넣기
 			     	var divContent = five_star.innerHTML;
-			     	view_star.innerHTML = divContent + "아주 좋아요";	
+			     	view_star.innerHTML = divContent + "아주 좋아요";
 				}
 
 		    </script>

@@ -1,6 +1,7 @@
 package com.shopping.product;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,8 +27,16 @@ public class ProductDetailController extends SuperClass{
 		
 		ProductDetailDao dao = new ProductDetailDao();
 		List<Product> dataList = dao.getDataList(pronm, mbrid);
+		Map<String, Object> dataTest = dao.calculate(pronm, mbrid);
 		
-
+		//List<Map<String, Object>> resultSet1List = (List<Map<String, Object>>) dataTest.get("resultSet1");
+		//for (Map<String, Object> rowMap : resultSet1List) {
+		//    System.out.println("PROCD: " + rowMap.get("PROCD"));
+		//}
+		
+		//Map<String, Object> resultSet1Map = (Map<String, Object>) dataTest.get("resultSet1");
+		//System.out.println("Result of resultSet1: " + resultSet1Map);
+		
 		// 사이즈 조회
 		Product firstData = dataList.get(0);
 	    
@@ -40,6 +49,7 @@ public class ProductDetailController extends SuperClass{
 		
 		request.setAttribute("sizeList", sizeList);
 		request.setAttribute("dataList", dataList);
+		request.setAttribute("dataTest", dataTest);
 		
 		super.gotoPage(PREFIX + "DetailProduct.jsp");
 	}
