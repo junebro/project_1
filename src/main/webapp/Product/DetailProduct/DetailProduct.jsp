@@ -602,6 +602,13 @@ a.active {
 			
 			var mbrid = "${sessionScope.loginfo.MBRID}";
 			
+			if(!mbrid) {
+				if (confirm("로그인이 필요한 서비스입니다.\n로그인 하시곘습니까?")) {
+					location.href = '${pageContext.request.contextPath}/Member/loginMain.jsp';
+				}
+				return;
+			}
+			
 			if (LK) {
 				//alert("삭제" + LK);
 				var URL = '<%=notWithFormTag%>liDelete';
