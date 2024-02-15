@@ -61,6 +61,56 @@ public class ProductDao extends SuperDao {
 		}
 
 		return dataList;
+	}
+	
+	public List<Product_main> getDataList1(String protp){
+		
+		String sql = " SELECT A.PROTP, A.PRONM, A.PROPR, A.PROIMG,  ";
+		sql += " CASE WHEN B.PRONM IS NOT NULL THEN 'LK'  END AS LK  ";
+		sql += " FROM TPRO A  ";
+		sql += " LEFT OUTER JOIN TLKE B ON A.PRONM = B.PRONM AND MBRID = ? ";
+		sql += " GROUP BY A.PROTP, A.PRONM, A.PROPR, A.PROIMG, B.PRONM ";
+		sql += " ORDER BY A.PRONM ";
+		
+		PreparedStatement pstmt = null; // 문장 객체
+		ResultSet rs = null;
+		
+		List<Product_main> dataList = new ArrayList<Product_main>();
+		
+		super.conn = super.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, protp);
+			System.out.println(sql);
+			System.out.println(protp);
+			rs = pstmt.executeQuery();
+			
+			// 요소들 읽어서 컬렉션에 담습니다.
+			while (rs.next()) {
+				Product_main bean = this.resultSet2Bean(rs);
+				
+				dataList.add(bean);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return dataList;
 	}		
 	
 

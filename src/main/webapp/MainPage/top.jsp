@@ -199,8 +199,8 @@ section {
 	<br>
 	<div
 		style="display: flex; justify-content: center; width: 100%; background-color: white;">
-		<img id="topimage"
-			src="${pageContext.request.contextPath}/Image/2main.png"> <br>
+		<img id="topimage" style="cursor: pointer"
+			src="${pageContext.request.contextPath}/Image/2main.png" onclick="location.href='${pageContext.request.contextPath}/MainPage/index.jsp'"> <br>
 	</div>
 
 
@@ -209,12 +209,12 @@ section {
 	<div style="background-color: white;">
 		<div class="dropdown">
 			<button class="dropbtn"
-				onclick="location.href='http://www.naver.com'">Home</button>
+				onclick="location.href='${pageContext.request.contextPath}/MainPage/index.jsp'">Home</button>
 		</div>
 
 		<div class="dropdown">
 			<button class="dropbtn"
-				onclick="location.href='http://www.naver.com'">Running</button>
+				onclick="location.href='${pageContext.request.contextPath}/MainPage/Running.jsp'">Running</button>
 			<!-- 
           <div class="dropdown-content">
               <a href="#">Link 1</a>
@@ -225,7 +225,7 @@ section {
 
 		<div class="dropdown">
 			<button class="dropbtn"
-				onclick="location.href='http://www.naver.com'">LifeStyle</button>
+				onclick="location.href='${pageContext.request.contextPath}/MainPage/LifeStyle.jsp'">LifeStyle</button>
 			<!-- 
           <div class="dropdown-content">
               <a href="#">Link 1</a>
@@ -236,7 +236,7 @@ section {
 
 		<div class="dropdown">
 			<button class="dropbtn"
-				onclick="location.href='http://www.naver.com'">Sandle</button>
+				onclick="location.href='${pageContext.request.contextPath}/MainPage/Sandle.jsp'">Sandle</button>
 			<!-- 
           <div class="dropdown-content">
               <a href="#">Link 1</a>
@@ -247,7 +247,7 @@ section {
 
 		<div class="dropdown">
 			<button class="dropbtn"
-				onclick="location.href='http://www.naver.com'">Sport</button>
+				onclick="location.href='${pageContext.request.contextPath}/MainPage/Sport.jsp'">Sport</button>
 			<!-- 
           <div class="dropdown-content">
               <a href="#">Link 1</a>

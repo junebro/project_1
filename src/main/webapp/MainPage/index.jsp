@@ -183,17 +183,13 @@ ArrayList<String> imgPath = new ArrayList<String>();
 						<div class="thumbnail">
 							<%-- <a href="./img/${list}"> <img src="./img/${list}" alt="Product">--%>
 							<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
-							<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
-							<c:if test="${product.LK == 'LK'}">
-								<img src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image">
-							</c:if>				
-							<c:if test="${product.LK != 'LK'}">
-								<img src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image">
-							</c:if>					
-							
-								<div class="PRONM" style="text-align:left; color:black">
-									
-								</div>
+								<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
+								<c:if test="${product.LK == 'LK'}">
+									<img src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image">
+								</c:if>				
+								<c:if test="${product.LK != 'LK'}">
+									<img src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image">
+								</c:if>
 								<div class="detail">
 									<div class="description" style="color:#A5A5A5;">
 										${product.PRONM}
@@ -207,7 +203,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 					</div>
 				</div>
 			</c:forEach>
-
+			
 		</section>
 		<article></article>
 	</main>
