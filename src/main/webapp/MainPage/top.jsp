@@ -252,7 +252,7 @@ section {
 
 		<div class="dropdown">
 			<button class="dropbtn"
-				onclick="location.href='http://www.naver.com'">Board</button>
+				onclick="location.href='http://localhost:8090/first_Project/Shopping_project?command=boList&pageNumber=1&pageSize=10'">Board</button>
 			<!--
             <div class="dropdown-content">
               <a href="#">Link 1</a>

@@ -149,15 +149,13 @@ public class BoardDao extends SuperDao{
 		ResultSet rs = null;
 		Board bean = null;
 		
-		super.conn = super.getConnection();
+		super.conn = super.JgetConnection();
 		
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, no);
 				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					bean = this.resultSet2Bean(rs);
-				}
+				System.out.println("데이터가 실행되었습니다.");
 				
 			} catch (SQLException e) {
 				
@@ -184,7 +182,7 @@ public class BoardDao extends SuperDao{
 		int cnt = -99;
 		
 		try {
-			super.conn = super.getConnection();
+			super.conn = super.JgetConnection();
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql);
 			
@@ -214,6 +212,44 @@ public class BoardDao extends SuperDao{
 		}
 		
 		return cnt;
+	}
+
+	public int deleteDataBean(int no) {
+		String sql = "delete from boards";
+		sql += " where no = ?";
+		
+		PreparedStatement pstmt = null;
+		int cnt = -9999;
+		
+
+		super.conn = super.JgetConnection();
+		
+			try {
+				pstmt = conn.prepareStatement(sql);
+				conn.setAutoCommit(false);
+				
+				pstmt.setInt(1, no);
+				
+				cnt = pstmt.executeUpdate();
+				conn.commit();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				try {
+					conn.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				
+			} finally {
+				try {
+					if(pstmt != null) {pstmt.close();}
+					super.closeConnection();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}		
+			return cnt ;
 	}
 	
 	

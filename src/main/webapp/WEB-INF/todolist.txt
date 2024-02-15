@@ -13,10 +13,10 @@ DetailProduct=com.shopping.product.ProductDetailController
 #vwExam05=com.shopping.view.View05ListController
 # board section
 boList=com.shopping.board.BoardListController
-#boInsert=com.shopping.board.BoardInsertController
-#boUpdate=com.shopping.board.BoardUpdateController
-#boDelete=com.shopping.board.BoardDeleteController
-#boDetail=com.shopping.board.BoardDetailController
+boInsert=com.shopping.board.BoardInsertController
+boDetail=com.shopping.board.BoardDetailController
+boDelete=com.shopping.board.BoardDeleteController
+boUpdate=com.shopping.board.BoardUpdateController
 # member section
 meLogin=com.shopping.member.MemberLoginController
 #meLogout=com.shopping.member.MemberLogoutController

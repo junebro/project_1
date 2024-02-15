@@ -49,6 +49,24 @@
 
 </style>
 
+<script>
+	function deleteBoard(no, paramList){ /* 게시물 삭제  */
+		/* no : 삭제될 게시물 번호, paramList : 페이징 관련 파라미터들 */
+		
+		var response = window.confirm('해당 게시물을 삭제하시겠습니까?');
+		
+		if(response==true){
+			var url = '<%=notWithFormTag%>boDelete&no=' + no + paramList;
+			/* alert(url); */
+			location.href = url ;
+		
+		}else{
+			alert('게시물 삭제가 취소되었습니다.');
+			return false ;
+		}
+	}
+</script>
+
 </head>
 <body>
 	<div class="tableWrap"> 
@@ -80,7 +98,11 @@
 					<td><div class="tdwrap" style="width:50px">${bean.readhit}</div></td>
 					<td><div class="tdwrap" style="width:100px">${bean.regdate}</div></td>
 					<td><div class="tdwrap" style="width:50px">수정</div></td>
-					<td><div class="tdwrap" style="width:50px">삭제</div></td>
+					<td><div class="tdwrap" style="width:50px">
+						<a href="#" 
+								onclick="return deleteBoard('${bean.no}', '${requestScope.paging.flowParameter}');">삭제
+						</a>
+					</div></td>
 					<td><div class="tdwrap" style="width:50px">답글</div></td>
 				</tr>
 				</c:forEach>
