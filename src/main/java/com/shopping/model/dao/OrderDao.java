@@ -133,5 +133,46 @@ public class OrderDao extends SuperDao {
 
 		return dataList;
 	}
+	
+	public List<Order> getDataList1() {
+		String sql = " select * from TPRO";
+		sql += " where PROCD = ? ";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<Order> dataList = new ArrayList<Order>();
+		
+		super.conn = super.getConnection();
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Order bean = this.resultSetBeanO(rs);
+				
+				dataList.add(bean);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return dataList;
+	}
 
 }
