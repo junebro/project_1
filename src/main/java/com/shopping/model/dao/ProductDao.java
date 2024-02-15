@@ -17,7 +17,7 @@ public class ProductDao extends SuperDao {
 		
 		String sql = " SELECT A.PROTP, A.PRONM, A.PROPR, A.PROIMG,  ";
 		sql += " CASE WHEN B.PRONM IS NOT NULL THEN 'LK'  END AS LK  ";
-		sql += " FROM TPRO A  ";
+		sql += " FROM TPRM A  ";
 		sql += " LEFT OUTER JOIN TLKE B ON A.PRONM = B.PRONM AND MBRID = ? ";
 		sql += " GROUP BY A.PROTP, A.PRONM, A.PROPR, A.PROIMG, B.PRONM ";
 		sql += " ORDER BY A.PRONM ";
@@ -67,7 +67,7 @@ public class ProductDao extends SuperDao {
 		
 		String sql = " SELECT A.PROTP, A.PRONM, A.PROPR, A.PROIMG,  ";
 		sql += " CASE WHEN B.PRONM IS NOT NULL THEN 'LK'  END AS LK  ";
-		sql += " FROM TPRO A  ";
+		sql += " FROM TPRM A  ";
 		sql += " LEFT OUTER JOIN TLKE B ON A.PRONM = B.PRONM AND MBRID = ? ";
 		sql += " GROUP BY A.PROTP, A.PRONM, A.PROPR, A.PROIMG, B.PRONM ";
 		sql += " ORDER BY A.PRONM ";
