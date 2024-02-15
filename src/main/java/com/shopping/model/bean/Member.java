@@ -33,6 +33,12 @@ public class Member {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return  MBRID;
+	}
+
+
 	public String getMBRID() {
 		return MBRID;
 	}

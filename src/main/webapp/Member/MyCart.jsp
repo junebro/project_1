@@ -1,3 +1,9 @@
+<%@page import="com.shopping.model.dao.ProductDao"%>
+<%@page import="com.shopping.model.bean.Product"%>
+<%@page import="com.shopping.model.bean.Cart"%>
+<%@page import="com.shopping.model.dao.CartDao"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp"%>
@@ -6,32 +12,37 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	
+
 <style>
 * {
 	padding: 0;
 	margin: 0;
 	border: none;
 }
+
 body {
 	font-size: 14px;
 	font-family: 'Noto Sans KR', sans-serif;
 	text-align: center;
 }
-div{
+
+div {
 	margin: 20px 0;
 }
+
 .contents h2 { /* 장바구니 */
 	font-size: 40px;
 	margin-bottom: 30px;
 	margin-top: 100px;
 }
+
 .section li { /* 페이지 진행과정 */
 	font-size: 15px;
 	color: #BDBDBD;
 	display: inline;
 	padding: 5px;
 }
+
 .section .selected { /* 현재 페이지 */
 	color: black;
 }
@@ -40,6 +51,7 @@ div{
 	font-size: 20px;
 	font-weight: bolder;
 }
+
 .cart-subtitle { /* 일반상품 */
 	width: 100%;
 	text-align: left;
@@ -47,57 +59,68 @@ div{
 	background-color: #F6F6F6;
 	padding: 10px 20px;
 }
-.prdbox{ /* 상품칸 */
+
+.prdbox { /* 상품칸 */
 	width: 100%;
 	height: 200px;
 	font-size: 15px;
 	text-align: left;
 	padding: 10px 20px;
 }
+
 .check, .thumbnail, .description { /* 체크박스, 사진, 설명 */
 	float: left;
 }
-.btnDelete{ /* 삭제표시 */
+
+.btnDelete { /* 삭제표시 */
 	float: right;
 	font-size: 25px;
 	font-weight: bolder;
 	font-family: 'Kanit', sans-serif;
 	color: #5D5D5D;
 }
-input[type="checkbox"]{ /* 체크박스 */
+
+input[type="checkbox"] { /* 체크박스 */
 	width: 20px;
 	height: 20px;
 	cursor: pointer;
 	margin: 10px;
 }
-.thumbnail{ /* 상품 사진 */
+
+.thumbnail { /* 상품 사진 */
 	padding: 10px 20px;
 	margin: -10px;
 }
-.description{
+
+.description {
 	margin-top: -5px;
 }
+
 .description li { /* 설명 리스트 */
 	list-style: none;
 	margin-left: 30px;
 	font-size: 16px;
 }
-.description .txtSecondary{ /* 할인가격 */
+
+.description .txtSecondary { /* 할인가격 */
 	color: red;
 }
-a{ /* 링크 */
+
+a { /* 링크 */
 	text-decoration: none;
 	decoration-line: none;
 	color: black;
 }
-.prdOption{ /* 옵션 */
+
+.prdOption { /* 옵션 */
 	width: 100%;
 	text-align: left;
 	font-size: 18px;
 	background-color: #F6F6F6;
 	padding: 10px 20px;
 }
-.container-fluid{ /* 수량박스 */
+
+.container-fluid { /* 수량박스 */
 	width: 100%;
 	height: 100px;
 	font-size: 18px;
@@ -105,115 +128,174 @@ a{ /* 링크 */
 	border-bottom: 1px solid #ddd;
 	margin: 20px 0;
 }
-.qty_title{ /* 수량 */
+
+.qty_title { /* 수량 */
 	float: left;
 }
-.qty_number{ /* 수량 숫자 */
+
+.qty_number { /* 수량 숫자 */
 	text-align: center;
 	padding: 10px 0;
 }
-.qty_updown{ /* 수량버튼 박스 */
+
+.qty_updown { /* 수량버튼 박스 */
 	float: right;
 }
-.qty_number, .qty_updown .up, .qty_updown .down{ /* 수량버튼, 숫자 */
+
+.qty_number, .qty_updown .up, .qty_updown .down { /* 수량버튼, 숫자 */
 	padding: 10px 20px;
 	border: 1px solid #ddd;
 	margin: -3px;
 }
-.sumPrice{ /* 주문금액 박스 */
+
+.sumPrice { /* 주문금액 박스 */
 	width: 100%;
 	height: 50px;
 	font-size: 18px;
 	padding: 10px 20px;
 }
-.sumPrice .label{ /* 주문금액 */
+
+.sumPrice .label { /* 주문금액 */
 	float: left;
 }
-.sumPrice strong{ /* 주문금액-금액 */
+
+.sumPrice strong { /* 주문금액-금액 */
 	float: right;
 }
-.buttonGroup{ /* 관심상품, 주문하기 박스*/
+
+.buttonGroup { /* 관심상품, 주문하기 박스*/
 	width: 100%;
 	height: 100px;
 	font-size: 18px;
 	padding: 10px 0;
 	border-bottom: 1px solid #ddd;
 }
-.buttonGroup button{ /* 관심상품, 주문하기 */
+
+.buttonGroup button { /* 관심상품, 주문하기 */
 	width: 49%;
 	border: 1px solid #ddd;
 	padding: 20px 0;
 }
-.buttonGroup .btn1{ /* 관심상품 */
+
+.buttonGroup .btn1 { /* 관심상품 */
 	float: left;
 }
-.buttonGroup .btn2{ /* 주문하기 */
+
+.buttonGroup .btn2 { /* 주문하기 */
 	float: right;
 }
-.heading{ /* 총상품금액, 총배송비, 결제예정금액*/
+
+.heading { /* 총상품금액, 총배송비, 결제예정금액*/
 	width: 100%;
 	height: 80px;
 	transform: translateY(40%);
 }
-.totalSummary_item{ /* 총상품금액, 총배송비 박스 */
+
+.totalSummary_item { /* 총상품금액, 총배송비 박스 */
 	border: 1px solid #ddd;
 	padding: 10px;
 }
-.heading h4{ /* 총상품금액, 총배송비 */
+
+.heading h4 { /* 총상품금액, 총배송비 */
 	float: left;
 	margin: 5px;
 	font-size: 20px;
 }
-#total_delivery{
+
+#total_delivery {
 	border-bottom: 1px solid #ddd;
 }
-.heading .data{ /* 총상품금액, 총배송비 내용 */
+
+.heading .data { /* 총상품금액, 총배송비 내용 */
 	float: right;
 	margin: 5px;
 	font-size: 20px;
 }
-.ec-base-button{ /* 하단버튼 박스 */
+
+.ec-base-button { /* 하단버튼 박스 */
 	padding: 20px 0;
 }
-.ec-base-button .btn1{ /* 전체상품주문 */
+
+.ec-base-button .btn1 { /* 전체상품주문 */
 	width: 100%;
 	padding: 20px;
 	border: 1px solid #ddd;
 	font-size: 20px;
 	margin-bottom: 10px;
 }
-.ec-base-button .btn2{ /* 선택상품주문 */
+
+.ec-base-button .btn2 { /* 선택상품주문 */
 	width: 100%;
 	padding: 20px;
 	border: 1px solid #ddd;
 	font-size: 20px;
 }
-.left{
+
+.left {
 	width: 900px;
 }
-.right{
+
+.right {
 	position: relative;
 	width: 400px;
 	padding: 10px;
 }
+
 .wrap {
 	display: flex;
 	align-items: flex-start;
 	width: 1200px;
 	margin: 0 auto;
 }
+
 .sticky {
 	position: absoulte;
-	width:400px;
+	width: 400px;
 	height: 400px;
 	padding: 10px;
 }
 /* 반응형 스타일 예시 -> 1200px 이하에서는 고정 요소가 아래에 배치됩니다. */
-@media (max-width: 1200px){
-    .wrap { display: block; width: 100%; }
-    .left, .right, .sticky{ width: 100%; height: 100%; }
+@media ( max-width : 1200px) {
+	.wrap {
+		display: block;
+		width: 100%;
+	}
+	.left, .right, .sticky {
+		width: 100%;
+		height: 100%;
+	}
 }
 </style>
+<%!
+List<Product> dataList = new ArrayList<>();
+int totalPr = 0;
+int pee = 3500;
+%>
+<%
+CartDao cDao = new CartDao();
+String MBRID = session.getAttribute("loginfo").toString();
+
+List<Cart> be = cDao.getDataList(MBRID);
+
+
+int endval = be.size();
+
+
+
+for (int i = 0; i < endval; i++) {
+	String dataH = be.get(i).getPROCD();
+	if (i == 0) {
+		dataList = cDao.getDataList1(dataH);
+	} else {
+		dataList.addAll(cDao.getDataList1(dataH));
+	}
+	Cart bee = cDao.getDataBean(dataList.get(i).getPROCD(), MBRID);
+	totalPr += dataList.get(i).getPROPR() * bee.getQTY() ;
+	
+}
+%>
+<c:set var="dataList" value="${dataList}" />
+<c:set var="endval" value="${endval}" />
 <script>
 	$(window).on('load', function() {
 	    const $sticky = $('.sticky'); // 고정될 박스 요소
@@ -299,55 +381,65 @@ a{ /* 링크 */
 							<button class="accordion-button" type="button"
 								data-bs-toggle="collapse" data-bs-target="#collapseOne"
 								aria-expanded="true" aria-controls="collapseOne"
-								style="background-color: white">장바구니 상품 </button>
+								style="background-color: white">장바구니 상품</button>
 						</h2>
+						<!-- 장바구니 상품 리스트 섹션 -->
+						<%
+						for (int i = 0; i < endval; i++) {
+							
+							Cart bee = cDao.getDataBean(dataList.get(i).getPROCD(), MBRID);
+						%>
 						<div id="collapseOne" class="accordion-collapse collapse show"
 							aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-							<div class="cart-subtitle">일반상품</div>
+							<div class="cart-subtitle"><%=i + 1%>번상품
+							</div>
 							<div class="prdbox">
-								<div class="checkbox">							
-									<input type="checkbox" id="basket_chk_id_0"
-										name="basket_product_normal_type_normal" class="check">
-								</div>
+
 								<div class="thumbnail">
 									<a href="#"><img
-										src="https://post-phinf.pstatic.net/MjAxOTA4MTNfMjIg/MDAxNTY1NjYwNDE4NjY3.l7xSqzLFBIojMAa8xxfY_OzKucZb4FimEDq2eS2WHkYg.tyeXLu39J6qYdxke7FTEnSdxuKWEf2jM5BRdk5Ronowg.GIF/1565623714.gif?type=w500_q75"
-										width="150" height="150">
-									</a>
+										src="${pageContext.request.contextPath}/Image/Detail_main/<%=dataList.get(i).getPROIMG()%>"
+										alt="PROIMG" width="150" height="150"> </a>
 								</div>
 								<div class="description">
-									<li class="list1">
-										<strong class="prdName" title="상품명" id="basket_prod_id_0">
-											<a href="#" class="ec-product-name">초간단 5분 조리! 돈까스 주먹</a>
-										</strong>
-									</li>								
-									<li class="price"><strong>13,600</strong>원</li>
-									<li class="price"><span class="txtSecondary">-0</span>원</li>
-									<li>배송 :<span class="price">3,500원</span></li>
+									<li class="list1"><strong class="prdName" title="상품명"
+										id="basket_prod_id_0"> <a href="#"
+											class="ec-product-name"><%=dataList.get(i).getPRONM()%></a>
+									</strong></li>
+									<li class="price"><strong><%=dataList.get(i).getPROPR()%></strong>원</li>
 								</div>
-								<a href="#none" onclick="Basket.deleteBasketItem(1);" class="btnDelete">X</a>
+								<a href="#none" onclick="Basket.deleteBasketItem(1);"
+									class="btnDelete">X</a>
 							</div>
 							<div class="prdOption">
-								<span class="product displaynone">초간단 5분 조리! 돈까스 주먹</span>
-								<span class="optionStr">[옵션: 돈까스 주먹]</span>
-								<span class="displaynone">(2개)</span>
+								<span class="product displaynone"><%=dataList.get(i).getPRONM()%></span>
+								<span class="optionStr">[색상 : <%=dataList.get(i).getPROCR()%> 사이즈 : <%=bee.getPROSZ() %>]
+								</span>
+
 							</div>
 							<div class="container-fluid">
-								<div class="qty_title">수량</div>
+								<div class="qty_title">수량 : <%=bee.getQTY()%></div>
 								<div class="qty_updown">
-									<button class="down btn_white" onclick="Basket.outQuantityShortcut('quantity_id_0', 0);">-</button>
-									<input class="qty_number" name="quantity_name_0" size="2" value="2" type="text">
-									<button class="up btn_white" onclick="Basket.addQuantityShortcut('quantity_id_0', 0);">+</button>
+									<button class="down btn_white"
+										onclick="Basket.outQuantityShortcut('quantity_id_0', 0);">-</button>
+									<input class="qty_number" name="quantity_name_0" size="2"
+										value="<%=bee.getQTY()%>" type="text">
+									<button class="up btn_white"
+										onclick="Basket.addQuantityShortcut('quantity_id_0', 0);">+</button>
 								</div>
 							</div>
 							<div class="sumPrice">
-								<span class="label">주문금액</span> <strong>13,600원</strong>
+								<span class="label">주문금액</span> <strong><%=dataList.get(i).getPROPR() * bee.getQTY() %></strong>
 							</div>
 							<div class="buttonGroup">
 								<button onclick="BasketNew.moveWish(0);" class="btn1 btn_white">관심상품</button>
-								<button onclick="Basket.orderBasketItem(0);" class="btn2 btn_white">주문하기</button>
+								<button onclick="Basket.orderBasketItem(0);"
+									class="btn2 btn_white">주문하기</button>
 							</div>
 						</div>
+						<%
+						}
+						%>
+						<!-- 장바구니 상품 리스트 섹션 -->
 					</div>
 				</div>
 			</div>
@@ -357,21 +449,22 @@ a{ /* 링크 */
 						<div class="heading total">
 							<h4 class="title">총 상품금액</h4>
 							<div class="data">
-								<strong><span class="total_product_price_display_front">13,600원</span></strong>
+								<strong><span class="total_product_price_display_front"><%= totalPr %></span></strong>
 							</div>
 						</div>
 						<div class="heading delivery" id="total_delivery">
 							<h4 class="title">총 배송비</h4>
 							<div class="data">
 								<strong id="total_delv_price_front"> <span
-									class="total_delv_price_front">3,500원</span>
+									class="total_delv_price_front"><%= pee %></span>
 								</strong>
 							</div>
 						</div>
 						<div class="heading total" id="total_money">
 							<h4 class="title">결제예정금액</h4>
 							<div class="data">
-								<strong id="total_order_price_front">17,100원</strong>
+								<strong id="total_order_price_front"><%= totalPr + pee %>
+									원</strong>
 							</div>
 						</div>
 					</div>
@@ -381,9 +474,7 @@ a{ /* 링크 */
 							<button class="btn1 btn_black" onclick="Basket.orderAll(this)"
 								link-order="/order/orderform.html?basket_type=all_buy"
 								link-login="/member/login.html">전체상품주문</button>
-							<button class="btn2 btn_white" href="#none" onclick="Basket.orderSelectBasket(this)"
-								link-order="/order/orderform.html?basket_type=all_buy"
-								link-login="/member/login.html">선택상품주문</button>
+
 						</div>
 					</div>
 				</div>

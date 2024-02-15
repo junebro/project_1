@@ -3,14 +3,59 @@ package com.shopping.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.shopping.model.bean.Cart;
+import com.shopping.model.bean.Product;
 
 public class CartDao extends SuperDao {
 
+	public List<Cart> getDataList(String MBRID) {
+		System.out.println("개병신 씨발놈의 겟 데이타 리스트 씨발새끼\n");
+		System.out.println("개병신 씨발놈의 겟 데이타 리스트 씨발새끼\n");
+		String sql = " select * from TCRT where MBRID = ? ";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		List<Cart> dataList = new ArrayList<Cart>();
+
+		super.conn = super.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, MBRID);
+			rs = pstmt.executeQuery();
+
+			// 요소들 읽어서 컬렉션에 담습니다.
+			while (rs.next()) {
+				Cart bean = this.resultSetBean(rs);
+
+				dataList.add(bean);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		System.out.println(dataList.size());
+		return dataList;
+	}
+
 	public int insertData(Cart bean) {
 
-		String sql = " insert into TMBR( PROCD, QTY, MBRID, PROSZ)";
+		String sql = " insert into TCRT( PROCD, QTY, MBRID, PROSZ)";
 		sql += " values(?, ?, ?, ?)";
 
 		PreparedStatement pstmt = null;
@@ -53,18 +98,19 @@ public class CartDao extends SuperDao {
 	}
 
 	public Cart getDataBean(String PROCD, String MBRID) {
-		String sql = " select * from TMBR ";
+		String sql = " select * from TCRT ";
 		sql += " where PROCD = ? AND MBRID = ?";
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Cart bean = null;
 
-		System.out.println("멤버 다오 겟머이타 빈 호출됨");
+		System.out.println("카트 다오 겟머이타 빈 TLQkfrjt");
 		super.conn = super.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, MBRID);
+			pstmt.setString(1, PROCD);
+			pstmt.setString(2, MBRID);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				bean = this.resultSetBean(rs);
@@ -93,11 +139,29 @@ public class CartDao extends SuperDao {
 		try {
 			Cart bean = new Cart();
 
-			bean.setPROCD(rs.getString("PROCD"));
-			bean.setQTY(Integer.parseInt(rs.getString("QTY")));
-			bean.setMBRID(rs.getString("MBRID"));
-			bean.setPROSZ(Integer.parseInt(rs.getString("PROSZ")));
+			System.out.println("PROCD : " + rs.getString("PROCD"));
+			System.out.println("수량 : " + rs.getInt("QTY"));
+			System.out.println("MBRID : " + rs.getString("MBRID"));
+			System.out.println("PROSZ : " + rs.getInt("PROSZ"));
 
+			bean.setPROCD(rs.getString("PROCD"));
+			bean.setQTY(rs.getInt("QTY"));
+			bean.setMBRID(rs.getString("MBRID"));
+			bean.setPROSZ(rs.getInt("PROSZ"));
+
+			return bean;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	private Cart resultSetBean2(ResultSet rs) {
+		try {
+			Cart bean = new Cart();
+
+			bean.setPROCD(rs.getString("PROCD"));
 			return bean;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -191,5 +255,66 @@ public class CartDao extends SuperDao {
 			}
 		}
 		return cnt;
+	}
+
+	public List<Product> getDataList1(String PROCD) {
+		System.out.println("개병신 씨발놈의 겟 데이타1111 리스트 씨발새끼\n");
+		System.out.println();
+
+		String sql = " select * from TPRO where PROCD = ? ";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		List<Product> dataList = new ArrayList<Product>();
+
+		super.conn = super.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, PROCD);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Product bean = this.resultSetBean1(rs);
+
+				dataList.add(bean);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+
+		return dataList;
+	}
+
+	private Product resultSetBean1(ResultSet rs) {
+		try {
+			Product bean = new Product();
+
+			bean.setPROCD(rs.getString("PROCD"));
+			bean.setPRONM(rs.getString("PRONM"));
+			bean.setPROCR(rs.getString("PROCR"));
+			bean.setPROPR(Integer.parseInt(rs.getString("PROPR")));
+			bean.setPROIMG(rs.getString("PROIMG"));
+			bean.setPROCMN(rs.getString("PROCMN"));
+
+			return bean;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 }

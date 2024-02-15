@@ -171,7 +171,7 @@ section {
 				<c:when test="${sessionScope.loginfo.MBRID != null}">
 				<li><button type="button" onclick="location.href = '<%=notWithFormTag%>meLogout'"
 							class="libt">로그아웃&nbsp;</button></li>
-					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/Member/MyCart.jsp'"
+					<li><button type="button" onclick="location.href ='<%=notWithFormTag%>cartInsert'"
 							class="libt">장바구니&nbsp;</button></li>
 					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/MyPage/MyPageM.jsp'"
 							class="libt">주문조회&nbsp;</button></li>
