@@ -124,10 +124,12 @@ session.getAttribute("loginfo");
 					</div>
 					</td>
 					<td>
+						<c:if test="${sessionScope.loginfo.MBRID == bean.id}">
 						<c:set var="replyInfo" value="&groupno=${bean.groupno}&orderno=${bean.orderno}&depth=${bean.depth}"/>
 						<div class="tdwrap" style="width:50px">
 							<a href="<%=notWithFormTag%>boReply&no=${bean.no}${requestScope.paging.flowParameter}${replyInfo}">답글</a>
 						</div>
+						</c:if>
 					</td>
 				</tr>
 				</c:forEach>

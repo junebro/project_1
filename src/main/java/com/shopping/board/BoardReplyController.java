@@ -8,7 +8,7 @@ import com.shopping.model.bean.Board;
 import com.shopping.model.dao.BoardDao;
 
 public class BoardReplyController extends SuperClass{
-	private final String PREFIX = "board/";
+	//private final String PREFIX = "board/";
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -40,11 +40,11 @@ public class BoardReplyController extends SuperClass{
 			new BoardListController().doGet(request, response);
 			
 		}else{
-			super.gotoPage(PREFIX + "boReplyForm.jsp"); 
+			super.gotoPage("board/boReplyForm.jsp"); 
 		}
 		
 		
-		super.gotoPage(PREFIX + "boinsert.jsp");
+		super.gotoPage("board/boInsert.jsp");
 	}
 	
 	@Override
