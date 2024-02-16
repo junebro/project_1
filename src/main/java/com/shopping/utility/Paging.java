@@ -21,55 +21,53 @@ public class Paging {
 	private String mode = "" ; // 검색 모드(예시 : 작성자, 글제목 등등)
 	private String keyword = "" ; // 검색할 단어	
 	
-	private String flowParameter = "" ; // 페이지 이동시 같이 수반되는 파라미터 리스트
-	
-	
+	private String flowParameter = "" ; // 페이지 이동시 같이 수반되는 파라미터 리스트	
 	
 	public Paging(String _pageNumber, String _pageSize, int totalCount, String url, String mode, String keyword, boolean isGrid) {
+		
 		if(_pageNumber == null || _pageNumber.equals("null") || _pageNumber.equals("")) {
-			_pageNumber = "1"; // 의미 없는 페이지번호가 넘어 오면 기본 값 "1"로 지정
+			_pageNumber = "1" ; // 의미 없는 페이지 번호가 넘어 오면 기본 값 "1"로 지정 
 		}
 		this.pageNumber = Integer.parseInt(_pageNumber);
 		
 		if(_pageSize == null || _pageSize.equals("null") || _pageSize.equals("")) {
 			if(isGrid == true) { // 격자 형식으로 보기
-				_pageSize = "10"; // 상품 목록 보기 기본 값 "6"
-			} else {
-				_pageSize = "10"; // 나머지 목록 복 ㅣ페이지 기본 값 "10"
-			}
+				_pageSize = "6" ; // 상품 목록 보기 기본 값 "6"
+			}else {
+				_pageSize = "10" ; // 나머지 목록 보기 페이지 기본 값 "10" 	
+			} 
 		}
 		this.pageSize = Integer.parseInt(_pageSize);
 		
-		this.totalCount = totalCount;
-		this.url = url;
+		this.totalCount = totalCount ;
+		this.url = url ;
 		
 		// 모드가 "all"이면 전체 검색으로 간주합니다.
-		this.mode = mode == null || mode.equals("null") || mode.equals("") ? "all" : mode;
-		this.keyword = keyword == null || keyword.equals("null") || keyword.equals("") ? "" : keyword;
+		this.mode = mode == null || mode.equals("null") || mode.equals("") ? "all" : mode ;
 		
-		double _totalPage = Math.ceil((double)totalCount/pageSize);
-		this.totalPage = (int)_totalPage;
+		this.keyword = keyword == null || keyword.equals("null") || keyword.equals("") ? "" : keyword ;
 		
-		this.beginRow = (pageNumber-1) * pageSize +1;
-		this.endRow = pageNumber * pageSize;
-		if(endRow > totalCount) { endRow = totalCount; }
+		double _totalPage = Math.ceil((double)totalCount/pageSize)  ;
+		this.totalPage = (int)_totalPage ;
 		
-		// pageNumber가 pageSize의 배수가 되면 어긋납니다.(-1QOftoagownrl)
-		this.beginPage = (pageNumber-1) / pageCount * pageCount + 1;
-		this.endPage = beginPage + pageCount -1;
+		this.beginRow = (pageNumber-1) * pageSize + 1;
+		this.endRow = pageNumber * pageSize ;
+		if(endRow > totalCount) {endRow = totalCount;}
 		
-		if(endPage > totalPage) { endPage = totalPage; }
+		// pageNumber가 pageSize의 배수가 되면 어긋납니다.(-1 뺄셈해주기)
+		this.beginPage = (pageNumber-1) / pageCount * pageCount + 1 ;
+		this.endPage = beginPage + pageCount - 1 ; 
+		if(endPage > totalPage) {endPage = totalPage;}
 		
-		this.pagingStatus = "총 " + totalCount + "건[" + pageNumber + "/" + totalPage + "]";
+		this.pagingStatus = "총 " + totalCount + "건[" + pageNumber + "/" + totalPage + "]" ;
 		
-		//flowParameter 반복적으로 써야되니 하나의 변수로 묶는다
-		this.flowParameter = "";
-		this.flowParameter += "&pageNumber=" + pageNumber;
-		this.flowParameter += "&pageSize=" + pageSize;
-		this.flowParameter += "&mode=" + mode;
-		this.flowParameter += "&keyword=" + keyword;
+		this.flowParameter = "" ;
+		this.flowParameter += "&pageNumber=" + pageNumber ;
+		this.flowParameter += "&pageSize=" + pageSize ;
+		this.flowParameter += "&mode=" + mode ;
+		this.flowParameter += "&keyword=" + keyword ;
 		
-		this.pagingHtml = this.getMakePagingHtml();
+		this.pagingHtml = this.getMakePagingHtml() ;
 	}	
 
 	private String getMakePagingHtml() {
@@ -78,35 +76,33 @@ public class Paging {
 		html += "<ul class=\"pagination justify-content-center\" style=\"margin:20px 0\">";
 		
 		if(pageNumber <= pageCount) {
-			/* 맨 처음과 이전 존재하지 않는 경우 */
-			
-		} else {
+			/* '맨처음'과 '이전' 항목이 존재하지 않는 경우 */
+		}else {
 			html += makeLiTag("맨처음", 1);
 			html += makeLiTag("이전", beginPage-1);
 		}
 		
-		for (int i = beginPage; i <= endPage; i++) {
+		for (int i = beginPage; i <= endPage ; i++) {
 			if(i == pageNumber) {
-				
 				// active 속성으로 활성화시키고, 빨간 색으로 진하게 표현하기
-	            html += "<li class=\"page-item active\">";
-	            html += "<a class=\"page-link\" href=\"#\">";
-	            html += "<b><font color='red'>" + i + "</font></b>" ;
-	            html += "</a></li>";
-	            
-			} else {
-				html += makeLiTag(String.valueOf(i), i);
+				html += "<li class=\"page-item active\">";
+				html += "<a class=\"page-link\" href=\"#\">";
+				html += "<b><font color='red'>" + i + "</font></b>" ;
+				html += "</a></li>";	
+				
+			}else {
+				html += makeLiTag(String.valueOf(i), i); 
 			}
 		}
 		
 		if(pageNumber >= (totalPage/pageCount*pageCount+1)) {
-			/* '맨끝'과 '다음' 항목이 존재하는 경우 */
-		} else {
+			/* '맨끝'과 '다음' 항목이 존재하지 않는 경우 */
+		}else {
 			html += makeLiTag("다음", endPage+1);
-			html += makeLiTag("맨끝", totalPage);
+			html += makeLiTag("맨끝", totalPage);			
 		}
 		
-		html += "</ul>";
+		html += "</ul>" ;
 		
 		return html;
 	}
@@ -125,8 +121,8 @@ public class Paging {
 		result += "&keyword=" + this.keyword;
 		result += "'>" ;
 		result += caption ;
-		result += "</a></li>";
-
+		result += "</a></li>";		
+		
 		return result ;
 	}
 

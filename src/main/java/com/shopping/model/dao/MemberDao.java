@@ -186,6 +186,47 @@ public class MemberDao extends SuperDao {
 		return bean;
 
 	}
+	
+	public Member getDataByIdAndPasswordA(String MBRID, String MBRPW) {
+
+		String sql = " select * from TMBR";
+		sql += " where MBRID = ? and MBRPW = ? ";
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Member bean = null;
+
+		super.conn = super.JgetConnection();
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, MBRID);
+			pstmt.setString(2, MBRPW);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				bean = this.resultSetBean(rs);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return bean;
+
+	}
 
 	private Member resultSetBean(ResultSet rs) {
 		try {
@@ -250,5 +291,49 @@ public class MemberDao extends SuperDao {
 
 		return dataList;
 	}
+
+	public String getMemberPw(String id) {
+		String sql = "select mbrpw from members where mbrid = ?" ;
+		
+		
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null;
+		String mbrpw = null;
+		
+		try {
+			super.conn = super.JgetConnection();
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				mbrpw = rs.getString("mbrpw");
+				
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			}catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+				super.closeConnection();
+			}catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return mbrpw;
+		
+	}
+
+
 
 }
