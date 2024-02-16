@@ -89,6 +89,8 @@ header {
 .container {
 	display: flex;
 	justify-content: space-between;
+	margin: 0;
+  	padding: 0;
 }
 
 .items {
@@ -223,6 +225,24 @@ header {
 
 	font-family: 'Noto Sans KR', sans-serif;
 }
+
+
+.top_grade {
+	padding-top:7px;
+	margin-right: auto; /* 오른쪽 마진을 자동으로 채우면서 왼쪽 끝에 배치됩니다. */
+	font-family: 'Noto Sans KR', sans-serif;
+	display: flex;
+	justify-content: space-between;
+}
+
+.top_grade_div_1{
+	
+}
+
+.top_grade_div_2{
+	margin-top:2px;
+}
+
 
 /*
 
@@ -656,38 +676,75 @@ a.active {
 			<br>
 
 			<div class="container">
-				<div class="a">
-					<span class="star crema-hide"><span style="width: 96.0%"></span></span>
-					<em class="num">
+				<div class="top_grade">
+					<div class="top_grade_div_1">
+						<c:set var="aaa" value="${Math.floor(requestScope.Grade_total)}" />
+						<c:set var="bbb" value="${Math.ceil(requestScope.Grade_total)}" />
 						<c:forEach var="i" begin="1" end="5">
-							<c:if test="${requestScope.Grade_total > i}">
-							    a
-							</c:if>
-							
-							<c:if test="${requestScope.Grade_total > i && requestScope.Grade_total < i+1}">
-							    c
+							<c:if test="${requestScope.Grade_total >= i}">
+							   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 20px; height: 20px;">
+								<defs>
+									<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
+								</defs>
+								<use xlink:href="#star-full"/>
+							</svg>
 							</c:if>
 							
 							<c:if test="${requestScope.Grade_total < i}">
-							    b
+							    <c:if test="${requestScope.Grade_total - aaa != 0 && i == bbb}">
+							    	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 20px; height: 20px;">
+									    <defs>
+									        <path id="a" fill="#E8E8E8" d="M10.003 1.667c.27 0 .539.148.677.442l2.165 4.59 4.84.74c.622.095.87.894.42 1.352l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382c0-9.166 0-13.897.002-14.191z"></path>
+									        <path id="c" d="M7.157 6.698l2.165-4.59a.746.746 0 0 1 .688-.441c-.007.294-.01 5.025-.01 14.19L5.673 18.24c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"></path>
+									    </defs>
+									    <use xlink:href="#a"></use>
+									    <use xlink:href="#c"></use>
+									</svg>
+							    </c:if>
+							    
+							    <c:if test="${requestScope.Grade_total - aaa != 0 && i > bbb}">
+							    	<c:if test="${requestScope.Grade_total < i}">
+										<c:if test="${requestScope.Grade_total < i}">
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: #000000">
+												<defs>
+													<path id="star-empty" fill="#E8E8E8" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"></path>
+												</defs>
+												<use xlink:href="#star-empty"></use>
+											</svg>
+										</c:if>
+									</c:if>
+							    </c:if> 
+							    
+							    <c:if test="${requestScope.Grade_total - aaa == 0 && requestScope.Grade_total < i}">
+							    	<c:if test="${requestScope.Grade_total < i}">
+										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: #000000">
+											<defs>
+												<path id="star-empty" fill="#E8E8E8" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"></path>
+											</defs>
+											<use xlink:href="#star-empty"></use>
+										</svg>
+									</c:if>
+							    </c:if> 
 							</c:if>
-
 						</c:forEach>
-					<span>${requestScope.Grade_total}</span>/5</em> <a>(${rsViews})</a>
+					</div>
+					<div class="top_grade_div_2">
+						<span>&nbsp;${requestScope.Grade_total}</span>/5 <a>(${rsViews})</a>
+					</div>
 				</div>
 				<div class="a">
 					<a><img class="ht-image" id="ht-image" src="" onclick="changeImage('${bean.PRONM}')" /></a>
 					&nbsp;&nbsp;<span style="color:#B5B4B4;">|</span>
 					<a href="https://www.facebook.com/?locale=ko_KR" target="_blank"><img class="facebook-image" src="${pageContext.request.contextPath}/Image/facebook.png" alt="facebook"></a>
-					<a href="https://twitter.com/?lang=ko" target="_blank"><img class="twitter-image" src="${pageContext.request.contextPath}/Image/twitter.png" alt="twitter"></a>
-						
-						
+					<a href="https://twitter.com/?lang=ko" target="_blank"><img class="twitter-image" src="${pageContext.request.contextPath}/Image/twitter.png" alt="twitter"></a>	
 				</div>
 			</div>
 			<br>
 			<div>
 		
-				<span id="pro_price" class="price">${bean.PROPR}</span>
+				<span id="pro_price" class="price">
+					<fmt:formatNumber value="${bean.PROPR}" pattern="###,###" />
+				</span>
 				<span style="font-family: 'Noto Sans KR', sans-serif;">원</span> 
 				<br> 
 				<span class="save_point">적립</span>
