@@ -99,6 +99,7 @@ String notWithFormTag = withFormTag + "?command=";
 .dropdown {
 	position: relative;
 	display: inline-block;
+	font-size: 50px;
 }
 
 /* Dropdown Content (Hidden by Default) */
