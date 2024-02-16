@@ -7,10 +7,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.shopping.model.bean.Member;
+import com.shopping.utility.MyUtility;
 
 public class MemberDao extends SuperDao {
 	public MemberDao() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public int deleteData(String mbrid) {
+		int cnt = -1 ;
+		String sql = "" ;
+		Member bean = this.getDataBean(mbrid) ;
+		
+		PreparedStatement pstmt = null ;
+		conn = super.getConnection() ;
+		
+		try {
+			conn.setAutoCommit(false);
+						
+			// step03 : 회원 테이블 데이터를 삭제합니다.	
+			sql = " delete from tmbr where mbrid = ? " ;
+			pstmt = conn.prepareStatement(sql) ;
+			pstmt.setString(1, mbrid);
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}			
+			
+			conn.commit();
+			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}finally {
+			try {
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt ;
 	}
 	
 	public int updateData(Member bean) {

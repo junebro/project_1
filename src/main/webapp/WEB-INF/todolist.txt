@@ -35,7 +35,7 @@ meLogout=com.shopping.member.MemberLogoutController
 meInsert=com.shopping.member.MemberInsertController
 # mypage section
 myUpdate=com.shopping.member.MypageUpdateController
-#myDelete=com.shopping.member.MypageDeleteController
+myDelete=com.shopping.member.MypageDeleteController
 #myDetail=com.shopping.member.MypageDetailController
 # like section
 liInsert=com.shopping.like.LikeInsertController

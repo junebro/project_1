@@ -151,19 +151,23 @@ h1 {
 }
 
 .Myt {
-	width: 80%;
+	width: 100%;
 	margin-top: 70px;
 	height: 100px;
 }
 
 .Myp {
 	text-align: center;
-	width: 20%;
+	width: 30%;
 }
 
 .Myp1 {
 	text-align: center;
-	width: 50%;
+	width: 30%;
+}
+.Myp2 {
+	text-align: center;
+	width: 30%;
 }
 
 .row {
@@ -592,6 +596,9 @@ table .inputTypeText { /* 2열 입력칸 */
 					</div>
 					<div onclick="location.href = '<%=notWithFormTag%>meLogout'">
 						<a href="#">로그아웃</a><br>
+					</div>
+					<div onclick="location.href = '<%=notWithFormTag%>myDelete'">
+						<a href="#">탈퇴하기</a><br>
 					</div>
 				</div>	
 			</div>
