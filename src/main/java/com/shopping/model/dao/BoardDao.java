@@ -156,6 +156,9 @@ public class BoardDao extends SuperDao{
 				pstmt.setInt(1, no);
 				rs = pstmt.executeQuery();
 				System.out.println("데이터가 실행되었습니다.");
+				if(rs.next()) {
+					bean = this.resultSet2Bean(rs);
+				}
 				
 			} catch (SQLException e) {
 				
@@ -250,6 +253,46 @@ public class BoardDao extends SuperDao{
 				}
 			}		
 			return cnt ;
+	}
+
+	public int updateData(Board bean) {
+		System.out.println(bean);
+		
+		String sql = "update boards set id=?, password=?, subject=?, contents=?, regdate=default" ;
+		sql += " where no = ?";
+		
+		PreparedStatement pstmt = null ;
+		int cnt = -99999 ;
+		
+		try {
+			super.conn = super.JgetConnection();
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, bean.getId());
+			pstmt.setString(2, bean.getPassword());
+			pstmt.setString(3, bean.getSubject());
+			pstmt.setString(4, bean.getContents());
+			pstmt.setInt(5, bean.getNo());
+			
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			}catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+				super.closeConnection();
+			}catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt;
 	}
 	
 	

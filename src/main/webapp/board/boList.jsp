@@ -97,7 +97,10 @@
 					<td><div class="tdwrap" style="width:200px">${bean.contents}</div></td>
 					<td><div class="tdwrap" style="width:50px">${bean.readhit}</div></td>
 					<td><div class="tdwrap" style="width:100px">${bean.regdate}</div></td>
-					<td><div class="tdwrap" style="width:50px">수정</div></td>
+					<td><div class="tdwrap" style="width:50px">
+						<a href="<%=notWithFormTag%>boUpdate&no=${bean.no}${requestScope.paging.flowParameter}">수정</a>
+						</div>
+					</td>
 					<td><div class="tdwrap" style="width:50px">
 						<a href="#" 
 								onclick="return deleteBoard('${bean.no}', '${requestScope.paging.flowParameter}');">삭제

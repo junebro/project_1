@@ -247,4 +247,48 @@ public class MemberDao extends SuperDao {
 		return dataList;
 	}
 
+	public String getMemberPw(String id) {
+		String sql = "select mbrpw from members where mbrid = ?" ;
+		
+		
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null;
+		String mbrpw = null;
+		
+		try {
+			super.conn = super.JgetConnection();
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				mbrpw = rs.getString("mbrpw");
+				
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			}catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+				super.closeConnection();
+			}catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return mbrpw;
+		
+	}
+
+
+
 }
