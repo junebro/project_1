@@ -17,7 +17,7 @@ public class TproDao extends SuperDao {
 	ResultSet rs = null;
 	List<Tpro> dataList = new ArrayList<Tpro>();
 	
-	super.conn = super.JgetConnection();
+	super.conn = super.getConnection();
 	
 		try {
 		
