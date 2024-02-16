@@ -580,7 +580,7 @@ String MBRID = session.getAttribute("loginfo").toString();
 							width="120px" height="120px"
 							src="${pageContext.request.contextPath}/Image/Detail_main/<%=pBean.get(0).getPROIMG()%>"></img></td>
 						<td><span><%=pBean.get(0).getPRONM()%></span> <span
-							style="font-size: 0.8rem; font-weight: light;"><%="색상 : " + PROCR + ", 사이즈 : " + ORDSZ%>
+							style="font-size: 0.8rem; font-weight: light;"><%="색상 : " + PROCR + ", 사이즈 : " + ORDSZ + ", 수량 : " + ORDQTY + "개"%>
 						</span> <span><%="주문 상품 가격 : " + TOTPR + " 원"%></span><br></td>
 					</tr>
 					<%
