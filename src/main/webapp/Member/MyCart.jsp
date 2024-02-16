@@ -563,12 +563,16 @@ for (int i = 0; i < endval; i++) {
 							</div>
 						</div>
 					</div>
+					<script>
+					function copyParam(){
+						var url = "<%=notWithFormTag%>OrderC&submit=<%=request.getParameter("submit")%>";
+					        window.location.href = url;
+					}
+					</script>
 					<div id="orderFixItem"
 						class="xans-element xans-order xans-order-totalorder ">
 						<div class="ec-base-button">
-							<button class="btn1 btn_black" onclick="Basket.orderAll(this)"
-								link-order="/order/orderform.html?basket_type=all_buy"
-								link-login="/member/login.html">전체상품주문</button>
+							<button class="btn1 btn_black" onclick="copyParam()">전체상품주문</button>
 
 						</div>
 					</div>
