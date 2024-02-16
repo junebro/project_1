@@ -19,6 +19,9 @@ String notWithFormTag = withFormTag + "?command=";
 //out.print("notWithFormTag : " + notWithFormTag + "<br/>");
 %>
 <style>
+#topwrap{
+	font-family: 'Noto Sans KR', sans-serif;
+}
 .menuwrap {
 	width: 100%;
 	text-align: center;

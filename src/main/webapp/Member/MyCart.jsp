@@ -551,24 +551,28 @@ for (int i = 0; i < endval; i++) {
 							<h4 class="title">총 배송비</h4>
 							<div class="data">
 								<strong id="total_delv_price_front"> <span
-									class="total_delv_price_front"><%=pee%></span>
+									class="total_delv_price_front">0원</span>
 								</strong>
 							</div>
 						</div>
 						<div class="heading total" id="total_money">
 							<h4 class="title">결제예정금액</h4>
 							<div class="data">
-								<strong id="total_order_price_front"><%=totalPr + pee%>
+								<strong id="total_order_price_front"><%=totalPr%>
 									원</strong>
 							</div>
 						</div>
 					</div>
+					<script>
+					function copyParam(){
+						var url = "<%=notWithFormTag%>OrderC&submit=<%=request.getParameter("submit")%>";
+					        window.location.href = url;
+					}
+					</script>
 					<div id="orderFixItem"
 						class="xans-element xans-order xans-order-totalorder ">
 						<div class="ec-base-button">
-							<button class="btn1 btn_black" onclick="Basket.orderAll(this)"
-								link-order="/order/orderform.html?basket_type=all_buy"
-								link-login="/member/login.html">전체상품주문</button>
+							<button class="btn1 btn_black" onclick="copyParam()">전체상품주문</button>
 
 						</div>
 					</div>
