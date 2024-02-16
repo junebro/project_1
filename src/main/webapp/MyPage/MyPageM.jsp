@@ -30,7 +30,6 @@
 	function toggleDiv() {
 		var mainDiv = document.getElementById("mainDiv");
 		var otherDiv = document.getElementById("otherDiv");
-		var otherDiv2 = document.getElementById("otherDiv2");
 
 		if (mainDiv.style.display !== "none") {
 			mainDiv.style.display = "none";
@@ -45,12 +44,41 @@
 		var mainDiv = document.getElementById("mainDiv");
 		var otherDiv = document.getElementById("otherDiv");
 		var otherDiv2 = document.getElementById("otherDiv2");
+		var otherDiv3 = document.getElementById("otherDiv3");
 
 		mainDiv.style.display = "block";
 		otherDiv.style.display = "none";
 		otherDiv2.style.display = "none";
+		otherDiv3.style.display = "none";
 
 	}
+	
+	function toggleMyinfo() {
+		var mainDiv = document.getElementById("mainDiv");
+		var otherDiv = document.getElementById("otherDiv");
+		var otherDiv2 = document.getElementById("otherDiv2");
+		var otherDiv3 = document.getElementById("otherDiv3");
+
+		mainDiv.style.display = "none";
+		otherDiv.style.display = "none";
+		otherDiv2.style.display = "block";
+		otherDiv3.style.display = "none";
+
+	}
+	
+	function toggleMyLike() {
+		var mainDiv = document.getElementById("mainDiv");
+		var otherDiv = document.getElementById("otherDiv");
+		var otherDiv2 = document.getElementById("otherDiv2");
+		var otherDiv3 = document.getElementById("otherDiv3");
+
+		mainDiv.style.display = "none";
+		otherDiv.style.display = "none";
+		otherDiv2.style.display = "none";
+		otherDiv3.style.display = "block";
+
+	}
+	
 	function toggleReview(url) {
 
 		$.ajax({
@@ -70,16 +98,6 @@
 		otherDiv.style.display = "block";
 		otherDiv2.style.display = "none";
 		*/
-
-	}
-	function toggleMyinfo() {
-		var mainDiv = document.getElementById("mainDiv");
-		var otherDiv = document.getElementById("otherDiv");
-		var otherDiv2 = document.getElementById("otherDiv2");
-
-		mainDiv.style.display = "none";
-		otherDiv.style.display = "none";
-		otherDiv2.style.display = "block";
 
 	}
 	
@@ -366,7 +384,7 @@ table .inputTypeText { /* 2열 입력칸 */
 	width: 50%;
 }
 
-button {
+.gbottom button {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 1em;
 	cursor: pointer;
@@ -378,7 +396,7 @@ button {
 	margin-left: 10px;
 }
 
-.btn_white {
+.btn_white1 {
 	padding: 20px 50px;
 	background-color: #FFFFFF;
 	color: #000000;
@@ -386,7 +404,7 @@ button {
 	text-decoration: none;
 }
 
-.btn_black {
+.btn_black1 {
 	padding: 20px 50px;
 	background-color: #000000;
 	color: #ffffff;
@@ -497,16 +515,25 @@ button {
 				<div class="spanbar">
 					<a href="#">활동 정보</a>
 				</div>
-				<br> <a href="./../Product/DetailProduct/DetailProduct.jsp">최근
-					본 상품</a><br> <br> <a
-					href="./../Product/DetailProduct/DetailProduct.jsp">좋아요한상품</a><br>
-				<br> <a href="#">나의게시글</a><br>
+				<br>
+				<div onclick="toggleReview('MyLike.jsp')">
+					<a href="#">좋아요한상품</a><br>
+				</div>
+				<br>
+				<div>
+					<a href="#">나의게시글</a><br>
+				</div>
 				<%-- <div class="spanbar" onclick="toggleMyinfo()">--%>
-				<div class="spanbar" onclick="toggleReview('MyUpdate.jsp')">
+				<div class="spanbar">
 					<a href="#">내 정보</a>
 				</div>
-				
-				<br> <a href="#">회원정보수정</a><br> <a href="#">로그아웃</a><br>
+				<br>
+				<div onclick="toggleReview('MyUpdate.jsp')">
+					<a href="#">회원정보수정</a><br>
+				</div>
+				<div onclick="location.href = '<%=notWithFormTag%>meLogout'">
+					<a href="#">로그아웃</a><br>
+				</div>
 			</div>	
 		</div>
 	</div>
