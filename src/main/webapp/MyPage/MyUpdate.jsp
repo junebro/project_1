@@ -17,9 +17,6 @@ String withFormTag = appName + mappingName;
 			$('#birth').datepicker({
 				dateFormat : "yy/mm/dd"
 			});
-
-			
-
 		});
 		function sample6_execDaumPostcode() {
 			new daum.Postcode(
@@ -224,8 +221,8 @@ String withFormTag = appName + mappingName;
 				</table>
 			</div>
 			<div class="gBottom">
-				<button class="btn_white" onclick="history.go(-1);">취소</button>
-				<button class="btn_black" id="join" type="submit">수정하기</button>
+				<button class="btn_white1" onclick="history.go(-1);">취소</button>
+				<button class="btn_black1" id="join" type="submit">수정하기</button>
 			</div>
 		</div>
 
