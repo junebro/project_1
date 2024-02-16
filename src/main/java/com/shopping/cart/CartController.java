@@ -20,36 +20,39 @@ public class CartController extends SuperClass {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		super.doGet(request, response);
-
-		// 넘겨받은 장바구니 데이터를 변수에 저장
-		String PROCD = request.getParameter("PROCD");
-		//String PROSZ = request.getParameter("PROSZ");
-		//String QTY = request.getParameter("QTY");
-		int PROSZ = 250;
-		int QTY = 1;
-		// 세션 아이디 정보를 변수에 저장
 		String MBRID = super.loginfo.getMBRID();
 		CartDao cDao = new CartDao();
 		Cart cBean = new Cart();
 		Product pBean = new Product();
 		ProductDao pDao = new ProductDao();
 
-		System.out.println(PROCD);
-		System.out.println(PROSZ);
-		System.out.println(QTY);
 		
-		cBean.setMBRID(MBRID);
-		cBean.setPROCD(PROCD);
-		cBean.setQTY(QTY);
-		cBean.setPROSZ(PROSZ);
+		String submitParam = request.getParameter("submit");
+        String[] submitArray = submitParam.split(",");
+        
+         for (String data : submitArray) {
+            String[] values = data.split("/");
 
-		// bean에 장바구니 데이터 저장
-
-		//cDao.insertData(cBean);
-		// Dao의 insertData를 통해 DB에 장바구니 정보를 저장
-		
-		List<Cart> be = cDao.getDataList(MBRID);
-		System.out.println("장바구니 데이터 행 개수 :"+be.size());
+            String PROCD = values[1];
+    		String PROSZ = values[2];
+    		String QTY = values[3];
+            
+            
+            System.out.println(values[0]);
+            System.out.println(values[1]);
+            System.out.println(values[2]);
+            System.out.println(values[3]);
+            
+            cBean.setMBRID(MBRID);
+    		cBean.setPROCD(PROCD);
+    		cBean.setQTY(Integer.parseInt(QTY));
+    		cBean.setPROSZ(Integer.parseInt(PROSZ));
+    		
+    		cDao.insertData(cBean);
+            
+        }
+			List<Cart> be = cDao.getDataList(MBRID);
+		System.out.println("장바구니 데이터 행 개수 :" + be.size());
 		
 		super.gotoPage("Member/MyCart.jsp");
 		

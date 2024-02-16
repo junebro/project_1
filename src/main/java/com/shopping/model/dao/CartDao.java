@@ -12,8 +12,6 @@ import com.shopping.model.bean.Product;
 public class CartDao extends SuperDao {
 
 	public List<Cart> getDataList(String MBRID) {
-		System.out.println("개병신 씨발놈의 겟 데이타 리스트 씨발새끼\n");
-		System.out.println("개병신 씨발놈의 겟 데이타 리스트 씨발새끼\n");
 		String sql = " select * from TCRT where MBRID = ? ";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -105,7 +103,6 @@ public class CartDao extends SuperDao {
 		ResultSet rs = null;
 		Cart bean = null;
 
-		System.out.println("카트 다오 겟머이타 빈 TLQkfrjt");
 		super.conn = super.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -170,29 +167,23 @@ public class CartDao extends SuperDao {
 
 	}
 
-	public int deleteData(String PROCD, String MBRID) {
-		// 상품은 주문 상세 테이블과 참조 무결성 제약 조건 set null을 가지고 있습니다.
-		// 상품 삭제시 주문 상세 테이블의 remark 컬럼을 갱신하도록 합니다.
-
+	public int deleteData(String MBRID, String PROCD, int PROSZ) {
 		String sql = "";
 		PreparedStatement pstmt = null;
 		int cnt = -9999999;
-
 		try {
 			super.conn = super.getConnection();
 
 			Cart bean = this.getDataBean(PROCD, MBRID);
 
-			// getDataBean() 메소드가 실행된 이후에 접속 객체가 닫힙니다.
-			// 접속 객체를 다시 열어 주는 효과를 내는 다음 메소드를 다시 호출하도록 합니다.
 			super.conn = super.getConnection();
-			conn.setAutoCommit(false); // dml과 관련이 있습니다.
-			// 다음 항목도 공부하세요 : Connection Pooling 기법
+			conn.setAutoCommit(false);
 
-			sql = " delete from TCRT where PROCD = ? AND MBRID = ? ";
+			sql = " delete from TCRT where MBRID = ? AND PROCD = ? AND PROSZ = ? ";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, PROCD);
-			pstmt.setString(2, MBRID);
+			pstmt.setString(1, MBRID);
+			pstmt.setString(2, PROCD);
+			pstmt.setInt(3, PROSZ);
 			cnt = pstmt.executeUpdate();
 
 			conn.commit();
@@ -215,6 +206,7 @@ public class CartDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
+		System.out.println(MBRID + "의 장바구니 데이터 "+ PROCD + " 상품 삭제됨 ");
 		return cnt;
 	}
 
