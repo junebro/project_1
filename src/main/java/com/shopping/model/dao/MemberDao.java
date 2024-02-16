@@ -183,6 +183,47 @@ public class MemberDao extends SuperDao {
 		return bean;
 
 	}
+	
+	public Member getDataByIdAndPasswordA(String MBRID, String MBRPW) {
+
+		String sql = " select * from TMBR";
+		sql += " where MBRID = ? and MBRPW = ? ";
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Member bean = null;
+
+		super.conn = super.JgetConnection();
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, MBRID);
+			pstmt.setString(2, MBRPW);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				bean = this.resultSetBean(rs);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return bean;
+
+	}
 
 	private Member resultSetBean(ResultSet rs) {
 		try {

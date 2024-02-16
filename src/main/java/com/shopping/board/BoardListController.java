@@ -34,7 +34,7 @@ public class BoardListController extends SuperClass{
 		System.out.println("3totalCount: " +totalCount);
 		System.out.println("4url: " +url);
 		System.out.println("5mode: " +mode);
-		System.out.println("6 keyword: " +keyword);
+		System.out.println("6keyword: " +keyword);
 		
 		Paging paging = new Paging(pageNumber, pageSize, totalCount, url, mode, keyword, isGrid);
 					

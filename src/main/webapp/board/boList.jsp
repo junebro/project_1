@@ -2,11 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../common/common.jsp" %>
+<%
+session.getAttribute("loginfo");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style>
 
 	.tableWrap th{
@@ -106,7 +111,9 @@
 								onclick="return deleteBoard('${bean.no}', '${requestScope.paging.flowParameter}');">삭제
 						</a>
 					</div></td>
-					<td><div class="tdwrap" style="width:50px">답글</div></td>
+					<td>
+						<div class="tdwrap" style="width:50px">${sessionScope.loginfo.MBRID}</div>
+					</td>
 				</tr>
 				</c:forEach>
 				</tbody>
