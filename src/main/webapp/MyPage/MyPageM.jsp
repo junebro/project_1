@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
+<c:set var="cnt" value="${requestScope.cnt}" />
 
 <!DOCTYPE html>
 <html>
@@ -39,7 +40,7 @@
 			otherDiv.style.display = "none";
 		}
 	}
-
+/*
 	function toggleOrder() {
 		var mainDiv = document.getElementById("mainDiv");
 		var otherDiv = document.getElementById("otherDiv");
@@ -53,7 +54,20 @@
 
 	}
 	
-	function toggleMyinfo() {
+	function toggleMyUpdate() {
+		var mainDiv = document.getElementById("mainDiv");
+		var otherDiv = document.getElementById("otherDiv");
+		var otherDiv2 = document.getElementById("otherDiv2");
+		var otherDiv3 = document.getElementById("otherDiv3");
+
+		mainDiv.style.display = "none";
+		otherDiv.style.display = "none";
+		otherDiv2.style.display = "block";
+		otherDiv3.style.display = "none";
+
+	}
+	
+	function toggleMyInfo() {
 		var mainDiv = document.getElementById("mainDiv");
 		var otherDiv = document.getElementById("otherDiv");
 		var otherDiv2 = document.getElementById("otherDiv2");
@@ -78,7 +92,7 @@
 		otherDiv3.style.display = "block";
 
 	}
-	
+*/
 	function toggleReview(url) {
 
 		$.ajax({
@@ -105,6 +119,7 @@
 <style type="text/css">
 body {
 	font-family: 'Noto Sans KR', sans-serif;
+	text-align: center;
 }
 
 h1 {
@@ -195,10 +210,8 @@ a {
 }
 
 .sideBar {
-	position: fixed;
 	left: 40px; /* 왼쪽 여백 */
 	top: 50%;
-	transform: translateY(-50%);
 }
 /* 팝업 css 설정 */
 .popup {
@@ -444,7 +457,27 @@ table .inputTypeText { /* 2열 입력칸 */
 .main-page { 
 	margin : 110px;
 	padding-left: 120px;
-} 
+	margin-top: 50px;
+}
+.left {
+	position: relative;
+	padding: 10px;
+}
+.sticky {
+	position: absoulte;
+	width: 200px;
+	height: 400px;
+	padding: 10px;
+	margin-top: 50px;
+	text-align: center;
+}
+/* 반응형 스타일 예시 -> 1200px 이하에서는 고정 요소가 아래에 배치됩니다. */
+@media ( max-width : 1200px) {
+	.left, .right, .sticky {
+		width: 100%;
+		height: 100%;
+	}
+}
 </style>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -455,95 +488,118 @@ table .inputTypeText { /* 2열 입력칸 */
 		});
 		
 		toggleReview('MyOrder.jsp')
-
 	});
-
-
 </script>
+<script>
+	$(window).on('load', function() {
+	    const $sticky = $('.sticky'); // 고정될 박스 요소
+	    const $footer = $('footer'); // 페이지 하단의 footer 요소
+	    const $body = $('body'); // 페이지 본문
+	    const topMargin = 50; // 고정될 때의 상단, 하단 여백
+	    const breakpoint = 1200; // 반응형 디자인의 기준 너비
+
+	    // 고정 박스가 없으면 함수를 종료합니다.
+	    if (!$sticky.length) return;
+
+	    // 고정 박스의 초기 상단 위치를 계산합니다.
+	    let initialTop = $sticky.offset().top;
+
+	    // 스크롤 위치와 화면 너비에 따라 고정 박스의 위치를 업데이트하는 함수
+	    const updatePosition = () => {
+	        const scrollTop = $(window).scrollTop(); // 현재 스크롤 위치
+	        const footerHeight = $footer.outerHeight(true); // footer의 높이
+	        const bodyHeight = $body.outerHeight(true); // body의 높이
+	        // 고정 박스가 위치할 수 있는 최대 높이를 계산합니다.
+	        const availableHeight = bodyHeight - footerHeight - $sticky.outerHeight(true) - initialTop - topMargin;
+
+	        // 스크롤 위치와 화면 너비에 따라 고정 박스의 위치를 조정합니다.
+	        if (scrollTop > initialTop - topMargin && window.innerWidth > breakpoint) {
+	            if (availableHeight + initialTop - topMargin > scrollTop) {
+	                $sticky.css({ 'position': 'fixed', 'top': `${topMargin}px` });
+	            } else {
+	                $sticky.css({ 'position': 'absolute', 'top': `${availableHeight}px` });
+	            }
+	        } else {
+	            if (window.innerWidth > breakpoint){
+	                $sticky.css({ 'position': 'absolute', 'top': `0` }); // 고정 박스 위치가 최상단일 때
+	            }else{
+	                $sticky.css({ 'position': 'static' }); // 화면이 좁을 때는 기본 위치로 설정
+	            }
+	        }
+	    };
+	    
+	    // 창 크기가 변경될 때 고정 박스의 위치를 초기화하고 초기 상단 위치를 다시 계산합니다.
+	    let resizeTimer;
+	    let isResize = false;
+	    $(window).on('resize', () => {
+	        clearTimeout(resizeTimer);
+	        isResize = true;
+	        resizeTimer = setTimeout(function() {
+	            $sticky.css({ 'position': 'absolute', 'top': '0' });
+	            initialTop = $sticky.offset().top;
+	            isResize = false;
+	            updatePosition();
+	        }, 100);
+	    });
+
+	    // 스크롤 할 때 위치 업데이트 함수를 호출합니다. (창 크기가 변경되지 않을 때)
+	    $(window).on('scroll', function() {
+	        if(isResize == false){
+	            updatePosition();
+	        }
+	    });
+
+	    updatePosition();
+	});
+</script>	
 </head>
 <body>
-<jsp:include page="./..//MainPage/topbar.jsp"></jsp:include>
-	<div class="justify-content-center row">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-8">
-			<h1>마이 쇼핑</h1>
-			<table class="Myt">
-				<tbody>
-					<tr>
-						<td class="Myp1" style="text-align: center;">
-							<div
-								style="width: 30%; float: none; display: inline-block; text-align: center;">
-								<img style="height: 50px; width: 50px; margin-left: 40px;"
-									src="https://cdn-icons-png.flaticon.com/128/4203/4203951.png">
-							</div>
-							<div
-								style="width: 70%; float: none; display: inline-block; text-align: center; font-size: 16px; margin-top: 20px;">
-								안녕하세요. 고객이름 님!<br> 고객님의 회원등급은 일반회원 입니다.
-							</div>
-						</td>
-						<td class="Myp" style="text-align: center;">
-							<div
-								style="width: 30%; float: none; display: inline-block; text-align: center;">
-								<img style="height: 50px; width: 50px;"
-									src="https://cdn-icons-png.flaticon.com/128/65/65998.png">
-							</div>
-							<div
-								style="width: 70%; float: none; display: inline-block; text-align: center; margin-top: 20px;">
-								0회<br> 총 주문
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="col-sm-2"></div>
-	</div>
-	<div class="justify-content-center row">
-		<div class="col-sm-1"></div>
-		<div class="col-sm-10 justify-content-center d-flex">
-			<div class="bar col-sm-1 sideBar">
-				<div class="spanbar" onclick="toggleReview('Myreview.jsp')">
-					<a href="#">리뷰 보기</a>
-				</div>
-				<%-- <div class="spanbar" onclick="toggleOrder()"> --%>
-				<div class="spanbar" onclick="toggleReview('MyOrder.jsp')">
-					<a href="#">주문 보기</a>
-				</div>
-				<div class="spanbar">
-					<a href="./../Member/MyCart.jsp">장바구니</a>
-				</div>
-				<div class="spanbar">
-					<a href="#">활동 정보</a>
-				</div>
-				<br>
-				<div onclick="toggleReview('MyLike.jsp')">
-					<a href="#">좋아요한상품</a><br>
-				</div>
-				<br>
+<header>
+	<jsp:include page="./..//MainPage/top.jsp"/>
+</header>
+	<div class="wrap" style="justify-content: center;">
+		<div class="left">
+			<div class="sticky">
 				<div>
-					<a href="#">나의게시글</a><br>
-				</div>
-				<%-- <div class="spanbar" onclick="toggleMyinfo()">--%>
-				<div class="spanbar">
-					<a href="#">내 정보</a>
-				</div>
-				<br>
-				<div onclick="toggleReview('MyUpdate.jsp')">
-					<a href="#">회원정보수정</a><br>
-				</div>
-				<div onclick="location.href = '<%=notWithFormTag%>meLogout'">
-					<a href="#">로그아웃</a><br>
-				</div>
-			</div>	
+					<div class="spanbar" onclick="toggleReview('Myreview.jsp')">
+						<a href="#">리뷰 보기</a>
+					</div>
+					<%-- <div class="spanbar" onclick="toggleOrder()"> --%>
+					<div class="spanbar" onclick="toggleReview('MyOrder.jsp')">
+						<a href="#">주문 보기</a>
+					</div>
+					<div class="spanbar">
+						<a href="./../Member/MyCart.jsp">장바구니</a>
+					</div>
+					<div class="spanbar">
+						<a href="#">활동 정보</a>
+					</div>
+					<br>
+					<div onclick="toggleReview('MyLike.jsp')">
+						<a href="#">좋아요한상품</a><br>
+					</div>
+					<br>
+					<div>
+						<a href="#">나의게시글</a><br>
+					</div>
+					<%-- <div class="spanbar" onclick="toggleMyinfo()">--%>
+					<div class="spanbar" onclick="toggleReview('MyInfo.jsp')">
+						<a href="#">내 정보</a>
+					</div>
+					<br>
+					<div onclick="toggleReview('MyUpdate.jsp')">
+						<a href="#">회원정보수정</a><br>
+					</div>
+					<div onclick="location.href = '<%=notWithFormTag%>meLogout'">
+						<a href="#">로그아웃</a><br>
+					</div>
+				</div>	
+			</div>
+		</div>
+		<div class="right">
+			<div class="main-page"  id="otherDiv"></div>
 		</div>
 	</div>
-	
-	<div class="col-sm-1"></div>
-	
-	<div class="main-page"  id="otherDiv"></div>
-
-	
-	
-	
+	<footer></footer>
 </body>
 </html>
