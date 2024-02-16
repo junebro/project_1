@@ -917,8 +917,11 @@ a.active {
 			var total_num = total_qt.innerText;
 			
 			var id_price = document.getElementById('pro_price');	     
-			var total_price = document.getElementById('total_price');	     
-			var price = id_price.innerHTML;
+			var total_price = document.getElementById('total_price');
+			
+			var price = parseInt(id_price.innerHTML.replace(/,/g, ''), 10);
+			
+			//var price = id_price.innerHTML;
 			
 			var S_key = color + '/' + size;
 			var size_key = document.getElementById(S_key);
@@ -945,7 +948,13 @@ a.active {
 			total_qt.innerText = total_num;
 			cnt.innerText = num;
 			
-			total_price.innerText = price * total_num;
+			var sum = price * total_num;
+			var integerValue = parseInt(sum, 10);
+		    var formattedValue = integerValue.toLocaleString();
+		    
+		    total_price.innerText = formattedValue;
+			
+			//total_price.innerText = price * total_num;
 		}
 		
 		// x누르면 태그 삭제
@@ -968,15 +977,23 @@ a.active {
 			var total = total_qt.innerText;
 			
 			var id_price = document.getElementById('pro_price');	     
-			var price = id_price.innerHTML;
-			
+			//var price = id_price.innerHTML;
+			var price = parseInt(id_price.innerHTML.replace(/,/g, ''), 10);
 			var total_price = document.getElementById('total_price');	     
 			
 			if (Div) {
 				Div.remove();
 				total_qt.innerText = total - cnt;
+				//total_price.innerText = total_price.innerText - (price * cnt);
 				
-				total_price.innerText = total_price.innerText - (price * cnt);
+				var innerHTMLValue = total_price.innerText;
+			    var integerValue = parseInt(innerHTMLValue.replace(/,/g, ''), 10);
+
+				var sum = integerValue - (price * cnt);
+				var integerValue = parseInt(sum, 10);
+			    var formattedValue = integerValue.toLocaleString();
+			    
+			    total_price.innerText = formattedValue;
 			}
 		}
 
@@ -990,8 +1007,8 @@ a.active {
 			var total_num = total_qt.innerText;
 			
 			var id_price = document.getElementById('pro_price');	     
-			var price = id_price.innerHTML;
-			
+			//var price = id_price.innerHTML;
+			var price = parseInt(id_price.innerHTML.replace(/,/g, ''), 10);
 			var can = document.getElementById('color_area_color');
 			var color = can.innerText;
 			
@@ -1148,7 +1165,13 @@ a.active {
 			total_qt.innerText = total_num;
 			
 			var total_price = document.getElementById('total_price');	     
-			total_price.innerText = price * total_num;
+			
+			var sum = price * total_num;
+			var integerValue = parseInt(sum, 10);
+		    var formattedValue = integerValue.toLocaleString();
+		    
+		    total_price.innerText = formattedValue;
+		   // total_price.innerText = price * total_num;
 			
 			/*
 			var payment = document.getElementById("buy_payment");
@@ -1169,9 +1192,18 @@ a.active {
 	        buy_name.innerHTML = size + "/" + cr;
 	        total_qt.innerHTML = price;*/
 		}
-		
+		 
 		
 		function fn_buy(t) {
+			
+			var mbrid = "${sessionScope.loginfo.MBRID}";
+			
+			if(!mbrid) {
+				if (confirm("로그인이 필요한 서비스입니다.\n로그인 하시곘습니까?")) {
+					location.href = '${pageContext.request.contextPath}/Member/loginMain.jsp';
+				}
+				return;
+			}
 	
 			var parent_div = document.getElementById('sourceDiv');
 
