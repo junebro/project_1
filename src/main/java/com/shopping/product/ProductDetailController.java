@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shopping.common.SuperClass;
+import com.shopping.model.bean.Grade;
 import com.shopping.model.bean.Item;
-import com.shopping.model.bean.Product;
 import com.shopping.model.dao.ItemDao;
 import com.shopping.model.dao.ProductDetailDao;
 
@@ -26,22 +26,25 @@ public class ProductDetailController extends SuperClass{
 		String mbrid = request.getParameter("mbrid");
 		
 		ProductDetailDao dao = new ProductDetailDao();
-		List<Product> dataList = dao.getDataList(pronm, mbrid);
-		Map<String, Object> dataTest = dao.calculate(pronm, mbrid);
 		
-		//List<Map<String, Object>> resultSet1List = (List<Map<String, Object>>) dataTest.get("resultSet1");
-		//for (Map<String, Object> rowMap : resultSet1List) {
+		Map<String, Object> dataList = dao.calculate(pronm, mbrid);
+		
+		
+		List<Grade> dataGrade = dao.getDataList(pronm);
+		double Grade_total = dao.getTotal(pronm);
+		
+		System.out.println("Grade_total : " + Grade_total);
+		
+		List<Map<String, Object>> resultSetPro = (List<Map<String, Object>>) dataList.get("resultSetPro");
+		Map<String, Object> firstRow = resultSetPro.get(0);
+		
+		//for (Map<String, Object> rowMap : resultSetPro) {
 		//    System.out.println("PROCD: " + rowMap.get("PROCD"));
 		//}
 		
-		//Map<String, Object> resultSet1Map = (Map<String, Object>) dataTest.get("resultSet1");
-		//System.out.println("Result of resultSet1: " + resultSet1Map);
-		
 		// 사이즈 조회
-		Product firstData = dataList.get(0);
-	    
-	    int SSZ = firstData.getPROSSZ(); 
-	    int ESZ = firstData.getPROESZ(); 
+	    int SSZ = (int)firstRow.get("PROSSZ"); 
+	    int ESZ = (int)firstRow.get("PROESZ"); 
 	    
 	    ItemDao Idao = new ItemDao();
 		
@@ -49,7 +52,8 @@ public class ProductDetailController extends SuperClass{
 		
 		request.setAttribute("sizeList", sizeList);
 		request.setAttribute("dataList", dataList);
-		request.setAttribute("dataTest", dataTest);
+		request.setAttribute("dataGrade", dataGrade);
+		request.setAttribute("Grade_total", Grade_total);
 		
 		super.gotoPage(PREFIX + "DetailProduct.jsp");
 	}

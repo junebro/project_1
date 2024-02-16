@@ -29,9 +29,10 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
-<c:set var="bean" value="${requestScope.dataList[0]}" />
+<c:set var="bean" value="${requestScope.dataList['resultSetPro'][0]}" />
 <c:set var="dataList" value="${requestScope.dataList}" />
-<c:set var="dataTest" value="${requestScope.dataTest}" />
+<c:set var="dataGrade" value="${requestScope.dataGrade}" />
+<c:set var="Grade_total" value="${requestScope.Grade_total}" />
 
 <title>상품 상세페이지</title>
 <style>
@@ -69,7 +70,7 @@ header {
 	background-color: #E97373;
 	color: #ffffff;
 	border: none;
-}
+}  
 
 .btn_Basket {
 	padding: 16px 26px;
@@ -523,6 +524,11 @@ a.active {
 	font-weight: bold;
 	font-family:'Noto Sans KR', sans-serif;
 	padding-right: 10%;
+	
+}
+.view_star_gr {
+	font-weight: normal;
+	font-size: 13px;
 }
 
 .border_date {
@@ -594,9 +600,8 @@ a.active {
 </style>
 </head>
 	<script>
-		
 		var LK = `${bean.LK}`;
-	
+
 		// 클라이언트 측 JavaScript
 		function changeImage(pronm) { 
 			
@@ -688,7 +693,7 @@ a.active {
 			<div class="color">
 				<br>
 				<ul class="items">
-					<c:forEach var="bean_cr" items="${requestScope.dataList}" varStatus="status">
+					<c:forEach var="bean_cr" items="${requestScope.dataList['resultSetPro']}" varStatus="status">
 						<c:if test="${status.index == 0}">
 							<li>
 								<%-- <input type="radio" id="colCode_${status.index}" name="pr_color" value="10" checked="checked" />--%> 
@@ -1145,9 +1150,9 @@ a.active {
 			<li class="active"><a id="text-to-change" href="#pr_details"
 				data-gtag-idx="fo_detail_3" data-gtag-label="상품정보">상품정보</a></li>
 			<li><a href="#pr_main_review" data-gtag-idx="fo_detail_3"
-				data-gtag-label="상품리뷰">상품리뷰 (102)</a></li>
+				data-gtag-label="상품리뷰" id="view_top"></a></li>
 			<li><a href="#pr_inquiry" data-gtag-idx="fo_detail_3"
-				data-gtag-label="상품문의">상품문의 (0)</a></li>
+				data-gtag-label="상품문의">상품문의 </a></li>
 		</ul>
 		<hr style="width:100%">
 	</div>
@@ -1220,7 +1225,7 @@ a.active {
 					<br>
 					<br>
 					<br>
-					<h3 class="view_tit">REVIEW(114)</h3>
+					<h3 id="view_tit" class="view_tit"></h3>
 					<div class="black_hr_2px"></div>
 					
 					<div class="view_hd_top">
@@ -1240,66 +1245,28 @@ a.active {
 									</svg>
 								</div>
 								<div class="view_left_grade">
-									5.0
+									${requestScope.Grade_total}
 								</div>
 							</div>
 							<div class="view_left_bottom">
-								<span class="font_pro font_pro_view_left_bottom">99%</span>의 구매자가 이 상품을 좋아합니다.
+								<span class="font_pro font_pro_view_left_bottom">${requestScope.dataGrade.get(0).COUNT}%</span>의 구매자가 이 상품을 좋아합니다.
 							</div>
 						</div>
 						<div class="view_center"></div>
 						<div class="view_right">
 							<table width=330px; align="center">
+								<c:forEach var="Grade" items="${requestScope.dataGrade}" varStatus="status">
 								<tr>
-									<td  class="progress_td">아주 좋아요</td>
+									<td  class="progress_td">${Grade.TEXT}</td>
 									<td>
 										<div class="progress-bar">
-											<div class="progress" style="width: 80%;"></div>
+											<div class="progress" style="width: ${Grade.PER}%;"></div>
 											<div class="percentage"></div>
 										</div>
 									</td>
-									<td class="progress_td">144</td>
+									<td class="progress_td">${Grade.COUNT}</td>
 								</tr>
-								<tr>
-									<td class="progress_td">맘에 들어요</td>
-									<td>
-										<div class="progress-bar">
-											<div class="progress" style="width: 70%;"></div>
-											<div class="percentage"></div>
-										</div>
-									</td>
-									<td class="progress_td">2</td>
-								</tr>
-								<tr>
-									<td class="progress_td">보통이에요</td>
-									<td>
-										<div class="progress-bar">
-											<div class="progress" style="width: 60%;"></div>
-											<div class="percentage"></div>
-										</div>
-									</td>
-									<td class="progress_td">123</td>
-								</tr>
-								<tr>
-									<td class="progress_td">그냥 그래요</td>
-									<td>
-										<div class="progress-bar">
-											<div class="progress" style="width: 50%;"></div>
-											<div class="percentage"></div>
-										</div>
-									</td>
-									<td class="progress_td">22</td>
-								</tr>
-								<tr>
-									<td class="progress_td">별로에요</td>
-									<td>
-										<div class="progress-bar">
-											<div class="progress" style="width: 30%;"></div>
-											<div class="percentage"></div>
-										</div>
-									</td>
-									<td class="progress_td">1</td>
-								</tr>
+								</c:forEach>
 							</table>
 						</div>
 					</div>
@@ -1349,12 +1316,29 @@ a.active {
 						<br><br>
 						<div class="view_line"></div>
 						
-						<c:forEach var="views" items="${requestScope.dataTest['resultSetViews']}" varStatus="status">
+						<c:forEach var="views" items="${requestScope.dataList['resultSetViews']}" varStatus="status">
 						
 							<div class="view_Board">
 								<div class="view_Board_left">
 									<div class="border_top">
-										<div id="view_star${status.index}" class="view_star"></div>
+										<div id="view_star${status.index}" class="view_star">
+											<c:forEach var="i" begin="1" end="${views['RVWGR']}">
+												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 20px; height: 20px;">
+													<defs>
+														<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
+													</defs>
+													<use xlink:href="#star-full"/>
+												</svg>
+											</c:forEach>
+											<span class="view_star_gr"> 
+												<c:if test="${views['RVWGR'] eq 5}">&nbsp;아주 좋아요</c:if>
+												<c:if test="${views['RVWGR'] eq 4}">&nbsp;맘에 들어요</c:if>
+												<c:if test="${views['RVWGR'] eq 3}">&nbsp;보통이에요</c:if>
+												<c:if test="${views['RVWGR'] eq 2}">&nbsp;그냥 그래요</c:if>
+												<c:if test="${views['RVWGR'] eq 1}">&nbsp;별로에요</c:if>
+											</span>
+										</div>
+										
 										<div class="border_date">${views['RVWDT']}</div>
 									</div>
 									<br>
@@ -1443,22 +1427,17 @@ a.active {
 					<use xlink:href="#star-full"/>
 				</svg>
 			</div>
-				
-			<c:set var="rsViews" value="${fn:length(requestScope.dataTest['resultSetViews'])}" />	
-			<script>
 			
+		
+			<c:set var="rsViews" value="${fn:length(requestScope.dataList['resultSetViews'])}" />	
+			<script>
+				
 				var rsViews = ${rsViews};
-
-				for (var i = 0; i < rsViews+1; i++) {
-
-					// JavaScript 코드
-			     	var five_star = document.getElementById('five_star');
-			     	var view_star = document.getElementById("view_star" + i);
-
-			     	// <div>의 내용을 가져와서 <p> 태그에 넣기
-			     	var divContent = five_star.innerHTML;
-			     	view_star.innerHTML = divContent + "아주 좋아요";
-				}
+				var view_tit = document.getElementById("view_tit");
+				var view_top = document.getElementById("view_top");
+				
+				view_tit.innerHTML = "REVIEW("+rsViews+")";
+				view_top.innerHTML = "상품리뷰("+rsViews+")";
 
 		    </script>
 			
