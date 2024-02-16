@@ -40,8 +40,7 @@
 header {
 	/*background-color: #333;*/
 	/*color: #fff;*/
-	/*text-align: center;
-	padding: 1em;*/
+	text-align: center;
 }
 
 .product_top {
@@ -640,7 +639,7 @@ a.active {
 	</script>
 
 	<header>
-		<%-- <jsp:include page="./../../MainPage/top.jsp" />--%>
+		<jsp:include page="./../../MainPage/top.jsp" />
 	</header>
 <body>
 	<div class="product_top">
@@ -783,8 +782,8 @@ a.active {
 			</div>
 			<br>
 			<div class="div_btn">
-				<button class="btn_white btn_Basket">장바구니</button>
-				<button class="btn_buy" onclick="fn_buy()">구 매</button>
+				<button class="btn_white btn_Basket" onclick="fn_buy('c')">장바구니</button>
+				<button class="btn_buy" onclick="fn_buy('b')">구 매</button>
 			</div>
 		</div>
 	</div>
@@ -1100,28 +1099,34 @@ a.active {
 		}
 		
 		
-		function fn_buy() {
+		function fn_buy(t) {
 	
-			
 			var parent_div = document.getElementById('sourceDiv');
-            
-            // Get child divs
+
             var child_div = parent_div.getElementsByClassName('payment_d');
             var child_qt = parent_div.getElementsByClassName('buy_qt');
             var child_cnt = child_div.length;
-
+			var submit = [];
+			
 			if ( child_cnt > 0 ) {
 	
 				for (var i = 0; i < child_cnt; i++) {
 	                var childDiv = child_div[i];
 	                var childqt = child_qt[i].innerText;
 	                var childId = childDiv.id;
-	                console.log('Child div ID: ' + childId + '/' + childqt);
+	                submit.push(childId + '/' + childqt);
 	            }
+				
+				if (t == "b") {
+					
+				} else if (t == "c") {
+					var url = '<%=notWithFormTag%>cartInsert&submit=' + submit.join(',');
+					location.href = url
+				}
+	
 			} else {
 				alert("상품을 선택해 주세요.");
 			}
-            
 		}
 		
 		
@@ -1139,10 +1144,7 @@ a.active {
 				$(this).siblings('label').text(select_name);
 			});
 		});
-		
-		
-		
-		
+
 	</script>
 
 	<div class="tab_box">
