@@ -301,7 +301,7 @@ public class MemberDao extends SuperDao {
 		String mbrpw = null;
 		
 		try {
-			super.conn = super.JgetConnection();
+			super.conn = super.getConnection();
 			
 			pstmt = conn.prepareStatement(sql);
 			
