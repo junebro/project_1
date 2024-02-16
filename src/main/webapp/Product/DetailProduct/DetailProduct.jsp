@@ -68,7 +68,7 @@ header {
 	padding: 18px 80px;
 	background-color: #E97373;
 	color: #ffffff;
-	border: none;
+	border: none; 
 }  
 
 .btn_Basket {
