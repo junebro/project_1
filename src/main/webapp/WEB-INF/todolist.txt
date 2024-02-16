@@ -30,3 +30,4 @@ liInsert=com.shopping.like.LikeInsertController
 liDelete=com.shopping.like.LikeDeleteController
 # Cart section
 cartInsert=com.shopping.cart.CartController
+cartDelete=com.shopping.cart.CartDeleteController

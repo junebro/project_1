@@ -266,21 +266,16 @@ a { /* 링크 */
 	}
 }
 </style>
-<%!
-List<Product> dataList = new ArrayList<>();
-int totalPr = 0;
-int pee = 3500;
-%>
+<%!List<Product> dataList = new ArrayList<>();
+	int totalPr = 0;
+	int pee = 3500;%>
 <%
 CartDao cDao = new CartDao();
 String MBRID = session.getAttribute("loginfo").toString();
 
 List<Cart> be = cDao.getDataList(MBRID);
 
-
 int endval = be.size();
-
-
 
 for (int i = 0; i < endval; i++) {
 	String dataH = be.get(i).getPROCD();
@@ -290,13 +285,14 @@ for (int i = 0; i < endval; i++) {
 		dataList.addAll(cDao.getDataList1(dataH));
 	}
 	Cart bee = cDao.getDataBean(dataList.get(i).getPROCD(), MBRID);
-	totalPr += dataList.get(i).getPROPR() * bee.getQTY() ;
-	
+	totalPr += dataList.get(i).getPROPR() * bee.getQTY();
+
 }
 %>
 <c:set var="dataList" value="${dataList}" />
 <c:set var="endval" value="${endval}" />
 <script>
+
 	$(window).on('load', function() {
 	    const $sticky = $('.sticky'); // 고정될 박스 요소
 	    const $footer = $('footer'); // 페이지 하단의 footer 요소
@@ -356,10 +352,30 @@ for (int i = 0; i < endval; i++) {
 	    });
 
 	    updatePosition();
+	    
+	    
+	    $(document).ready(function() {
+		    tot(); // 페이지 로드시 tot 함수를 한 번 실행
+
+		    function tot() {
+		        var total = 0;
+
+		        $(".totalA").each(function() {
+		            var price = parseInt($(this).text());
+		            total = total + price;
+		        });
+
+		        $("#total_order_price_front").text(total + "원");
+		        $(".total_product_price_display_front").text(total + "원");
+		    }
+		});
 	});
 </script>
 </head>
 <body>
+	<header>
+		<jsp:include page="./../MainPage/top.jsp" />
+	</header>
 	<header>
 		<div class="contents">
 			<h2>장바구니</h2>
@@ -386,10 +402,27 @@ for (int i = 0; i < endval; i++) {
 						<!-- 장바구니 상품 리스트 섹션 -->
 						<%
 						for (int i = 0; i < endval; i++) {
-							
+
 							Cart bee = cDao.getDataBean(dataList.get(i).getPROCD(), MBRID);
 						%>
-						<div id="collapseOne" class="accordion-collapse collapse show"
+						<script type="text/javascript">
+						    function deleteAll<%=i%>() {
+						        // 해당 div 요소를 가져옵니다.
+						        var collapseOneDiv = document.getElementById("<%="collapseOne" + i%>");
+						
+						        // 해당 div 내부의 모든 자식 요소를 삭제합니다.
+						        while (collapseOneDiv.firstChild) {
+						            collapseOneDiv.removeChild(collapseOneDiv.firstChild);
+						        }
+						        
+						        var url = "<%=notWithFormTag%>cartDelete&<%="PROCD"%>=<%=dataList.get(i).getPROCD()%>&PROSZ=<%=bee.getPROSZ()%>";
+						      <%--  var url = '<%=notWithFormTag%>cartInsert&submit=' + submit.join(','); --%>
+						        // 생성한 URL로 페이지 이동
+						        window.location.href = url;
+						    }
+						</script>
+						<div id="<%="collapseOne" + i%>"
+							class="accordion-collapse collapse show"
 							aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 							<div class="cart-subtitle"><%=i + 1%>번상품
 							</div>
@@ -407,28 +440,90 @@ for (int i = 0; i < endval; i++) {
 									</strong></li>
 									<li class="price"><strong><%=dataList.get(i).getPROPR()%></strong>원</li>
 								</div>
-								<a href="#none" onclick="Basket.deleteBasketItem(1);"
-									class="btnDelete">X</a>
+								<a href="#" onclick="deleteAll<%=i%>()" class="btnDelete">X</a>
 							</div>
 							<div class="prdOption">
 								<span class="product displaynone"><%=dataList.get(i).getPRONM()%></span>
-								<span class="optionStr">[색상 : <%=dataList.get(i).getPROCR()%> 사이즈 : <%=bee.getPROSZ() %>]
+								<span class="optionStr">[색상 : <%=dataList.get(i).getPROCR()%>
+									사이즈 : <%=bee.getPROSZ()%>]
 								</span>
 
 							</div>
+							<script type="text/javascript">
+							 function tot() {
+							        var total = 0;
+
+							        $(".totalA").each(function() {
+							            var price = parseInt($(this).text());
+							            total = total + price;
+							        });
+
+							        $("#total_order_price_front").text(total + "원");
+							        $(".total_product_price_display_front").text(total + "원");
+							    }
+							/* 수량 버튼 + */
+							
+							function <%="upbt" + i%>(){
+							   var qty = $('<%="#qty" + i%>').val();
+							   
+							   if(qty == ''){
+							      $('<%="#qty" + i%>').val('1');
+							   }else{
+							      var newQty = Number(qty);
+							      
+							    
+							      
+							      newQty = newQty + 1;
+							      $('<%="#qty" + i%>').val(newQty);
+							   }
+							   var qtymessage ="수량 : "+  $('<%="#qty" + i%>').val() + " 개";
+							   $("<%="#qty_title" + i%>").text(qtymessage);
+							   var total =  $('<%="#qty" + i%>').val() * <%=dataList.get(i).getPROPR()%>;
+							   $("<%="#price" + i%>").text(total);
+							   tot();
+							};
+
+							/* 수량 버튼 - */
+							function <%="downbt" + i%>(){
+							   var qty = $('<%="#qty" + i%>').val();
+							   
+							   if(qty == '1'){
+							      return;
+							   }
+							   
+							   if(qty == ''){
+							      $('<%="#qty" + i%>').val('1');
+							   }else{
+							      var newQty = Number(qty);
+							      newQty = newQty - 1;
+							      $('<%="#qty" + i%>').val(newQty);
+							      
+							   }
+							   var qtymessage ="수량 : "+  $('<%="#qty" + i%>').val() + " 개";
+							   $("<%="#qty_title" + i%>").text(qtymessage);
+							   var total =  $('<%="#qty" + i%>').val() * <%=dataList.get(i).getPROPR()%>;
+							   $("<%="#price" + i%>").text(total);
+							   tot();
+							   
+							};
+							</script>
 							<div class="container-fluid">
-								<div class="qty_title">수량 : <%=bee.getQTY()%></div>
+								<div class="qty_title" id="<%="qty_title" + i%>">
+									수량 :
+									<%=bee.getQTY()%>
+									개
+								</div>
 								<div class="qty_updown">
-									<button class="down btn_white"
-										onclick="Basket.outQuantityShortcut('quantity_id_0', 0);">-</button>
+									<button class="down btn_white" onclick="<%="downbt" + i%>();">-</button>
 									<input class="qty_number" name="quantity_name_0" size="2"
-										value="<%=bee.getQTY()%>" type="text">
-									<button class="up btn_white"
-										onclick="Basket.addQuantityShortcut('quantity_id_0', 0);">+</button>
+										id="<%="qty" + i%>" value="<%=bee.getQTY()%>" type="text"
+										readonly="readonly">
+									<button class="up btn_white" onclick="<%="upbt" + i%>();">+</button>
 								</div>
 							</div>
 							<div class="sumPrice">
-								<span class="label">주문금액</span> <strong><%=dataList.get(i).getPROPR() * bee.getQTY() %></strong>
+								<span class="label">주문금액</span> <strong class="totalA"
+									id="<%="price" + i%>"><%=dataList.get(i).getPROPR() * bee.getQTY()%></strong>
 							</div>
 							<div class="buttonGroup">
 								<button onclick="BasketNew.moveWish(0);" class="btn1 btn_white">관심상품</button>
@@ -449,21 +544,21 @@ for (int i = 0; i < endval; i++) {
 						<div class="heading total">
 							<h4 class="title">총 상품금액</h4>
 							<div class="data">
-								<strong><span class="total_product_price_display_front"><%= totalPr %></span></strong>
+								<strong><span class="total_product_price_display_front"><%=totalPr%></span></strong>
 							</div>
 						</div>
 						<div class="heading delivery" id="total_delivery">
 							<h4 class="title">총 배송비</h4>
 							<div class="data">
 								<strong id="total_delv_price_front"> <span
-									class="total_delv_price_front"><%= pee %></span>
+									class="total_delv_price_front"><%=pee%></span>
 								</strong>
 							</div>
 						</div>
 						<div class="heading total" id="total_money">
 							<h4 class="title">결제예정금액</h4>
 							<div class="data">
-								<strong id="total_order_price_front"><%= totalPr + pee %>
+								<strong id="total_order_price_front"><%=totalPr + pee%>
 									원</strong>
 							</div>
 						</div>
