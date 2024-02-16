@@ -111,16 +111,23 @@ session.getAttribute("loginfo");
 					<td><div class="tdwrap" style="width:50px">${bean.readhit}</div></td>
 					<td><div class="tdwrap" style="width:100px">${bean.regdate}</div></td>
 					<td><div class="tdwrap" style="width:50px">
-						<a href="<%=notWithFormTag%>boUpdate&no=${bean.no}${requestScope.paging.flowParameter}">수정</a>
+						<c:if test="${sessionScope.loginfo.MBRID == bean.id}">
+							<a href="<%=notWithFormTag%>boUpdate&no=${bean.no}${requestScope.paging.flowParameter}">수정</a>
+						</c:if>
 						</div>
 					</td>
-					<td><div class="tdwrap" style="width:50px">
-						<a href="#" 
-								onclick="return deleteBoard('${bean.no}', '${requestScope.paging.flowParameter}');">삭제
-						</a>
-					</div></td>
 					<td>
-						<div class="tdwrap" style="width:50px">${sessionScope.loginfo.MBRID}</div>
+					<div class="tdwrap" style="width:50px">
+						<c:if test="${sessionScope.loginfo.MBRID == bean.id}">
+							<a href="#" onclick="return deleteBoard('${bean.no}', '${requestScope.paging.flowParameter}');">삭제</a>
+						</c:if>
+					</div>
+					</td>
+					<td>
+						<c:set var="replyInfo" value="&groupno=${bean.groupno}&orderno=${bean.orderno}&depth=${bean.depth}"/>
+						<div class="tdwrap" style="width:50px">
+							<a href="<%=notWithFormTag%>boReply&no=${bean.no}${requestScope.paging.flowParameter}${replyInfo}">답글</a>
+						</div>
 					</td>
 				</tr>
 				</c:forEach>
