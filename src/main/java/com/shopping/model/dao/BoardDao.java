@@ -294,6 +294,100 @@ public class BoardDao extends SuperDao{
 		}
 		return cnt;
 	}
+
+	public Integer getReplyCount(Integer groupno) {
+		// 해당 그룹 번호(groupno)에 속해 있는 데이터의 행 개수를 반환해 줍니다.
+		System.out.println("검색할 그룹 번호 : " + groupno);
+		
+		String sql = " select count(*) as cnt from boards " ;
+		sql += " where groupno = ? " ;
+		
+		int cnt = -1 ; // 데이터 행 개수
+		
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;
+		super.conn = super.getConnection() ;
+		
+		try {
+			pstmt = conn.prepareStatement(sql) ;
+			pstmt.setInt(1, groupno);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cnt = rs.getInt("cnt") ;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(pstmt!=null) {pstmt.close();}
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return cnt ;
+	}
+
+	public int replyData(Board bean, Integer orderno) {
+		System.out.println("답글 달기 ");
+		System.out.println(bean);		
+		
+		String sql = "" ;
+		PreparedStatement pstmt = null ;
+		int cnt = - 1 ;
+		
+		super.conn = super.getConnection() ;
+		
+		try {
+			// step 01 : 동일한 그룹 번호에 대하여 orderno 컬럼의 숫자를 1씩 증가 시켜 주어야 합니다.
+			sql = " update boards set orderno = orderno + 1 " ;
+			sql += " where groupno = ? and orderno > ? " ;			
+			pstmt = conn.prepareStatement(sql) ;
+			pstmt.setInt(1, bean.getGroupno());
+			pstmt.setInt(2, orderno);
+			cnt = pstmt.executeUpdate() ;
+			
+			if(pstmt!=null) {pstmt.close();}
+			
+			// step 02 : 답글(bean) 객체 정보를 이용하여 데이터 베이스에 추가합니다.
+			sql = " insert into boards(no, id, password, subject, contents, groupno, orderno, depth)" ;
+			sql += " values(seqboard.nextval, ?, ?, ?, ?, ?, ?, ?) " ;
+			pstmt = conn.prepareStatement(sql) ;
+			
+			pstmt.setString(1, bean.getId());
+			pstmt.setString(2, bean.getPassword());
+			pstmt.setString(3, bean.getSubject());
+			pstmt.setString(4, bean.getContents());
+			pstmt.setInt(5, bean.getGroupno());
+			pstmt.setInt(6, bean.getOrderno());
+			pstmt.setInt(7, bean.getDepth());
+			
+			cnt = pstmt.executeUpdate() ;
+			conn.commit();
+			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				if(pstmt!=null) {pstmt.close();}
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return cnt;
+	}
 	
 	
 }//endline

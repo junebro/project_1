@@ -1,9 +1,8 @@
-package com.shopping.controller.board;
+package com.shopping.board;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shopping.board.BoardListController;
 import com.shopping.common.SuperClass;
 import com.shopping.model.bean.Board;
 import com.shopping.model.dao.BoardDao;
@@ -45,7 +44,7 @@ public class BoardReplyController extends SuperClass{
 		}
 		
 		
-		super.gotoPage(PREFIX + "boInsertForm.jsp");
+		super.gotoPage(PREFIX + "boinsert.jsp");
 	}
 	
 	@Override
