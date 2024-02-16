@@ -196,7 +196,7 @@ public class MemberDao extends SuperDao {
 		ResultSet rs = null;
 		Member bean = null;
 
-		super.conn = super.JgetConnection();
+		super.conn = super.getConnection();
 
 		try {
 
@@ -301,7 +301,7 @@ public class MemberDao extends SuperDao {
 		String mbrpw = null;
 		
 		try {
-			super.conn = super.JgetConnection();
+			super.conn = super.getConnection();
 			
 			pstmt = conn.prepareStatement(sql);
 			
