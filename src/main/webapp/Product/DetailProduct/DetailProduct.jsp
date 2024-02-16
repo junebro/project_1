@@ -33,7 +33,7 @@
 <c:set var="dataList" value="${requestScope.dataList}" />
 <c:set var="dataGrade" value="${requestScope.dataGrade}" />
 <c:set var="Grade_total" value="${requestScope.Grade_total}" />
-
+<c:set var="rsViews" value="${fn:length(requestScope.dataList['resultSetViews'])}" />	
 <title>상품 상세페이지</title>
 <style>
 
@@ -658,7 +658,22 @@ a.active {
 			<div class="container">
 				<div class="a">
 					<span class="star crema-hide"><span style="width: 96.0%"></span></span>
-					<em class="num"><span>평점</span>/5</em> <a>(0)</a>
+					<em class="num">
+						<c:forEach var="i" begin="1" end="5">
+							<c:if test="${requestScope.Grade_total > i}">
+							    a
+							</c:if>
+							
+							<c:if test="${requestScope.Grade_total > i && requestScope.Grade_total < i+1}">
+							    c
+							</c:if>
+							
+							<c:if test="${requestScope.Grade_total < i}">
+							    b
+							</c:if>
+
+						</c:forEach>
+					<span>${requestScope.Grade_total}</span>/5</em> <a>(${rsViews})</a>
 				</div>
 				<div class="a">
 					<a><img class="ht-image" id="ht-image" src="" onclick="changeImage('${bean.PRONM}')" /></a>
@@ -1118,6 +1133,8 @@ a.active {
 	            }
 				
 				if (t == "b") {
+					var url = '<%=notWithFormTag%>OrderC&submit=' + submit.join(',');
+					location.href = url
 					
 				} else if (t == "c") {
 					var url = '<%=notWithFormTag%>cartInsert&submit=' + submit.join(',');
@@ -1431,7 +1448,7 @@ a.active {
 			</div>
 			
 		
-			<c:set var="rsViews" value="${fn:length(requestScope.dataList['resultSetViews'])}" />	
+			
 			<script>
 				
 				var rsViews = ${rsViews};
