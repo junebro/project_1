@@ -40,11 +40,11 @@ public class BoardReplyController extends SuperClass{
 			new BoardListController().doGet(request, response);
 			
 		}else{
-			super.gotoPage("board/boReplyForm.jsp"); 
+			super.gotoPage("/board/boReplyForm.jsp"); 
 		}
 		
 		
-		super.gotoPage("board/boInsert.jsp");
+		super.gotoPage("/board/boInsert.jsp");
 	}
 	
 	@Override

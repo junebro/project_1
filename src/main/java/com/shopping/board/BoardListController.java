@@ -44,17 +44,18 @@ public class BoardListController extends SuperClass{
 		System.out.println("BeginRow" + paging.getBeginRow());
 		System.out.println("EndRow" + paging.getEndRow());
 		
+		
 		request.setAttribute("paging", paging);
 		request.setAttribute("abc", abc);
 		
-		
-		RequestDispatcher dispatcher = null ;
-		try {
-			dispatcher = request.getRequestDispatcher("/board/boList.jsp") ;
-			dispatcher.forward(request, response) ;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		super.gotoPage("/board/boList.jsp");
+		/*
+		 * RequestDispatcher dispatcher = null ; try { dispatcher =
+		 * request.getRequestDispatcher("/board/boList.jsp") ;
+		 * dispatcher.forward(request, response) ; } catch (Exception e) {
+		 * e.printStackTrace(); }
+		 * 
+		 */
 
 	}
 
