@@ -24,30 +24,28 @@ String notWithFormTag = withFormTag + "?command=";
 %>
 <title>Insert title here</title>
 <script>
-		
-		var LK = `${bean.LK}`;
-	
-		// 클라이언트 측 JavaScript
-		function changeImage(pronm) {
-			
-			if (LK) {
-				//alert("삭제" + LK);
-				var URL = '<%=notWithFormTag%>liDelete';
-				LK = null;
-				document.getElementById("ht-image").src = "${pageContext.request.contextPath}/Image/bht.png";
-			}
+	// 클라이언트 측 JavaScript
+	function deleteLike(pronm) {
 
-			$.ajax({
-		        type: 'GET',
-		        url: URL,
-		        data: { pronm: pronm, mbrid: mbrid },
-		        error: function(xhr, status, error) {
-		            console.error(error);
-		        }
-		    });
-		}
-	
-	</script>
+		var mbrid = "${sessionScope.loginfo.MBRID}";
+		
+		var URL = '<%=notWithFormTag%>myLiDelete';
+		
+		$.ajax({
+	        type: 'GET',
+	        url: URL,
+	        data: { pronm: pronm, mbrid: mbrid },
+	        error: function(xhr, status, error) {
+	            console.error(error);
+	        }
+	    });
+				
+		var buttonId = "btn_" + pronm;
+        var button = document.getElementById(buttonId);
+        var row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+	}
+</script>
 </head>
 <body>
 	<div id="mainDiv" >
@@ -63,7 +61,7 @@ String notWithFormTag = withFormTag + "?command=";
 					<th class="orderTh">삭제</th>
 				</tr>
 				<c:forEach var="like" items="${dataList}" varStatus="status">
-					<tr class="underline">
+					<tr class="underline" >
 						<td class="orderTd">${like.LKEDT}</td>
 						<td class="orderTd">
 							<img class="orderImg " style="cursor: pointer"
@@ -73,8 +71,8 @@ String notWithFormTag = withFormTag + "?command=";
 							onclick="location.href='<%=notWithFormTag%>DetailProduct&pronm=${like.PRONM}&mbrid=${sessionScope.loginfo.MBRID}'">${like.PRONM}</div></td>
 						<td class="orderTd">${like.PROPR}</td>
 						<td class="orderTd">
-							<button class="review_btn" type="button" class="btn_white"
-								style="font-size: 15px" onclick="changeImage('${like.PRONM}')">X</button>
+							<button class="review_btn" type="button" class="btn_white" id="btn_${like.PRONM}"
+								style="font-size: 15px" onclick="deleteLike('${like.PRONM}')">X</button>
 						</td>
 					</tr>
 				</c:forEach>

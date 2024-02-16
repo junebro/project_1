@@ -28,6 +28,7 @@ myUpdate=com.shopping.member.MypageUpdateController
 # like section
 liInsert=com.shopping.like.LikeInsertController
 liDelete=com.shopping.like.LikeDeleteController
+myLiDelete=com.shopping.like.MyLikeDeleteController
 # Cart section
 cartInsert=com.shopping.cart.CartController
 cartDelete=com.shopping.cart.CartDeleteController
