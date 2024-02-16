@@ -1,7 +1,5 @@
 package com.shopping.cart;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,10 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.shopping.common.SuperClass;
 import com.shopping.model.bean.Cart;
-import com.shopping.model.bean.Product;
-import com.shopping.model.bean.Product_main;
 import com.shopping.model.dao.CartDao;
-import com.shopping.model.dao.ProductDao;
 
 public class CartController extends SuperClass {
 
@@ -23,8 +18,6 @@ public class CartController extends SuperClass {
 		String MBRID = super.loginfo.getMBRID();
 		CartDao cDao = new CartDao();
 		Cart cBean = new Cart();
-		Product pBean = new Product();
-		ProductDao pDao = new ProductDao();
 
 		
 		String submitParam = request.getParameter("submit");

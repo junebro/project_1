@@ -262,8 +262,9 @@ section {
 
 		<div class="dropdown">
 			<button class="dropbtn"
-				onclick="location.href='http://www.naver.com'">Board</button>
-			<!--
+			onclick="location.href='${pageContext.request.contextPath}/board/start.jsp'">Board</button>
+			<!--	
+			
             <div class="dropdown-content">
               <a href="#">Link 1</a>
               <a href="#">Link 2</a>

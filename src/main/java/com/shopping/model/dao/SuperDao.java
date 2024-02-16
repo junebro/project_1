@@ -55,6 +55,7 @@ public class SuperDao {
 				e2.printStackTrace();
 			}
 		}
+		System.out.println("총갯수: "+ cnt);
 		return cnt;
 	}
 
