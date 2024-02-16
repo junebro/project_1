@@ -16,7 +16,7 @@ session.getAttribute("loginfo");
 
 	.tableWrap th{
 		height: 50px;
-		background-color: #191970; 
+		background-color: #000; 
 	}
 	.tableWrap{
 		/* border: 1px solid red; */
@@ -50,7 +50,9 @@ session.getAttribute("loginfo");
 		white-space: nowrap;
 		text-overflow: ellipsis;
 	}
-	
+	.intop{
+		text-align: center;
+	}
 
 </style>
 
@@ -70,10 +72,16 @@ session.getAttribute("loginfo");
 			return false ;
 		}
 	}
+
 </script>
 
 </head>
 <body>
+
+	<div class="intop">
+		<jsp:include page="../MainPage/top.jsp" />
+	</div>
+	
 	<div class="tableWrap"> 
 			<table class="tcontents">
 				<thead>

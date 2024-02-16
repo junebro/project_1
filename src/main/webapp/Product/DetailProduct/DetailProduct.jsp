@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html> 
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,9 +29,10 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
-<c:set var="bean" value="${requestScope.dataList[0]}" />
+<c:set var="bean" value="${requestScope.dataList['resultSetPro'][0]}" />
 <c:set var="dataList" value="${requestScope.dataList}" />
-
+<c:set var="dataGrade" value="${requestScope.dataGrade}" />
+<c:set var="Grade_total" value="${requestScope.Grade_total}" />
 
 <title>상품 상세페이지</title>
 <style>
@@ -39,8 +40,7 @@
 header {
 	/*background-color: #333;*/
 	/*color: #fff;*/
-	/*text-align: center;
-	padding: 1em;*/
+	text-align: center;
 }
 
 .product_top {
@@ -68,8 +68,8 @@ header {
 	padding: 18px 80px;
 	background-color: #E97373;
 	color: #ffffff;
-	border: none;
-}
+	border: none; 
+}  
 
 .btn_Basket {
 	padding: 16px 26px;
@@ -523,6 +523,11 @@ a.active {
 	font-weight: bold;
 	font-family:'Noto Sans KR', sans-serif;
 	padding-right: 10%;
+	
+}
+.view_star_gr {
+	font-weight: normal;
+	font-size: 13px;
 }
 
 .border_date {
@@ -594,28 +599,37 @@ a.active {
 </style>
 </head>
 	<script>
-		
 		var LK = `${bean.LK}`;
-	
+
 		// 클라이언트 측 JavaScript
 		function changeImage(pronm) { 
-
+			
+			var mbrid = "${sessionScope.loginfo.MBRID}";
+			
+			if(!mbrid) {
+				if (confirm("로그인이 필요한 서비스입니다.\n로그인 하시곘습니까?")) {
+					location.href = '${pageContext.request.contextPath}/Member/loginMain.jsp';
+				}
+				return;
+			}
+			
 			if (LK) {
 				//alert("삭제" + LK);
 				var URL = '<%=notWithFormTag%>liDelete';
 				LK = null;
-				document.getElementById("ht-image").src = "./Image/bht.png";
+				document.getElementById("ht-image").src = "${pageContext.request.contextPath}/Image/bht.png";
+				
 			} else {
 				//alert("저장" + LK);
 				var URL = '<%=notWithFormTag%>liInsert';
 				LK = "LK";	
-				document.getElementById("ht-image").src = "./Image/ht.png";
+				document.getElementById("ht-image").src = "${pageContext.request.contextPath}/Image/ht.png";
 			}
 
 			$.ajax({
 		        type: 'GET',
 		        url: URL,
-		        data: { pronm: pronm },
+		        data: { pronm: pronm, mbrid: mbrid },
 		        error: function(xhr, status, error) {
 		            console.error(error);
 		        }
@@ -625,12 +639,12 @@ a.active {
 	</script>
 
 	<header>
-		<%-- <jsp:include page="./../../MainPage/top.jsp" />--%>
+		<jsp:include page="./../../MainPage/top.jsp" />
 	</header>
 <body>
 	<div class="product_top">
 		<div class="big-image-container">
-			<img class="big-image" src="./Image/Detail_main/${bean.PROIMG}" alt="">
+			<img class="big-image" src="${pageContext.request.contextPath}/Image/Detail_main/${bean.PROIMG}" alt="">
 		</div>
 		<div class="text-container">
 			<h1 class="font-top">${bean.PRONM} | ${bean.PROCD}</h1>
@@ -647,12 +661,10 @@ a.active {
 					<em class="num"><span>평점</span>/5</em> <a>(0)</a>
 				</div>
 				<div class="a">
-					<a><img class="ht-image" id="ht-image"
-						src="" onclick="changeImage('${bean.PRONM}')" /></a>
-					
+					<a><img class="ht-image" id="ht-image" src="" onclick="changeImage('${bean.PRONM}')" /></a>
 					&nbsp;&nbsp;<span style="color:#B5B4B4;">|</span>
-					<a href="https://www.facebook.com/?locale=ko_KR" target="_blank"><img class="facebook-image" src="./Image/facebook.png" alt="facebook"></a>
-					<a href="https://twitter.com/?lang=ko" target="_blank"><img class="twitter-image" src="./Image/twitter.png" alt="twitter"></a>
+					<a href="https://www.facebook.com/?locale=ko_KR" target="_blank"><img class="facebook-image" src="${pageContext.request.contextPath}/Image/facebook.png" alt="facebook"></a>
+					<a href="https://twitter.com/?lang=ko" target="_blank"><img class="twitter-image" src="${pageContext.request.contextPath}/Image/twitter.png" alt="twitter"></a>
 						
 						
 				</div>
@@ -680,22 +692,22 @@ a.active {
 			<div class="color">
 				<br>
 				<ul class="items">
-					<c:forEach var="bean_cr" items="${requestScope.dataList}" varStatus="status">
-						
+					<c:forEach var="bean_cr" items="${requestScope.dataList['resultSetPro']}" varStatus="status">
 						<c:if test="${status.index == 0}">
 							<li>
-								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" checked="checked" /> 
-								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
-									<img src="./Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
+								<%-- <input type="radio" id="colCode_${status.index}" name="pr_color" value="10" checked="checked" />--%> 
+								<input type="radio" id="${bean_cr.PROCD}" name="pr_color" value="10" checked="checked" /> 
+								<label for="${bean_cr.PROCD}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
+									<img src="${pageContext.request.contextPath}/Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
 								</label>
 							</li>
 						</c:if>
 						
 						<c:if test="${status.index != 0}">
 							<li>
-								<input type="radio" id="colCode_${status.index}" name="pr_color" value="10" /> 
-								<label for="colCode_${status.index}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
-									<img src="./Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
+								<input type="radio" id="${bean_cr.PROCD}" name="pr_color" value="10" /> 
+								<label for="${bean_cr.PROCD}" title="${bean_cr.PROCR}" onclick="test('${bean_cr.PROCR}')">
+									<img src="${pageContext.request.contextPath}/Image/Detail_main/${bean_cr.PROIMG}" alt="${bean_cr.PROCR}" />
 								</label>
 							</li>
 						</c:if>
@@ -756,22 +768,22 @@ a.active {
 			<br>
 			<div>
 				<div class="card_banner">
-					<a href="https://www.nbkorea.com/etc/collection.action?collectionIdx=5365" data-gtag-idx="fo_detail_2" data-gtag-label="Wearable tech, 1906R">
+					<a href="https://www.nbkorea.com/etc/collection.action?collectionIdx=5365" data-gtag-idx="fo_detail_2" data-gtag-label="Wearable tech, 1906R"></a>
 					<img src="https://image.nbkorea.com/NBRB_Banner/20240112/NB20240112094037484001.jpg" alt="Wearable tech, 1906R"/>	
 				</div>
 				<div class="card_banner">
-					<a href="https://www.nbkorea.com/collection/HERITAGEDROP1.action" data-gtag-idx="fo_detail_2" data-gtag-label="New Balance HERITAGE DROP1">
+					<a href="https://www.nbkorea.com/collection/HERITAGEDROP1.action" data-gtag-idx="fo_detail_2" data-gtag-label="New Balance HERITAGE DROP1"></a>
 					<img src="https://image.nbkorea.com/NBRB_Banner/20240119/NB20240119125937348001.jpg" alt="New Balance HERITAGE DROP1"/>
 				</div>
 				<div class="card_banner">
-					<a href="https://www.nbkorea.com/etc/collection.action?collectionIdx=5362" data-gtag-idx="fo_detail_2" data-gtag-label="The MADE in USA, 990v6 restock">
+					<a href="https://www.nbkorea.com/etc/collection.action?collectionIdx=5362" data-gtag-idx="fo_detail_2" data-gtag-label="The MADE in USA, 990v6 restock"></a>
 					<img src="https://image.nbkorea.com/NBRB_Banner/20240129/NB20240129142525506001.jpg" alt="The MADE in USA, 990v6 restock"/>
 				</div>
 			</div>
 			<br>
 			<div class="div_btn">
-				<button class="btn_white btn_Basket">장바구니</button>
-				<button class="btn_buy">구 매</button>
+				<button class="btn_white btn_Basket" onclick="fn_buy('c')">장바구니</button>
+				<button class="btn_buy" onclick="fn_buy('b')">구 매</button>
 			</div>
 		</div>
 	</div>
@@ -782,9 +794,9 @@ a.active {
 		var chk = document.getElementById("ht-image").src;
 		
 		if (LK) {
-			document.getElementById("ht-image").src = "./Image/ht.png";
+			document.getElementById("ht-image").src = "${pageContext.request.contextPath}/Image/ht.png";
 		} else {
-			document.getElementById("ht-image").src = "./Image/bht.png";
+			document.getElementById("ht-image").src = "${pageContext.request.contextPath}/Image/bht.png";
 		}
 		
 		// 첫 시작 컬러값 설정
@@ -818,7 +830,7 @@ a.active {
 		
 		
 		function fn_count(type) {
-
+			
 			var clickedElementId = event.target.id;
 			var keyArray = clickedElementId.split('/');
 
@@ -836,24 +848,28 @@ a.active {
 			var total_price = document.getElementById('total_price');	     
 			var price = id_price.innerHTML;
 			
-			//var S_key = color + '/' + size;
-			//var size_key = document.getElementById(S_key);
-			//var sz = size_key.innerHTML; 
+			var S_key = color + '/' + size;
+			var size_key = document.getElementById(S_key);
+			var sz = size_key.innerHTML; 
 			
 			if(type === 'plus') {
-				//if (sz == '4') {
-				//	alert("123");
-				//	return;
-				//}
+				
+				if (sz == '5') {
+					alert("해당 상품은 최대 5pcs까지 구매 가능합니다.");
+					return;
+				}
 				
 				num = parseInt(num) + 1;
 				total_num = parseInt(total_num) + 1
-			}else if(type === 'minus')  {
+				
+			} else if(type === 'minus')  {
+				
 				if(num > 1) {
 					num = parseInt(num) - 1;
 					total_num = parseInt(total_num) - 1;
 				} 
 			}
+			
 			total_qt.innerText = total_num;
 			cnt.innerText = num;
 			
@@ -895,7 +911,9 @@ a.active {
 		var count = 0;
 		
 		function sizeBuy(size) {
-
+			
+			var check_id = document.querySelector('input[name="pr_color"]:checked').id;
+			
 			var total_qt = document.getElementById('total_qt');
 			var total_num = total_qt.innerText;
 			
@@ -913,8 +931,8 @@ a.active {
 				
 				var sz = size_key.innerHTML; 
 				
-				if (sz == '4') {
-					alert("123");
+				if (sz == '5') {
+					alert("해당 상품은 최대 5pcs까지 구매 가능합니다.");
 					return;
 				}
 				
@@ -935,7 +953,7 @@ a.active {
 				var subDiv1 = document.createElement('div');
 	
 			    subDiv1.id = color + '/buy_payment/' + size; 
-			    subDiv1.classList.add('payment_d');  		    
+			    //subDiv1.classList.add('payment_d');  		    
 			    subDiv1.style.display = 'flex';  
 			    //subDiv1.style.justifyContent = 'space-between';
 			    subDiv1.style.paddingTop = '10px';  
@@ -975,6 +993,7 @@ a.active {
 				var subDiv5 = document.createElement('div');
 			    
 				subDiv5.id = color + '/' + size;
+				subDiv5.classList.add('buy_qt'); 
 			    subDiv5.style.paddingLeft = '10px';  
 			    subDiv5.style.paddingRight = '10px';  
 			    subDiv5.innerHTML = '<p>' + 1 + '</p>';
@@ -1028,6 +1047,10 @@ a.active {
 				subDiv10.id = 'buy_del' + count;  
 				subDiv10.style.fontFamily = 'Noto Sans KR, sans-serif';
 				subDiv10.style.paddingLeft = '10px';
+				
+				var subDiv11 = document.createElement('div');
+				subDiv11.id = color +'/' + check_id + '/' + size;  
+				subDiv11.classList.add('payment_d');
 				//subDiv10.style.width = '30px';
 	
 				subDiv1.appendChild(subDiv2);
@@ -1042,6 +1065,7 @@ a.active {
 				subDiv9_a.appendChild(subDiv9);
 				subDiv10.appendChild(subDiv9_a);
 				subDiv1.appendChild(subDiv10);
+				subDiv1.appendChild(subDiv11);
 			    newProductDiv.appendChild(subDiv1);
 			    productDetailsDiv.appendChild(newProductDiv);
 	
@@ -1051,21 +1075,16 @@ a.active {
 			total_num = parseInt(total_num) + 1
 			total_qt.innerText = total_num;
 			
-			//var id_price = document.getElementById('pro_price');	     
 			var total_price = document.getElementById('total_price');	     
-			//var price = id_price.innerHTML;
 			total_price.innerText = price * total_num;
 			
-			
-			
-			
-			
+			/*
 			var payment = document.getElementById("buy_payment");
 
 			if(payment.style.display == "none") {
 				payment.style.display = "";
 			}
-
+			
 			var id_cr = document.getElementById('sel_color');
 			
 			
@@ -1076,9 +1095,39 @@ a.active {
 			var total_qt = document.getElementById('total_qt');
 
 	        buy_name.innerHTML = size + "/" + cr;
-	        total_qt.innerHTML = price;
+	        total_qt.innerHTML = price;*/
 		}
 		
+		
+		function fn_buy(t) {
+	
+			var parent_div = document.getElementById('sourceDiv');
+
+            var child_div = parent_div.getElementsByClassName('payment_d');
+            var child_qt = parent_div.getElementsByClassName('buy_qt');
+            var child_cnt = child_div.length;
+			var submit = [];
+			
+			if ( child_cnt > 0 ) {
+	
+				for (var i = 0; i < child_cnt; i++) {
+	                var childDiv = child_div[i];
+	                var childqt = child_qt[i].innerText;
+	                var childId = childDiv.id;
+	                submit.push(childId + '/' + childqt);
+	            }
+				
+				if (t == "b") {
+					
+				} else if (t == "c") {
+					var url = '<%=notWithFormTag%>cartInsert&submit=' + submit.join(',');
+					location.href = url
+				}
+	
+			} else {
+				alert("상품을 선택해 주세요.");
+			}
+		}
 		
 		
 		// SELECT BOX
@@ -1095,6 +1144,7 @@ a.active {
 				$(this).siblings('label').text(select_name);
 			});
 		});
+
 	</script>
 
 	<div class="tab_box">
@@ -1102,9 +1152,9 @@ a.active {
 			<li class="active"><a id="text-to-change" href="#pr_details"
 				data-gtag-idx="fo_detail_3" data-gtag-label="상품정보">상품정보</a></li>
 			<li><a href="#pr_main_review" data-gtag-idx="fo_detail_3"
-				data-gtag-label="상품리뷰">상품리뷰 (102)</a></li>
+				data-gtag-label="상품리뷰" id="view_top"></a></li>
 			<li><a href="#pr_inquiry" data-gtag-idx="fo_detail_3"
-				data-gtag-label="상품문의">상품문의 (0)</a></li>
+				data-gtag-label="상품문의">상품문의 </a></li>
 		</ul>
 		<hr style="width:100%">
 	</div>
@@ -1115,8 +1165,7 @@ a.active {
 
 			<div id="pr_details" style="margin-bottom:100px; text-align:center" id="prodAddInfo_wrap">
 				<br><br><br><br><br>
-				${bean.PROIMG1}
-				<img src="./Image/Details/${bean.PROIMG1}">
+				<img src="${pageContext.request.contextPath}/Image/Details/${bean.PROIMG1}">
 			</div>
 
 			<div id="pr_main_review" class="section Re_review">
@@ -1178,7 +1227,7 @@ a.active {
 					<br>
 					<br>
 					<br>
-					<h3 class="view_tit">REVIEW(114)</h3>
+					<h3 id="view_tit" class="view_tit"></h3>
 					<div class="black_hr_2px"></div>
 					
 					<div class="view_hd_top">
@@ -1198,66 +1247,28 @@ a.active {
 									</svg>
 								</div>
 								<div class="view_left_grade">
-									5.0
+									${requestScope.Grade_total}
 								</div>
 							</div>
 							<div class="view_left_bottom">
-								<span class="font_pro font_pro_view_left_bottom">99%</span>의 구매자가 이 상품을 좋아합니다.
+								<span class="font_pro font_pro_view_left_bottom">${requestScope.dataGrade.get(0).COUNT}%</span>의 구매자가 이 상품을 좋아합니다.
 							</div>
 						</div>
 						<div class="view_center"></div>
 						<div class="view_right">
 							<table width=330px; align="center">
+								<c:forEach var="Grade" items="${requestScope.dataGrade}" varStatus="status">
 								<tr>
-									<td  class="progress_td">아주 좋아요</td>
+									<td  class="progress_td">${Grade.TEXT}</td>
 									<td>
 										<div class="progress-bar">
-											<div class="progress" style="width: 80%;"></div>
+											<div class="progress" style="width: ${Grade.PER}%;"></div>
 											<div class="percentage"></div>
 										</div>
 									</td>
-									<td class="progress_td">144</td>
+									<td class="progress_td">${Grade.COUNT}</td>
 								</tr>
-								<tr>
-									<td class="progress_td">맘에 들어요</td>
-									<td>
-										<div class="progress-bar">
-											<div class="progress" style="width: 70%;"></div>
-											<div class="percentage"></div>
-										</div>
-									</td>
-									<td class="progress_td">2</td>
-								</tr>
-								<tr>
-									<td class="progress_td">보통이에요</td>
-									<td>
-										<div class="progress-bar">
-											<div class="progress" style="width: 60%;"></div>
-											<div class="percentage"></div>
-										</div>
-									</td>
-									<td class="progress_td">123</td>
-								</tr>
-								<tr>
-									<td class="progress_td">그냥 그래요</td>
-									<td>
-										<div class="progress-bar">
-											<div class="progress" style="width: 50%;"></div>
-											<div class="percentage"></div>
-										</div>
-									</td>
-									<td class="progress_td">22</td>
-								</tr>
-								<tr>
-									<td class="progress_td">별로에요</td>
-									<td>
-										<div class="progress-bar">
-											<div class="progress" style="width: 30%;"></div>
-											<div class="percentage"></div>
-										</div>
-									</td>
-									<td class="progress_td">1</td>
-								</tr>
+								</c:forEach>
 							</table>
 						</div>
 					</div>
@@ -1306,214 +1317,66 @@ a.active {
 						<button  class="btn_black btn_select">검 색</button>
 						<br><br>
 						<div class="view_line"></div>
-		
-						<div class="view_Board">
-							<div class="view_Board_left">
-								<div class="border_top">
-									<div id="view_star0" class="view_star"></div>
-									<div class="border_date">2024.01.30</div>
-								</div>
-								<br>
-								<div class="border_main">
-									가볍고 발볼도 편하고 좋아요<br>
-									딸이 맘에 들어해요
-								</div>
-								<br>
-								<div class="inq_img">
-									<img src="./../../Image/board.jpg" alt="board">
+						
+						<c:forEach var="views" items="${requestScope.dataList['resultSetViews']}" varStatus="status">
+						
+							<div class="view_Board">
+								<div class="view_Board_left">
+									<div class="border_top">
+										<div id="view_star${status.index}" class="view_star">
+											<c:forEach var="i" begin="1" end="${views['RVWGR']}">
+												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 20px; height: 20px;">
+													<defs>
+														<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
+													</defs>
+													<use xlink:href="#star-full"/>
+												</svg>
+											</c:forEach>
+											<span class="view_star_gr"> 
+												<c:if test="${views['RVWGR'] eq 5}">&nbsp;아주 좋아요</c:if>
+												<c:if test="${views['RVWGR'] eq 4}">&nbsp;맘에 들어요</c:if>
+												<c:if test="${views['RVWGR'] eq 3}">&nbsp;보통이에요</c:if>
+												<c:if test="${views['RVWGR'] eq 2}">&nbsp;그냥 그래요</c:if>
+												<c:if test="${views['RVWGR'] eq 1}">&nbsp;별로에요</c:if>
+											</span>
+										</div>
+										
+										<div class="border_date">${views['RVWDT']}</div>
+									</div>
+									<br>
+									<div class="border_main">
+										${views['RVWCT']}
+									</div>
+									<br>
+									<div class="inq_img">
+										<c:if test="${views['RVWIMG1']!=null}">
+											<img src="${pageContext.request.contextPath}/Image/Reviews/${views['RVWIMG1']}" alt="${views['RVWIMG1']}">
+										</c:if>
+										<c:if test="${views['RVWIMG2']!=null}">
+											<img src="${pageContext.request.contextPath}/Image/Reviews/${views['RVWIMG2']}" alt="${views['RVWIMG2']}">
+										</c:if>
+										<c:if test="${views['RVWIMG3']!=null}">
+											<img src="${pageContext.request.contextPath}/Image/Reviews/${views['RVWIMG3']}" alt="${views['RVWIMG3']}">
+										</c:if>
+									</div>
+									
 								</div>
 								
-							</div>
-							
-							<div class="view_center"></div>
-							<div class="view_Board_right">
-								<div class="Board_member">
-									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
+								<div class="view_center"></div>
+								<div class="view_Board_right">
+									<div class="Board_member">
+										<div class="Board_member_detail">${views['MBRID']}님의 리뷰입니다.</div>
+										<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
+										<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
+										<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
+										<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
+									</div>
 								</div>
 							</div>
-							
-						</div>
-			
-						<div class="view_line"></div>
+				
+							<div class="view_line"></div>
+						</c:forEach>
 						
-						
-						<div class="view_Board">
-							<div class="view_Board_left">
-								<div class="border_top">
-									<div id="view_star1" class="view_star"></div>
-									<div class="border_date">2024.01.30</div>
-								</div>
-								<br>
-								<div class="border_main">
-									가볍고 발볼도 편하고 좋아요<br>
-									딸이 맘에 들어해요
-								</div>
-								<br>
-								<div class="inq_img">
-									<img src="./../../Image/board.jpg" alt="board">
-								</div>
-								
-							</div>
-							
-							<div class="view_center"></div>
-							<div class="view_Board_right">
-								<div class="Board_member">
-									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-								</div>
-							</div>
-							
-						</div>
-			
-						<div class="view_line"></div>
-						
-						<div class="view_Board">
-							<div class="view_Board_left">
-								<div class="border_top">
-									<div id="view_star2" class="view_star"></div>
-									<div class="border_date">2024.01.30</div>
-								</div>
-								<br>
-								<div class="border_main">
-									가볍고 발볼도 편하고 좋아요<br>
-									딸이 맘에 들어해요
-								</div>
-								<br>
-								<div class="inq_img">
-									<img src="./../../Image/board.jpg" alt="board">
-								</div>
-								
-							</div>
-							
-							<div class="view_center"></div>
-							<div class="view_Board_right">
-								<div class="Board_member">
-									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-								</div>
-							</div>
-							
-						</div>
-			
-						<div class="view_line"></div>
-						
-						<div class="view_Board">
-							<div class="view_Board_left">
-								<div class="border_top">
-									<div id="view_star3" class="view_star"></div>
-									<div class="border_date">2024.01.30</div>
-								</div>
-								<br>
-								<div class="border_main">
-									가볍고 발볼도 편하고 좋아요<br>
-									딸이 맘에 들어해요
-								</div>
-								<br>
-								<div class="inq_img">
-									<img src="./../../Image/board.jpg" alt="board">
-								</div>
-								
-							</div>
-							
-							<div class="view_center"></div>
-							<div class="view_Board_right">
-								<div class="Board_member">
-									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-								</div>
-							</div>
-							
-						</div>
-			
-						<div class="view_line"></div>
-						
-						<div class="view_Board">
-							<div class="view_Board_left">
-								<div class="border_top">
-									<div id="view_star4" class="view_star"></div>
-									<div class="border_date">2024.01.30</div>
-								</div>
-								<br>
-								<div class="border_main">
-									가볍고 발볼도 편하고 좋아요<br>
-									딸이 맘에 들어해요
-								</div>
-								<br>
-								<div class="inq_img">
-									<img src="./../../Image/board.jpg" alt="board">
-								</div>
-								
-							</div>
-							
-							<div class="view_center"></div>
-							<div class="view_Board_right">
-								<div class="Board_member">
-									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-								</div>
-							</div>
-							
-						</div>
-			
-						<div class="view_line"></div>
-						
-						<div class="view_Board">
-							<div class="view_Board_left">
-								<div class="border_top">
-									<div id="view_star5" class="view_star"></div>
-									<div class="border_date">2024.01.30</div>
-								</div>
-								<br>
-								<div class="border_main">
-									가볍고 발볼도 편하고 좋아요<br>
-									딸이 맘에 들어해요
-								</div>
-								<br>
-								<div class="inq_img">
-									<img src="./../../Image/board.jpg" alt="board">
-								</div>
-								
-							</div>
-							
-							<div class="view_center"></div>
-							<div class="view_Board_right">
-								<div class="Board_member">
-									<div class="Board_member_detail">전****님의 리뷰입니다.</div>
-									<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-									<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-									<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-									<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-								</div>
-							</div>
-							
-						</div>
-			
-						<div class="view_line"></div>
-						<div class="view_page">
-							<ul class="pagination">
-							  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-							  <li class="page-item"><a class="page-link" href="#">1</a></li>
-							  <li class="page-item"><a class="page-link" href="#">2</a></li>
-							  <li class="page-item"><a class="page-link" href="#">3</a></li>
-							  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-							</ul>
-						</div>
 					</div>
 					<!-- 
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 100%; height: 100%;">
@@ -1566,19 +1429,17 @@ a.active {
 					<use xlink:href="#star-full"/>
 				</svg>
 			</div>
-				
-				
+			
+		
+			<c:set var="rsViews" value="${fn:length(requestScope.dataList['resultSetViews'])}" />	
 			<script>
 				
-				for ( var i = 0; i < 6; i ++ ) {
-					// JavaScript 코드
-			     	var five_star = document.getElementById('five_star');
-			     	var view_star = document.getElementById('view_star'+i);
-			
-			     	// <div>의 내용을 가져와서 <p> 태그에 넣기
-			     	var divContent = five_star.innerHTML;
-			     	view_star.innerHTML = divContent + "아주 좋아요";	
-				}
+				var rsViews = ${rsViews};
+				var view_tit = document.getElementById("view_tit");
+				var view_top = document.getElementById("view_top");
+				
+				view_tit.innerHTML = "REVIEW("+rsViews+")";
+				view_top.innerHTML = "상품리뷰("+rsViews+")";
 
 		    </script>
 			

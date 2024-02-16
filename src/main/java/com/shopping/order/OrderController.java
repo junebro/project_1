@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.shopping.common.SuperClass;
 import com.shopping.model.bean.Member;
 import com.shopping.model.dao.OrderDao;
+import com.shopping.model.dao.ProductDao;
 
 public class OrderController extends SuperClass {
 
@@ -34,6 +35,8 @@ public class OrderController extends SuperClass {
 
 		dao.insertData(super.loginfo.getMBRID());
 		System.out.println(super.loginfo.getMBRID());
+		
+		ProductDao pDao = new ProductDao();
 		
 		
 	}

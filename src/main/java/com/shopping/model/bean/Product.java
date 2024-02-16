@@ -13,18 +13,21 @@ public class Product {
 	private String PROIMG1;
 	private String PROIMG2;
 	private String PROIMG3;
-	private int PROPNT;
+	private String PRODT;
+	private String PROPNT;
 	private String PROCMN;
 	
 	// 찜 
 	private String LK;
-
+	
+	
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Product(int pROTP, String pROCD, String pRONM, int pROSSZ, int pROESZ, String pROCR, int pROPR,
-			String pROIMG, String pROIMG1, String pROIMG2, String pROIMG3, int pROPNT, String pROCMN, String lK) {
+			String pROIMG, String pROIMG1, String pROIMG2, String pROIMG3, String pRODT, String pROPNT, String pROCMN,
+			String lK) {
 		super();
 		PROTP = pROTP;
 		PROCD = pROCD;
@@ -37,6 +40,7 @@ public class Product {
 		PROIMG1 = pROIMG1;
 		PROIMG2 = pROIMG2;
 		PROIMG3 = pROIMG3;
+		PRODT = pRODT;
 		PROPNT = pROPNT;
 		PROCMN = pROCMN;
 		LK = lK;
@@ -46,8 +50,8 @@ public class Product {
 	public String toString() {
 		return "Product [PROTP=" + PROTP + ", PROCD=" + PROCD + ", PRONM=" + PRONM + ", PROSSZ=" + PROSSZ + ", PROESZ="
 				+ PROESZ + ", PROCR=" + PROCR + ", PROPR=" + PROPR + ", PROIMG=" + PROIMG + ", PROIMG1=" + PROIMG1
-				+ ", PROIMG2=" + PROIMG2 + ", PROIMG3=" + PROIMG3 + ", PROPNT=" + PROPNT + ", PROCMN=" + PROCMN
-				+ ", LK=" + LK + "]";
+				+ ", PROIMG2=" + PROIMG2 + ", PROIMG3=" + PROIMG3 + ", PRODT=" + PRODT + ", PROPNT=" + PROPNT
+				+ ", PROCMN=" + PROCMN + ", LK=" + LK + "]";
 	}
 
 	public int getPROTP() {
@@ -138,11 +142,19 @@ public class Product {
 		PROIMG3 = pROIMG3;
 	}
 
-	public int getPROPNT() {
+	public String getPRODT() {
+		return PRODT;
+	}
+
+	public void setPRODT(String pRODT) {
+		PRODT = pRODT;
+	}
+
+	public String getPROPNT() {
 		return PROPNT;
 	}
 
-	public void setPROPNT(int pROPNT) {
+	public void setPROPNT(String pROPNT) {
 		PROPNT = pROPNT;
 	}
 
@@ -161,7 +173,5 @@ public class Product {
 	public void setLK(String lK) {
 		LK = lK;
 	}
-	
-	
 	
 }

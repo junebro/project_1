@@ -40,11 +40,20 @@
 		  font-size:12px;
 	
 	} 
+	.intop{
+		text-align: center;
+	}
+	
 
 	
 </style>
 </head>
 <body>
+
+
+	<div class="intop">
+		<jsp:include page="../MainPage/top.jsp" />
+	</div>
 			
 	<div class="formwrap">
 	  <h2>게시물 등록</h2>

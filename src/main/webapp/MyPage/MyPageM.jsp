@@ -43,25 +43,64 @@
 	function toggleOrder() {
 		var mainDiv = document.getElementById("mainDiv");
 		var otherDiv = document.getElementById("otherDiv");
+		var otherDiv2 = document.getElementById("otherDiv2");
+		var otherDiv3 = document.getElementById("otherDiv3");
 
 		mainDiv.style.display = "block";
 		otherDiv.style.display = "none";
+		otherDiv2.style.display = "none";
+		otherDiv3.style.display = "none";
 
 	}
-	function toggleReview() {
+	
+	function toggleMyinfo() {
 		var mainDiv = document.getElementById("mainDiv");
 		var otherDiv = document.getElementById("otherDiv");
+		var otherDiv2 = document.getElementById("otherDiv2");
+		var otherDiv3 = document.getElementById("otherDiv3");
+
+		mainDiv.style.display = "none";
+		otherDiv.style.display = "none";
+		otherDiv2.style.display = "block";
+		otherDiv3.style.display = "none";
+
+	}
+	
+	function toggleMyLike() {
+		var mainDiv = document.getElementById("mainDiv");
+		var otherDiv = document.getElementById("otherDiv");
+		var otherDiv2 = document.getElementById("otherDiv2");
+		var otherDiv3 = document.getElementById("otherDiv3");
+
+		mainDiv.style.display = "none";
+		otherDiv.style.display = "none";
+		otherDiv2.style.display = "none";
+		otherDiv3.style.display = "block";
+
+	}
+	
+	function toggleReview(url) {
+
+		$.ajax({
+			url: url,
+			type: 'GET',
+			success: function(response) {
+				$('#otherDiv').html(response); // 가져온 내용을 div에 삽입
+			}
+		});
+		
+		/*
+		var mainDiv = document.getElementById("mainDiv");
+		var otherDiv = document.getElementById("otherDiv");
+		var otherDiv2 = document.getElementById("otherDiv2");
 
 		mainDiv.style.display = "none";
 		otherDiv.style.display = "block";
+		otherDiv2.style.display = "none";
+		*/
 
 	}
-	/* 리뷰 쓰기 함수 */
-	$(document).ready(function() {
-		$('.review_btn').click(function() {
-			$('.popup').show();
-		})
-	});
+	
 </script>
 <style type="text/css">
 body {
@@ -247,8 +286,183 @@ a {
 	font-weight: 900;
 }
 </style>
+<style>
+.titleArea { /* 기본정보, 추가정보 */
+	margin: auto;
+}
+
+.titleArea h3 { /* 기본정보 */
+	text-align: left;
+	margin-top: 30px;
+}
+
+.titleArea li { /* 필수입력사항 */
+	text-align: right;
+	color: #A6A6A6;
+}
+
+.required::marker { /* 리스트 마커 색상 설정 */
+	color: red;
+}
+
+#otherDiv2 table {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	border-left: none;
+	border-right: none;
+	border-top: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+#otherDiv2 tr { /* 행 */
+	border-bottom: 1px solid rgba(128, 128, 128, 0.5); /* 투명도를 포함한 회색 선 */
+	margin-top: 10px; /* 선 위의 간격 조절 */
+}
+
+#otherDiv2 th { /* 1열 */
+	padding: 15px;
+	margin: auto;
+	background-color: #F6F6F6;
+	width: 200px;
+	text-align: left;
+}
+
+#otherDiv2 td { /* 2열 */
+	text-align: left;
+	padding: 15px;
+	margin: auto;
+}
+
+#otherDiv2 table li, .txtInfo { /* 1열, 아이디/비번 부가설명 */
+	color: #5D5D5D;
+}
+
+table .notrequired { /* 추가정보 1열 */
+	text-align: left;
+	list-style: none;
+}
+
+table .inputTypeText { /* 2열 입력칸 */
+	border: 1px groove #BDBDBD;
+	width: 400px;
+	padding: 10px;
+}
+
+#mobile1, #mobile2, #mobile3, #email2 { /* 휴대전화 입력칸 */
+	border: 1px groove #BDBDBD;
+	width: 30%;
+	height: 40px;
+}
+
+.ec-address li { /* 주소칸 */
+	list-style: none;
+	margin-left: -30px;
+	margin-top: 5px;
+}
+
+#sample6_postcode, #sample6_address, #sample6_extraAddress {
+	/* 주소 입력칸 */
+	background-color: #F6F6F6;
+	border: 1px solid #BDBDBD;
+}
+
+#postBtn { /* 주소검색 버튼 */
+	width: 87px;
+	height: 43px;
+}
+
+#sample6_address { /* 기본주소 칸 */
+	width: 500px;
+}
+
+#sample6_detailAddress, #sample6_extraAddress { /* 나머지주소, 참고항목 */
+	width: 248px;
+	display: inline;
+}
+
+#email1 {
+	width: 50%;
+}
+
+.gbottom button {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1em;
+	cursor: pointer;
+	border-width: thin;
+	border: 1px groove #BDBDBD;
+}
+
+.btnBasic {
+	margin-left: 10px;
+}
+
+.btn_white1 {
+	padding: 20px 50px;
+	background-color: #FFFFFF;
+	color: #000000;
+	border: 1px groove #BDBDBD;
+	text-decoration: none;
+}
+
+.btn_black1 {
+	padding: 20px 50px;
+	background-color: #000000;
+	color: #ffffff;
+	border: 1px groove #BDBDBD;
+	text-decoration: none;
+}
+
+.desc { /* (선택) */
+	font-size: 15px;
+	color: #BDBDBD;
+}
+
+#is_sex0, #is_sex1 { /* 성별 라디오 */
+	margin-left: 10px;
+}
+
+.gBottom { /* 하단 버튼 */
+	margin-top: 100px;
+	margin-bottom: 100px;
+	text-align: center;
+}
+
+.hide {
+	display: none;
+}
+
+.success-message, .success-message2, .success-message3 {
+	color: green;
+}
+
+.failure-message, .failure-message2, .failure-message3,
+	.failure-message4, .failure-message5, .failure-message6,
+	.failure-message7 {
+	color: red;
+}
+
+.main-page { 
+	margin : 110px;
+	padding-left: 120px;
+} 
+</style>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#birth').datepicker({
+			dateFormat : "yy/mm/dd"
+		});
+		
+		toggleReview('MyOrder.jsp')
+
+	});
+
+
+</script>
 </head>
 <body>
+<jsp:include page="./..//MainPage/topbar.jsp"></jsp:include>
 	<div class="justify-content-center row">
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">
@@ -288,10 +502,11 @@ a {
 		<div class="col-sm-1"></div>
 		<div class="col-sm-10 justify-content-center d-flex">
 			<div class="bar col-sm-1 sideBar">
-				<div class="spanbar" onclick="toggleReview()">
+				<div class="spanbar" onclick="toggleReview('Myreview.jsp')">
 					<a href="#">리뷰 보기</a>
 				</div>
-				<div class="spanbar" onclick="toggleOrder()">
+				<%-- <div class="spanbar" onclick="toggleOrder()"> --%>
+				<div class="spanbar" onclick="toggleReview('MyOrder.jsp')">
 					<a href="#">주문 보기</a>
 				</div>
 				<div class="spanbar">
@@ -300,200 +515,35 @@ a {
 				<div class="spanbar">
 					<a href="#">활동 정보</a>
 				</div>
-				<br> <a href="./../Product/DetailProduct/DetailProduct.jsp">최근
-					본 상품</a><br> <br> <a
-					href="./../Product/DetailProduct/DetailProduct.jsp">좋아요한상품</a><br>
-				<br> <a href="#">나의게시글</a><br>
+				<br>
+				<div onclick="toggleReview('MyLike.jsp')">
+					<a href="#">좋아요한상품</a><br>
+				</div>
+				<br>
+				<div>
+					<a href="#">나의게시글</a><br>
+				</div>
+				<%-- <div class="spanbar" onclick="toggleMyinfo()">--%>
 				<div class="spanbar">
 					<a href="#">내 정보</a>
 				</div>
-				<br> <a href="#">회원정보수정</a><br> <a href="#">로그아웃</a><br>
-			</div>
-			<div class="col-sm-10" id="mainDiv">
-				<p class="maino">나의 구매 내역</p>
 				<br>
-				<table style="width: 100%">
-					<tbody>
-						<tr class="underline">
-							<th class="orderTh">주문번호</th>
-							<th class="orderTh">상품</th>
-							<th class="orderTh" style="width: 40%;">상품 상세</th>
-							<th class="orderTh">옵션</th>
-							<th class="orderTh">수량</th>
-							<th class="orderTh">가격</th>
-							<th class="orderTh">리뷰</th>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">6969</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)</td>
-							<td class="orderTd">260, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">109,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">7474</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)</td>
-							<td class="orderTd">(91)Silver, 280, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">99,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">6969</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)</td>
-							<td class="orderTd">260, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">109,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">7474</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)</td>
-							<td class="orderTd">(91)Silver, 280, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">99,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">6969</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)</td>
-							<td class="orderTd">260, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">109,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">7474</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)</td>
-							<td class="orderTd">(91)Silver, 280, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">99,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">6969</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)</td>
-							<td class="orderTd">260, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">109,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">7474</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)</td>
-							<td class="orderTd">(91)Silver, 280, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">99,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-sm-10" id="otherDiv" style="display: none;">
-				<p class="maino">리뷰 관리</p>
-				<hr class="disborder">
-				<br>
-				<div class="crema-product-reviews crema-applied"
-					data-product-code="NBPFES152A"
-					data-applied-widgets="[&quot;.crema-product-reviews&quot;]"
-					style="margin-top: 32px; margin-bottom: 32px;">
-					<iframe id="crema-product-reviews-1"
-						src="https://review3.cre.ma/nbkorea.com/products/reviews?product_code=NBPFES152A&amp;iframe_id=crema-product-reviews-1&amp;widget_style=&amp;app=0&amp;parent_url=https%3A%2F%2Fwww.nbkorea.com%2Fproduct%2FproductDetail.action%3FstyleCode%3DNBPFES152A%26colCode%3D35%26cIdx%3D1288&amp;nonmember_token=&amp;secure_device_token=V2aad0d0f64d5df91dd038b106de0fde342243abdf9113098edd43e4801dfc77ded19ddc93e6de862532393fbdd9fed86c&amp;iframe=1"
-						height="0" width="100%" scrolling="no" allowtransparency="true"
-						frameborder="0" name="crema-product-reviews-1-1706574865307"
-						style="display: block; visibility: visible; height: 2434px;"></iframe>
+				<div onclick="toggleReview('MyUpdate.jsp')">
+					<a href="#">회원정보수정</a><br>
 				</div>
-			</div>
+				<div onclick="location.href = '<%=notWithFormTag%>meLogout'">
+					<a href="#">로그아웃</a><br>
+				</div>
+			</div>	
 		</div>
-		<div class="col-sm-1"></div>
 	</div>
-	<div class="popup">
-		<form method="post" action="#">
-			<br>
-			<h2>리뷰 작성하기</h2>
-			<select class="all_star selectbox_star sel_color"
-				style="margin-left: 7px;">
-				<option selected="selected">&#xf005 &#xf005 &#xf005 &#xf005
-					&#xf005</option>
-				<option>&#xf005 &#xf005 &#xf005 &#xf005</option>
-				<option>&#xf005 &#xf005 &#xf005</option>
-				<option>&#xf005 &#xf005</option>
-				<option>&#xf005</option>
-			</select>
-			<table class="table table-hover">
-				<tbody>
-					<tr>
-						<td><textarea class="form-control" placeholder="리뷰 내용을 작성하세요"
-								name="contentDetail" maxlength="270" style="height: 270px;"></textarea></td>
-					</tr>
-				</tbody>
-			</table>
-			<div style="text-align: left; margin-left:30px;">
-				<button type="submit" class="btn_white">파일선택</button>
-				<button type="submit" class="btn_white">파일선택</button>
-				<button type="submit" class="btn_white">파일선택</button>
-			</div>
-			<hr>
-			<div style="text-align: center">
-				<button type="submit" class="btn_white" style="margin-right: 20px">올리기</button>
-				<button type="reset" class="btn_black" style="margin-left: 20px">나가기</button>
-			</div>
-		</form>
-	</div>
-	<script>
-		/* SELECT BOX */
-		$(document).ready(function() {
-			var selectTarget = $('.selectbox select');
-			selectTarget.on('blur', function() {
-				$(this).parent().removeClass('focus');
-			});
+	
+	<div class="col-sm-1"></div>
+	
+	<div class="main-page"  id="otherDiv"></div>
 
-			selectTarget.change(function() {
-				var select_name = $(this).children('option:selected').text();
-				$(this).siblings('label').text(select_name);
-			});
-		});
-	</script>
+	
+	
+	
 </body>
 </html>

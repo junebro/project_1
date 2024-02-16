@@ -55,7 +55,7 @@
 	.tableWrap th{
 		height: 50px;
 		font-size: 25px;
-		background-color: #191970; 
+		background-color: black; 
 	}
 	.tableWrap{
 		/* border: 1px solid red; */
@@ -102,10 +102,16 @@
 		width: 900px;
 		border: 1px solid black;
 	}
+	.intop{
+		text-align: center;
+	}
 
 </style>
 </head>
 <body>
+	<div class="intop">
+		<jsp:include page="../MainPage/top.jsp" />
+	</div>
 		
 	<div class="tableWrap">
 		<form action="<%=withFormTag%>" method="post">

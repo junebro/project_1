@@ -7,27 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+	$(document).ready(function(){
+	    $("#Start").trigger('click'); 
+	});
+</script>
 </head>
-<body>
-	<p><%=appName%></p>
-	<p><%=mappingName%></p>
-	<form action="<%=withFormTag%>" method="get">
-		목록:<input type="hidden" name="command" value="boList">
-		페이지넘버:<input type="text" name="pageNumber" value="1">
-		한줄행:<input type="text" name="pageSize" value="10">
-		<input type="submit" value="전송">
+<body >
+	<form action="<%=withFormTag%>" id="submitForm" method="get">
+		<input type="hidden" name="command" value="boList">
+		<input type="hidden" name="pageNumber" value="1">
+		<input type="hidden" name="pageSize" value="10">
+		<input type="submit" id="Start" value="Loading.....">
 	</form>
-<!-- 
-String appName = request.getContextPath();
-String mappingName = "/Shopping_project"; // in FrontController.java file
-
-// 폼 태그에서 사용할 전역 변수
-String withFormTag = appName + mappingName;
-
-// 폼 태그가 아닌 곳에서 사용할 전역 변수
-String notWithFormTag = withFormTag + "?command=";
-
- -->
-
 </body>	
 </html>

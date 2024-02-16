@@ -26,7 +26,7 @@ public class BoardListController extends SuperClass{
 		
 		
 		int totalCount = dao.getTotalRecordCount("boards", mode, keyword);
-		String url = super.getUrlInfomation("boList") ;
+		String url = super.getUrlInformation("boList") ;
 		boolean isGrid = false ;
 		
 		System.out.println("1pageNumber: " +pageNumber);

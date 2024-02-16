@@ -26,13 +26,19 @@ boReply=com.shopping.controller.board.BoardReplyController
 #cmDelete=com.shopping.controller.comment.CommentDeleteController
 # member section
 meLogin=com.shopping.member.MemberLoginController
-meLoginA=com.shopping.member.MemberLoginAController
+<<<<<<< HEAD
 #meLogout=com.shopping.member.MemberLogoutController
+=======
+meLogout=com.shopping.member.MemberLogoutController
+>>>>>>> branch 'master' of https://github.com/junebro/project_1.git
 meInsert=com.shopping.member.MemberInsertController
 # mypage section
-#myUpdate=com.shopping.member.MypageUpdateController
+myUpdate=com.shopping.member.MypageUpdateController
 #myDelete=com.shopping.member.MypageDeleteController
 #myDetail=com.shopping.member.MypageDetailController
 # like section
 liInsert=com.shopping.like.LikeInsertController
 liDelete=com.shopping.like.LikeDeleteController
+# Cart section
+cartInsert=com.shopping.cart.CartController
+cartDelete=com.shopping.cart.CartDeleteController

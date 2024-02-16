@@ -58,9 +58,18 @@
 		white-space: nowrap;
 		text-overflow: ellipsis;
 	}
+	.intop{
+		text-align: center;
+	}
+	
 </style>
 </head>
 <body>
+
+	
+	<div class="intop">
+		<jsp:include page="../MainPage/top.jsp" />
+	</div>
 		
 	<div class="tableWrap">
  		 <table class="tcontents">

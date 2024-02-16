@@ -9,8 +9,7 @@
 </head>
 <body>
 	<form action="<%=withFormTag%>" method="post">
-	<input type="hidden" name="command" value="meLoginA">
-	
+	<input type="hidden" name="command" value="meLogin">
 	<input type="text" name="pageNumber" value="1">
 	<input type="text" name="pageSize" value="10">
 	<input type="text" name="MBRID" value="suho">

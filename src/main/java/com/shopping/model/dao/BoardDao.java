@@ -53,7 +53,7 @@ public class BoardDao extends SuperDao{
 		
 		List<Board> dataList = new ArrayList<Board>();
 		
-		super.conn = super.JgetConnection() ;
+		super.conn = super.getConnection() ;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -95,7 +95,7 @@ public class BoardDao extends SuperDao{
 		
 		List<Board> datalist = new ArrayList<Board>();
 		
-		super.conn = super.JgetConnection();
+		super.conn = super.getConnection();
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -149,7 +149,7 @@ public class BoardDao extends SuperDao{
 		ResultSet rs = null;
 		Board bean = null;
 		
-		super.conn = super.JgetConnection();
+		super.conn = super.getConnection();
 		
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -185,7 +185,7 @@ public class BoardDao extends SuperDao{
 		int cnt = -99;
 		
 		try {
-			super.conn = super.JgetConnection();
+			super.conn = super.getConnection();
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql);
 			
@@ -225,7 +225,7 @@ public class BoardDao extends SuperDao{
 		int cnt = -9999;
 		
 
-		super.conn = super.JgetConnection();
+		super.conn = super.getConnection();
 		
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -265,7 +265,7 @@ public class BoardDao extends SuperDao{
 		int cnt = -99999 ;
 		
 		try {
-			super.conn = super.JgetConnection();
+			super.conn = super.getConnection();
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql);
 			

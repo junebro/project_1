@@ -21,7 +21,7 @@ public class SuperClass implements SuperController{
 	// 로그인 여부를 파악하는 변수
 	protected Member loginfo ;
 	
-	public String getUrlInfomation(String todoCommand) {
+	public String getUrlInformation(String todoCommand) {
 		// todoCommand " todolist.txt 파일에 명시된 커맨드 이름
 		// 커맨드 이름을 사용하여 웹 주소 형식의 FullName을 반환해 줍니다.
 		String appName = this.request.getContextPath();	// in file common.jsp
