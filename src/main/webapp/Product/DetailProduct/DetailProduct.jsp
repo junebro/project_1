@@ -1192,7 +1192,7 @@ a.active {
 	        buy_name.innerHTML = size + "/" + cr;
 	        total_qt.innerHTML = price;*/
 		}
-		
+		 
 		
 		function fn_buy(t) {
 			
