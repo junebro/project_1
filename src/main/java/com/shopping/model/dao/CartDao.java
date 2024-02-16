@@ -250,8 +250,6 @@ public class CartDao extends SuperDao {
 	}
 
 	public List<Product> getDataList1(String PROCD) {
-		System.out.println("개병신 씨발놈의 겟 데이타1111 리스트 씨발새끼\n");
-		System.out.println();
 
 		String sql = " select * from TPRO where PROCD = ? ";
 		PreparedStatement pstmt = null;

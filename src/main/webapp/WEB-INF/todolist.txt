@@ -1,6 +1,7 @@
 # 구현해야 할 목록입니다
 # order section
-#OrderC=com.shopping.order.OrderController 
+OrderC=com.shopping.order.OrderController
+OrderP=com.shopping.order.OrderPayController
 # product section
 #Product=com.shopping.product.ProductController
 DetailProduct=com.shopping.product.ProductDetailController
