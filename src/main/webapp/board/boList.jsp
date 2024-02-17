@@ -56,6 +56,15 @@ session.getAttribute("loginfo");
 	.intop{
 		text-align: center;
 	}
+	a{
+		text-decoration: none;
+		color: #5D5D5D;
+	}
+	a:hover{
+		color: black;
+		font-weight: bolder;
+		
+	}
 
 
 </style>
