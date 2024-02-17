@@ -39,14 +39,14 @@ public class BoardListController extends SuperClass{
 		Paging paging = new Paging(pageNumber, pageSize, totalCount, url, mode, keyword, isGrid);
 					
 			
-		List<Board> abc = dao.getDataList(paging);
+		List<Board> datalist = dao.getDataList(paging);
 		
 		System.out.println("BeginRow" + paging.getBeginRow());
 		System.out.println("EndRow" + paging.getEndRow());
 		
 		
 		request.setAttribute("paging", paging);
-		request.setAttribute("abc", abc);
+		request.setAttribute("bean", datalist);
 		
 		super.gotoPage("/board/boList.jsp");
 		/*

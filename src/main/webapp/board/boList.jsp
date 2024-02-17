@@ -13,6 +13,9 @@ session.getAttribute("loginfo");
 <title>Insert title here</title>
 
 <style>
+	table {
+		font-family: 'Kanit', sans-serif;
+	}
 
 	.tableWrap th{
 		height: 50px;
@@ -36,7 +39,7 @@ session.getAttribute("loginfo");
 		border-bottom: 1px solid darkgray;
 		height: 20px;
 	}
-	.tcontents tr:nth-child(even){
+	.tcontents tr:nth-child(odd){
 		background-color: #dcdcdc;
 	}
 	.tcontents tbody tr:hover{
@@ -53,6 +56,7 @@ session.getAttribute("loginfo");
 	.intop{
 		text-align: center;
 	}
+
 
 </style>
 
@@ -119,7 +123,7 @@ function writeForm(){ /* 게시물 작성  */
 				</tr>
 				</thead>
 				<tbody>
-								<tr>
+				 <tr>
 					<td colspan="9" align="center">
 						<div class="row">
 							<div class="col-sm-1"></div>
@@ -155,7 +159,7 @@ function writeForm(){ /* 게시물 작성  */
 						</div>
 					</td>
 				</tr>
-				<c:forEach var="bean" items="${abc}">
+				<c:forEach var="bean" items="${bean}">
 				<tr>
 					<td><div class="tdwrap" style="width:50px">${bean.no}</div></td>
 					<td><div class="tdwrap" style="width:100px">${bean.id}</div></td>
