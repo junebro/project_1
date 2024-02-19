@@ -569,8 +569,8 @@ table .inputTypeText { /* 2열 입력칸 */
 					<div class="spanbar" onclick="toggleReview('MyOrder.jsp')">
 						<a href="#">주문 보기</a>
 					</div>
-					<div class="spanbar">
-						<a href="./../Member/MyCart.jsp">장바구니</a>
+					<div class="spanbar" onclick="location.href ='${pageContext.request.contextPath}/Member/MyCart.jsp'">
+						<a href="#">장바구니</a>
 					</div>
 					<div class="spanbar">
 						<a href="#">활동 정보</a>

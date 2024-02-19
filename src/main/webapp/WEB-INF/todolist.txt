@@ -2,6 +2,7 @@
 # order section
 OrderC=com.shopping.order.OrderController
 OrderP=com.shopping.order.OrderPayController
+myOrder=com.shopping.order.MypageDeleteController
 # product section
 #Product=com.shopping.product.ProductController
 DetailProduct=com.shopping.product.ProductDetailController

@@ -76,7 +76,6 @@ String withFormTag = appName + mappingName;
 		<input type='hidden' name="command" value="myUpdate">
 		<div id="otherDiv2" style="display:;">
 			<p class="maino">내 정보</p>
-			<hr class="disborder">
 			<br>
 			<div class="titleArea" style="width: 800px">
 				<h3>기본정보</h3>

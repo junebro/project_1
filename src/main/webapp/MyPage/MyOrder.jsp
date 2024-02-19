@@ -1,9 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.shopping.model.dao.MyOrderDao"%>
+<%@page import="com.shopping.model.bean.MyOrder"%>
+<%
+	MyOrder bean = new MyOrder();
+	MyOrderDao dao = new MyOrderDao();
+	String mbrid = (String)session.getAttribute("MBRID");
+	List<MyOrder> dataList = dao.getDataList(mbrid);
+%>
+<c:set var="dataList" value="<%=dataList%>" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<%
+String appName = request.getContextPath();
+String mappingName = "/Shopping_project";
+String withFormTag = appName + mappingName;
+String notWithFormTag = withFormTag + "?command=";
+%>
 <title>Insert title here</title>
 </head>
 <body> 
@@ -22,118 +39,36 @@ $(document).ready(function() {
 				<table style="width: 100%">
 					<tbody>
 						<tr class="underline">
-							<th class="orderTh">주문번호</th>
-							<th class="orderTh">상품</th>
+							<th class="orderTh">주문 날짜</th>
+							<th class="orderTh">상품 이미지</th>
 							<th class="orderTh" style="width: 40%;">상품 상세</th>
 							<th class="orderTh">옵션</th>
 							<th class="orderTh">수량</th>
 							<th class="orderTh">가격</th>
 							<th class="orderTh">리뷰</th>
 						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">6969</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)</td>
-							<td class="orderTd">260, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">109,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">7474</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)</td>
-							<td class="orderTd">(91)Silver, 280, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">99,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">6969</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)</td>
-							<td class="orderTd">260, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">109,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">7474</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)</td>
-							<td class="orderTd">(91)Silver, 280, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">99,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">6969</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)</td>
-							<td class="orderTd">260, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">109,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">7474</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)</td>
-							<td class="orderTd">(91)Silver, 280, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">99,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">6969</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20230925/NB20230925082154449001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">MT410AS5 (Uni, 2E)</td>
-							<td class="orderTd">260, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">109,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
-						<tr class="underline">
-							<td class="orderTd" id="ORDCD">7474</td>
-							<td class="orderTd"><img class="orderImg "
-								src="https://image.nbkorea.com/NBRB_Product/20240123/NB20240123151041974001.jpg"></td>
-							<td class="orderTd" style="width: 40%;">W480KW5 (Uni, 4E)</td>
-							<td class="orderTd">(91)Silver, 280, 2E</td>
-							<td class="orderTd">1</td>
-							<td class="orderTd">99,000원</td>
-							<td class="orderTd">
-								<button class="review_btn" type="button" class="btn_white"
-									style="font-size: 12px">리뷰 쓰기</button>
-							</td>
-						</tr>
+						<c:forEach var="order" items="${dataList}" varStatus="status">
+							<tr class="underline">
+								<td class="orderTd" id="ORDDT">${order.ORDDT}</td>
+								<td class="orderTd">
+									<img class="orderImg " style="cursor: pointer"
+									src="${pageContext.request.contextPath}/Image/Detail_main/${order.PROIMG}"
+									onclick="location.href='<%=notWithFormTag%>DetailProduct&pronm=${order.PRONM}&mbrid=${sessionScope.loginfo.MBRID}'">
+								</td>
+								<td class="orderTd">
+									<div style="cursor: pointer; width: 40%; margin: 0 auto;"
+										onclick="location.href='<%=notWithFormTag%>DetailProduct&pronm=${order.PRONM}&mbrid=${sessionScope.loginfo.MBRID}'">${order.PRONM}
+									</div>
+								</td>
+								<td class="orderTd">${order.ORDSZ}, ${order.PROCR}</td>
+								<td class="orderTd">${order.ORDQTY}</td>
+								<td class="orderTd">${order.TOTPR}</td>
+								<td class="orderTd">
+									<button class="review_btn" type="button" class="btn_white"
+										style="font-size: 12px">리뷰 쓰기</button>
+								</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
