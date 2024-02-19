@@ -13,44 +13,46 @@ public class MemberDao extends SuperDao {
 	public MemberDao() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public int deleteData(String mbrid) {
-		int cnt = -1 ;
-		String sql = "" ;
-		Member bean = this.getDataBean(mbrid) ;
-		
-		PreparedStatement pstmt = null ;
-		conn = super.getConnection() ;
-		
+		int cnt = -1;
+		String sql = "";
+		Member bean = this.getDataBean(mbrid);
+
+		PreparedStatement pstmt = null;
+		conn = super.getConnection();
+
 		try {
 			conn.setAutoCommit(false);
-						
-			// step03 : 회원 테이블 데이터를 삭제합니다.	
-			sql = " delete from tmbr where mbrid = ? " ;
-			pstmt = conn.prepareStatement(sql) ;
+
+			// step03 : 회원 테이블 데이터를 삭제합니다.
+			sql = " delete from tmbr where mbrid = ? ";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mbrid);
-			cnt = pstmt.executeUpdate() ;
-			if(pstmt != null) {pstmt.close();}			
-			
+			cnt = pstmt.executeUpdate();
+			if (pstmt != null) {
+				pstmt.close();
+			}
+
 			conn.commit();
-			
-		} catch (SQLException e) {			
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-		}finally {
+		} finally {
 			try {
 				super.closeConnection();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}
-		return cnt ;
+		return cnt;
 	}
-	
+
 	public int updateData(Member bean) {
 		String sql = " update TMBR set MBRNM=?, MBRPW=?, MBRAR=?, MBRAR1=?, MBRAR2=?, MBRHP=?, MBREM=?, MBRPT=?, MBRBT=?, MBRGD=?";
 		sql += " where MBRID = ? ";
@@ -159,10 +161,10 @@ public class MemberDao extends SuperDao {
 			pstmt.setInt(9, bean.getMBRPT());
 			pstmt.setString(10, bean.getMBRBT());
 			pstmt.setString(11, bean.getMBRGD());
-			
+
 			cnt = pstmt.executeUpdate();
 			conn.commit();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
@@ -224,7 +226,7 @@ public class MemberDao extends SuperDao {
 		return bean;
 
 	}
-	
+
 	public Member getDataByIdAndPasswordA(String MBRID, String MBRPW) {
 
 		String sql = " select * from TMBR";
@@ -331,47 +333,45 @@ public class MemberDao extends SuperDao {
 	}
 
 	public String getMemberPw(String id) {
-		String sql = "select mbrpw from members where mbrid = ?" ;
-		
-		
-		PreparedStatement pstmt = null ;
+		String sql = "select mbrpw from members where mbrid = ?";
+
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String mbrpw = null;
-		
+
 		try {
 			super.conn = super.getConnection();
-			
+
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setString(1, id);
-			
+
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				mbrpw = rs.getString("mbrpw");
-				
+
 			}
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
 				conn.rollback();
-			}catch (SQLException e1) {
+			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 		} finally {
 			try {
-				if(pstmt != null) {pstmt.close();}
+				if (pstmt != null) {
+					pstmt.close();
+				}
 				super.closeConnection();
-			}catch (Exception e2) {
+			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}
 		return mbrpw;
-		
+
 	}
-
-
 
 }

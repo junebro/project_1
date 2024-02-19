@@ -507,27 +507,13 @@ String MBRID = session.getAttribute("loginfo").toString();
 						<td><input id="address-2" placeholder="상세주소" size="15"
 							type="text" value="${sessionScope.loginfo.MBRAR2}"></td>
 					</tr>
-					<tr style="height: 50px">
-						<td><span class="mar">휴대 전화</span></td>
-						<td>
-							<div class="input-group mt-3 mb-3 input-group-prepend">
-								<select class="form-select select-toggle"
-									style="width: 30%; margin: auto;">
-									<option>--번호 선택--</option>
-									<option>010</option>
-									<option>011</option>
-									<option>070</option>
-								</select> <input id="inputpn2" style="width: 70%" type="text"
-									maxlength="8" class="form-control"
-									placeholder="-없이 번호를 입력해주세요.">
-							</div>
-						</td>
-					</tr>
+					
 				</tbody>
 			</table>
 
 			<div>
 				<form>
+				<br>
 					<select class="form-select" id="messageC"
 						style="width: 100%; margin: auto;">
 						<option>--배송 메세지(선택사항)--</option>
