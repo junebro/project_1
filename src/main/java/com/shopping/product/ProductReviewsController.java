@@ -17,7 +17,7 @@ public class ProductReviewsController extends SuperClass{
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+ 
 		super.doGet(request, response);
 		
 		

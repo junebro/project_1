@@ -1021,7 +1021,7 @@ font-family: 'Noto Sans KR', sans-serif;
 			var price = parseInt(id_price.innerHTML.replace(/,/g, ''), 10);
 			var can = document.getElementById('color_area_color');
 			var color = can.innerText;
-
+ 
 			var S_key = color + '/' + size;
 			var size_key = document.getElementById(S_key);
 			var can = document.getElementById('buy_name' + size);

@@ -157,7 +157,7 @@ public class reviews_Paging {
 
 	public int getTotalPage() {
 		return totalPage;
-	}
+	} 
 
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
