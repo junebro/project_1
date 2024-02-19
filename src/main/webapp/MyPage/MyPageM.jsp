@@ -567,7 +567,7 @@ table .inputTypeText { /* 2열 입력칸 */
 						<a href="#">장바구니</a>
 					</div>
 					<div class="spanbar" onclick="toggleReview('MyLike.jsp')">
-						<a href="#">좋아요한상품</a><br>
+						<a href="#">나의 찜 내역</a><br>
 					</div>
 					<div class="spanbar">
 						<a href="#">내 게시글</a><br>
