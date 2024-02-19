@@ -18,7 +18,7 @@ public class BoardDetailController extends SuperClass{
 		int no = Integer.parseInt(request.getParameter("no")) ;
 		Board abc = dao.getDataBean(no);
 		
-		request.setAttribute("abc", abc);
+		request.setAttribute("bean", abc);
 		
 		RequestDispatcher dispatcher = null;
 		
