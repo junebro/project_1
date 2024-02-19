@@ -1249,6 +1249,7 @@ a.active {
 				var select_name = $(this).children('option:selected').text();
 				$(this).siblings('label').text(select_name);
 			});
+		
 		});
 
 	</script>
@@ -1386,166 +1387,91 @@ a.active {
 						
 						<div class="selectbox sel_color">
 							<label>색상</label> 
-							<select>
-								<option select>색상</option>
-								<option><a><img src="./../../Image/bht.png"" /></span></a></option>
-								<option>(20)Red</option>
-								<option>(50)Blue</option>
-								<option>(91)Sliver</option>
+							<select id="sel_color" name="sel_color">
+								<option value ="" select>색상</option>
+								<c:forEach var="bean_cr" items="${requestScope.dataList['resultSetPro']}" varStatus="status">
+									<option value="${bean_cr.PROCR}">${bean_cr.PROCR}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="selectbox selectbox_star sel_color">
 						<label>별점</label> 
-						<select class="all_star">
-							<option selected="selected" >별점</option>
-							<option value="five_star">&#xf005 &#xf005 &#xf005 &#xf005 &#xf005</option>
-							<option value="four_star">&#xf005 &#xf005 &#xf005 &#xf005</option>
-							<option value="three_star">&#xf005 &#xf005 &#xf005</option>
-							<option value="two_star">&#xf005 &#xf005</option>
-							<option value="one_star">&#xf005</option>
+						<select id="sel_star" name="sel_star" class="all_star">
+							<option value ="" selected="selected" >별점</option>
+							<option value="5">&#xf005 &#xf005 &#xf005 &#xf005 &#xf005</option>
+							<option value="4">&#xf005 &#xf005 &#xf005 &#xf005</option>
+							<option value="3">&#xf005 &#xf005 &#xf005</option>
+							<option value="2">&#xf005 &#xf005</option>
+							<option value="1">&#xf005</option>
 						</select>
 						</div>
-						<div class="selectbox sel_color">
-							<label>사이즈</label> 
-							<select>
-								<option select>사이즈</option>
-								<option>250</option>
-								<option>255</option>
-								<option>260</option>
-								<option>265</option>
-								<option>270</option>
-								<option>275</option>
-								<option>280</option>
-								<option>285</option>
-								<option>290</option>
-							</select>
-						</div>
-						<button  class="btn_black btn_select">검 색</button>
+						
+						<button onclick="review_search('${bean.PRONM}')" class="btn_black btn_select">검 색</button>
 						<br><br>
 						<div class="view_line"></div>
-						
-						<c:forEach var="views" items="${requestScope.dataList['resultSetViews']}" varStatus="status">
-						
-							<div class="view_Board">
-								<div class="view_Board_left">
-									<div class="border_top">
-										<div id="view_star${status.index}" class="view_star">
-											<c:forEach var="i" begin="1" end="${views['RVWGR']}">
-												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 20px; height: 20px;">
-													<defs>
-														<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
-													</defs>
-													<use xlink:href="#star-full"/>
-												</svg>
-											</c:forEach>
-											<span class="view_star_gr"> 
-												<c:if test="${views['RVWGR'] eq 5}">&nbsp;아주 좋아요</c:if>
-												<c:if test="${views['RVWGR'] eq 4}">&nbsp;맘에 들어요</c:if>
-												<c:if test="${views['RVWGR'] eq 3}">&nbsp;보통이에요</c:if>
-												<c:if test="${views['RVWGR'] eq 2}">&nbsp;그냥 그래요</c:if>
-												<c:if test="${views['RVWGR'] eq 1}">&nbsp;별로에요</c:if>
-											</span>
-										</div>
-										
-										<div class="border_date">${views['RVWDT']}</div>
-									</div>
-									<br>
-									<div class="border_main">
-										${views['RVWCT']}
-									</div>
-									<br>
-									<div class="inq_img">
-										<c:if test="${views['RVWIMG1']!=null}">
-											<img src="${pageContext.request.contextPath}/Image/Reviews/${views['RVWIMG1']}" alt="${views['RVWIMG1']}">
-										</c:if>
-										<c:if test="${views['RVWIMG2']!=null}">
-											<img src="${pageContext.request.contextPath}/Image/Reviews/${views['RVWIMG2']}" alt="${views['RVWIMG2']}">
-										</c:if>
-										<c:if test="${views['RVWIMG3']!=null}">
-											<img src="${pageContext.request.contextPath}/Image/Reviews/${views['RVWIMG3']}" alt="${views['RVWIMG3']}">
-										</c:if>
-									</div>
-									
-								</div>
-								
-								<div class="view_center"></div>
-								<div class="view_Board_right">
-									<div class="Board_member">
-										<div class="Board_member_detail">${views['MBRID']}님의 리뷰입니다.</div>
-										<div class="Board_member_detail">발 사이즈 <span class="font_pro">245mm</span></div>
-										<div class="Board_member_detail">회원 등급 <span class="font_pro">FAMILY</span></div>
-										<div class="Board_member_detail">사이즈 <span class="font_pro">245</span></div>
-										<div class="Board_member_detail">컬러 <span class="font_pro">(15)Gray</span></div>
-									</div>
-								</div>
-							</div>
-				
-							<div class="view_line"></div>
-						</c:forEach>
-						
 					</div>
-					<!-- 
-						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 100%; height: 100%;">
-							<defs>
-								<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
-							</defs>
-							<use xlink:href="#star-full"/>
-						</svg>
-						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 100%; height: 100%;">
-						    <defs>
-						        <path id="a" fill="#E8E8E8" d="M10.003 1.667c.27 0 .539.148.677.442l2.165 4.59 4.84.74c.622.095.87.894.42 1.352l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382c0-9.166 0-13.897.002-14.191z"></path>
-						        <path id="c" d="M7.157 6.698l2.165-4.59a.746.746 0 0 1 .688-.441c-.007.294-.01 5.025-.01 14.19L5.673 18.24c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"></path>
-						    </defs>
-						    <use xlink:href="#a"></use>
-						    <use xlink:href="#c"></use>
-						</svg> -->
-
+					<div id="refreshableContent">
+						<jsp:include page="./DetailReviews.jsp" />
+					</div>
 				</div>
 			</div>
-
-			<div style="display: none"; id="five_star" >
-				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
-					<defs>
-						<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
-					</defs>
-					<use xlink:href="#star-full"/>
-				</svg>
-				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
-					<defs>
-						<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
-					</defs>
-					<use xlink:href="#star-full"/>
-				</svg>
-				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
-					<defs>
-						<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
-					</defs>
-					<use xlink:href="#star-full"/>
-				</svg>
-				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
-					<defs>
-						<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
-					</defs>
-					<use xlink:href="#star-full"/>
-				</svg>
-				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" class="crema_product_reviews_score_star_wrapper__star " style="fill: rgb(0, 0, 0); width: 15px; height: 15px;">
-					<defs>
-						<path id="star-full" d="M7.157 6.698l2.165-4.59a.743.743 0 0 1 1.358 0l2.165 4.59 4.84.74c.622.096.87.895.42 1.353l-3.503 3.57.827 5.044c.106.647-.544 1.141-1.1.835l-4.328-2.382-4.329 2.382c-.556.306-1.205-.188-1.099-.835l.826-5.044-3.502-3.57c-.45-.458-.202-1.257.42-1.352l4.84-.74z"/>
-					</defs>
-					<use xlink:href="#star-full"/>
-				</svg>
-			</div>
 			
-		
-			
+			<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 			<script>
 				
 				var rsViews = ${rsViews};
+				
 				var view_tit = document.getElementById("view_tit");
 				var view_top = document.getElementById("view_top");
 				
 				view_tit.innerHTML = "REVIEW("+rsViews+")";
 				view_top.innerHTML = "상품리뷰("+rsViews+")";
+				
+				function review_search(PRONM){ /* 전체 검색 */
+					<%-- location.href = '<%=notWithFormTag%>DetailProduct' ; --%>
+					var sel_star = document.getElementById("sel_star");
+					var sel_color = document.getElementById("sel_color");
+					
+					var star = sel_star.value;
+					var color = sel_color.value;
+					
+					var URL = '<%=notWithFormTag%>DetailReviews&pronm=' + PRONM + '&sel_star=' + star + '&sel_color=' + color;
+					$.ajax({
+			            url: URL,
+			            type: "POST",
+			            success: function(data) {
+			                // 서버로부터 받은 내용으로 갱신
+			                $("#refreshableContent").html(data);
+			            },
+			            error: function() {
+			                alert("새로고침에 실패했습니다.");
+			            }
+			        });
+				}
+
+			    function gotoPage(pageNumber, pageSize, sel_star, sel_color) {
+			    	
+			    	var sel_star = document.getElementById("sel_star");
+					var sel_color = document.getElementById("sel_color");
+				
+					var PRONM = `${bean.PRONM}`;
+					var star = sel_star.value;
+					var color = sel_color.value;
+
+			        var URL = '<%=notWithFormTag%>DetailReviews&pronm=' + PRONM + '&sel_star=' + star + '&sel_color=' + color + '&pageNumber=' + pageNumber + '&pageSize=' + pageSize;
+				
+			        $.ajax({
+			            url: URL,
+			            type: "POST",
+			            success: function(data) {
+			                // 서버로부터 받은 내용으로 갱신
+			                $("#refreshableContent").html(data);
+			            },
+			            error: function() {
+			                alert("새로고침에 실패했습니다.");
+			            }
+			        });
+			    }
 
 		    </script>
 			
