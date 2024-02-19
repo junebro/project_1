@@ -45,7 +45,6 @@ $(document).ready(function() {
 							<th class="orderTh">옵션</th>
 							<th class="orderTh">수량</th>
 							<th class="orderTh">가격</th>
-							<th class="orderTh">리뷰</th>
 						</tr>
 						<c:forEach var="order" items="${dataList}" varStatus="status">
 							<tr class="underline">
@@ -63,10 +62,6 @@ $(document).ready(function() {
 								<td class="orderTd">${order.ORDSZ}, ${order.PROCR}</td>
 								<td class="orderTd">${order.ORDQTY}</td>
 								<td class="orderTd">${order.TOTPR}</td>
-								<td class="orderTd">
-									<button class="review_btn" type="button" class="btn_white"
-										style="font-size: 12px">리뷰 쓰기</button>
-								</td>
 							</tr>
 						</c:forEach>
 					</tbody>

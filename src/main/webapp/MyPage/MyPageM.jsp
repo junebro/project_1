@@ -188,9 +188,6 @@ h1 {
 	font-weight: bolder;
 	font-size: 20px;
 }
-.minibar{
-	margin-top: 10px;
-}
 a {
 	text-decoration: none;
 	color: black;
@@ -562,39 +559,30 @@ table .inputTypeText { /* 2열 입력칸 */
 		<div class="left">
 			<div class="sticky">
 				<div class="sidebar">
-					<div class="spanbar" onclick="toggleReview('Myreview.jsp')">
-						<a href="#">리뷰 보기</a>
-					</div>
 					<%-- <div class="spanbar" onclick="toggleOrder()"> --%>
 					<div class="spanbar" onclick="toggleReview('MyOrder.jsp')">
-						<a href="#">주문 보기</a>
+						<a href="#">구매 내역</a>
 					</div>
 					<div class="spanbar" onclick="location.href ='${pageContext.request.contextPath}/Member/MyCart.jsp'">
 						<a href="#">장바구니</a>
 					</div>
+					<div class="spanbar" onclick="toggleReview('MyLike.jsp')">
+						<a href="#">나의 찜 내역</a><br>
+					</div>
 					<div class="spanbar">
-						<a href="#">활동 정보</a>
-					</div>
-					<br>
-					<div class="minibar" onclick="toggleReview('MyLike.jsp')">
-						<a href="#">좋아요한상품</a><br>
-					</div>
-					<br>
-					<div class="minibar">
-						<a href="#">나의게시글</a><br>
+						<a href="#">내 게시글</a><br>
 					</div>
 					<%-- <div class="spanbar" onclick="toggleMyinfo()">--%>
 					<div class="spanbar" onclick="toggleReview('MyInfo.jsp')">
 						<a href="#">내 정보</a>
 					</div>
-					<br>
-					<div class="minibar" onclick="toggleReview('MyUpdate.jsp')">
+					<div class="spanbar" onclick="toggleReview('MyUpdate.jsp')">
 						<a href="#">회원정보수정</a><br>
 					</div>
-					<div class="minibar" onclick="location.href = '<%=notWithFormTag%>meLogout'">
+					<div class="spanbar" onclick="location.href = '<%=notWithFormTag%>meLogout'">
 						<a href="#">로그아웃</a><br>
 					</div>
-					<div class="minibar" onclick="location.href = '<%=notWithFormTag%>myDelete'">
+					<div class="spanbar" onclick="location.href = '<%=notWithFormTag%>myDelete'">
 						<a href="#">탈퇴하기</a><br>
 					</div>
 				</div>	
