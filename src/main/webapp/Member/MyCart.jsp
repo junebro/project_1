@@ -27,7 +27,7 @@ body {
 }
 
 .cart-container div {
-	margin: 20px 0;
+	margin: 20px auto;
 }
 
 .contents h2 { /* 장바구니 */
@@ -232,7 +232,7 @@ a { /* 링크 */
 }
 
 .left {
-	width: 900px;
+	width: 800px;
 }
 
 .right {
@@ -246,6 +246,7 @@ a { /* 링크 */
 	align-items: flex-start;
 	width: 1200px;
 	margin: 0 auto;
+	justify-content: center;
 }
 
 .sticky {

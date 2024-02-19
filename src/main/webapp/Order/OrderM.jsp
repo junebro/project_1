@@ -656,6 +656,7 @@ String MBRID = session.getAttribute("loginfo").toString();
 			<br> <br>
 			<script>
 				function copyParam(){
+					alert("결제 정상 처리되었습니다.");
 					var url = "<%=notWithFormTag%>OrderP&submit1=<%=request.getParameter("submit")%>";
 				        window.location.href = url;
 				}
