@@ -24,8 +24,6 @@ public class SuperDao {
 			sql += " WHERE " + mode + " LIKE '%" + keyword + "%'";
 		}
 
-		System.out.println("sql 구문\n" + sql);
-
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int cnt = -1;
@@ -58,6 +56,68 @@ public class SuperDao {
 		System.out.println("총갯수: "+ cnt);
 		return cnt;
 	}
+	
+	// 모든 테이블들이 동일한 방식으로 사용하므로 final 메소드로 작성하였습니다.
+	public final int getTotalReviewsCount(String tableName, String sel_star, String sel_color, String pronm, String mbrid, String isGrid) {
+
+		// 제시한 tableName이라는 테이블의 총 행수를 구해줍니다.
+
+		String sql = " SELECT COUNT(A.RVWNO) AS cnt FROM " + tableName + " A ";
+		if(isGrid == "pro") {
+			sql += " INNER JOIN TPRO B ON A.PROCD = B.PROCD ";
+			sql += " WHERE A.PRONM LIKE NVL(?, '%') ";
+			if (sel_star == null || sel_star.equals("all") || sel_star.equals("null") || sel_star.equals("")) {
+			} else {
+				sql += " AND A.rvwgr LIKE '%" + sel_star + "%'";
+			}
+			 if (sel_color == null || sel_color.equals("all") || sel_color.equals("null") || sel_color.equals("")) {	
+			 } else {
+				 sql += " AND B.procr LIKE '%" + sel_color + "%'";
+			 }
+		}	
+		
+		System.out.println("total");
+		System.out.println(sql);
+		System.out.println(pronm);
+		System.out.println(sel_star);
+		System.out.println(sel_color);
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int cnt = -1;
+		String aa = "";
+		try {
+			this.conn = this.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, pronm);
+			
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				this.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		System.out.println("총갯수: "+ cnt);
+		return cnt;
+	}
+	
+
 
 	public Connection getConnection() {
 		// 접속 객체를 구해줍니다.

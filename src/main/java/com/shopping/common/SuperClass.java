@@ -21,6 +21,18 @@ public class SuperClass implements SuperController{
 	// 로그인 여부를 파악하는 변수
 	protected Member loginfo ;
 	
+	public String getUrlInfomation(String todoCommand) {
+		// todoCommand : todolist.txt 파일에 명시된 커맨드 이름
+		// 커맨드 이름을 사용하여 웹 주소 형식의 FullName을 반환해 줍니다.
+		//String appName = this.request.getContextPath() ; // in file common.jsp
+		String appName = "/first_Project" ;
+		String mappingName = "/Shopping" ; // url Pattern in file FrontController.java 
+		
+		String fullAddress = appName + mappingName + "?command=" + todoCommand ;
+		System.out.println("요청 url 전체 경로명 :\n" + fullAddress); 
+		return fullAddress;
+	}	
+	
 	public String getUrlInformation(String todoCommand) {
 		// todoCommand " todolist.txt 파일에 명시된 커맨드 이름
 		// 커맨드 이름을 사용하여 웹 주소 형식의 FullName을 반환해 줍니다.
@@ -49,6 +61,7 @@ public class SuperClass implements SuperController{
 	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		this.request = request;
 		this.response = response;
 		this.session = request.getSession();

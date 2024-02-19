@@ -6,6 +6,7 @@ myOrder=com.shopping.order.MypageDeleteController
 # product section
 #Product=com.shopping.product.ProductController
 DetailProduct=com.shopping.product.ProductDetailController
+DetailReviews=com.shopping.product.ProductReviewsController
 # view section
 #vwList=com.shopping.view.ViewListController
 #vwExam01=com.shopping.view.View01ListController

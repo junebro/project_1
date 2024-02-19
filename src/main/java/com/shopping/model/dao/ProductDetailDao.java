@@ -8,10 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.shopping.model.bean.Board;
 import com.shopping.model.bean.Grade;
-import com.shopping.model.bean.Member;
 import com.shopping.model.bean.Product;
-import com.shopping.model.bean.Product_main;
+import com.shopping.utility.Paging;
+import com.shopping.utility.reviews_Paging;
 
 public class ProductDetailDao extends SuperDao {
 	
@@ -112,51 +113,51 @@ public class ProductDetailDao extends SuperDao {
 	
 	
 	// 상세페이지에서 사용
-		public double getTotal(String pronm) {
+	public double getTotal(String pronm) {
 
-			String sql = " SELECT ";
-			sql += " ROUND(SUM(A.rvwgr * COUNT(*)) / SUM(COUNT(*)), 1) AS per ";
-			sql += " FROM trvw A ";
-			sql += " WHERE A.pronm = ? ";
-			sql += " GROUP BY A.rvwgr ";
+		String sql = " SELECT ";
+		sql += " ROUND(SUM(A.rvwgr * COUNT(*)) / SUM(COUNT(*)), 1) AS per ";
+		sql += " FROM trvw A ";
+		sql += " WHERE A.pronm = ? ";
+		sql += " GROUP BY A.rvwgr ";
 
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			double total = 0.0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		double total = 0.0;
 
-			super.conn = super.getConnection();
-			try {
-				pstmt = conn.prepareStatement(sql);
-				
-				pstmt.setString(1, pronm);
-				rs = pstmt.executeQuery();
+		super.conn = super.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, pronm);
+			rs = pstmt.executeQuery();
 
-				// 요소들 읽어서 컬렉션에 담습니다.
-				if (rs.next())  {
-					total = rs.getDouble("per");
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					if (rs != null) {
-						rs.close();
-					}
-					if (pstmt != null) {
-						pstmt.close();
-					}
-					super.closeConnection();
-
-				} catch (Exception e2) {
-					e2.printStackTrace();
-				}
+			// 요소들 읽어서 컬렉션에 담습니다.
+			if (rs.next())  {
+				total = rs.getDouble("per");
 			}
 
-			return total;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 
-	public Map<String, Object> calculate(String pronm, String mbrid) {
+		return total;
+	}
+
+	public Map<String, Object> calculate(String pronm, String mbrid, reviews_Paging paging) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -177,7 +178,7 @@ public class ProductDetailDao extends SuperDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mbrid);
 			pstmt.setString(2, pronm);
-			
+		
 			rs = pstmt.executeQuery();
 			List<Map<String, Object>> resultSetProList = new ArrayList<>();
 			
@@ -208,12 +209,18 @@ public class ProductDetailDao extends SuperDao {
             
 			if(pstmt!=null){pstmt.close();}
 			if(rs != null) {rs.close();}
-			
-			sql = " SELECT pronm, procd, mbrid, rvwgr, rvwct,  rvwimg1, rvwimg2, rvwimg3, rvwdt FROM trvw ";
-			sql += " WHERE pronm = ? ";
+	
+			sql = " SELECT pronm, procd, mbrid, rvwgr, rvwct,  rvwimg1, rvwimg2, rvwimg3, rvwdt ";
+			sql += "  FROM ( SELECT  ";
+			sql += "  RANK() OVER(ORDER BY rvwno, rvwgr asc) AS ranking, pronm, procd, mbrid, rvwgr, rvwct,  rvwimg1, rvwimg2, rvwimg3, rvwdt ";
+			sql += "  FROM trvw   WHERE pronm = ? ";
+			sql += "  ) ";
+			sql += "  WHERE ranking BETWEEN ? AND ? ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, pronm);
+			pstmt.setInt(2, paging.getBeginRow());
+			pstmt.setInt(3, paging.getEndRow());
 			
 			rs = pstmt.executeQuery();
 				
@@ -263,4 +270,87 @@ public class ProductDetailDao extends SuperDao {
 		
 		return resultMap;
 	}
+	
+	public Map<String, Object> getviewsList(String pronm, String sel_color, String sel_star, reviews_Paging paging ) {
+
+		 String sql = " SELECT ";
+		 sql += "    pronm, procd, mbrid, rvwgr, rvwct, rvwimg1, rvwimg2, rvwimg3, rvwdt ";
+		 sql += "  FROM ( SELECT ";
+		 sql += "     RANK() OVER(ORDER  BY A.rvwno, A.rvwgr asc) AS ranking, A.pronm, A.procd, A.mbrid, A.rvwgr, A.rvwct, A.rvwimg1, A.rvwimg2, A.rvwimg3, A.rvwdt "; 
+		 sql += "  FROM trvw A ";
+		 sql += "  INNER JOIN tpro B on A.procd = B.procd ";
+		 sql += "  WHERE A.pronm = ? "; 
+		 if (sel_star == null || sel_star.equals("all") || sel_star.equals("null") || sel_star.equals("")) {
+		 } else {
+				sql += " AND A.rvwgr LIKE '%" + sel_star + "%' ";
+		 }
+		 if (sel_color == null || sel_color.equals("all") || sel_color.equals("null") || sel_color.equals("")) {	
+		 } else {
+			 sql += " AND B.procr LIKE '%" + sel_color + "%' ";
+		 }
+		 sql += "  ) ";
+		 sql += "  WHERE ranking BETWEEN ? AND ? ";
+		
+		
+		PreparedStatement pstmt = null; // 문장 객체
+		ResultSet rs = null;
+		System.out.println(sql);
+		System.out.println(pronm);
+		System.out.println(sel_color);
+		System.out.println(sel_star);
+		System.out.println(paging.getBeginRow());
+		System.out.println(paging.getEndRow());
+		Map<String, Object> resultMap = new HashMap<>();
+
+		super.conn = super.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, pronm);
+			pstmt.setInt(2, paging.getBeginRow());
+			pstmt.setInt(3, paging.getEndRow());
+			
+			rs = pstmt.executeQuery();
+
+			List<Map<String, Object>> resultSetViewsList = new ArrayList<>();
+			
+			while (rs.next()) {
+				
+				Map<String, Object> rowMap = new HashMap<>();
+				
+				rowMap.put("PRONM", rs.getString("pronm"));
+				rowMap.put("PROCD", rs.getString("procd"));
+				rowMap.put("MBRID", rs.getString("mbrid"));
+				rowMap.put("RVWGR", rs.getString("rvwgr"));
+				rowMap.put("RVWCT", rs.getString("rvwct"));
+				rowMap.put("RVWIMG1", rs.getString("rvwimg1"));
+				rowMap.put("RVWIMG2", rs.getString("rvwimg2"));
+				rowMap.put("RVWIMG3", rs.getString("rvwimg3"));
+				rowMap.put("RVWDT", rs.getString("rvwdt"));
+				
+				resultSetViewsList.add(rowMap);
+			}
+			
+			resultMap.put("resultSetViews", resultSetViewsList);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+
+		return resultMap;
+	}
+	
 }
