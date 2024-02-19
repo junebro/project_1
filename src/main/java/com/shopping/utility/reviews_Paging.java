@@ -89,8 +89,8 @@ public class reviews_Paging {
 			/* 맨 처음과 이전 존재하지 않는 경우 */
 			
 		} else {
-			html += makeLiTag("맨처음", 1);
-			html += makeLiTag("이전&nbsp;&nbsp;&nbsp;|", beginPage-1);
+			//html += makeLiTag("〈〈&nbsp;", 1);
+			html += makeLiTag("〈&nbsp;&nbsp;", beginPage-1);
 		}
 		
 		for (int i = beginPage; i <= endPage; i++) {
@@ -110,8 +110,8 @@ public class reviews_Paging {
 		if(pageNumber >= (totalPage/pageCount*pageCount+1)) {
 			/* '맨끝'과 '다음' 항목이 존재하는 경우 */
 		} else {
-			html += makeLiTag(" |&nbsp;&nbsp;&nbsp;다음", endPage+1);
-			html += makeLiTag("맨끝", totalPage);
+			html += makeLiTag("&nbsp;&nbsp;〉", endPage+1);
+			//html += makeLiTag("&nbsp;〉〉", totalPage);
 		}
 		
 		html += "</ul>";
@@ -139,7 +139,7 @@ public class reviews_Paging {
 		 
 		
 		result += "<li class=''>";
-	    result += "<a href='#pr_review', class='paging' sans-serif;' href='javascript:void(0);' onclick='gotoPage(" + currPageNumber + ", "+ this.pageSize+ ", "+ this.sel_star + ", " + this.sel_color + ")'>";
+	    result += "<a href='#pr_review', class='paging' sans-serif;' href='javascript:void(0);' onclick='gotoPage(" + currPageNumber + ", "+ this.pageSize+ ")'>";
 	    result += " &nbsp;&nbsp;&nbsp;" + caption;
 	    result += "</a></li>";
 	    

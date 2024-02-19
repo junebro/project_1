@@ -6,6 +6,26 @@
     pageEncoding="UTF-8"%>
    <%@ include file="./../../common/common.jsp"%>
    
+   
+<!-- font-family: 'Cute', sans-serif; -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap"
+	rel="stylesheet">
+
+<!--  font-family: 'Noto Serif KR', cursive; -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+
+<!-- font-family: "Dongle", sans-serif; -->
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+
+<!-- 페이징 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+   
 <!DOCTYPE html>
 <html>
 
@@ -303,11 +323,6 @@ header {
 }
 
 
-
-
-
-
-
 /* 하단 */
 .product_bottom {
 	max-width: 1050px;
@@ -322,7 +337,7 @@ header {
 	position: sticky;
 	top: 0px;
 	text-align: center;
-	height: 72px;
+	height: 66px;
 	padding: 1em;
 	background-color: #ffffff;
 }
@@ -335,11 +350,11 @@ header {
 	margin: 8%; /* 사이 간격 */
 	text-align: center;
 	display: inline;
-	font-family: 'Noto Serif KR', cursive;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .tab_box li a {
-	font-size: 25px;
+	font-size: 20px;
 	text-decoration: none;
 	color: black;
 }
@@ -594,6 +609,20 @@ a.active {
 .btn_select {
 	text-align: right;
 	padding: 8px 20px;
+}
+
+
+.paging {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+	font-weight: lighter;
+	color: #8C8B8B;
+}
+
+.paging_click{
+font-family: 'Noto Sans KR', sans-serif;
+	font-size: 20px;
+	font-weight: lighter;
 }
 
 </style>
