@@ -283,17 +283,7 @@ tr, input, select {
 	margin-left: 15px;
 }
 
-.dark-nav {
-	color: white;
-	font-size: 30px;
-}
-
-.dark-nav1 {
-	color: white;
-	font-size: 20px;
-}
-
-button {
+.col-12 button {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 1em;
 	cursor: pointer;
@@ -394,39 +384,15 @@ OrderDao oDao = new OrderDao();
 String MBRID = session.getAttribute("loginfo").toString();
 %>
 <body>
-	<div style="background-color: white;"
-		class="justify-content-center row">
-		<div class="col-1">
-			<nav class="navbar navbar-expand-sm">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link"
-						href="javascript:history.back();"><img class="icon"
-							src="https://cdn-icons-png.freepik.com/256/10009/10009107.png?ga=GA1.1.1582875918.1706248960&semt=ais">
-					</a></li>
-				</ul>
-			</nav>
-		</div>
-		<div class="col-6">
-			<nav class="navbar navbar-expand-sm">
-				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a class="nav-link"
-						href="./../Member/MyCart.jsp"> <img class="icon"
-							src="https://cdn-icons-png.freepik.com/256/12718/12718662.png">
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="./../MyPage/MyPageM.jsp"> <img class="icon"
-							src="https://cdn-icons-png.freepik.com/256/747/747376.png?ga=GA1.1.1582875918.1706248960&semt=ais">
-					</a></li>
-				</ul>
-			</nav>
-		</div>
-	</div>
+	<header>
+		<jsp:include page="./../MainPage/top.jsp" />
+	</header>
 	<div class="justify-content-center row">
 		<div class="col-7">
-			<nav class="navbar navbar-expand-sm bg-dark text-center">
+			<nav class="navbar navbar-expand-sm text-center">
 				<ul class="navbar-nav mx-auto">
-					<li class="nav-item"><p class="nav-link dark-nav"
-							style="color: white; font-size: 30px;">주문/결제</p></li>
+					<li class="nav-item"><p class="nav-link"
+							style="font-size: 30px;">주문/결제</p></li>
 				</ul>
 			</nav>
 		</div>
@@ -441,7 +407,7 @@ String MBRID = session.getAttribute("loginfo").toString();
 				<tbody>
 					<tr>
 						<td>
-							<h3 style="margin: 20px;">회원정보</h3>
+							<h4 style="margin: 20px;">회원정보</h4>
 						</td>
 					</tr>
 					<tr style="height: 50px">
@@ -481,7 +447,7 @@ String MBRID = session.getAttribute("loginfo").toString();
 				<tbody>
 					<tr style="margin: 20px;">
 						<td>
-							<h3 style="margin: 20px;">배송정보</h3>
+							<h4 style="margin: 20px;">배송정보</h4>
 						</td>
 					</tr>
 					<tr style="height: 50px">

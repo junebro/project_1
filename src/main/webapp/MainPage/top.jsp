@@ -207,7 +207,7 @@ section {
 
 	<!-- <header>
     </header> -->
-	<div style="background-color: white;">
+	<div style="background-color: white; text-align:center;">
 		<div class="dropdown">
 			<button class="dropbtn"
 				onclick="location.href='${pageContext.request.contextPath}/MainPage/index.jsp'">Home</button>
