@@ -268,7 +268,9 @@ a { /* 링크 */
 </style>
 <%!List<Product> dataList = new ArrayList<>();
 	int totalPr = 0;
-	int pee = 3500;%>
+	int pee = 3500;
+	String jot = "";
+	%>
 <%
 CartDao cDao = new CartDao();
 String MBRID = session.getAttribute("loginfo").toString();
@@ -530,6 +532,13 @@ for (int i = 0; i < endval; i++) {
 							</div>
 						</div>
 						<%
+						if(i==endval){
+							jot += dataList.get(i).getPROCR()+"/"+dataList.get(i).getPROCD()+"/"+bee.getPROSZ()+"/"+bee.getQTY();
+							
+						}else{
+							jot += dataList.get(i).getPROCR()+"/"+dataList.get(i).getPROCD()+"/"+bee.getPROSZ()+"/"+bee.getQTY()+",";
+						}
+						
 						}
 						%>
 						<!-- 장바구니 상품 리스트 섹션 -->
@@ -563,7 +572,7 @@ for (int i = 0; i < endval; i++) {
 					</div>
 					<script>
 					function copyParam(){
-						var url = "<%=notWithFormTag%>OrderC&submit=<%=request.getParameter("submit")%>";
+						var url = "<%=notWithFormTag%>OrderC&submit=<%=jot%>";
 					        window.location.href = url;
 					}
 					</script>
