@@ -14,6 +14,10 @@ MemberDao dao = new MemberDao();
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <style>
 * {
 	padding: 0;
@@ -263,6 +267,9 @@ button {
 
 </head>
 <body>
+	<header>
+		<jsp:include page="./../MainPage/top.jsp" />
+	</header>
 	<form method="post" action="<%=withFormTag%>">
 		<input type="hidden" name="command" value="meInsert">
 		<div class="container">
@@ -344,7 +351,7 @@ button {
 										onclick="sample6_execDaumPostcode()"></li>
 									<li id="join_detailAddr_wrap"><input
 										id="sample6_detailAddress" name="MBRAR3"
-										placeholder="나머지 주소(선택 입력 가능)" class="inputTypeText"
+										placeholder="나머지 주소" class="inputTypeText"
 										type="text" onkeyup="artest()">
 										<div class="failure-message5 hide">필수입력사항입니다.</div> <input
 										type="text" id="sample6_extraAddress" placeholder="참고항목"
