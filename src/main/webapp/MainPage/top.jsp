@@ -178,7 +178,7 @@ section {
 					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/Member/MyCart.jsp'"
 							class="libt">장바구니&nbsp;</button></li>
 					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/MyPage/MyPageM.jsp'"
-							class="libt">주문조회&nbsp;</button></li>
+							class="libt">마이페이지&nbsp;</button></li>
 					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/MyPage/MyPageM.jsp'"
 							class="libt">최근본상품&nbsp;</button></li>
 					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/MyPage/MyPageM.jsp'"
