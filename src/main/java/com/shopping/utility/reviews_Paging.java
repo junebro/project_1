@@ -90,16 +90,16 @@ public class reviews_Paging {
 			
 		} else {
 			html += makeLiTag("맨처음", 1);
-			html += makeLiTag("이전", beginPage-1);
+			html += makeLiTag("이전&nbsp;&nbsp;&nbsp;|", beginPage-1);
 		}
 		
 		for (int i = beginPage; i <= endPage; i++) {
 			if(i == pageNumber) {
 				// 클릭했을 때 속성
 				// active 속성으로 활성화시키고, 빨간 색으로 진하게 표현하기
-	            html += "<li class=\"page-item active\">";
-	            html += "<a class=\"page-link\" href=\"#\">";
-	            html += "<b><font color='red'>" + i + "</font></b>" ;
+	            html += "<li class=''>";
+	            html += "<a class='paging_click' href=\"#pr_review\">";
+	            html += "<b><font color='black'>&nbsp;&nbsp;&nbsp;" + i + "</font></b>" ;
 	            html += "</a></li>";
 	            
 			} else {
@@ -110,7 +110,7 @@ public class reviews_Paging {
 		if(pageNumber >= (totalPage/pageCount*pageCount+1)) {
 			/* '맨끝'과 '다음' 항목이 존재하는 경우 */
 		} else {
-			html += makeLiTag("다음", endPage+1);
+			html += makeLiTag(" |&nbsp;&nbsp;&nbsp;다음", endPage+1);
 			html += makeLiTag("맨끝", totalPage);
 		}
 		
@@ -138,9 +138,9 @@ public class reviews_Paging {
 		// result += "</a></li>";
 		 
 		
-		result += "<li class='page-item'>";
-	    result += "<a href='#pr_review' class='page-link' href='javascript:void(0);' onclick='gotoPage(" + currPageNumber + ", "+ this.pageSize+ ", "+ this.sel_star + ", " + this.sel_color + ")'>";
-	    result += caption;
+		result += "<li class=''>";
+	    result += "<a href='#pr_review', class='paging' sans-serif;' href='javascript:void(0);' onclick='gotoPage(" + currPageNumber + ", "+ this.pageSize+ ", "+ this.sel_star + ", " + this.sel_color + ")'>";
+	    result += " &nbsp;&nbsp;&nbsp;" + caption;
 	    result += "</a></li>";
 	    
 		return result ;

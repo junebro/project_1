@@ -33,7 +33,7 @@
 <c:set var="dataList" value="${requestScope.dataList}" />
 <c:set var="dataGrade" value="${requestScope.dataGrade}" />
 <c:set var="Grade_total" value="${requestScope.Grade_total}" />
-<c:set var="rsViews" value="${fn:length(requestScope.dataList['resultSetViews'])}" />	
+<c:set var="rsViews" value="${fn:length(requestScope.dataList['resultSetTotal'])}" />	
 <title>상품 상세페이지</title>
 <style>
 
@@ -321,11 +321,6 @@ header {
 	display: flex;
 	flex-basis: 100%; /* 가로 폭을 100%로 설정하여 줄바꿈 */
 }
-
-
-
-
-
 
 
 /* 하단 */
@@ -616,6 +611,20 @@ a.active {
 	padding: 8px 20px;
 }
 
+
+.paging {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+	font-weight: lighter;
+	color: #8C8B8B;
+}
+
+.paging_click{
+font-family: 'Noto Sans KR', sans-serif;
+	font-size: 20px;
+	font-weight: lighter;
+}
+
 </style>
 </head>
 	<script>
@@ -634,13 +643,13 @@ a.active {
 			}
 			
 			if (LK) {
-				//alert("삭제" + LK);
+				
 				var URL = '<%=notWithFormTag%>liDelete';
 				LK = null;
 				document.getElementById("ht-image").src = "${pageContext.request.contextPath}/Image/bht.png";
 				
 			} else {
-				//alert("저장" + LK);
+				
 				var URL = '<%=notWithFormTag%>liInsert';
 				LK = "LK";	
 				document.getElementById("ht-image").src = "${pageContext.request.contextPath}/Image/ht.png";
@@ -911,8 +920,11 @@ a.active {
 			var size = keyArray[2];
 			
 			var cnt_total = color + '/' + size;
+			var buy_price = color + '/buy_price/' + size;
 			
 			var cnt = document.getElementById(cnt_total);
+			var buyprice = document.getElementById(buy_price);
+
 			var num = cnt.innerText;
 			var total_num = total_qt.innerText;
 			
@@ -920,9 +932,7 @@ a.active {
 			var total_price = document.getElementById('total_price');
 			
 			var price = parseInt(id_price.innerHTML.replace(/,/g, ''), 10);
-			
-			//var price = id_price.innerHTML;
-			
+
 			var S_key = color + '/' + size;
 			var size_key = document.getElementById(S_key);
 			var sz = size_key.innerHTML; 
@@ -947,6 +957,8 @@ a.active {
 			
 			total_qt.innerText = total_num;
 			cnt.innerText = num;
+	
+			buyprice.innerText = price * num;
 			
 			var sum = price * total_num;
 			var integerValue = parseInt(sum, 10);
@@ -977,7 +989,6 @@ a.active {
 			var total = total_qt.innerText;
 			
 			var id_price = document.getElementById('pro_price');	     
-			//var price = id_price.innerHTML;
 			var price = parseInt(id_price.innerHTML.replace(/,/g, ''), 10);
 			var total_price = document.getElementById('total_price');	     
 			
@@ -1007,11 +1018,10 @@ a.active {
 			var total_num = total_qt.innerText;
 			
 			var id_price = document.getElementById('pro_price');	     
-			//var price = id_price.innerHTML;
 			var price = parseInt(id_price.innerHTML.replace(/,/g, ''), 10);
 			var can = document.getElementById('color_area_color');
 			var color = can.innerText;
-			
+
 			var S_key = color + '/' + size;
 			var size_key = document.getElementById(S_key);
 			var can = document.getElementById('buy_name' + size);
@@ -1024,10 +1034,12 @@ a.active {
 					alert("해당 상품은 최대 5pcs까지 구매 가능합니다.");
 					return;
 				}
+				var buy_price = color + '/buy_price/' + size;
+				var buyprice = document.getElementById(buy_price);
 				
 				var cnt = size_key.innerText;
 				cnt = parseInt(cnt) + 1;
-
+				buyprice.innerText = price * cnt;
 				size_key.innerText = cnt;
 				
 			} else {
@@ -1358,7 +1370,7 @@ a.active {
 								</div>
 							</div>
 							<div class="view_left_bottom">
-								<span class="font_pro font_pro_view_left_bottom">${requestScope.dataGrade.get(0).COUNT}%</span>의 구매자가 이 상품을 좋아합니다.
+								<span class="font_pro font_pro_view_left_bottom">${requestScope.dataGrade.get(0).PER}%</span>의 구매자가 이 상품을 좋아합니다.
 							</div>
 						</div>
 						<div class="view_center"></div>

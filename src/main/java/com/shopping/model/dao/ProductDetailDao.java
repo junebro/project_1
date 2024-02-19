@@ -73,7 +73,7 @@ public class ProductDetailDao extends SuperDao {
 		super.conn = super.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
+			System.out.println(sql);
 			pstmt.setString(1, pronm);
 			pstmt.setString(2, pronm);
 			
@@ -248,6 +248,40 @@ public class ProductDetailDao extends SuperDao {
 			if(pstmt!=null){pstmt.close();}
 			if(rs != null) {rs.close();}
 			
+	
+			sql = "  SELECT pronm, procd, mbrid, rvwgr, rvwct,  rvwimg1, rvwimg2, rvwimg3, rvwdt ";
+			sql += "  FROM trvw WHERE pronm = ? ";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pronm);
+			System.out.println(sql);
+			System.out.println(pronm);
+			rs = pstmt.executeQuery();
+				
+			List<Map<String, Object>> resultSetViewsTotal = new ArrayList<>();
+			
+			while (rs.next()) {
+				
+				Map<String, Object> rowMap = new HashMap<>();
+				
+				rowMap.put("PRONM", rs.getString("pronm"));
+				rowMap.put("PROCD", rs.getString("procd"));
+				rowMap.put("MBRID", rs.getString("mbrid"));
+				rowMap.put("RVWGR", rs.getString("rvwgr"));
+				rowMap.put("RVWCT", rs.getString("rvwct"));
+				rowMap.put("RVWIMG1", rs.getString("rvwimg1"));
+				rowMap.put("RVWIMG2", rs.getString("rvwimg2"));
+				rowMap.put("RVWIMG3", rs.getString("rvwimg3"));
+				rowMap.put("RVWDT", rs.getString("rvwdt"));
+				
+				resultSetViewsTotal.add(rowMap);
+			}
+			
+			resultMap.put("resultSetTotal", resultSetViewsTotal);
+            
+			if(pstmt!=null){pstmt.close();}
+			if(rs != null) {rs.close();}
+
 			conn.commit();
 			
 		} catch (Exception e) {

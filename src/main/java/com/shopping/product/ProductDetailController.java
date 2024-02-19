@@ -35,7 +35,7 @@ public class ProductDetailController extends SuperClass{
 
 		String sel_star = request.getParameter("sel_star"); 
 		String sel_color = request.getParameter("sel_color");
-		System.out.println("11111111sel_starsel_starsel_star111 : " + sel_star);
+
 		int totalCount = dao.getTotalReviewsCount("TRVW", sel_star, sel_color, pronm, mbrid, isGrid);	
 		String url = super.getUrlInfomation("DetailProduct");
 

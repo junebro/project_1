@@ -28,7 +28,7 @@ public class ProductReviewsController extends SuperClass{
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doPost(request, response);
-		System.out.println("111111111111111111111111111");
+	
 		String pronm = request.getParameter("pronm");
 		String mbrid = request.getParameter("mbrid");
 
