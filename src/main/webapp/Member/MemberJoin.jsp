@@ -20,8 +20,6 @@ MemberDao dao = new MemberDao();
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <style>
 * {
-	padding: 0;
-	margin: 0;
 	border: none;
 }
 
@@ -29,6 +27,8 @@ body {
 	font-size: 14px;
 	font-family: 'Noto Sans KR', sans-serif;
 	text-align: center;
+	padding: 0;
+	margin: 0;
 }
 
 .contents h2 { /* 회원가입 */

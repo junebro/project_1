@@ -15,12 +15,12 @@
 
 <style>
 * {
-	padding: 0;
-	margin: 0;
 	border: none;
 }
 
 body {
+	padding: 0;
+	margin: 0;
 	font-size: 14px;
 	font-family: 'Noto Sans KR', sans-serif;
 	text-align: center;
@@ -521,7 +521,7 @@ for (int i = 0; i < endval; i++) {
 							</div>
 							<div class="sumPrice">
 								<span class="label">주문금액</span> <strong class="totalA"
-									id="<%="price" + i%>"><%=dataList.get(i).getPROPR() * bee.getQTY()%></strong>
+									id="<%="price" + i%>"><%=dataList.get(i).getPROPR() * bee.getQTY()%>원</strong>
 							</div>
 							<div class="buttonGroup">
 								<button onclick="BasketNew.moveWish(0);" class="btn1 btn_white">관심상품</button>

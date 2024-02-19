@@ -36,7 +36,7 @@ body {
 	font-weight: bolder;
 	color: #000000;
 	margin-bottom: 30px;
-	margin-top: 80px;
+	margin-top: 70px;
 }
 
 #login-form>input {
@@ -57,7 +57,7 @@ body {
 	color: #fff;
 	font-size: 16px;
 	background-color: #000000;
-	margin-top: 20px;
+	margin-top: 30px;
 }
 /*
 #login-form>.login-kakao {
@@ -108,15 +108,6 @@ body {
 	color: #999999;
 	margin-left: 70px;
 	text-decoration-line: none;
-}
-
-#login-form .blink {
-	color: #999999;
-}
-
-#login-form .nonMembers_txt {
-	margin-top: 30px;
-	font-size: 20px;
 }
 </style>
 </head>
@@ -198,25 +189,22 @@ body {
 </script>
 
 <body>
-	<jsp:include page="./../MainPage/top.jsp" />
+	<header>
+		<jsp:include page="./../MainPage/top.jsp" />
+	</header>
 	<div class="login-wrapper">
 		<h2>LOG IN</h2>
 		<form method="post" action="<%=withFormTag%>" id="login-form"
 			onsubmit="return frm_check();">
-			<input type="hidden" name="command" value="meLogin"> <input
-				type="text" name="MBRID" placeholder="아이디" id="MBRID"> <input
-				type="password" name="MBRPW" placeholder="비밀번호"> <label
-				for="remember-check"> <input type="checkbox"
-				id="remember-check">아이디 저장하기 <a
-				href="/customer/direct.FindID.action" class="alink">아이디/비밀번호 찾기</a>
-			</label> <input type="submit" value="로그인" class="login-default" id="submitbt">
-			<div class="nonMembers_txt">
-				<a href="/noncustomer/findNonCustomerOrder.action" class="blink">비회원
-					주문조회</a>
-			</div>
+			<input type="hidden" name="command" value="meLogin">
+			<input type="text" name="MBRID" placeholder="아이디" id="MBRID">
+			<input type="password" name="MBRPW" placeholder="비밀번호">
+				<label for="remember-check">
+				<input type="checkbox" id="remember-check">아이디 저장하기
+				<a href="/customer/direct.FindID.action" class="alink">아이디/비밀번호 찾기</a>
+			</label>
+			<input type="submit" value="로그인" class="login-default" id="submitbt">
 		</form>
 	</div>
-
-
 </body>
 </html>
