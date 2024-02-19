@@ -26,7 +26,7 @@ body {
 	text-align: center;
 }
 
-div {
+.cart-container div {
 	margin: 20px 0;
 }
 
@@ -376,18 +376,16 @@ for (int i = 0; i < endval; i++) {
 	<header>
 		<jsp:include page="./../MainPage/top.jsp" />
 	</header>
-	<header>
-		<div class="contents">
-			<h2>장바구니</h2>
-		</div>
-		<div class="section">
-			<ol class="step">
-				<li class="selected">1.장바구니 ></li>
-				<li>2.주문서작성 ></li>
-				<li>3.주문완료</li>
-			</ol>
-		</div>
-	</header>
+	<div class="contents">
+		<h2>장바구니</h2>
+	</div>
+	<div class="section">
+		<ol class="step">
+			<li class="selected">1.장바구니 ></li>
+			<li>2.주문서작성 ></li>
+			<li>3.주문완료</li>
+		</ol>
+	</div>
 	<div class="cart-container">
 		<div class="wrap">
 			<div class="left">
