@@ -151,19 +151,23 @@ h1 {
 }
 
 .Myt {
-	width: 80%;
+	width: 100%;
 	margin-top: 70px;
 	height: 100px;
 }
 
 .Myp {
 	text-align: center;
-	width: 20%;
+	width: 30%;
 }
 
 .Myp1 {
 	text-align: center;
-	width: 50%;
+	width: 30%;
+}
+.Myp2 {
+	text-align: center;
+	width: 30%;
 }
 
 .row {
@@ -184,7 +188,9 @@ h1 {
 	font-weight: bolder;
 	font-size: 20px;
 }
-
+.minibar{
+	margin-top: 10px;
+}
 a {
 	text-decoration: none;
 	color: black;
@@ -207,11 +213,6 @@ a {
 	width: 20%;
 	font-size: 20px;
 	font-weight: bold;
-}
-
-.sideBar {
-	left: 40px; /* 왼쪽 여백 */
-	top: 50%;
 }
 /* 팝업 css 설정 */
 .popup {
@@ -560,7 +561,7 @@ table .inputTypeText { /* 2열 입력칸 */
 	<div class="wrap" style="justify-content: center;">
 		<div class="left">
 			<div class="sticky">
-				<div>
+				<div class="sidebar">
 					<div class="spanbar" onclick="toggleReview('Myreview.jsp')">
 						<a href="#">리뷰 보기</a>
 					</div>
@@ -568,18 +569,18 @@ table .inputTypeText { /* 2열 입력칸 */
 					<div class="spanbar" onclick="toggleReview('MyOrder.jsp')">
 						<a href="#">주문 보기</a>
 					</div>
-					<div class="spanbar">
-						<a href="./../Member/MyCart.jsp">장바구니</a>
+					<div class="spanbar" onclick="location.href ='${pageContext.request.contextPath}/Member/MyCart.jsp'">
+						<a href="#">장바구니</a>
 					</div>
 					<div class="spanbar">
 						<a href="#">활동 정보</a>
 					</div>
 					<br>
-					<div onclick="toggleReview('MyLike.jsp')">
+					<div class="minibar" onclick="toggleReview('MyLike.jsp')">
 						<a href="#">좋아요한상품</a><br>
 					</div>
 					<br>
-					<div>
+					<div class="minibar">
 						<a href="#">나의게시글</a><br>
 					</div>
 					<%-- <div class="spanbar" onclick="toggleMyinfo()">--%>
@@ -587,11 +588,14 @@ table .inputTypeText { /* 2열 입력칸 */
 						<a href="#">내 정보</a>
 					</div>
 					<br>
-					<div onclick="toggleReview('MyUpdate.jsp')">
+					<div class="minibar" onclick="toggleReview('MyUpdate.jsp')">
 						<a href="#">회원정보수정</a><br>
 					</div>
-					<div onclick="location.href = '<%=notWithFormTag%>meLogout'">
+					<div class="minibar" onclick="location.href = '<%=notWithFormTag%>meLogout'">
 						<a href="#">로그아웃</a><br>
+					</div>
+					<div class="minibar" onclick="location.href = '<%=notWithFormTag%>myDelete'">
+						<a href="#">탈퇴하기</a><br>
 					</div>
 				</div>	
 			</div>

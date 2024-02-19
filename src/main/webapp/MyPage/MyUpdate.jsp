@@ -76,7 +76,6 @@ String withFormTag = appName + mappingName;
 		<input type='hidden' name="command" value="myUpdate">
 		<div id="otherDiv2" style="display:;">
 			<p class="maino">내 정보</p>
-			<hr class="disborder">
 			<br>
 			<div class="titleArea" style="width: 800px">
 				<h3>기본정보</h3>
@@ -221,7 +220,7 @@ String withFormTag = appName + mappingName;
 				</table>
 			</div>
 			<div class="gBottom">
-				<button class="btn_white1" onclick="history.go(-1);">취소</button>
+				<button class="btn_white1" type="reset">초기화</button>
 				<button class="btn_black1" id="join" type="submit">수정하기</button>
 			</div>
 		</div>

@@ -10,8 +10,8 @@
 
 <%
 	ProductDao dao = new ProductDao();
-	String protp = (String)session.getAttribute("PROTP");	
-	List<Product_main> dataList = dao.getDataList1(protp);
+	String mbrid = (String)session.getAttribute("MBRID");	
+	List<Product_main> dataList = dao.getDataList(mbrid);
 %>
 
 <!-- 

@@ -45,9 +45,9 @@ public class OrderDao extends SuperDao {
 
 		return cnt;
 	}
-	
+
 	public Order getDataByORDCD(String ORDCD) {
-		
+
 		String sql = " select * from TORD ";
 		sql += " where ORDCD = ? ";
 
@@ -82,15 +82,51 @@ public class OrderDao extends SuperDao {
 
 		return bean;
 	}
-		
-	
+
+	// 포인트 업데이트
+	public int pointData(int MBRPT, String MBRID) {
+		String sql = " update TMBR SET MBRPT = MBRPT + ? ";
+		sql += " where MBRID = ? ";
+		System.out.println("포인트 업데이트 시작");
+		PreparedStatement pstmt = null;
+		int cnt = -13;
+		try {
+			super.conn = super.getConnection();
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, MBRPT);
+			pstmt.setString(2, MBRID);
+
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+
+		return cnt;
+	}
 
 	public Order getLastORDCD(String MBRID) {
 		String sql = " SELECT * FROM (";
-		sql +=" SELECT * FROM TORD";
-		sql +=" WHERE MBRID = ?";
-		sql +=" ORDER BY ORDDT DESC";
-		sql +=") WHERE ROWNUM = 1";
+		sql += " SELECT * FROM TORD";
+		sql += " WHERE MBRID = ?";
+		sql += " ORDER BY ORDDT DESC";
+		sql += ") WHERE ROWNUM = 1";
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

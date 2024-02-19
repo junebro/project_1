@@ -169,33 +169,30 @@ section {
 <section id="topwrap">
 	<nav class="topmenu">
 		<ul>
+			<li><button type="button" onclick="location.href='${pageContext.request.contextPath}/MainPage/index.jsp'"
+					class="libt">홈&nbsp;</button></li>
 			<li><button type="button" onclick="location.href='${pageContext.request.contextPath}/Member/MemberJoin.jsp'"
-							class="libt">회원가입&nbsp;</button></li>
+					class="libt">회원가입&nbsp;</button></li>
 			<c:choose>
 				<c:when test="${sessionScope.loginfo.MBRID != null}">
-				<li><button type="button" onclick="location.href = '<%=notWithFormTag%>meLogout'"
+					<li><button type="button" onclick="location.href = '<%=notWithFormTag%>meLogout'"
 							class="libt">로그아웃&nbsp;</button></li>
 					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/Member/MyCart.jsp'"
 							class="libt">장바구니&nbsp;</button></li>
 					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/MyPage/MyPageM.jsp'"
-							class="libt">주문조회&nbsp;</button></li>
-					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/MyPage/MyPageM.jsp'"
-							class="libt">최근본상품&nbsp;</button></li>
-					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/MyPage/MyPageM.jsp'"
-							class="libt">고객센터&nbsp;</button></li>
+							class="libt">마이페이지&nbsp;</button></li>
+					<li><button type="button" onclick="location.href='${pageContext.request.contextPath}/board/start.jsp'"
+							class="libt">게시판&nbsp;</button></li>
 				</c:when>
 				<c:otherwise>
 					<li><button type="button" onclick="location.href='${pageContext.request.contextPath}/Member/loginMain.jsp'"
-							class="libt">로그인&nbsp;</button>
-					</li>
+							class="libt">로그인&nbsp;</button></li>
 					<li><button type="button" onclick="call_confirm()"
 							class="libt">장바구니&nbsp;</button></li>
 					<li><button type="button" onclick="call_confirm()"
-							class="libt">주문조회&nbsp;</button></li>
-					<li><button type="button" onclick="call_confirm()"
-							class="libt">최근본상품&nbsp;</button></li>
-					<li><button type="button" onclick="call_confirm()"
-							class="libt">고객센터&nbsp;</button></li>
+							class="libt">마이페이지&nbsp;</button></li>
+					<li><button type="button" onclick="location.href='${pageContext.request.contextPath}/board/start.jsp'"
+							class="libt">게시판&nbsp;</button></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
@@ -210,7 +207,7 @@ section {
 
 	<!-- <header>
     </header> -->
-	<div style="background-color: white;">
+	<div style="background-color: white; text-align:center;">
 		<div class="dropdown">
 			<button class="dropbtn"
 				onclick="location.href='${pageContext.request.contextPath}/MainPage/index.jsp'">Home</button>
@@ -263,7 +260,7 @@ section {
 		<div class="dropdown">
 			<button class="dropbtn"
 			onclick="location.href='${pageContext.request.contextPath}/board/start.jsp'">Board</button>
-			<!--	
+			<!--	/board/start.jsp
 			
             <div class="dropdown-content">
               <a href="#">Link 1</a>

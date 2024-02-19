@@ -6,26 +6,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.shopping.model.bean.Product;
-import com.shopping.model.bean.Product_main;
-import com.shopping.utility.MyUtility;
-import com.shopping.utility.Paging;
+import com.shopping.model.bean.MyOrder;
 
-public class ProductDao extends SuperDao {
-	
-	public List<Product_main> getDataList(String mbrid){
-		
-		String sql = " SELECT A.PROTP, A.PRONM, A.PROPR, A.PROIMG,  ";
-		sql += " CASE WHEN B.PRONM IS NOT NULL THEN 'LK'  END AS LK  ";
-		sql += " FROM TPRM A  ";
-		sql += " LEFT OUTER JOIN TLKE B ON A.PRONM = B.PRONM AND MBRID = ? ";
-		sql += " GROUP BY A.PROTP, A.PRONM, A.PROPR, A.PROIMG, B.PRONM ";
-		sql += " ORDER BY A.PRONM ";
-		
+public class MyOrderDao extends SuperDao{
+	public List<MyOrder> getDataList(String mbrid){
+		String sql = " SELECT A.MBRID, A.ORDDT, A.ORDQTY, A.ORDSZ, A.TOTPR, B.PROIMG, B.PRONM, B.PROCR ";
+		sql += " FROM TORD A ";
+		sql += " LEFT OUTER JOIN TPRO B ON A.PROCD = B.PROCD";
+		sql += " WHERE A.MBRID = ?";
+
 		PreparedStatement pstmt = null; // 문장 객체
 		ResultSet rs = null;
 
-		List<Product_main> dataList = new ArrayList<Product_main>();
+		List<MyOrder> dataList = new ArrayList<MyOrder>();
 
 		super.conn = super.getConnection();
 		try {
@@ -38,7 +31,7 @@ public class ProductDao extends SuperDao {
 
 			// 요소들 읽어서 컬렉션에 담습니다.
 			while (rs.next()) {
-				Product_main bean = this.resultSet2Bean(rs);
+				MyOrder bean = this.resultSet2Bean(rs);
 
 				dataList.add(bean);
 			}
@@ -63,16 +56,19 @@ public class ProductDao extends SuperDao {
 		return dataList;
 	}
 	
-	private Product_main resultSet2Bean(ResultSet rs) {
-	
+	private MyOrder resultSet2Bean(ResultSet rs) {
+		
 		try {
-			Product_main bean = new Product_main() ;
+			MyOrder bean = new MyOrder() ;
 			
-			bean.setPROTP(rs.getInt("PROTP"));
-			bean.setPRONM(rs.getString("PRONM"));
-			bean.setPROPR(rs.getInt("PROPR"));
+			bean.setMBRID(rs.getString("MBRID"));
+			bean.setORDDT(rs.getString("ORDDT"));
 			bean.setPROIMG(rs.getString("PROIMG"));
-			bean.setLK(rs.getString("LK"));
+			bean.setPRONM(rs.getString("PRONM"));
+			bean.setPROCR(rs.getString("PROCR"));
+			bean.setORDSZ(rs.getInt("ORDSZ"));
+			bean.setORDQTY(rs.getInt("ORDQTY"));
+			bean.setTOTPR(rs.getInt("TOTPR"));
 			
 			return bean ;
 			

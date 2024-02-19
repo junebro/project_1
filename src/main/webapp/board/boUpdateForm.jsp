@@ -143,12 +143,12 @@
 						<input class="inputcontrol" type="hidden" id="id" name="id" value="${bean.id}">
 					</td>
 			  </tr>
-			  <tr>
+			  <!-- <tr>
 					<td>비밀번호</td>
 					<td>
 						<input class="inputcontrol" type="password" id="password" name="password">
 					</td>
-			  </tr>
+			  </tr> -->
 			  <tr>
 					<td>글제목</td>
 					<td>
@@ -159,7 +159,6 @@
 					<td>글내용</td>
 					<td>
 						<textarea class="textcontrol" id="contents" name="contents">${bean.contents}</textarea>
-						<span>${bean.password}</span>
 					</td>
 			  </tr>
 			  <tr>

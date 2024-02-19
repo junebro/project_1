@@ -283,17 +283,7 @@ tr, input, select {
 	margin-left: 15px;
 }
 
-.dark-nav {
-	color: white;
-	font-size: 30px;
-}
-
-.dark-nav1 {
-	color: white;
-	font-size: 20px;
-}
-
-button {
+.col-12 button {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 1em;
 	cursor: pointer;
@@ -394,39 +384,15 @@ OrderDao oDao = new OrderDao();
 String MBRID = session.getAttribute("loginfo").toString();
 %>
 <body>
-	<div style="background-color: white;"
-		class="justify-content-center row">
-		<div class="col-1">
-			<nav class="navbar navbar-expand-sm">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link"
-						href="javascript:history.back();"><img class="icon"
-							src="https://cdn-icons-png.freepik.com/256/10009/10009107.png?ga=GA1.1.1582875918.1706248960&semt=ais">
-					</a></li>
-				</ul>
-			</nav>
-		</div>
-		<div class="col-6">
-			<nav class="navbar navbar-expand-sm">
-				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a class="nav-link"
-						href="./../Member/MyCart.jsp"> <img class="icon"
-							src="https://cdn-icons-png.freepik.com/256/12718/12718662.png">
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="./../MyPage/MyPageM.jsp"> <img class="icon"
-							src="https://cdn-icons-png.freepik.com/256/747/747376.png?ga=GA1.1.1582875918.1706248960&semt=ais">
-					</a></li>
-				</ul>
-			</nav>
-		</div>
-	</div>
+	<header>
+		<jsp:include page="./../MainPage/top.jsp" />
+	</header>
 	<div class="justify-content-center row">
 		<div class="col-7">
-			<nav class="navbar navbar-expand-sm bg-dark text-center">
+			<nav class="navbar navbar-expand-sm text-center">
 				<ul class="navbar-nav mx-auto">
-					<li class="nav-item"><p class="nav-link dark-nav"
-							style="color: white; font-size: 30px;">주문/결제</p></li>
+					<li class="nav-item"><p class="nav-link"
+							style="font-size: 30px;">주문/결제</p></li>
 				</ul>
 			</nav>
 		</div>
@@ -441,7 +407,7 @@ String MBRID = session.getAttribute("loginfo").toString();
 				<tbody>
 					<tr>
 						<td>
-							<h3 style="margin: 20px;">회원정보</h3>
+							<h4 style="margin: 20px;">회원정보</h4>
 						</td>
 					</tr>
 					<tr style="height: 50px">
@@ -481,7 +447,7 @@ String MBRID = session.getAttribute("loginfo").toString();
 				<tbody>
 					<tr style="margin: 20px;">
 						<td>
-							<h3 style="margin: 20px;">배송정보</h3>
+							<h4 style="margin: 20px;">배송정보</h4>
 						</td>
 					</tr>
 					<tr style="height: 50px">
@@ -507,27 +473,13 @@ String MBRID = session.getAttribute("loginfo").toString();
 						<td><input id="address-2" placeholder="상세주소" size="15"
 							type="text" value="${sessionScope.loginfo.MBRAR2}"></td>
 					</tr>
-					<tr style="height: 50px">
-						<td><span class="mar">휴대 전화</span></td>
-						<td>
-							<div class="input-group mt-3 mb-3 input-group-prepend">
-								<select class="form-select select-toggle"
-									style="width: 30%; margin: auto;">
-									<option>--번호 선택--</option>
-									<option>010</option>
-									<option>011</option>
-									<option>070</option>
-								</select> <input id="inputpn2" style="width: 70%" type="text"
-									maxlength="8" class="form-control"
-									placeholder="-없이 번호를 입력해주세요.">
-							</div>
-						</td>
-					</tr>
+					
 				</tbody>
 			</table>
 
 			<div>
 				<form>
+				<br>
 					<select class="form-select" id="messageC"
 						style="width: 100%; margin: auto;">
 						<option>--배송 메세지(선택사항)--</option>
@@ -580,7 +532,7 @@ String MBRID = session.getAttribute("loginfo").toString();
 							width="120px" height="120px"
 							src="${pageContext.request.contextPath}/Image/Detail_main/<%=pBean.get(0).getPROIMG()%>"></img></td>
 						<td><span><%=pBean.get(0).getPRONM()%></span> <span
-							style="font-size: 0.8rem; font-weight: light;"><%="색상 : " + PROCR + ", 사이즈 : " + ORDSZ%>
+							style="font-size: 0.8rem; font-weight: light;"><%="색상 : " + PROCR + ", 사이즈 : " + ORDSZ + ", 수량 : " + ORDQTY + "개"%>
 						</span> <span><%="주문 상품 가격 : " + TOTPR + " 원"%></span><br></td>
 					</tr>
 					<%
@@ -704,6 +656,7 @@ String MBRID = session.getAttribute("loginfo").toString();
 			<br> <br>
 			<script>
 				function copyParam(){
+					alert("결제 정상 처리되었습니다.");
 					var url = "<%=notWithFormTag%>OrderP&submit1=<%=request.getParameter("submit")%>";
 				        window.location.href = url;
 				}

@@ -9,7 +9,6 @@
 <body>
 <div id="otherDiv" style="display: ;">
 	<p class="maino">리뷰 관리</p>
-	<hr class="disborder">
 	<br>
 	<div class="crema-product-reviews crema-applied"
 		data-product-code="NBPFES152A"

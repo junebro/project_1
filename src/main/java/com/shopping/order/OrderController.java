@@ -1,17 +1,10 @@
 package com.shopping.order;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shopping.common.SuperClass;
-import com.shopping.model.bean.Cart;
-import com.shopping.model.bean.Order;
-import com.shopping.model.bean.Product;
-import com.shopping.model.dao.CartDao;
-import com.shopping.model.dao.OrderDao;
 
 public class OrderController extends SuperClass {
 

@@ -97,13 +97,13 @@
 					class="form-control" id="no" name="no">
 			</div>
 			<div class="input-group mb-3">
-				
-				<c:set var="userInfo" value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})"/>
+			
+				<c:set var="userInfo" value="${sessionScope.loginfo.MBRNM}(${sessionScope.loginfo.MBRID})"/>
 				
 				<span class="input-group-text">작성자</span> <input type="text"
 					class="form-control" id="fakeid" name="fakeid" value="${userInfo}"
 					disabled="disabled"> <input type="hidden" id="id" name="id"
-					value="${sessionScope.loginfo.id}">
+					value="${sessionScope.loginfo.MBRID}">
 			</div>
 			<div class="input-group mb-3">
 				<span class="input-group-text">비밀 번호</span> <input type="password"

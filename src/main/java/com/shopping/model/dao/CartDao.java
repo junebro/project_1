@@ -12,7 +12,7 @@ import com.shopping.model.bean.Product;
 public class CartDao extends SuperDao {
 
 	public List<Cart> getDataList(String MBRID) {
-		String sql = " select * from TCRT where MBRID = ? ";
+		String sql = " select * from TCRT where MBRID = ? ORDER BY PROSZ DESC ";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -43,6 +43,47 @@ public class CartDao extends SuperDao {
 				}
 				super.closeConnection();
 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		System.out.println(dataList.size());
+		return dataList;
+	}
+	
+	public List<Cart> getCartList(String PROCD,String MBRID) {
+		String sql = " select * from TCRT where MBRID = ? AND PROCD = ? ORDER BY PROSZ DESC ";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<Cart> dataList = new ArrayList<Cart>();
+		
+		super.conn = super.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, MBRID);
+			pstmt.setString(2, PROCD);
+			rs = pstmt.executeQuery();
+			
+			// 요소들 읽어서 컬렉션에 담습니다.
+			while (rs.next()) {
+				Cart bean = this.resultSetBean(rs);
+				
+				dataList.add(bean);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+				
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
