@@ -1228,7 +1228,7 @@ a.active {
 				} else if (t == "c") {
 					var url = '<%=notWithFormTag%>cartInsert&submit=' + submit.join(',');
 					location.href = url
-				}
+				} 
 	
 			} else {
 				alert("상품을 선택해 주세요.");
