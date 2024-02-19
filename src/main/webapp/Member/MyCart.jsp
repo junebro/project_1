@@ -266,16 +266,17 @@ a { /* 링크 */
 	}
 }
 </style>
-<%!List<Product> dataList = new ArrayList<>();
-	int totalPr = 0;
+<%!
 	int pee = 3500;%>
 <%
+List<Product> dataList = new ArrayList<>();
+List<Cart> cartList = new ArrayList<Cart>();
+int totalPr = 0;
 CartDao cDao = new CartDao();
 String MBRID = session.getAttribute("loginfo").toString();
-
-List<Cart> cartList = new ArrayList<Cart>();
 List<Cart> be = cDao.getDataList(MBRID);
 String jot = "";
+
 int endval = be.size();
 
 for (int i = 0; i < endval; i++) {
@@ -286,6 +287,7 @@ for (int i = 0; i < endval; i++) {
 		dataList.addAll(cDao.getDataList1(dataH));
 	}
 
+	totalPr += dataList.get(i).getPROPR() * be.get(i).getQTY();
 }
 %>
 <c:set var="dataList" value="${dataList}" />
@@ -399,9 +401,7 @@ for (int i = 0; i < endval; i++) {
 						<!-- 장바구니 상품 리스트 섹션 -->
 						<%
 						for (int i = 0; i < endval; i++) {
-							cartList = cDao.getCartList(dataList.get(i).getPROCD(), MBRID);
-
-							totalPr += dataList.get(i).getPROPR() * cartList.get(i).getQTY();
+							
 						%>
 						<script type="text/javascript">
 						    function deleteAll<%=i%>() {
@@ -413,7 +413,7 @@ for (int i = 0; i < endval; i++) {
 						            collapseOneDiv.removeChild(collapseOneDiv.firstChild);
 						        }
 						        
-						        var url = "<%=notWithFormTag%>cartDelete&<%="PROCD"%>=<%=dataList.get(i).getPROCD()%>&PROSZ=<%=cartList.get(i).getPROSZ()%>";
+						        var url = "<%=notWithFormTag%>cartDelete&<%="PROCD"%>=<%=dataList.get(i).getPROCD()%>&PROSZ=<%=be.get(i).getPROSZ()%>";
 						      <%--  var url = '<%=notWithFormTag%>cartInsert&submit=' + submit.join(','); --%>
 						        // 생성한 URL로 페이지 이동
 						        window.location.href = url;
@@ -443,7 +443,7 @@ for (int i = 0; i < endval; i++) {
 							<div class="prdOption">
 								<span class="product displaynone"><%=dataList.get(i).getPRONM()%></span>
 								<span class="optionStr">[색상 : <%=dataList.get(i).getPROCR()%>
-									사이즈 : <%=cartList.get(i).getPROSZ()%>]
+									사이즈 : <%=be.get(i).getPROSZ()%>]
 								</span>
 
 							</div>
@@ -508,20 +508,20 @@ for (int i = 0; i < endval; i++) {
 							<div class="container-fluid">
 								<div class="qty_title" id="<%="qty_title" + i%>">
 									수량 :
-									<%=cartList.get(i).getQTY()%>
+									<%=be.get(i).getQTY()%>
 									개
 								</div>
 								<div class="qty_updown">
 									<button class="down btn_white" onclick="<%="downbt" + i%>();">-</button>
 									<input class="qty_number" name="quantity_name_0" size="2"
-										id="<%="qty" + i%>" value="<%=cartList.get(i).getQTY()%>" type="text"
-										readonly="readonly">
+										id="<%="qty" + i%>" value="<%=be.get(i).getQTY()%>"
+										type="text" readonly="readonly">
 									<button class="up btn_white" onclick="<%="upbt" + i%>();">+</button>
 								</div>
 							</div>
 							<div class="sumPrice">
 								<span class="label">주문금액</span> <strong class="totalA"
-									id="<%="price" + i%>"><%=dataList.get(i).getPROPR() * cartList.get(i).getQTY()%>원</strong>
+									id="<%="price" + i%>"><%=dataList.get(i).getPROPR() * be.get(i).getQTY()%>원</strong>
 							</div>
 							<div class="buttonGroup">
 								<button onclick="BasketNew.moveWish(0);" class="btn1 btn_white">관심상품</button>
@@ -531,11 +531,12 @@ for (int i = 0; i < endval; i++) {
 						</div>
 						<%
 						if (i == endval) {
-							jot += dataList.get(i).getPROCR() + "/" + dataList.get(i).getPROCD() + "/" + cartList.get(i).getPROSZ() + "/" + cartList.get(i).getQTY();
+							jot += dataList.get(i).getPROCR() + "/" + dataList.get(i).getPROCD() + "/" + be.get(i).getPROSZ() + "/"
+							+ be.get(i).getQTY();
 
 						} else {
-							jot += dataList.get(i).getPROCR() + "/" + dataList.get(i).getPROCD() + "/" + cartList.get(i).getPROSZ() + "/" + cartList.get(i).getQTY()
-							+ ",";
+							jot += dataList.get(i).getPROCR() + "/" + dataList.get(i).getPROCD() + "/" + be.get(i).getPROSZ() + "/"
+							+ be.get(i).getQTY() + ",";
 						}
 
 						}

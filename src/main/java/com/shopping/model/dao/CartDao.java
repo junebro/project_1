@@ -12,7 +12,7 @@ import com.shopping.model.bean.Product;
 public class CartDao extends SuperDao {
 
 	public List<Cart> getDataList(String MBRID) {
-		String sql = " select * from TCRT where MBRID = ? ";
+		String sql = " select * from TCRT where MBRID = ? ORDER BY PROSZ DESC ";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -52,7 +52,7 @@ public class CartDao extends SuperDao {
 	}
 	
 	public List<Cart> getCartList(String PROCD,String MBRID) {
-		String sql = " select * from TCRT where MBRID = ? AND PROCD = ? ";
+		String sql = " select * from TCRT where MBRID = ? AND PROCD = ? ORDER BY PROSZ DESC ";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
