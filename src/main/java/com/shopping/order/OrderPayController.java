@@ -47,12 +47,15 @@ public class OrderPayController extends SuperClass {
 			System.out.println("적립된 포인트 : " + MBRPT);
 			System.out.println("적립된 아이디 : " + MBRID);
 			
+			cDao.deleteData(MBRID, PROCD, ORDSZ);
 			oDao.pointData(MBRPT, MBRID);
 			oDao.insertData(MBRID, PROCD, ORDQTY, ORDSZ, TOTPR);
 		}
+		
+		
 
 		System.out.println(" 주문 완료 : 결제 금액 입력됨.");
-		super.gotoPage("MyPage/MyPageM.jsp");
+		super.gotoPage("MainPage/index.jsp");
 
 	}
 
