@@ -266,17 +266,18 @@ a { /* 링크 */
 	}
 }
 </style>
-<%!List<Product> dataList = new ArrayList<>();
+<%!
+	List<Product> dataList = new ArrayList<>();
 	int totalPr = 0;
 	int pee = 3500;
-	String jot = "";
-	%>
+	
+%>
 <%
 CartDao cDao = new CartDao();
 String MBRID = session.getAttribute("loginfo").toString();
 
 List<Cart> be = cDao.getDataList(MBRID);
-
+String jot = "";
 int endval = be.size();
 
 for (int i = 0; i < endval; i++) {
