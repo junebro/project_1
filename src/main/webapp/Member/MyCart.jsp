@@ -394,7 +394,7 @@ for (int i = 0; i < endval; i++) {
 					<div class="accordion-item">
 						<h2 class="accordion-header" id="headingOne">
 							<button class="accordion-button" type="button"
-								data-bs-toggle="collapse" data-bs-target="#collapseOne"
+								data-bs-toggle="collapse" data-bs-target=".accordion-collapse"
 								aria-expanded="true" aria-controls="collapseOne"
 								style="background-color: white">장바구니 상품</button>
 						</h2>
@@ -522,11 +522,6 @@ for (int i = 0; i < endval; i++) {
 							<div class="sumPrice">
 								<span class="label">주문금액</span> <strong class="totalA"
 									id="<%="price" + i%>"><%=dataList.get(i).getPROPR() * be.get(i).getQTY()%>원</strong>
-							</div>
-							<div class="buttonGroup">
-								<button onclick="BasketNew.moveWish(0);" class="btn1 btn_white">관심상품</button>
-								<button onclick="Basket.orderBasketItem(0);"
-									class="btn2 btn_white">주문하기</button>
 							</div>
 						</div>
 						<%
