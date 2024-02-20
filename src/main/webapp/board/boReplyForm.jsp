@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판 답글</title>
 <script type="text/javascript">
 	$(document).ready(function() {
 

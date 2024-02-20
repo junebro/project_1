@@ -10,7 +10,7 @@ session.getAttribute("loginfo");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판 목록</title>
 
 <style>
 	table {
