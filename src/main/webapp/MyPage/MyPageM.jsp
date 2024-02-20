@@ -555,6 +555,15 @@ table .inputTypeText { /* 2열 입력칸 */
 <header>
 	<jsp:include page="./..//MainPage/top.jsp"/>
 </header>
+<script>
+	function deleteInfo(){
+		if(confirm("정말 탈퇴하시겠습니까? 탈퇴시 모든 정보가 사라집니다.")){
+			alert("회원 탈퇴 완료되었습니다.");
+			
+			location.href = '<%=notWithFormTag%>myDelete';
+		};
+	}
+</script>
 	<div class="wrap" style="justify-content: center;">
 		<div class="left">
 			<div class="sticky">
@@ -582,7 +591,7 @@ table .inputTypeText { /* 2열 입력칸 */
 					<div class="spanbar" onclick="location.href = '<%=notWithFormTag%>meLogout'">
 						<a href="#">로그아웃</a><br>
 					</div>
-					<div class="spanbar" onclick="location.href = '<%=notWithFormTag%>myDelete'">
+					<div class="spanbar" onclick="deleteInfo()">
 						<a href="#">탈퇴하기</a><br>
 					</div>
 				</div>	
