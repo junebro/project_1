@@ -165,6 +165,14 @@ section {
 			location.href = '${pageContext.request.contextPath}/Member/loginMain.jsp';
 		}
 	}	
+	// 로그아웃 제어함수
+	function logOut(){
+		if(confirm("로그아웃 하시겠습니까 ? ")){
+			alert("로그아웃 되셨습니다.");
+			location.href = '<%=notWithFormTag%>meLogout'
+			
+		}
+	}
 </script>
 <section id="topwrap">
 	<nav class="topmenu">
@@ -175,7 +183,7 @@ section {
 					class="libt">회원가입&nbsp;</button></li>
 			<c:choose>
 				<c:when test="${sessionScope.loginfo.MBRID != null}">
-					<li><button type="button" onclick="location.href = '<%=notWithFormTag%>meLogout'"
+					<li><button type="button" onclick="logOut()"
 							class="libt">로그아웃&nbsp;</button></li>
 					<li><button type="button" onclick="location.href ='${pageContext.request.contextPath}/Member/MyCart.jsp'"
 							class="libt">장바구니&nbsp;</button></li>
