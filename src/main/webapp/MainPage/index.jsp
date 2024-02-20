@@ -101,7 +101,10 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	max-width: 90%;
 	height: auto;
 }
-    
+.middelContents{
+	font-size: 30px;
+	font-weight: bolder;
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -115,7 +118,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/MainPage/alleffect/main.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/MainPage/alleffect/slick.min.js"></script>
-
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -135,10 +138,6 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
 			<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
 			<button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="5"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="6"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="7"></button>
 		</div>
 
 		<!-- The slideshow/carousel -->
@@ -174,7 +173,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 		<aside></aside>
 		<section>
 			<div class="middelContents">
-				<p>지금 인기 있는 맞춤 신상품</p>
+				<p style="margin-top: 10px; font-size: 50px; font-family: 'Black Han Sans', sans-serif; font-weight: 200;">지금 인기 있는 맞춤 신상품</p>
 			</div>
 			
 			<c:forEach var="product" items="${dataList}" varStatus="status">
