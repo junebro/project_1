@@ -46,7 +46,7 @@ public class BoardListController extends SuperClass{
 		
 		
 		request.setAttribute("paging", paging);
-		request.setAttribute("bean", datalist);
+		request.setAttribute("dataList", datalist);
 		
 		super.gotoPage("/board/boList.jsp");
 		/*

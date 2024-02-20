@@ -11,6 +11,7 @@
 	table {
 		font-family: 'Kanit', sans-serif;
 	}
+	
 	.tableWrap th{
 		height: 50px;
 		font-size: 20px;
@@ -214,6 +215,10 @@
 				}
 			});
 		});
+		
+
+		
+	
 	</script>
 </head>
 <body>
@@ -224,7 +229,7 @@
 	</div>
 		
 	<div class="tableWrap">
- 		 <table class="tcontents">
+		 <table class="tcontents">
   		  <thead class="table-dark">
     		  <tr>
     		  		<th>구 분</th>
@@ -252,18 +257,20 @@
 					<td>글내용</td><td>${requestScope.bean.contents}</td>
 			  </tr>
 			  <tr>
-					<td>조회수</td><td>${requestScope.bean.readhit}</td>
+					<td>조회수</td><td>${requestScope.bean.readhit+1}</td>
 			  </tr>
 			  <tr>
 					<td>작성일</td><td>${requestScope.bean.regdate}</td>
 			  </tr>
 			  <tr>
 			 		<td></td>
-			 		<td><button class="btn btn-dark" onclick="history.go(-1)">목록으로</button></td>
+			 		<!--<td><button class="btn btn-dark" onclick="document.location='<%=notWithFormTag%>boList&no=${bean.no}${requestScope.paging.flowParameter}'">목록으로</button></td>-->
+			 		<td><button class="btn btn-dark" onclick="location.href = document.referrer;">목록으로</button></td> 
 			  </tr>
 
 	    </tbody>
   		</table>
+  		
 	</div>
 </body>
 </html>

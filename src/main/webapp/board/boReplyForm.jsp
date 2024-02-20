@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="./../common/common.jsp"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="../common/common.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,85 +46,110 @@
 		}*/
 	}
 </script>
-<style type="text/css">
-/* box model에 대한 공부가 필요합니다. */
-.container {
-	margin-top: 10px;
-}
+<style>
+	form {
+		font-family: 'Kanit', sans-serif;
+	}
 
-.input-group {
-	margin: 7px;
-}
+	.replytop{
+	text-align: center;
+	}
 
-.input-group-text {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#buttonset {
-	margin-top: 15px;
-}
-
-/* 게시물 번호는 시퀀스를 사용하여 자동 처리할 예정이므로 숨기도록 합니다. */
-#boardNo {
-	display: none;
-	visibility: hidden;
-}
+	.formwrap label{
+		text-align: center;
+		width: 150px;	
+		font-weight: bold;
+		background-color: black;
+		color: white;
+		
+	}
+	
+	.formwrap input{
+		margin: 10px;
+			
+	}
+	.formwrap{
+		text-align: center;
+		display: block;
+		/* border: 1px solid black;*/
+		widht:400px;
+		padding: 50px;
+	}
+	
+/* 	input {
+		  width:200px;
+		  height:100px;
+		  font-size:12px;
+	} */
+ 	.selinput {
+		  width:500px;
+		  height:30px;
+		  font-size:12px;
+	
+	} 
+	.intop{
+		text-align: center;
+	}
+	.textareadiv{
+		display: inline-block;
+		background-color: black;
+		color: white;
+		width: 600px;
+		height: 30px;
+		font-size: 20px;
+	}
+	
+	body{
+		font-family: 'Noto Sans KR', sans-serif;
+	}
 </style>
 </head>
 <body>
-	<div class="container mt-3">
-		<h2>게시물 답글</h2>
-		<p>특정 게시물에 대한 답글을 작성하는 페이지입니다.</p>
 
+	<div class="replytop">
+		<jsp:include page="../MainPage/top.jsp" />
+	</div>
+
+
+	<div class="formwrap">
 		<form action="<%=withFormTag%>" method="post"> 
-			<%-- 페이징과 관련된 파라미터 목록 --%>
 			<input type="text" name="pageNumber" value="<%=request.getParameter("pageNumber")%>"> 
 			<input type="text" name="pageSize" value="<%=request.getParameter("pageSize")%>">
 			<input type="text" name="mode" value="<%=request.getParameter("mode")%>">
 			<input type="text" name="keyword" value="<%=request.getParameter("keyword")%>">
 
-			<%-- 답글과 관련된 파라미터 목록 --%>			
 			<input type="text" name="groupno" value="<%=request.getParameter("groupno")%>">
 			<input type="text" name="orderno" value="<%=request.getParameter("orderno")%>">
-			<input type="text" name="depth" value="<%=request.getParameter("depth")%>">		
-			
+			<input type="text" name="depth" value="<%=request.getParameter("depth")%>">	<br/>	
+	   	<h2>답글 등록</h2>
+	    <h5>게시판 답글</h5>
 		 
+
 			<input type="hidden" name="command" value="boReply">
-			 
-			<div id="boardNo" class="input-group mb-3"> 
-				<span class="input-group-text">글번호</span> <input type="text"
-					class="form-control" id="no" name="no">
-			</div>
-			<div class="input-group mb-3">
+
+			<c:if test="${not empty sessionScope.loginfo.MBRID}">
+				<label for="id">아이디</label>
+				<input class="selinput" type="text" id="id" name="id" value="${sessionScope.loginfo.MBRID}" readonly><br/>
+			</c:if>
+			 <c:if test="${empty sessionScope.loginfo.MBRID}">
+				<label for="id">아이디</label>
+				<input class="selinput" type="text" id="id" name="id" value="Guest" readonly><br/>
+			</c:if>
+					
+			<label for="subject">제&nbsp;&nbsp;&nbsp;목</label>
+			<input class="selinput" type="text" id="subject" name="subject" required><br/><br/>
 			
-				<c:set var="userInfo" value="${sessionScope.loginfo.MBRNM}(${sessionScope.loginfo.MBRID})"/>
-				
-				<span class="input-group-text">작성자</span> <input type="text"
-					class="form-control" id="fakeid" name="fakeid" value="${userInfo}"
-					disabled="disabled"> <input type="hidden" id="id" name="id"
-					value="${sessionScope.loginfo.MBRID}">
-			</div>
-			<div class="input-group mb-3">
-				<span class="input-group-text">비밀 번호</span> <input type="password"
-					class="form-control" id="password" name="password">
-			</div>
-			<div class="input-group mb-3">
-				<span class="input-group-text">글제목</span> <input type="text"
-					class="form-control" id="subject" name="subject">
-			</div>
-			<div class="input-group mb-3">
-				<span class="input-group-text">글내용</span> <input type="text"
-					class="form-control" id="contents" name="contents">
-			</div>
-			<div id="buttonset" class="input-group mb-3">
-				<button type="submit" class="btn btn-primary btn-lg"
-					onclick="return validCheck();">답글 작성</button>
-				&nbsp;&nbsp;&nbsp;
-				<button type="reset" class="btn btn-secondary btn-lg">초기화</button>
-			</div>
+			<div class="textareadiv">글&nbsp;내&nbsp;용<br/><br/>
+			<textarea name="contents" cols="50" rows="7" autofocus required wrap="hard"></textarea><br/>
+			</div><br/>
+			<!-- <label for="submit"></label> -->
+			<button type="submit" class="btn btn-dark" onclick="return validCheck();">답글 작성</button>
+			&nbsp;&nbsp;&nbsp;
+			<button type="reset" class="btn btn-dark" >초기화</button>
+			<button class="btn btn-dark" onclick="history.go(-1)">목록으로</button>
+
 		</form>
 	</div>
+		
 </body>
 </html>

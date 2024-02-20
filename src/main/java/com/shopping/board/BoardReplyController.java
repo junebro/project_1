@@ -13,12 +13,12 @@ public class BoardReplyController extends SuperClass{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doGet(request, response);
-		
+						
 		// 답글의 깊이를 제한합니다.
 		Integer depth = Integer.parseInt(request.getParameter("depth"));
 		
 		// MAX_DEPTH 변수는 서블릿의 초기화 파라미터를 이용하여 전역적으로 처리할 수도 있습니다.
-		final Integer MAX_DEPTH = 3 ; // 최대 글의 깊이
+		final Integer MAX_DEPTH = 5 ; // 최대 글의 깊이
 		
 		if(depth==MAX_DEPTH) {
 			String message = "답글의 깊이는 최대 " + MAX_DEPTH + "까지 입니다." ;
@@ -34,6 +34,7 @@ public class BoardReplyController extends SuperClass{
 		Integer replyCount = 0 ; // 총답글의 개수
 		replyCount = dao.getReplyCount(groupno);
 		
+				
 		if(replyCount >= MAX_GROUPNO_COUNT) {
 			String message = "최대 답글 개수 " + MAX_GROUPNO_COUNT + "를 초과하였습니다.";
 			super.setAlertMessage(message);
@@ -41,10 +42,10 @@ public class BoardReplyController extends SuperClass{
 			
 		}else{
 			super.gotoPage("/board/boReplyForm.jsp"); 
+			 
 		}
-		
-		
 		super.gotoPage("/board/boInsert.jsp");
+	
 	}
 	
 	@Override

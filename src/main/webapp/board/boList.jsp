@@ -27,7 +27,7 @@ session.getAttribute("loginfo");
 	}
 	.tcontents{
 		margin: 0 auto;
-		width: 1000px;
+		width: 1200px;
 		border-collapse: collapse;
 		
 	}
@@ -105,7 +105,10 @@ function writeForm(){ /* 게시물 작성  */
 			alert('게시물 삭제가 취소되었습니다.');
 			return false ;
 		}
-	}
+  }
+
+
+s
 
 </script>
 
@@ -168,14 +171,14 @@ function writeForm(){ /* 게시물 작성  */
 						</div>
 					</td>
 				</tr>
-				<c:forEach var="bean" items="${bean}">
+				<c:forEach var="bean" items="${dataList}">
 				<tr>
 					<td><div class="tdwrap" style="width:50px">${bean.no}</div></td>
 					<td><div class="tdwrap" style="width:100px">${bean.id}</div></td>
 					<td>
 						<c:set var="readhitUpdate" value="${not (sessionScope.loginfo.MBRID == bean.id)}"/>
 					
-						<div class="tdwrap" style="width:100px">
+						<div class="tdwrap" style="width:200px">
 						
 						<a href="<%=notWithFormTag%>boDetail&no=${bean.no}&readhitUpdate=${readhitUpdate}${requestScope.paging.flowParameter}">
 							<c:forEach var="i" begin="1" end="${bean.depth}"  step="1">
@@ -188,7 +191,7 @@ function writeForm(){ /* 게시물 작성  */
 						</div>
 					</td>
 					<td>
-						<div class="tdwrap" style="width:200px">
+						<div class="tdwrap" style="width:300px">
 							<a href="<%=notWithFormTag%>boDetail&no=${bean.no}&readhitUpdate=${readhitUpdate}${requestScope.paging.flowParameter}">
 							${bean.contents}
 							</a>
@@ -196,13 +199,13 @@ function writeForm(){ /* 게시물 작성  */
 					</td>
 					<td>
 						<c:if test="${bean.readhit >= 20}">
-							<span class="badge rounded-pill bg-primary">
+							<span class="badge rounded-pill bg-danger">
 								${bean.readhit}
 							</span>
 						</c:if>
 						
 						<c:if test="${bean.readhit < 20}">
-							<span class="badge rounded-pill bg-danger">
+							<span class="badge rounded-pill bg-primary">
 								${bean.readhit}
 							</span>
 						</c:if>						
@@ -226,7 +229,7 @@ function writeForm(){ /* 게시물 작성  */
 						<c:if test="${sessionScope.loginfo.MBRID == bean.id}">
 						<c:set var="replyInfo" value="&groupno=${bean.groupno}&orderno=${bean.orderno}&depth=${bean.depth}"/>
 						<div class="tdwrap" style="width:50px">
-							<a href="<%=notWithFormTag%>boReply&no=${bean.no}${requestScope.paging.flowParameter}${replyInfo}">답글</a>
+							<a href="<%=notWithFormTag%>boReply&no=${bean.no}&readhitUpdate=${readhitUpdate}${requestScope.paging.flowParameter}${replyInfo}">답글</a>
 						</div>
 						</c:if>
 					</td>
