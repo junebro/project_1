@@ -113,14 +113,14 @@
 
 	<div class="formwrap">
 		<form action="<%=withFormTag%>" method="post"> 
-			<input type="text" name="pageNumber" value="<%=request.getParameter("pageNumber")%>"> 
-			<input type="text" name="pageSize" value="<%=request.getParameter("pageSize")%>">
-			<input type="text" name="mode" value="<%=request.getParameter("mode")%>">
-			<input type="text" name="keyword" value="<%=request.getParameter("keyword")%>">
+			<input type="hidden" name="pageNumber" value="<%=request.getParameter("pageNumber")%>"> 
+			<input type="hidden" name="pageSize" value="<%=request.getParameter("pageSize")%>">
+			<input type="hidden" name="mode" value="<%=request.getParameter("mode")%>">
+			<input type="hidden" name="keyword" value="<%=request.getParameter("keyword")%>">
 
-			<input type="text" name="groupno" value="<%=request.getParameter("groupno")%>">
-			<input type="text" name="orderno" value="<%=request.getParameter("orderno")%>">
-			<input type="text" name="depth" value="<%=request.getParameter("depth")%>">	<br/>	
+			<input type="hidden" name="groupno" value="<%=request.getParameter("groupno")%>">
+			<input type="hidden" name="orderno" value="<%=request.getParameter("orderno")%>">
+			<input type="hidden" name="depth" value="<%=request.getParameter("depth")%>">	<br/>	
 	   	<h2>답글 등록</h2>
 	    <h5>게시판 답글</h5>
 		 
