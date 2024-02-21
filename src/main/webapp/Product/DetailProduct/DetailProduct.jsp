@@ -914,6 +914,7 @@
 							<div class="">
 								<a href="${pageContext.request.contextPath}/board/start.jsp" class="inq_a_btn">자주 묻는 질문 찾기 </a> 
 								<a href="${pageContext.request.contextPath}/board/start.jsp" class="inq_a_btn">1:1 문의하기</a>
+
 							</div>
 						</div>
 					</div>
@@ -922,7 +923,7 @@
 				<br><br>
 				<hr>
 				<br><br><br><br><br><br>
-			</div> 
+			</div>
 			
 		</div>
 	</div>

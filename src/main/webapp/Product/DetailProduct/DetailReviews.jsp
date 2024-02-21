@@ -457,7 +457,7 @@ a.active {
 	padding-left: 15px;
 	font-family: 'Noto Sans KR', sans-serif;
 }
- 
+
 .view_left_star{
 	padding-top: 8px;
 	padding-right: 15px;

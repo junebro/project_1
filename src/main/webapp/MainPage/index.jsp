@@ -6,12 +6,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ include file="./../common/common.jsp"%> 
+<%@ include file="./../common/common.jsp"%>
 
 <%
 	ProductDao dao = new ProductDao();
 	String mbrid = (String)session.getAttribute("MBRID");
 	List<Product_main> dataList = dao.getDataList(mbrid);
+	List<Product> dataColor = dao.getDataColor();
 %>
 
 <!-- 
@@ -19,7 +20,7 @@
 ArrayList<String> imgPath = new ArrayList<String>();
 	
 	imgPath.add("img1.jpg");
-	imgPath.add("img2.jpg"); 
+	imgPath.add("img2.jpg");
 	imgPath.add("img3.jpg");
 	imgPath.add("img4.jpg");
 	imgPath.add("img5.jpg");
@@ -34,7 +35,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	session.setAttribute("imgPath", imgPath);
  -->
 <c:set var="dataList" value="<%=dataList%>" />
-
+<c:set var="dataColor" value="<%=dataColor%>" />
 <!DOCTYPE html>
 <html lang="ko">
 <style>
@@ -72,6 +73,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	 margin: 10px;
 	 margin-left: 23px;
 	 margin-right: 23px;
+	 pointer-events: none;
 }
 
 .description {
@@ -101,19 +103,26 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	max-width: 90%;
 	height: auto;
 }
-<<<<<<< HEAD
 
 #color_area {
 	border: 1px solid black; 
 	padding: 12px 5px 12px 5px;
 
 	text-align: left;
-=======
-.middelContents{
-	font-size: 30px;
-	font-weight: bolder;
->>>>>>> branch 'master' of https://github.com/junebro/project_1.git
 }
+
+.color_div_left{
+	color:Light Blue;
+	pointer-events: none;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.color_div_center{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+	
 </style>
 <head>
 <meta charset="UTF-8">
@@ -127,7 +136,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/MainPage/alleffect/main.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/MainPage/alleffect/slick.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+
 
 </head>
 <body>
@@ -147,6 +156,10 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
 			<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
 			<button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
+			<button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
+			<button type="button" data-bs-target="#demo" data-bs-slide-to="5"></button>
+			<button type="button" data-bs-target="#demo" data-bs-slide-to="6"></button>
+			<button type="button" data-bs-target="#demo" data-bs-slide-to="7"></button>
 		</div>
 
 		<!-- The slideshow/carousel -->
@@ -182,7 +195,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 		<aside></aside>
 		<section>
 			<div class="middelContents">
-				<p style="margin-top: 10px; font-size: 50px; font-family: 'Black Han Sans', sans-serif; font-weight: 200;">지금 인기 있는 맞춤 신상품</p>
+				<p>지금 인기 있는 맞춤 신상품</p>
 			</div>
 			
 			<c:forEach var="product" items="${dataList}" varStatus="status">
@@ -198,15 +211,37 @@ ArrayList<String> imgPath = new ArrayList<String>();
 								<c:if test="${product.LK != 'LK'}">
 									<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="test('${product.PRONM}', 'bht')">
 								</c:if>
-								<div class="detail">
-									<div class="description" style="color:#A5A5A5;">
-										${product.PRONM}
-									</div>
-									<div class="description">
-										${product.PROPR}원
-									</div>
-								</div>
 							</a>
+							<div class="detail">
+								<div class="color_div_left">
+									<c:if test="${product.PRODT == 'new'}">
+										NEW
+									</c:if>
+								</div>
+									<c:if test="${product.PRODT == 'new' && product.RVWGR > 3.5}">
+										&nbsp|&nbsp
+									</c:if>
+								<div class="color_div_left">
+									<c:if test="${product.RVWGR > 3.5}">
+									BEST
+									</c:if>
+								</div>
+								<div class="color_div_center" ></div>
+								<c:forEach var="color" items="${dataColor}" varStatus="status">
+									<c:if test="${product.PRONM == color.PRONM}">
+										&nbsp<div class="color_div_right" id="color_area" style="background-color:${color.PROCR}"></div>
+									</c:if>
+								</c:forEach>
+						
+							</div>
+							<div class="detail">
+								<div class="description" style="color:#A5A5A5;">
+									${product.PRONM}
+								</div>
+								<div class="description">
+									${product.PROPR}원
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -214,7 +249,6 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			
 		</section>
 		<article></article>
-<<<<<<< HEAD
 		
 		<script>
 			
@@ -259,8 +293,6 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			
 			
 		</script>
-=======
->>>>>>> branch 'master' of https://github.com/junebro/project_1.git
 	</main>
 	<jsp:include page="footer.jsp" />
 </body>
