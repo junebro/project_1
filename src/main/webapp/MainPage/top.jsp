@@ -179,8 +179,6 @@ section {
 		<ul>
 			<li><button type="button" onclick="location.href='${pageContext.request.contextPath}/MainPage/index.jsp'"
 					class="libt">홈&nbsp;</button></li>
-			<li><button type="button" onclick="location.href='${pageContext.request.contextPath}/Member/MemberJoin.jsp'"
-					class="libt">회원가입&nbsp;</button></li>
 			<c:choose>
 				<c:when test="${sessionScope.loginfo.MBRID != null}">
 					<li><button type="button" onclick="logOut()"
@@ -193,6 +191,8 @@ section {
 							class="libt">게시판&nbsp;</button></li>
 				</c:when>
 				<c:otherwise>
+					<li><button type="button" onclick="location.href='${pageContext.request.contextPath}/Member/MemberJoin.jsp'"
+							class="libt">회원가입&nbsp;</button></li>
 					<li><button type="button" onclick="location.href='${pageContext.request.contextPath}/Member/loginMain.jsp'"
 							class="libt">로그인&nbsp;</button></li>
 					<li><button type="button" onclick="call_confirm()"
