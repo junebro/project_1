@@ -52,10 +52,6 @@
 	}
 </script>
 <style>
-
-	form {
-		font-family: 'Kanit', sans-serif;
-	}
 	.tableWrap th{
 		height: 50px;
 		font-size: 25px;
@@ -129,8 +125,9 @@
     		  <tr>
 					<th colspan="2">게시물 수정</th>
 	          </tr>
-	  
-    	   </thead>
+	      
+
+    	</thead>
 	    <tbody>
 	    	  <tr>
 					<td>글번호</td>
@@ -166,8 +163,7 @@
 			  </tr>
 			  <tr>
 					<td colspan="2">
-					<button class="btn btn-dark" type="submit" onclick="return validCheck();">수정</button>
-					<button class="btn btn-dark" onclick="history.back();">목록으로</button>
+					<button type="submit" onclick="return validCheck();">수정</button>
 					<%-- ${request.getAttribute(pwdata)} --%>
 					
 					</td>

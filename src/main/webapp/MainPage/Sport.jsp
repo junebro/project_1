@@ -101,7 +101,9 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	max-width: 100%;
 	height: auto;
 }
-    
+.middelContents{
+	font-family: 'Noto Sans KR', sans-serif;
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -115,7 +117,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/MainPage/alleffect/main.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/MainPage/alleffect/slick.min.js"></script>
-
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -129,7 +131,13 @@ ArrayList<String> imgPath = new ArrayList<String>();
 		<aside></aside>
 		<section>
 			<div class="middelContents">
-				<p>Sport</p>
+				<p style="margin-top: 10px; font-size: 50px; font-family: 'Black Han Sans', sans-serif; font-weight: 200;">Sport</p>
+				<p>
+					The Intelligent Choice
+				</p>
+				<p style="margin-bottom: 30px; font-size: 20px; font-weight: 400;">
+					새로운 계절 아이유의 선택.
+				</p>
 			</div>
 			
 			<c:forEach var="product" items="${dataList}" varStatus="status">

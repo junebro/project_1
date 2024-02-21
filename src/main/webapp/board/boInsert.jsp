@@ -6,12 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시물 등록</title>
+<title>Insert title here</title>
 <style>
-
-	form {
-		font-family: 'Kanit', sans-serif;
-	}
 	.formwrap label{
 		text-align: center;
 		width: 150px;	
@@ -51,12 +47,14 @@
 		display: inline-block;
 		background-color: black;
 		color: white;
-		width: 600px;
+		width: 70%;
 		height: 30px;
 		font-size: 20px;
 	}
 	
-
+	body{
+		font-family: 'Noto Sans KR', sans-serif;
+	}
 	
 	
 
@@ -91,11 +89,11 @@
 			<input class="selinput" type="text" id="subject" name="subject" required><br/><br/>
 			
 			<div class="textareadiv">글&nbsp;내&nbsp;용<br/><br/>
-			<textarea name="contents" cols="50" rows="7" autofocus required wrap="hard"></textarea><br/>
+			<textarea name="contents" cols="80" rows="7" autofocus required wrap="hard"></textarea><br/>
 			</div><br/>
 			<!-- <label for="submit"></label> -->
 			<button type="submit" id="submit" class="btn btn-dark">글쓰기 저장</button>
-			<button class="btn btn-dark" onclick="history.go(-1)">목록으로</button>			 
+			<button class="btn btn-dark" onclick="history.back()">목록으로</button>			 
 		</form>
 	</div>
 		

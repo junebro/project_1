@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.shopping.model.bean.Cart;
 import com.shopping.model.bean.Member;
 import com.shopping.model.bean.Order;
 
@@ -85,7 +86,7 @@ public class OrderDao extends SuperDao {
 
 	// 포인트 업데이트
 	public int pointData(int MBRPT, String MBRID) {
-		String sql = " update TMBR SET MBRPT = MBRPT + ? ";
+		String sql = " update TMBR SET MBRPT = ? ";
 		sql += " where MBRID = ? ";
 		System.out.println("포인트 업데이트 시작");
 		PreparedStatement pstmt = null;
@@ -178,6 +179,46 @@ public class OrderDao extends SuperDao {
 			return null;
 		}
 
+	}
+
+	public List<Order> getDataList(String MBRID) {
+		String sql = " select * from TORD where MBRID = ? ";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		List<Order> dataList = new ArrayList<Order>();
+
+		super.conn = super.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, MBRID);
+			rs = pstmt.executeQuery();
+
+			// 요소들 읽어서 컬렉션에 담습니다.
+			while (rs.next()) {
+				Order bean = this.resultSetBean(rs);
+
+				dataList.add(bean);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		System.out.println(dataList.size());
+		return dataList;
 	}
 
 }

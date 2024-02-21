@@ -10,7 +10,7 @@ import com.shopping.model.dao.BoardDao;
 import com.shopping.model.dao.MemberDao;
 
 public class BoardUpdateController extends SuperClass{
-	//private final String PREFIX = "board/";
+	private final String PREFIX = "board/";
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -24,7 +24,7 @@ public class BoardUpdateController extends SuperClass{
 		// 이전에 작성했던 게시물 내용을 폼 양식에서 볼수 있도록 바인딩합니다. 
 		request.setAttribute("bean", bean);
 		
-		super.gotoPage("/board/boUpdateForm.jsp"); 
+		super.gotoPage(PREFIX + "boUpdateForm.jsp"); 
 	}
 	
 	@Override

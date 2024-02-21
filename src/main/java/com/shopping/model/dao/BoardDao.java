@@ -31,12 +31,9 @@ public class BoardDao extends SuperDao{
 		 * 
 		 * sql += " )"; sql += " where ranking between ? and ? ";
 		 */
-		//String sql = " select no, id, password, subject, contents, readhit, regdate, remark, groupno, orderno, depth "; 
-		//sql += " from (select rank() over(order by no desc) as ranking, no, id, password, subject, contents, readhit, regdate, remark, groupno, orderno, depth from boards";
-		String sql = " select no, id, password, subject, contents, readhit, regdate, remark, groupno, orderno, depth ";
-		sql += " from (select rank() over(order by groupno desc, orderno asc) as ranking, no, id, password, subject, contents, readhit, ";
-		sql += " regdate, remark, groupno, orderno, depth ";
-		sql += " from boards " ;
+		String sql = " select no, id, password, subject, contents, readhit, regdate, remark, groupno, orderno, depth "; 
+		sql += " from (select rank() over(order by no desc) as ranking, no, id, password, subject, contents, readhit, regdate, remark, groupno, orderno, depth from boards";
+		
 		
 		String mode = paging.getMode() ;
 		String keyword = paging.getKeyword() ;
@@ -390,35 +387,6 @@ public class BoardDao extends SuperDao{
 		}
 		
 		return cnt;
-	}
-
-	public void updateReadhit(int no) {
-		String sql = " update boards set readhit = readhit + 1 where no = ? " ;		
-		PreparedStatement pstmt = null ;
-		int cnt = -9999999 ;
-		
-		try {
-			super.conn = super.getConnection() ;  
-			conn.setAutoCommit(false);			
-			pstmt = conn.prepareStatement(sql) ;			
-			pstmt.setInt(1, no);			
-			cnt = pstmt.executeUpdate() ;			
-			conn.commit();			
-		} catch (Exception e) {
-			e.printStackTrace(); 
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}			
-		} finally {
-			try {
-				if(pstmt != null) {pstmt.close();}
-				super.closeConnection();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
 	}
 	
 	

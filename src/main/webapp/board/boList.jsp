@@ -10,7 +10,7 @@ session.getAttribute("loginfo");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 목록</title>
+<title>Insert title here</title>
 
 <style>
 	table {
@@ -27,7 +27,7 @@ session.getAttribute("loginfo");
 	}
 	.tcontents{
 		margin: 0 auto;
-		width: 1200px;
+		width: 1000px;
 		border-collapse: collapse;
 		
 	}
@@ -105,8 +105,7 @@ function writeForm(){ /* 게시물 작성  */
 			alert('게시물 삭제가 취소되었습니다.');
 			return false ;
 		}
-  }
-
+	}
 
 </script>
 
@@ -127,7 +126,7 @@ function writeForm(){ /* 게시물 작성  */
 					<th>글내용</th>
 					<th>조회</th>
 					<th>작성 일자</th>
-					<th>수정</th>	
+					<th>수정</th>
 					<th>삭제</th>
 					<th>답글</th>
 				</tr>
@@ -160,15 +159,6 @@ function writeForm(){ /* 게시물 작성  */
 											<span class="label label-default">
 												${requestScope.paging.pagingStatus}
 											</span>
-											
-											&nbsp;&nbsp;
-											<c:if test="${not (sessionScope.loginfo.MBRID == bean.id)}">
-												<span>
-													<strong>${sessionScope.loginfo.MBRID}</strong>&nbsp; 로그인 중입니다
-												</span>
-											</c:if>
-														
-
 										</div>								
 									</div>							
 								</form>
@@ -178,14 +168,14 @@ function writeForm(){ /* 게시물 작성  */
 						</div>
 					</td>
 				</tr>
-				<c:forEach var="bean" items="${dataList}">
+				<c:forEach var="bean" items="${bean}">
 				<tr>
 					<td><div class="tdwrap" style="width:50px">${bean.no}</div></td>
 					<td><div class="tdwrap" style="width:100px">${bean.id}</div></td>
 					<td>
 						<c:set var="readhitUpdate" value="${not (sessionScope.loginfo.MBRID == bean.id)}"/>
 					
-						<div class="tdwrap" style="width:200px">
+						<div class="tdwrap" style="width:100px">
 						
 						<a href="<%=notWithFormTag%>boDetail&no=${bean.no}&readhitUpdate=${readhitUpdate}${requestScope.paging.flowParameter}">
 							<c:forEach var="i" begin="1" end="${bean.depth}"  step="1">
@@ -198,7 +188,7 @@ function writeForm(){ /* 게시물 작성  */
 						</div>
 					</td>
 					<td>
-						<div class="tdwrap" style="width:300px">
+						<div class="tdwrap" style="width:200px">
 							<a href="<%=notWithFormTag%>boDetail&no=${bean.no}&readhitUpdate=${readhitUpdate}${requestScope.paging.flowParameter}">
 							${bean.contents}
 							</a>
@@ -206,13 +196,13 @@ function writeForm(){ /* 게시물 작성  */
 					</td>
 					<td>
 						<c:if test="${bean.readhit >= 20}">
-							<span class="badge rounded-pill bg-danger">
+							<span class="badge rounded-pill bg-primary">
 								${bean.readhit}
 							</span>
 						</c:if>
 						
 						<c:if test="${bean.readhit < 20}">
-							<span class="badge rounded-pill bg-primary">
+							<span class="badge rounded-pill bg-danger">
 								${bean.readhit}
 							</span>
 						</c:if>						
@@ -233,19 +223,18 @@ function writeForm(){ /* 게시물 작성  */
 					</div>
 					</td>
 					<td>
-						<%-- <c:if test="${sessionScope.loginfo.MBRID == bean.id}"> --%>
+						<c:if test="${sessionScope.loginfo.MBRID == bean.id}">
 						<c:set var="replyInfo" value="&groupno=${bean.groupno}&orderno=${bean.orderno}&depth=${bean.depth}"/>
 						<div class="tdwrap" style="width:50px">
-							<a href="<%=notWithFormTag%>boReply&no=${bean.no}&readhitUpdate=${readhitUpdate}${requestScope.paging.flowParameter}${replyInfo}">답글</a>
+							<a href="<%=notWithFormTag%>boReply&no=${bean.no}${requestScope.paging.flowParameter}${replyInfo}">답글</a>
 						</div>
-						<%-- </c:if> --%>
+						</c:if>
 					</td>
 				</tr>
 				</c:forEach>
 				</tbody>
 			</table>
 			${requestScope.paging.pagingHtml}	
-
 	</div>
 
 

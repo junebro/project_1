@@ -174,7 +174,4 @@ public class Product {
 		LK = lK;
 	}
 	
-	
-	
-	
 }

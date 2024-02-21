@@ -267,10 +267,19 @@ button {
 
 </head>
 <body>
+<script>
+// 회원 가입 메세지 출력
+	function submitAlert(){
+		
+		alert("회원 가입 되셨습니다.");
+		
+		return true;
+	}
+</script>
 	<header>
 		<jsp:include page="./../MainPage/top.jsp" />
 	</header>
-	<form method="post" action="<%=withFormTag%>">
+	<form onsubmit="submitAlert()" method="post" action="<%=withFormTag%>">
 		<input type="hidden" name="command" value="meInsert">
 		<div class="container">
 			<div class="contents">

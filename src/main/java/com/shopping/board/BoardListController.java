@@ -44,8 +44,9 @@ public class BoardListController extends SuperClass{
 		System.out.println("BeginRow" + paging.getBeginRow());
 		System.out.println("EndRow" + paging.getEndRow());
 		
+		
 		request.setAttribute("paging", paging);
-		request.setAttribute("dataList", datalist);
+		request.setAttribute("bean", datalist);
 		
 		super.gotoPage("/board/boList.jsp");
 		/*
@@ -55,6 +56,7 @@ public class BoardListController extends SuperClass{
 		 * e.printStackTrace(); }
 		 * 
 		 */
+
 	}
 
 }
