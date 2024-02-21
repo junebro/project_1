@@ -22,7 +22,7 @@ String appName = request.getContextPath();
 String mappingName = "/Shopping_project";
 String withFormTag = appName + mappingName;
 String notWithFormTag = withFormTag + "?command=";
-%> 
+%>
 <title>Insert title here</title>
 </head>
 <body> 
@@ -65,7 +65,6 @@ $(document).ready(function() {
 								<td class="orderTd">${order.ORDQTY}</td>
 								<td class="orderTd"><fmt:formatNumber value="${order.TOTPR}" pattern="###,###" /></td> </td>
 								
-
 							</tr>
 						</c:forEach>
 					</tbody>
