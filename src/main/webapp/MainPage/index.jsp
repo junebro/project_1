@@ -12,6 +12,7 @@
 	ProductDao dao = new ProductDao();
 	String mbrid = (String)session.getAttribute("MBRID");
 	List<Product_main> dataList = dao.getDataList(mbrid);
+	List<Product> dataColor = dao.getDataColor();
 %>
 
 <!-- 
@@ -34,7 +35,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	session.setAttribute("imgPath", imgPath);
  -->
 <c:set var="dataList" value="<%=dataList%>" />
-
+<c:set var="dataColor" value="<%=dataColor%>" />
 <!DOCTYPE html>
 <html lang="ko">
 <style>
@@ -72,6 +73,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	 margin: 10px;
 	 margin-left: 23px;
 	 margin-right: 23px;
+	 pointer-events: none;
 }
 
 .description {
@@ -102,6 +104,22 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	height: auto;
 }
 
+#color_area {
+	border: 1px solid black; 
+	padding:15px;
+	text-align: left;
+}
+
+.color_div_left{
+	color:Light Blue;
+	pointer-events: none;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.color_div_center{
+	margin-left: auto;
+	margin-right: auto;
+}
 
 	
 </style>
@@ -192,15 +210,37 @@ ArrayList<String> imgPath = new ArrayList<String>();
 								<c:if test="${product.LK != 'LK'}">
 									<img src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image">
 								</c:if>
-								<div class="detail">
-									<div class="description" style="color:#A5A5A5;">
-										${product.PRONM}
-									</div>
-									<div class="description">
-										${product.PROPR}원
-									</div>
-								</div>
 							</a>
+							<div class="detail">
+								<div class="color_div_left">
+									<c:if test="${product.PRODT == 'new'}">
+										NEW
+									</c:if>
+								</div>
+									<c:if test="${product.PRODT == 'new' && product.RVWGR > 3.5}">
+										&nbsp|&nbsp
+									</c:if>
+								<div class="color_div_left">
+									<c:if test="${product.RVWGR > 3.5}">
+									BEST
+									</c:if>
+								</div>
+								<div class="color_div_center" ></div>
+								<c:forEach var="color" items="${dataColor}" varStatus="status">
+									<c:if test="${product.PRONM == color.PRONM}">
+										&nbsp<div class="color_div_right" id="color_area" style="background-color:${color.PROCR}"></div>
+									</c:if>
+								</c:forEach>
+						
+							</div>
+							<div class="detail">
+								<div class="description" style="color:#A5A5A5;">
+									${product.PRONM}
+								</div>
+								<div class="description">
+									${product.PROPR}원
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -208,6 +248,13 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			
 		</section>
 		<article></article>
+		
+		<script>
+		
+			// 첫 시작 컬러값 설정
+		
+
+		</script>
 	</main>
 	<jsp:include page="footer.jsp" />
 </body>
