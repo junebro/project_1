@@ -55,7 +55,7 @@ String notWithFormTag = withFormTag + "?command=";
 		<table style="width: 100%">
 			<tbody>
 				<tr class="underline">
-					<th class="orderTh">찜한 날짜</th>
+					<th class="orderTh">찜한 날짜</th> 
 					<th class="orderTh">상품 이미지</th>
 					<th class="orderTh" style="width: 40%;">상품명</th>
 					<th class="orderTh">가격</th>

@@ -95,7 +95,7 @@ public class ProductDetailDao extends SuperDao {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (rs != null) {
+				if (rs != null) { 
 					rs.close();
 				}
 				if (pstmt != null) {

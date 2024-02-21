@@ -12,7 +12,7 @@ public class Product_main {
 
 	public Product_main() {
 		// TODO Auto-generated constructor stub
-	}
+	} 
 	
 	public Product_main(int pROTP, String pRONM, int pROPR, String pROIMG, String lK) {
 		super();

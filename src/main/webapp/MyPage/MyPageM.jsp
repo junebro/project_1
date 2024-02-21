@@ -557,7 +557,7 @@ table .inputTypeText { /* 2열 입력칸 */
 </header>
 <script>
 	//회원탈퇴 제어함수
-	function deleteInfo(){
+	function deleteInfo(){ 
 		if(confirm("정말 탈퇴하시겠습니까? 탈퇴시 모든 정보가 사라집니다.")){
 			alert("회원 탈퇴 완료되었습니다.");
 			

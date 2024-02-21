@@ -185,7 +185,7 @@ body {
 			setCookie("remember-check", $("#MBRID").val(), expdate);
 
 		}
-	}
+	} 
 	function findidpw(){
 		alert('준비중입니다...');
 	}

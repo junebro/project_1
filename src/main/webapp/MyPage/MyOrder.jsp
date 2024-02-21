@@ -22,7 +22,7 @@ String appName = request.getContextPath();
 String mappingName = "/Shopping_project";
 String withFormTag = appName + mappingName;
 String notWithFormTag = withFormTag + "?command=";
-%>
+%> 
 <title>Insert title here</title>
 </head>
 <body> 

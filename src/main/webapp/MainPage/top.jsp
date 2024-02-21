@@ -195,7 +195,7 @@ section {
 							class="libt">회원가입&nbsp;</button></li>
 					<li><button type="button" onclick="location.href='${pageContext.request.contextPath}/Member/loginMain.jsp'"
 							class="libt">로그인&nbsp;</button></li>
-					<li><button type="button" onclick="call_confirm()"
+					<li><button type="button" onclick="call_confirm()" 
 							class="libt">장바구니&nbsp;</button></li>
 					<li><button type="button" onclick="call_confirm()"
 							class="libt">마이페이지&nbsp;</button></li>

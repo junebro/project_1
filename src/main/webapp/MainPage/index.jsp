@@ -6,7 +6,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ include file="./../common/common.jsp"%>
+<%@ include file="./../common/common.jsp"%> 
 
 <%
 	ProductDao dao = new ProductDao();

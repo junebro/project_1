@@ -561,7 +561,7 @@ for (int i = 0; i < endval; i++) {
 						<div class="heading total" id="total_money">
 							<h4 class="title">결제예정금액</h4>
 							<div class="data">
-								<strong id="total_order_price_front"><%=totalPr%> 원</strong>
+								<strong id="total_order_price_front"><%=totalPr%> 원</strong> 
 							</div>
 						</div>
 					</div>

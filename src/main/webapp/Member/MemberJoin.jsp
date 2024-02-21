@@ -425,7 +425,7 @@ button {
 						</th>
 						<td class="formGroup date"><input type="text"
 							class="inputTypeText" id="birth" name="MBRBT"></td>
-					</tr>
+					</tr> 
 				</table>
 			</div>
 		</div>
