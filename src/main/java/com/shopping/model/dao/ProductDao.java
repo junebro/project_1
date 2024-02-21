@@ -21,7 +21,7 @@ public class ProductDao extends SuperDao {
 		sql += " LEFT OUTER JOIN TLKE B ON A.PRONM = B.PRONM AND MBRID = ? ";
 		sql += " GROUP BY A.PROTP, A.PRONM, A.PROPR, A.PROIMG, B.PRONM ";
 		sql += " ORDER BY A.PRONM ";
-		 
+		  
 		PreparedStatement pstmt = null; // 문장 객체
 		ResultSet rs = null;
 
