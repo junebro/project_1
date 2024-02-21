@@ -44,7 +44,6 @@ public class BoardListController extends SuperClass{
 		System.out.println("BeginRow" + paging.getBeginRow());
 		System.out.println("EndRow" + paging.getEndRow());
 		
-		
 		request.setAttribute("paging", paging);
 		request.setAttribute("dataList", datalist);
 		
@@ -56,7 +55,6 @@ public class BoardListController extends SuperClass{
 		 * e.printStackTrace(); }
 		 * 
 		 */
-
 	}
 
 }

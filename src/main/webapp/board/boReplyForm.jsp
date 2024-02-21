@@ -143,10 +143,11 @@
 			<textarea name="contents" cols="50" rows="7" autofocus required wrap="hard"></textarea><br/>
 			</div><br/>
 			<!-- <label for="submit"></label> -->
-			<button type="submit" class="btn btn-dark" onclick="return validCheck();">답글 작성</button>
+			
 			&nbsp;&nbsp;&nbsp;
 			<button type="reset" class="btn btn-dark" >초기화</button>
-			<button class="btn btn-dark" onclick="history.go(-1)">목록으로</button>
+			<button class="btn btn-dark" onclick="location.href = document.referrer;">목록으로</button>
+			<button type="submit" class="btn btn-dark" onclick="return validCheck();">답글 작성</button>
 
 		</form>
 	</div>

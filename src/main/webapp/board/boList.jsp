@@ -108,8 +108,6 @@ function writeForm(){ /* 게시물 작성  */
   }
 
 
-s
-
 </script>
 
 </head>
@@ -129,7 +127,7 @@ s
 					<th>글내용</th>
 					<th>조회</th>
 					<th>작성 일자</th>
-					<th>수정</th>
+					<th>수정</th>	
 					<th>삭제</th>
 					<th>답글</th>
 				</tr>
@@ -162,6 +160,15 @@ s
 											<span class="label label-default">
 												${requestScope.paging.pagingStatus}
 											</span>
+											
+											&nbsp;&nbsp;
+											<c:if test="${not (sessionScope.loginfo.MBRID == bean.id)}">
+												<span>
+													<strong>${sessionScope.loginfo.MBRID}</strong>&nbsp; 로그인 중입니다
+												</span>
+											</c:if>
+														
+
 										</div>								
 									</div>							
 								</form>
@@ -226,18 +233,19 @@ s
 					</div>
 					</td>
 					<td>
-						<c:if test="${sessionScope.loginfo.MBRID == bean.id}">
+						<%-- <c:if test="${sessionScope.loginfo.MBRID == bean.id}"> --%>
 						<c:set var="replyInfo" value="&groupno=${bean.groupno}&orderno=${bean.orderno}&depth=${bean.depth}"/>
 						<div class="tdwrap" style="width:50px">
 							<a href="<%=notWithFormTag%>boReply&no=${bean.no}&readhitUpdate=${readhitUpdate}${requestScope.paging.flowParameter}${replyInfo}">답글</a>
 						</div>
-						</c:if>
+						<%-- </c:if> --%>
 					</td>
 				</tr>
 				</c:forEach>
 				</tbody>
 			</table>
 			${requestScope.paging.pagingHtml}	
+
 	</div>
 
 
