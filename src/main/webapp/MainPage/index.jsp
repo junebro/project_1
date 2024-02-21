@@ -105,9 +105,9 @@ ArrayList<String> imgPath = new ArrayList<String>();
 }
 
 #color_area {
-	border: 1px solid black; 
-	padding: 12px 5px 12px 5px;
 
+	/* padding: 5px 5px 5px 5px; */
+	padding: 4px;
 	text-align: left;
 }
 
@@ -227,9 +227,16 @@ ArrayList<String> imgPath = new ArrayList<String>();
 									</c:if>
 								</div>
 								<div class="color_div_center" ></div>
+								
+								
 								<c:forEach var="color" items="${dataColor}" varStatus="status">
 									<c:if test="${product.PRONM == color.PRONM}">
-										&nbsp<div class="color_div_right" id="color_area" style="background-color:${color.PROCR}"></div>
+										<c:if test="${color.PROCR == 'White'}">
+											&nbsp<div class="color_div_right" id="color_area" style="border:1px solid #A5A5A5; background-color:${color.PROCR}"></div>
+										</c:if>
+										<c:if test="${color.PROCR != 'White'}">
+											&nbsp<div class="color_div_right" id="color_area" style="background-color:${color.PROCR}"></div>
+										</c:if>
 									</c:if>
 								</c:forEach>
 						
