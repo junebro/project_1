@@ -186,6 +186,9 @@ body {
 
 		}
 	}
+	function findidpw(){
+		alert('준비중입니다...');
+	}
 </script>
 
 <body>
@@ -201,7 +204,7 @@ body {
 			<input type="password" name="MBRPW" placeholder="비밀번호">
 				<label for="remember-check">
 				<input type="checkbox" id="remember-check">아이디 저장하기
-				<a href="/customer/direct.FindID.action" class="alink">아이디/비밀번호 찾기</a>
+				<a style="cursor:pointer" onclick="findidpw();" class="alink">아이디/비밀번호 찾기</a>
 			</label>
 			<input type="submit" value="로그인" class="login-default" id="submitbt">
 		</form>
