@@ -556,12 +556,22 @@ table .inputTypeText { /* 2열 입력칸 */
 	<jsp:include page="./..//MainPage/top.jsp"/>
 </header>
 <script>
+	//회원탈퇴 제어함수
 	function deleteInfo(){
 		if(confirm("정말 탈퇴하시겠습니까? 탈퇴시 모든 정보가 사라집니다.")){
 			alert("회원 탈퇴 완료되었습니다.");
 			
 			location.href = '<%=notWithFormTag%>myDelete';
 		};
+	}
+	
+	// 로그아웃 제어함수
+	function logOut(){
+		if(confirm("로그아웃 하시겠습니까 ? ")){
+			alert("로그아웃 되셨습니다.");
+			location.href = '<%=notWithFormTag%>meLogout'
+			
+		}
 	}
 </script>
 	<div class="wrap" style="justify-content: center;">
@@ -588,7 +598,7 @@ table .inputTypeText { /* 2열 입력칸 */
 					<div class="spanbar" onclick="toggleReview('MyUpdate.jsp')">
 						<a href="#">회원정보수정</a><br>
 					</div>
-					<div class="spanbar" onclick="location.href = '<%=notWithFormTag%>meLogout'">
+					<div class="spanbar" onclick="logOut()">
 						<a href="#">로그아웃</a><br>
 					</div>
 					<div class="spanbar" onclick="deleteInfo()">
