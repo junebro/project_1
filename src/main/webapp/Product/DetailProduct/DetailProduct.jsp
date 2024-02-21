@@ -661,12 +661,15 @@
 
 	<div class="tab_box">
 		<ul>
-			<li class="active"><a id="text-to-change" href="#pr_details"
-				data-gtag-idx="fo_detail_3" data-gtag-label="상품정보">상품정보</a></li>
-			<li><a href="#pr_main_review" data-gtag-idx="fo_detail_3"
-				data-gtag-label="상품리뷰" id="view_top"></a></li>
-			<li><a href="#pr_inquiry" data-gtag-idx="fo_detail_3"
-				data-gtag-label="상품문의">상품문의 </a></li>
+			<li class="active">
+				<a id="text-to-change" href="#pr_details" data-gtag-idx="fo_detail_3" data-gtag-label="상품정보">상품정보</a>
+			</li>
+			<li>
+				<a href="#pr_main_review" data-gtag-idx="fo_detail_3" data-gtag-label="상품리뷰" id="view_top"></a>
+			</li>
+			<li>
+				<a href="#pr_inquiry" data-gtag-idx="fo_detail_3" data-gtag-label="상품문의">상품문의 </a>
+			</li>
 		</ul>
 		<hr style="width:100%">
 	</div>
@@ -909,10 +912,8 @@
 							<br>
 							<br>
 							<div class="">
-								<a href="https://www.nbkorea.com/support/searchFaqList.action"
-									class="inq_a_btn">자주 묻는 질문 찾기 </a> <a
-									href="https://www.nbkorea.com/my/qna/searchQuestionList.action"
-									class="inq_a_btn">1:1 문의하기</a>
+								<a href="${pageContext.request.contextPath}/board/start.jsp" class="inq_a_btn">자주 묻는 질문 찾기 </a> 
+								<a href="${pageContext.request.contextPath}/board/start.jsp" class="inq_a_btn">1:1 문의하기</a>
 							</div>
 						</div>
 					</div>
@@ -920,10 +921,15 @@
 				</div>
 				<br><br>
 				<hr>
+				<br><br><br><br><br><br>
 			</div>
-			<!-- // #pr_inquiry 상품문의 없을 때 -->
+			
 		</div>
 	</div>
+
+	<footer>
+		<jsp:include page="./../../MainPage/footer.jsp" />
+	</footer>
 
 	<script>
 		// 스크롤 

@@ -563,9 +563,9 @@ table .inputTypeText { /* 2열 입력칸 */
 					<div class="spanbar" onclick="toggleReview('MyOrder.jsp')">
 						<a href="#">구매 내역</a>
 					</div>
-					<div class="spanbar" onclick="location.href ='${pageContext.request.contextPath}/Member/MyCart.jsp'">
+					<%-- <div class="spanbar" onclick="location.href ='${pageContext.request.contextPath}/Member/MyCart.jsp'">
 						<a href="#">장바구니</a>
-					</div>
+					</div> --%>
 					<div class="spanbar" onclick="toggleReview('MyLike.jsp')">
 						<a href="#">나의 찜 내역</a><br>
 					</div>
@@ -592,6 +592,9 @@ table .inputTypeText { /* 2열 입력칸 */
 			<div class="main-page"  id="otherDiv"></div>
 		</div>
 	</div>
-	<footer></footer>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
+	<footer>
+		<jsp:include page="./../MainPage/footer.jsp" />
+	</footer>
 </body>
 </html>

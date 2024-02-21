@@ -106,7 +106,8 @@ ArrayList<String> imgPath = new ArrayList<String>();
 
 #color_area {
 	border: 1px solid black; 
-	padding:15px;
+	padding: 12px 5px 12px 5px;
+
 	text-align: left;
 }
 
@@ -205,10 +206,10 @@ ArrayList<String> imgPath = new ArrayList<String>();
 							<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
 								<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
 								<c:if test="${product.LK == 'LK'}">
-									<img src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image">
+									<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="test('${product.PRONM}', 'ht')">
 								</c:if>				
 								<c:if test="${product.LK != 'LK'}">
-									<img src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image">
+									<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="test('${product.PRONM}', 'bht')">
 								</c:if>
 							</a>
 							<div class="detail">
@@ -250,10 +251,47 @@ ArrayList<String> imgPath = new ArrayList<String>();
 		<article></article>
 		
 		<script>
-		
-			// 첫 시작 컬러값 설정
-		
+			
+			document.querySelectorAll('.overlay-image').forEach(function(element) {
+				element.addEventListener('click', function(event) {
+					event.preventDefault();
 
+				});
+			});
+			
+			function test(pronm, ht){
+
+				var mbrid = "${sessionScope.loginfo.MBRID}";
+				
+				if(!mbrid) {
+					if (confirm("로그인이 필요한 서비스입니다.\n로그인 하시곘습니까?")) {
+						location.href = '${pageContext.request.contextPath}/Member/loginMain.jsp';
+					}
+					return;
+				}
+				var url = document.getElementById(pronm + "ht-image").src;
+				var fileName = url.split('/').pop();
+				
+				if (fileName == "main_ht.png") {
+					var URL = '<%=notWithFormTag%>liDelete';
+					document.getElementById(pronm + "ht-image").src = "${pageContext.request.contextPath}/Image/main_bht.png";
+					
+				} else if (fileName == "main_bht.png") {
+					var URL = '<%=notWithFormTag%>liInsert';
+					document.getElementById(pronm + "ht-image").src = "${pageContext.request.contextPath}/Image/main_ht.png";
+				}
+	
+				$.ajax({
+			        type: 'GET',
+			        url: URL,
+			        data: { pronm: pronm, mbrid: mbrid },
+			        error: function(xhr, status, error) {
+			            console.error(error);
+			        }
+			    });
+			}
+			
+			
 		</script>
 	</main>
 	<jsp:include page="footer.jsp" />

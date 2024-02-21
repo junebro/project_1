@@ -582,6 +582,10 @@ for (int i = 0; i < endval; i++) {
 			</div>
 		</div>
 	</div>
-	<footer></footer>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
+	<footer>
+		<jsp:include page="./../MainPage/footer.jsp" />
+	</footer>
 </body>
 </html>

@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="com.shopping.model.dao.MyOrderDao"%>
 <%@page import="com.shopping.model.bean.MyOrder"%>
+
 <%
 	MyOrder bean = new MyOrder();
 	MyOrderDao dao = new MyOrderDao();
@@ -61,7 +63,9 @@ $(document).ready(function() {
 								</td>
 								<td class="orderTd">${order.ORDSZ}, ${order.PROCR}</td>
 								<td class="orderTd">${order.ORDQTY}</td>
-								<td class="orderTd">${order.TOTPR}</td>
+								<td class="orderTd"><fmt:formatNumber value="${order.TOTPR}" pattern="###,###" /></td> </td>
+								
+
 							</tr>
 						</c:forEach>
 					</tbody>

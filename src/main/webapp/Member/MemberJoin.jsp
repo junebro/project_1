@@ -424,6 +424,10 @@ button {
 			<button class="btn_white" onclick="history.go(-1);">취소</button>
 			<button class="btn_black" id="join" type="submit">가입하기</button>
 		</div>
+
+		<footer>
+			<jsp:include page="./../MainPage/footer.jsp" />
+		</footer>
 	</form>
 </body>
 <script type="text/javascript">

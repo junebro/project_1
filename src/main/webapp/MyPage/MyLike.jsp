@@ -5,6 +5,7 @@
 <%@page import="com.shopping.model.dao.MyLikeDao"%>
 <%@page import="com.shopping.model.bean.MyLike"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	MyLike bean = new MyLike();
 	MyLikeDao dao = new MyLikeDao();
@@ -69,7 +70,7 @@ String notWithFormTag = withFormTag + "?command=";
 							onclick="location.href='<%=notWithFormTag%>DetailProduct&pronm=${like.PRONM}&mbrid=${sessionScope.loginfo.MBRID}'"></td>
 						<td class="orderTd" ><div style="cursor: pointer; width: 40%; margin: 0 auto;"
 							onclick="location.href='<%=notWithFormTag%>DetailProduct&pronm=${like.PRONM}&mbrid=${sessionScope.loginfo.MBRID}'">${like.PRONM}</div></td>
-						<td class="orderTd">${like.PROPR}</td>
+						<td class="orderTd"><fmt:formatNumber value="${like.PROPR}" pattern="###,###" /></td>
 						<td class="orderTd">
 							<button class="review_btn" type="button" class="btn_white" id="btn_${like.PRONM}"
 								style="font-size: 15px" onclick="deleteLike('${like.PRONM}')">X</button>

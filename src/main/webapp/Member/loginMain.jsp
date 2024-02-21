@@ -206,5 +206,9 @@ body {
 			<input type="submit" value="로그인" class="login-default" id="submitbt">
 		</form>
 	</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
+	<footer>
+		<jsp:include page="./../MainPage/footer.jsp" />
+	</footer>
 </body>
 </html>
