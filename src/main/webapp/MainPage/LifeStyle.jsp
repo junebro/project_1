@@ -130,8 +130,9 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	<main class="main">
 		<aside></aside>
 		<section>
+			<br>
 			<div class="middelContents">
-				<p style="margin-top: 10px; font-size: 50px; font-family: 'Black Han Sans', sans-serif; font-weight: 200;">LifeStyle</p>
+				<!-- <p style="margin-top: 10px; font-size: 50px; font-family: 'Black Han Sans', sans-serif; font-weight: 200;">LifeStyle</p> -->
 				<p>
 					오늘의 감각으로 다시 태어난 2000년대 디자인 코드
 				</p>

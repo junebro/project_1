@@ -122,6 +122,10 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	margin-right: auto;
 }
 
+.middelContents{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 	
 </style>
 <head>
@@ -146,6 +150,8 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	<br>
 	<br>
 	<br>
+	<br>
+	<br>
 	<!-- Carousel -->
 	<div id="demo" class="carousel slide" data-bs-ride="carousel" >
 	
@@ -161,11 +167,15 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			<button type="button" data-bs-target="#demo" data-bs-slide-to="6"></button>
 			<button type="button" data-bs-target="#demo" data-bs-slide-to="7"></button>
 		</div>
-
+		
 		<!-- The slideshow/carousel -->
 		<div class="carousel-inner" >
 			<div class="carousel-item active">
-				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240213/NB20240213093206542001.jpg"
+				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240221/NB20240221131436453001.jpg" 
+					style="width: 100%;">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240221/NB20240221082612255001.jpg"
 					style="width: 100%;">
 			</div>
 			<div class="carousel-item">
@@ -174,6 +184,10 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			</div>
 			<div class="carousel-item">
 				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240119/NB20240119111110780001.jpg"
+					style="width: 100%;">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240213/NB20240213093206542001.jpg"
 					style="width: 100%;">
 			</div>
 			<div class="carousel-item">
@@ -194,66 +208,273 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	<main class="main">
 		<aside></aside>
 		<section>
+			<br><br>
 			<div class="middelContents">
-				<p>지금 인기 있는 맞춤 신상품</p>
+				<p style="font-size: 40px;">NEW CLASSIC, NEW STYLE</p>
+				<p style="margin-bottom: 30px; font-size: 20px; font-weight: 400;">
+					클래식한 디자인과 스타일, 편안한 착화감의 2002를 만나보세요.
+				</p>
 			</div>
-			
+			<br><br>
 			<c:forEach var="product" items="${dataList}" varStatus="status">
-				<div class="columnwrap">
-					<div class="column">
-						<div class="thumbnail">
-							<%-- <a href="./img/${list}"> <img src="./img/${list}" alt="Product">--%>
-							<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
-								<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
-								<c:if test="${product.LK == 'LK'}">
-									<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="test('${product.PRONM}', 'ht')">
-								</c:if>				
-								<c:if test="${product.LK != 'LK'}">
-									<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="test('${product.PRONM}', 'bht')">
-								</c:if>
-							</a>
-							<div class="detail">
-								<div class="color_div_left">
-									<c:if test="${product.PRODT == 'new'}">
-										NEW
+				<c:if test="${product.PROTP==1}">
+					<div class="columnwrap">
+						<div class="column">
+							<div class="thumbnail">
+								<%-- <a href="./img/${list}"> <img src="./img/${list}" alt="Product">--%>
+								<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
+									<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
+									<c:if test="${product.LK == 'LK'}">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="test('${product.PRONM}', 'ht')">
+									</c:if>				
+									<c:if test="${product.LK != 'LK'}">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="test('${product.PRONM}', 'bht')">
 									</c:if>
-								</div>
-									<c:if test="${product.PRODT == 'new' && product.RVWGR > 3.5}">
-										&nbsp|&nbsp
-									</c:if>
-								<div class="color_div_left">
-									<c:if test="${product.RVWGR > 3.5}">
-									BEST
-									</c:if>
-								</div>
-								<div class="color_div_center" ></div>
-								
-								
-								<c:forEach var="color" items="${dataColor}" varStatus="status">
-									<c:if test="${product.PRONM == color.PRONM}">
-										<c:if test="${color.PROCR == 'White'}">
-											&nbsp<div class="color_div_right" id="color_area" style="border:1px solid #A5A5A5; background-color:${color.PROCR}"></div>
+								</a>
+								<div class="detail">
+									<div class="color_div_left">
+										<c:if test="${product.PRODT == 'new'}">
+											NEW
 										</c:if>
-										<c:if test="${color.PROCR != 'White'}">
-											&nbsp<div class="color_div_right" id="color_area" style="background-color:${color.PROCR}"></div>
+									</div>
+										<c:if test="${product.PRODT == 'new' && product.RVWGR > 3.5}">
+											&nbsp|&nbsp
 										</c:if>
-									</c:if>
-								</c:forEach>
-						
-							</div>
-							<div class="detail">
-								<div class="description" style="color:#A5A5A5;">
-									${product.PRONM}
+									<div class="color_div_left">
+										<c:if test="${product.RVWGR > 3.5}">
+										BEST
+										</c:if>
+									</div>
+									<div class="color_div_center" ></div>
+									
+									
+									<c:forEach var="color" items="${dataColor}" varStatus="status">
+										<c:if test="${product.PRONM == color.PRONM}">
+											<c:if test="${color.PROCR == 'White'}">
+												&nbsp<div class="color_div_right" id="color_area" style="border:1px solid #A5A5A5; background-color:${color.PROCR}"></div>
+											</c:if>
+											<c:if test="${color.PROCR != 'White'}">
+												&nbsp<div class="color_div_right" id="color_area" style="background-color:${color.PROCR}"></div>
+											</c:if>
+										</c:if>
+									</c:forEach>
+							
 								</div>
-								<div class="description">
-									${product.PROPR}원
+								<div class="detail">
+									<div class="description" style="color:#A5A5A5;">
+										${product.PRONM}
+									</div>
+									<div class="description">
+										${product.PROPR}원
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</c:if>
 			</c:forEach>
 			
+			<br><br><br><br><br><br>
+			
+			<div class="middelContents">
+				<p style="font-size: 40px;">Newbalance lconic, LIFESTYLE</p>
+				<p style="margin-bottom: 30px; font-size: 20px; font-weight: 400;">
+					뉴발란스 DNA가 현대적인 디자인으로 재해석되어 탄생한 LIFESTYLE을 만나보세요.
+				</p>
+			</div>
+			<br><br>
+			<c:forEach var="product" items="${dataList}" varStatus="status">
+				<c:if test="${product.PROTP==2}">
+					<div class="columnwrap">
+						<div class="column">
+							<div class="thumbnail">
+								<%-- <a href="./img/${list}"> <img src="./img/${list}" alt="Product">--%>
+								<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
+									<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
+									<c:if test="${product.LK == 'LK'}">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="test('${product.PRONM}', 'ht')">
+									</c:if>				
+									<c:if test="${product.LK != 'LK'}">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="test('${product.PRONM}', 'bht')">
+									</c:if>
+								</a>
+								<div class="detail">
+									<div class="color_div_left">
+										<c:if test="${product.PRODT == 'new'}">
+											NEW
+										</c:if>
+									</div>
+										<c:if test="${product.PRODT == 'new' && product.RVWGR > 3.5}">
+											&nbsp|&nbsp
+										</c:if>
+									<div class="color_div_left">
+										<c:if test="${product.RVWGR > 3.5}">
+										BEST
+										</c:if>
+									</div>
+									<div class="color_div_center" ></div>
+									
+									
+									<c:forEach var="color" items="${dataColor}" varStatus="status">
+										<c:if test="${product.PRONM == color.PRONM}">
+											<c:if test="${color.PROCR == 'White'}">
+												&nbsp<div class="color_div_right" id="color_area" style="border:1px solid #A5A5A5; background-color:${color.PROCR}"></div>
+											</c:if>
+											<c:if test="${color.PROCR != 'White'}">
+												&nbsp<div class="color_div_right" id="color_area" style="background-color:${color.PROCR}"></div>
+											</c:if>
+										</c:if>
+									</c:forEach>
+							
+								</div>
+								<div class="detail">
+									<div class="description" style="color:#A5A5A5;">
+										${product.PRONM}
+									</div>
+									<div class="description">
+										${product.PROPR}원
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:if>
+			</c:forEach>
+			
+			<br><br><br><br><br><br>
+			
+			<div class="middelContents">
+				<p style="font-size: 40px;">Intelligent choice, SANDLE</p>
+				<p style="margin-bottom: 30px; font-size: 20px; font-weight: 400;">
+					꾸준하게 선택받은 뉴발란스 스테디셀러, SANDLE
+				</p>
+			</div>
+			<br><br>
+			<c:forEach var="product" items="${dataList}" varStatus="status">
+				<c:if test="${product.PROTP==3}">
+					<div class="columnwrap">
+						<div class="column">
+							<div class="thumbnail">
+								<%-- <a href="./img/${list}"> <img src="./img/${list}" alt="Product">--%>
+								<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
+									<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
+									<c:if test="${product.LK == 'LK'}">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="test('${product.PRONM}', 'ht')">
+									</c:if>				
+									<c:if test="${product.LK != 'LK'}">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="test('${product.PRONM}', 'bht')">
+									</c:if>
+								</a>
+								<div class="detail">
+									<div class="color_div_left">
+										<c:if test="${product.PRODT == 'new'}">
+											NEW
+										</c:if>
+									</div>
+										<c:if test="${product.PRODT == 'new' && product.RVWGR > 3.5}">
+											&nbsp|&nbsp
+										</c:if>
+									<div class="color_div_left">
+										<c:if test="${product.RVWGR > 3.5}">
+										BEST
+										</c:if>
+									</div>
+									<div class="color_div_center" ></div>
+									
+									
+									<c:forEach var="color" items="${dataColor}" varStatus="status">
+										<c:if test="${product.PRONM == color.PRONM}">
+											<c:if test="${color.PROCR == 'White'}">
+												&nbsp<div class="color_div_right" id="color_area" style="border:1px solid #A5A5A5; background-color:${color.PROCR}"></div>
+											</c:if>
+											<c:if test="${color.PROCR != 'White'}">
+												&nbsp<div class="color_div_right" id="color_area" style="background-color:${color.PROCR}"></div>
+											</c:if>
+										</c:if>
+									</c:forEach>
+							
+								</div>
+								<div class="detail">
+									<div class="description" style="color:#A5A5A5;">
+										${product.PRONM}
+									</div>
+									<div class="description">
+										${product.PROPR}원
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:if>
+			</c:forEach>
+			
+			<br><br><br><br><br><br>
+			
+			<div class="middelContents">
+				<p style="font-size: 40px;">1906 Silver Metallic Styling, Sport</p>
+				<p style="margin-bottom: 30px; font-size: 20px; font-weight: 400;">
+					1906R과 함께한 다양한 스타일링을 만나보세요
+				</p>
+			</div>
+			<br><br>
+			<c:forEach var="product" items="${dataList}" varStatus="status">
+				<c:if test="${product.PROTP==4}">
+					<div class="columnwrap">
+						<div class="column">
+							<div class="thumbnail">
+								<%-- <a href="./img/${list}"> <img src="./img/${list}" alt="Product">--%>
+								<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
+									<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
+									<c:if test="${product.LK == 'LK'}">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="test('${product.PRONM}', 'ht')">
+									</c:if>				
+									<c:if test="${product.LK != 'LK'}">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="test('${product.PRONM}', 'bht')">
+									</c:if>
+								</a>
+								<div class="detail">
+									<div class="color_div_left">
+										<c:if test="${product.PRODT == 'new'}">
+											NEW
+										</c:if>
+									</div>
+										<c:if test="${product.PRODT == 'new' && product.RVWGR > 3.5}">
+											&nbsp|&nbsp
+										</c:if>
+									<div class="color_div_left">
+										<c:if test="${product.RVWGR > 3.5}">
+										BEST
+										</c:if>
+									</div>
+									<div class="color_div_center" ></div>
+									
+									
+									<c:forEach var="color" items="${dataColor}" varStatus="status">
+										<c:if test="${product.PRONM == color.PRONM}">
+											<c:if test="${color.PROCR == 'White'}">
+												&nbsp<div class="color_div_right" id="color_area" style="border:1px solid #A5A5A5; background-color:${color.PROCR}"></div>
+											</c:if>
+											<c:if test="${color.PROCR != 'White'}">
+												&nbsp<div class="color_div_right" id="color_area" style="background-color:${color.PROCR}"></div>
+											</c:if>
+										</c:if>
+									</c:forEach>
+							
+								</div>
+								<div class="detail">
+									<div class="description" style="color:#A5A5A5;">
+										${product.PRONM}
+									</div>
+									<div class="description">
+										${product.PROPR}원
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:if>
+			</c:forEach>
+			<br><br><br><br>
 		</section>
 		<article></article>
 		
