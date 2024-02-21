@@ -101,7 +101,9 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	max-width: 90%;
 	height: auto;
 }
-    
+
+
+	
 </style>
 <head>
 <meta charset="UTF-8">
