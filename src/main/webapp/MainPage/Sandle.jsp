@@ -130,8 +130,9 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	<main class="main">
 		<aside></aside>
 		<section>
+		<br>
 			<div class="middelContents">
-				<p style="margin-top: 10px; font-size: 50px; font-family: 'Black Han Sans', sans-serif; font-weight: 200;">Sandle</p>
+				<!-- <p style="margin-top: 10px; font-size: 50px; font-family: 'Black Han Sans', sans-serif; font-weight: 200;">Sandle</p> -->
 				<p>
 					Bring On Trends
 				</p>
