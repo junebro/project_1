@@ -276,7 +276,7 @@ int totalPr = 0;
 CartDao cDao = new CartDao();
 String MBRID = session.getAttribute("loginfo").toString();
 List<Cart> be = cDao.getDataList(MBRID);
-String jot = "";
+String hot = "";
 
 int endval = be.size();
 
@@ -527,11 +527,11 @@ for (int i = 0; i < endval; i++) {
 						</div>
 						<%
 						if (i == endval) {
-							jot += dataList.get(i).getPROCR() + "/" + dataList.get(i).getPROCD() + "/" + be.get(i).getPROSZ() + "/"
+							hot += dataList.get(i).getPROCR() + "/" + dataList.get(i).getPROCD() + "/" + be.get(i).getPROSZ() + "/"
 							+ be.get(i).getQTY();
 
 						} else {
-							jot += dataList.get(i).getPROCR() + "/" + dataList.get(i).getPROCD() + "/" + be.get(i).getPROSZ() + "/"
+							hot += dataList.get(i).getPROCR() + "/" + dataList.get(i).getPROCD() + "/" + be.get(i).getPROSZ() + "/"
 							+ be.get(i).getQTY() + ",";
 						}
 
@@ -567,7 +567,7 @@ for (int i = 0; i < endval; i++) {
 					</div>
 					<script>
 					function copyParam(){
-						var url = "<%=notWithFormTag%>OrderC&submit=<%=jot%>";
+						var url = "<%=notWithFormTag%>OrderC&submit=<%=hot%>";
 					        window.location.href = url;
 					}
 					</script>
