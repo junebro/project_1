@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
     <style>
+    footer{
+    	background-color: #3c3c3c;
+    }
     .boxWrap{
     	height: 200px;
     	width: 100%;
