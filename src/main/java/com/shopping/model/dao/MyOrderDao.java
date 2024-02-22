@@ -25,8 +25,6 @@ public class MyOrderDao extends SuperDao{
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, mbrid);
-			System.out.println(sql);
-			System.out.println(mbrid);
 			rs = pstmt.executeQuery();
 
 			// 요소들 읽어서 컬렉션에 담습니다.

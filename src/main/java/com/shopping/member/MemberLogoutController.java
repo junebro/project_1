@@ -18,8 +18,6 @@ public class MemberLogoutController extends SuperClass {
 			super.session.invalidate(); // 세션 데이터들을 무효화
 			super.gotoPage("Member/loginMain.jsp"); // 로그인 페이지로 다시 이동
 
-			System.out.println("로그아웃 성공");
-
 		} else { // 미로그인 상태
 			super.youNeededLogin();
 			return;

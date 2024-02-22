@@ -76,12 +76,6 @@ public class SuperDao {
 			 }
 		}	
 		
-		System.out.println("total");
-		System.out.println(sql);
-		System.out.println(pronm);
-		System.out.println(sel_star);
-		System.out.println(sel_color);
-		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int cnt = -1;

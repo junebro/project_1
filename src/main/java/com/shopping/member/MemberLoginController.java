@@ -21,12 +21,9 @@ public class MemberLoginController extends SuperClass {
 
 		String MBRID = request.getParameter("MBRID");
 		String MBRPW = request.getParameter("MBRPW");
-		System.out.println(MBRID + "/" + MBRPW);
 		
 		MemberDao dao = new MemberDao();
 		Member bean = dao.getDataByIdAndPassword(MBRID, MBRPW);
-		
-		System.out.println(bean);	
 		
 		if (bean == null) { // 로그인 실패
 			
@@ -43,7 +40,6 @@ public class MemberLoginController extends SuperClass {
 			super.session.setAttribute("loginfo", bean);
 			
 			session.setAttribute("MBRID", MBRID);
-			System.out.println("로그인 성공");
 			// 로그인 성공 이후 상품 목록 페이지로 이동합니다.
 			super.gotoPage("/MainPage/index.jsp");
 		}

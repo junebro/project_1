@@ -36,25 +36,15 @@ public class OrderPayController extends SuperClass {
 			int ORDSZ = Integer.parseInt(values[2]);
 			int ORDQTY = Integer.parseInt(values[3]);
 
-			System.out.println(values[0]);
-			System.out.println(values[1]);
-			System.out.println(values[2]);
-			System.out.println(values[3]);
-
 			pBean = cDao.getDataList1(PROCD);
 			int TOTPR = ORDQTY * pBean.get(0).getPROPR();
 			int MBRPT =(int)(0.03*TOTPR); // 포인트 정보 업데이트 
-			System.out.println("적립된 포인트 : " + MBRPT);
-			System.out.println("적립된 아이디 : " + MBRID);
 			
 			cDao.deleteData(MBRID, PROCD, ORDSZ);
 			oDao.pointData(MBRPT, MBRID);
 			oDao.insertData(MBRID, PROCD, ORDQTY, ORDSZ, TOTPR);
 		}
-		
-		
 
-		System.out.println(" 주문 완료 : 결제 금액 입력됨.");
 		super.gotoPage("MainPage/index.jsp");
 
 	}

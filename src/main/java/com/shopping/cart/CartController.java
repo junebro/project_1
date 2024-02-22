@@ -30,12 +30,6 @@ public class CartController extends SuperClass {
     		String PROSZ = values[2];
     		String QTY = values[3];
             
-            
-            System.out.println(values[0]);
-            System.out.println(values[1]);
-            System.out.println(values[2]);
-            System.out.println(values[3]);
-            
             cBean.setMBRID(MBRID);
     		cBean.setPROCD(PROCD);
     		cBean.setQTY(Integer.parseInt(QTY));
@@ -45,7 +39,6 @@ public class CartController extends SuperClass {
             
         }
 			List<Cart> be = cDao.getDataList(MBRID);
-		System.out.println("장바구니 데이터 행 개수 :" + be.size());
 		
 		super.gotoPage("Member/MyCart.jsp");
 		

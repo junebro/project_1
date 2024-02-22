@@ -15,8 +15,7 @@ public class ProductListController extends SuperClass{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doGet(request, response);
-		System.out.println("상품 목록 페이지로 이동합니다.");
-		
+
 		// 페이징 처리를 위한 파라미터 목록들
 		String pageNumber = request.getParameter("pageNumber");
 		String pageSize = request.getParameter("pageSize");

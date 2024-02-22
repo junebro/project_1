@@ -38,7 +38,6 @@ public class MypageUpdateController extends SuperClass{
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		super.doPost(request, response);
-		
 		MemberDao dao = new MemberDao();
 		Member bean = new Member();
 		

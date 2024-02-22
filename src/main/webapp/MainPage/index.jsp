@@ -143,7 +143,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 
 #visibleDiv {
 	/* 111 : 주석 */
-	/*  display: none;  */
+	display: none;
 }
 
 
@@ -178,8 +178,8 @@ ArrayList<String> imgPath = new ArrayList<String>();
     </div>
     
     <!-- 111 : 삭제 -->
-    
-   <%--  <jsp:include page="hidden_top.jsp" /> --%>
+	<jsp:include page="top.jsp" />
+	<%--  <jsp:include page="hidden_top.jsp" /> --%>
 	<!-- <div class="hidden"></div> -->
 	
 	
@@ -199,8 +199,8 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			<br>
 			<br>
 			<!-- 111 : 주석 품  -->
-			<video width="100%" src="https://image.nbkorea.com/NBRB_PC/event/imc/ML860v2/video.mp4" autoplay="" loop="" muted="" playsinline=""></video>
-			<br><br>
+			<!-- <video width="100%" src="https://image.nbkorea.com/NBRB_PC/event/imc/ML860v2/video.mp4" autoplay="" loop="" muted="" playsinline=""></video> -->
+			<br><br><br>
 			<div class="middelContents">
 				<p style="font-size: 40px;">NEW CLASSIC, NEW STYLE</p>
 				<p style="margin-bottom: 30px; font-size: 20px; font-weight: 400;">
@@ -270,9 +270,9 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			
 			<br><br><br><br><br><br>
 			<!-- 111 : 주석 품  -->
-			<img width="100%" src="https://image.nbkorea.com/NBRB_Site/20240219/NB20240219105941806001.jpg" alt="">
+			<!-- <img width="100%" src="https://image.nbkorea.com/NBRB_Site/20240219/NB20240219105941806001.jpg" alt="">
 			
-			<br><br><br><br><br><br>
+			<br><br><br><br><br><br> -->
 			
 			<div class="middelContents">
 				<p style="font-size: 40px;">Newbalance lconic, LIFESTYLE</p>
@@ -341,9 +341,9 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			
 			<br><br><br><br><br><br>
 			<!-- 111 : 주석 품  -->
-			<img width="100%" src="https://image.nbkorea.com/NBRB_Site/20240219/NB20240219091039501001.jpg" alt="">
+			<!-- <img width="100%" src="https://image.nbkorea.com/NBRB_Site/20240219/NB20240219091039501001.jpg" alt="">
 			
-			<br><br><br><br><br><br>
+			<br><br><br><br><br><br> -->
 			
 			<div class="middelContents">
 				<p style="font-size: 40px;">Intelligent choice, SANDLE</p>
@@ -412,9 +412,9 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			
 			<br><br><br><br><br><br>
 			<!-- 111 : 주석 품  -->
-			<img width="100%" src="https://image.nbkorea.com/NBRB_Site/20240207/NB20240207145257499001.jpg" alt="">
+			<!-- <img width="100%" src="https://image.nbkorea.com/NBRB_Site/20240207/NB20240207145257499001.jpg" alt="">
 			
-			<br><br><br><br><br><br>
+			<br><br><br><br><br><br> -->
 			
 			<div class="middelContents">
 				<p style="font-size: 40px;">1906 Silver Metallic Styling, Sport</p>
@@ -535,7 +535,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	        // 스크롤 이벤트에 대한 핸들러 함수
 	        function handleScroll() {
 	        	// 111 : return; 삭제
-	
+				return;
 	            // 스크롤 위치 확인
 	            var scrollPosition = window.scrollY;
 

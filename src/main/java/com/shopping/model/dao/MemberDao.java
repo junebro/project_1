@@ -106,7 +106,6 @@ public class MemberDao extends SuperDao {
 		ResultSet rs = null;
 		Member bean = null;
 
-		System.out.println("멤버 다오 겟머이타 빈 호출됨");
 		super.conn = super.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -182,7 +181,7 @@ public class MemberDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
-		System.out.println("인서트 데이타 메소드 호출됨\n");
+		
 		return cnt;
 	}
 

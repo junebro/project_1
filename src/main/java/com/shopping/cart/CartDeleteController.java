@@ -13,24 +13,15 @@ public class CartDeleteController extends SuperClass{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doGet(request, response);
 		
-		System.out.println("삭제 호출");
-		
 		Cart bean = new Cart();
 		CartDao cDao = new CartDao();
 		
 		String MBRID = super.loginfo.getMBRID();
 		String PROCD = request.getParameter("PROCD");
 		int PROSZ = Integer.parseInt(request.getParameter("PROSZ"));
-		System.out.println("dddddsssssssssssssssssssssss");
-		System.out.println(" 현재 아이디 : "+MBRID);
-		System.out.println(" 리퀘스트 상품 코드 : "+PROCD);
-		
-		
+
 		cDao.deleteData(MBRID, PROCD, PROSZ);
-		
-		
-		
-		
+	
 		super.gotoPage("Member/MyCart.jsp");
 		
 	}

@@ -592,16 +592,16 @@ table .inputTypeText { /* 2열 입력칸 */
 					<div class="spanbar" onclick="toggleReview('MyLike.jsp')">
 						<a href="#">나의 찜 내역</a><br>
 					</div>
-					<div class="spanbar">
+					<!-- <div class="spanbar">
 						<a href="#">내 게시글</a><br>
-					</div>
+					</div> -->
 					<%-- <div class="spanbar" onclick="toggleMyinfo()">--%>
 					<div class="spanbar" onclick="toggleReview('MyInfo.jsp')">
 						<a href="#">내 정보</a>
 					</div>
-					<div class="spanbar" onclick="findidpw()">
+					<!-- <div class="spanbar" onclick="toggleReview('MyUpdate.jsp')">
 						<a href="#">회원정보수정</a><br>
-					</div>
+					</div> -->
 					<div class="spanbar" onclick="logOut()">
 						<a href="#">로그아웃</a><br>
 					</div>

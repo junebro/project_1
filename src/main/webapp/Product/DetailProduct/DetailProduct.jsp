@@ -636,8 +636,10 @@
 					location.href = url
 					
 				} else if (t == "c") {
-					var url = '<%=notWithFormTag%>cartInsert&submit=' + submit.join(',');
-					location.href = url
+					if (confirm("장바구니에 추가 되었습니다. 장바구니페이지로 이동하시겠습니까?")) {
+						var url = '<%=notWithFormTag%>cartInsert&submit=' + submit.join(',');
+						location.href = url
+					}	
 				}  
 	
 			} else {
@@ -933,7 +935,7 @@
 			
 		</div>
 	</div>
-	<jsp:include page="./../../MainPage/footer.jsp" />
+	<%-- <jsp:include page="./../../MainPage/footer.jsp" /> --%>
 	<script>
 		// 스크롤 
 		let prevScrollPos = window.pageYOffset;

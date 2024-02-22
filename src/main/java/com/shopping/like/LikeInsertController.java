@@ -12,7 +12,6 @@ public class LikeInsertController extends SuperClass{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		super.doGet(request, response);
-		System.out.println("LikeInsertController 성공 get");
 		
 		String pronm = request.getParameter("pronm");
 		String mbrid = request.getParameter("mbrid");
@@ -20,7 +19,6 @@ public class LikeInsertController extends SuperClass{
 		LikeDao ldao = new LikeDao();
 		int cnt = ldao.insertLike(pronm, mbrid);
 		
-		System.out.println("저장 완료");
 	}
 	
 	

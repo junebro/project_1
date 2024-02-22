@@ -47,7 +47,7 @@ public class CartDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
-		System.out.println(dataList.size());
+		
 		return dataList;
 	}
 	
@@ -88,7 +88,7 @@ public class CartDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
-		System.out.println(dataList.size());
+		
 		return dataList;
 	}
 
@@ -132,7 +132,7 @@ public class CartDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
-		System.out.println("장바구니 데이터 인서트 됨");
+		
 		return cnt;
 	}
 
@@ -176,11 +176,6 @@ public class CartDao extends SuperDao {
 	private Cart resultSetBean(ResultSet rs) {
 		try {
 			Cart bean = new Cart();
-
-			System.out.println("PROCD : " + rs.getString("PROCD"));
-			System.out.println("수량 : " + rs.getInt("QTY"));
-			System.out.println("MBRID : " + rs.getString("MBRID"));
-			System.out.println("PROSZ : " + rs.getInt("PROSZ"));
 
 			bean.setPROCD(rs.getString("PROCD"));
 			bean.setQTY(rs.getInt("QTY"));
@@ -247,7 +242,7 @@ public class CartDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
-		System.out.println(MBRID + "의 장바구니 데이터 "+ PROCD + " 상품 삭제됨 ");
+		
 		return cnt;
 	}
 

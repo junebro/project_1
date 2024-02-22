@@ -18,9 +18,6 @@ public class MyOrderController extends SuperClass{
 		String MBRID = super.loginfo.getMBRID();
 		
 		List<MyOrder> ldao = new MyOrderDao().getDataList(MBRID);
-		
-		System.out.println(super.loginfo);
-		System.out.println("주문 데이터 행 개수 :" + ldao.size());
 	}
 
 	@Override
@@ -28,7 +25,6 @@ public class MyOrderController extends SuperClass{
 		// TODO Auto-generated method stub
 		super.doPost(request, response);
 		
-		System.out.println(" 사용자 정보 : " + super.loginfo.getMBRID());
 	}
 	
 }

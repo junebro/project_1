@@ -14,9 +14,6 @@ public class OrderController extends SuperClass {
 
 		super.doPost(request, response);
 
-		System.out.println(super.loginfo);
-		System.out.println("오더컨트롤러 포스트 호출");
-
 	}
 
 	@Override
@@ -24,8 +21,6 @@ public class OrderController extends SuperClass {
 
 		super.doGet(request, response);
 
-		System.out.println("오더컨트롤러 겟또 호출");
-		System.out.println(" 사용자 정보 : " + super.loginfo.getMBRID());
 		super.gotoPage("Order/OrderM.jsp");
 	}
 }

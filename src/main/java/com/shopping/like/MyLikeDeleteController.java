@@ -11,15 +11,12 @@ public class MyLikeDeleteController extends SuperClass{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		super.doGet(request, response);
-		System.out.println("MyLikeDeleteController 성공 get");
-		
 		String pronm = request.getParameter("pronm");
 		String mbrid = request.getParameter("mbrid");
 		
 		MyLikeDao ldao = new MyLikeDao();
 		int cnt = ldao.deleteLike(pronm, mbrid);
 		
-		System.out.println("삭제 완료");
 	}
 	
 	@Override

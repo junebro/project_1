@@ -88,8 +88,7 @@ public class OrderDao extends SuperDao {
 	public int pointData(int MBRPT, String MBRID) {
 		String sql = " update TMBR SET MBRPT = MBRPT + ?  ";
 		sql += " where MBRID = ? ";
-		System.out.println("포인트 업데이트 시작");
-		System.out.println(sql);
+
 		PreparedStatement pstmt = null;
 		int cnt = -13;
 		try {
@@ -99,7 +98,7 @@ public class OrderDao extends SuperDao {
 
 			pstmt.setInt(1, MBRPT);
 			pstmt.setString(2, MBRID);
-			System.out.println(sql);
+
 			cnt = pstmt.executeUpdate();
 			conn.commit();
 		} catch (Exception e) {
@@ -120,7 +119,6 @@ public class OrderDao extends SuperDao {
 			}
 		}
 
-		System.out.println(sql);
 		return cnt;
 	}
 
@@ -219,7 +217,7 @@ public class OrderDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
-		System.out.println(dataList.size());
+		
 		return dataList;
 	}
 

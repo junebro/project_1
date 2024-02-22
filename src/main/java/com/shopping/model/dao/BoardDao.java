@@ -49,7 +49,6 @@ public class BoardDao extends SuperDao{
 		 sql += " )";
 		 sql += " where ranking between ? and ? ";
 		
-		System.out.println("sql 구문:\n" + sql);
 		
 		PreparedStatement pstmt = null ; // 문장 객체
 		ResultSet rs = null ;
@@ -158,7 +157,7 @@ public class BoardDao extends SuperDao{
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, no);
 				rs = pstmt.executeQuery();
-				System.out.println("데이터가 실행되었습니다.");
+
 				if(rs.next()) {
 					bean = this.resultSet2Bean(rs);
 				}
@@ -259,7 +258,6 @@ public class BoardDao extends SuperDao{
 	}
 
 	public int updateData(Board bean) {
-		System.out.println(bean);
 		
 		String sql = "update boards set id=?, password=?, subject=?, contents=?, regdate=default" ;
 		sql += " where no = ?";
@@ -300,8 +298,7 @@ public class BoardDao extends SuperDao{
 
 	public Integer getReplyCount(Integer groupno) {
 		// 해당 그룹 번호(groupno)에 속해 있는 데이터의 행 개수를 반환해 줍니다.
-		System.out.println("검색할 그룹 번호 : " + groupno);
-		
+
 		String sql = " select count(*) as cnt from boards " ;
 		sql += " where groupno = ? " ;
 		
@@ -337,9 +334,7 @@ public class BoardDao extends SuperDao{
 	}
 
 	public int replyData(Board bean, Integer orderno) {
-		System.out.println("답글 달기 ");
-		System.out.println(bean);		
-		
+
 		String sql = "" ;
 		PreparedStatement pstmt = null ;
 		int cnt = - 1 ;

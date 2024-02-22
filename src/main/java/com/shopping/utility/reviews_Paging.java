@@ -46,11 +46,10 @@ public class reviews_Paging {
 		this.url = "/first_Project/Shopping_project?command=DetailReviews";
 		
 		//this.url = url;
-		System.out.println("reviews_Paging : " + url);
 		// 모드가 "all"이면 전체 검색으로 간주합니다.
 		this.sel_star = sel_star == null || sel_star.equals("null") || sel_star.equals("") ? "all" : sel_star;
 		this.sel_color = sel_color == null || sel_color.equals("null") || sel_color.equals("") ? "" : sel_color;
-		System.out.println("sel_starsel_starsel_starsel_starsel_starsel_starsel_stars: " + sel_star);
+
 		double _totalPage = Math.ceil((double)totalCount/pageSize);
 		this.totalPage = (int)_totalPage;
 		
@@ -58,7 +57,7 @@ public class reviews_Paging {
 		this.endRow = pageNumber * pageSize;
 		
 		if(endRow > totalCount) { endRow = totalCount; }
-		System.out.println("totalCount : " + totalCount);
+	
 		// pageNumber가 pageSize의 배수가 되면 어긋납니다.(-1QOftoagownrl)
 		this.beginPage = (pageNumber-1) / pageCount * pageCount + 1;
 		this.endPage = beginPage + pageCount -1;
