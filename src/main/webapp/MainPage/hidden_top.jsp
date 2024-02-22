@@ -205,23 +205,16 @@ section {
 			</c:choose>
 		</ul>
 	</nav>
-	<br>
-	<div
-		style="display: flex; justify-content: center; width: 100%; background-color: white;">
-		<img id="topimage" style="cursor: pointer"
-			src="${pageContext.request.contextPath}/Image/2main.png" onclick="location.href='${pageContext.request.contextPath}/MainPage/index.jsp'"> <br>
-	</div>
- 
 
 	<!-- <header>
     </header> -->
 	<div style="background-color: white; text-align:center;">
-		 <%-- <div class="dropdown">
-			<button class="dropbtn"
-				onclick="location.href='${pageContext.request.contextPath}/MainPage/index.jsp'">Home</button>
-		</div> 
- --%>
-		<div class="dropdown">
+		
+		<div style="display: flex; justify-content: center; width: 100%; background-color: white;">
+		
+		</div>
+		
+	
 			<button class="dropbtn"
 				onclick="location.href='${pageContext.request.contextPath}/MainPage/Running.jsp'">Running</button>
 			<!-- 
@@ -230,9 +223,9 @@ section {
               <a href="#">Link 2</a>
               <a href="#">Link 3</a>
           </div>-->
-		</div>
 
-		<div class="dropdown">
+
+	
 			<button class="dropbtn"
 				onclick="location.href='${pageContext.request.contextPath}/MainPage/LifeStyle.jsp'">LifeStyle</button>
 			<!-- 
@@ -241,9 +234,9 @@ section {
               <a href="#">Link 2</a>
               <a href="#">Link 3</a>
           </div>-->
-		</div>
+		
 
-		<div class="dropdown">
+
 			<button class="dropbtn"
 				onclick="location.href='${pageContext.request.contextPath}/MainPage/Sandle.jsp'">Sandle</button>
 			<!-- 
@@ -252,9 +245,9 @@ section {
               <a href="#">Link 2</a> 
               <a href="#">Link 3</a>
           </div>-->
-		</div>
+		
 
-		<div class="dropdown">
+	
 			<button class="dropbtn"
 				onclick="location.href='${pageContext.request.contextPath}/MainPage/Sport.jsp'">Sport</button>
 			<!-- 
@@ -263,9 +256,9 @@ section {
               <a href="#">Link 2</a>
               <a href="#">Link 3</a>
           </div>-->
-		</div>
+		
 
-		<div class="dropdown">
+	
 			<button class="dropbtn"
 			onclick="location.href='${pageContext.request.contextPath}/board/start.jsp'">Board</button>
 			<!--	/board/start.jsp
@@ -275,7 +268,7 @@ section {
               <a href="#">Link 2</a>
               <a href="#">Link 3</a>
             </div>-->
-		</div>
+		
 		<div class="underline"></div>
 	</div>
 </section>

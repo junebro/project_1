@@ -73,7 +73,6 @@ public class ProductDetailDao extends SuperDao {
 		super.conn = super.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(sql);
 			pstmt.setString(1, pronm);
 			pstmt.setString(2, pronm);
 			
@@ -170,7 +169,8 @@ public class ProductDetailDao extends SuperDao {
 			conn.setAutoCommit(false);
 			
 			sql = " SELECT CASE WHEN b.pronm IS NOT NULL THEN 'LK' END AS LK, A.*, ";
-			sql += " CASE WHEN TO_DATE(A.prodt, 'YYYY-MM-DD') >= (SYSDATE - 10) THEN A.propr * 0.03 ELSE A.propr * 0.01 END AS propnt "; 
+			sql += " CASE WHEN TO_DATE(A.prodt, 'YYYY-MM-DD') >= (SYSDATE - 10) THEN A.propr * 0.03 ELSE A.propr * 0.01 END AS propnt, "; 
+			sql += " CASE WHEN A.PRODT >= ADD_MONTHS(SYSDATE, -1) THEN 'new' ELSE NULL END AS PRONEW ";
 			sql += " FROM tpro A ";
 			sql += " LEFT OUTER JOIN TLKE B ON A.pronm = B.pronm AND B.mbrid = ? ";
 			sql += " WHERE A.pronm = ? ";
@@ -178,7 +178,7 @@ public class ProductDetailDao extends SuperDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mbrid);
 			pstmt.setString(2, pronm);
-		
+			System.out.println(sql);
 			rs = pstmt.executeQuery();
 			List<Map<String, Object>> resultSetProList = new ArrayList<>();
 			
@@ -198,9 +198,10 @@ public class ProductDetailDao extends SuperDao {
             	rowMap.put("PROIMG2", rs.getString("proimg2"));
             	rowMap.put("PROIMG3", rs.getString("proimg3"));
             	rowMap.put("PRODT", rs.getString("prodt"));
-            	rowMap.put("PROPNT", rs.getString("PROPNT"));
+            	rowMap.put("PROPNT", rs.getString("propnt"));
             	rowMap.put("PROCMN", rs.getString("procmn"));
                 rowMap.put("LK", rs.getString("lk"));
+                rowMap.put("PRONEW", rs.getString("pronew"));
                 
                 resultSetProList.add(rowMap);
             }
@@ -254,8 +255,6 @@ public class ProductDetailDao extends SuperDao {
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, pronm);
-			System.out.println(sql);
-			System.out.println(pronm);
 			rs = pstmt.executeQuery();
 				
 			List<Map<String, Object>> resultSetViewsTotal = new ArrayList<>();
@@ -328,12 +327,6 @@ public class ProductDetailDao extends SuperDao {
 		
 		PreparedStatement pstmt = null; // 문장 객체
 		ResultSet rs = null;
-		System.out.println(sql);
-		System.out.println(pronm);
-		System.out.println(sel_color);
-		System.out.println(sel_star);
-		System.out.println(paging.getBeginRow());
-		System.out.println(paging.getEndRow());
 		Map<String, Object> resultMap = new HashMap<>();
 
 		super.conn = super.getConnection();

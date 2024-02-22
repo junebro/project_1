@@ -10,8 +10,9 @@
 
 <%
 	ProductDao dao = new ProductDao();
-	String mbrid = (String)session.getAttribute("MBRID");	
+	String mbrid = (String)session.getAttribute("MBRID");
 	List<Product_main> dataList = dao.getDataList(mbrid);
+	List<Product> dataColor = dao.getDataColor();
 %>
 
 <!-- 
@@ -34,6 +35,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	session.setAttribute("imgPath", imgPath);
  -->
 <c:set var="dataList" value="<%=dataList%>" />
+<c:set var="dataColor" value="<%=dataColor%>" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -41,26 +43,26 @@ ArrayList<String> imgPath = new ArrayList<String>();
 .menuwrap {
 	position: fixed;
 	text-align: center;
-}
+} 
 
-#topwrap {
+ #topwrap {
 	position: fixed;
 	width: 100%;
-	height: 180px;
+	height: 100px;
 	background-color: white;
 	text-align: center;
 	z-index: 99;
-}
+} 
 
-.visual {
+ .visual {
 	margin-top: 100px;
-}
+} 
 
-.d-block {
+ .d-block {
 	width: 100%;
 	height: 500px;
-}
-#demo {
+} 
+ #demo {
 	width: 1000px;
 	display: flex;
 	margin:auto;
@@ -69,9 +71,11 @@ ArrayList<String> imgPath = new ArrayList<String>();
 .detail{
 	 display: flex;
 	 justify-content: space-between;
-	 margin: 10px;
-	 margin-left: 30px;
-	 margin-right: 30px;
+	 margin-left: 23px;
+	 margin-right: 23px;
+	 margin-bottom:15px;
+	 pointer-events: none;
+	 height:14px;
 }
 
 .description {
@@ -80,8 +84,8 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	font-family: 'Noto Sans KR', sans-serif;
 }
 .PRONM {
-	 margin-left: 30px;
-	 margin-right: 30px;
+	 margin-left: 20px;
+	 margin-right: 20px;
 	 font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -91,19 +95,56 @@ ArrayList<String> imgPath = new ArrayList<String>();
 }
 .overlay-image {
 	position: absolute; /* 절대 위치 설정 */
-	top: 20px; /* 상단에 위치 */
-	right: 20px; /* 왼쪽에 위치 */
+	top: 12px; /* 상단에 위치 */
+	right: 23px; /* 왼쪽에 위치 */
 	/*height: auto;  이미지의 비율을 유지하면서 크기 조정 */
 }
 
 .main-image {
 	/* 기본 이미지에 대한 스타일링 (예: 최대 너비 설정 등) */
-	max-width: 100%;
+	max-width: 90%;
 	height: auto;
 }
+
+#color_area {
+	/* padding: 5px 5px 5px 5px; */
+	padding: 4px;
+	text-align: left;
+}
+
+.color_div_left{
+	margin-top:5px;
+	color:Light Blue;
+	pointer-events: none;
+	font-family: "Raleway", sans-serif;
+	font-size: 15px;
+	font-weight: bold; /* 클릭 시 글자 굵기 */
+	
+}
+
+.color_div_right{
+	margin-top:7px;
+	height:17px;
+}
+
+.color_div_center{
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .middelContents{
 	font-family: 'Noto Sans KR', sans-serif;
-}    
+}
+
+#hiddenDiv {
+	display: none;
+}
+
+#visibleDiv {
+	/* 111 : 주석 */
+	 display: none; 
+}
+
 </style>
 <head>
 <meta charset="UTF-8">
@@ -130,7 +171,33 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	<main class="main">
 		<aside></aside>
 		<section>
-		<br>
+		<!-- Carousel -->
+			<div id="demo" class="carousel slide" data-bs-ride="carousel" >
+				
+				<!-- Indicators/dots -->
+				<div class="carousel-indicators" >
+					<button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+				</div>
+				
+				<!-- The slideshow/carousel -->
+				<div class="carousel-inner" >
+					<div class="carousel-item active">
+						<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240213/NB20240213093206542001.jpg"
+							style="width: 100%;">
+					</div>
+					
+				</div>
+				<!-- Left and right controls/icons -->
+				<button class="carousel-control-prev" type="button"
+					data-bs-target="#demo" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</button>
+				<button class="carousel-control-next" type="button"
+					data-bs-target="#demo" data-bs-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</button>
+			</div>	
+			<br>
 			<div class="middelContents">
 				<!-- <p style="margin-top: 10px; font-size: 50px; font-family: 'Black Han Sans', sans-serif; font-weight: 200;">Sandle</p> -->
 				<p>
@@ -142,34 +209,103 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			</div>
 			
 			<c:forEach var="product" items="${dataList}" varStatus="status">
-				<c:if test="${product.PROTP == 3}">
+				<c:if test="${product.PROTP==3}">
 					<div class="columnwrap">
 						<div class="column">
 							<div class="thumbnail">
-								<%-- <a href="./img/${list}"> <img src="./img/${list}" alt="Product">--%>
 								<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
 									<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
 									<c:if test="${product.LK == 'LK'}">
-										<img src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
 									</c:if>				
 									<c:if test="${product.LK != 'LK'}">
-										<img src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="fn_lk('${product.PRONM}', 'bht')">
 									</c:if>
-									<div class="detail">
-										<div class="description" style="color:#A5A5A5;">
-											${product.PRONM}
-										</div>
-										<div class="description">
-											${product.PROPR}원
-										</div>
-									</div>
 								</a>
+								<div class="detail">
+									<div class="color_div_left">
+										<c:if test="${product.PRODT == 'new'}">
+											NEW
+										</c:if>
+									</div>
+										<c:if test="${product.PRODT == 'new' && product.RVWGR > 3.5}">
+											&nbsp|&nbsp
+										</c:if>
+									<div class="color_div_left">
+										<c:if test="${product.RVWGR > 3.5}">
+										BEST
+										</c:if>
+									</div>
+									<div class="color_div_center" ></div>
+									
+									
+									<c:forEach var="color" items="${dataColor}" varStatus="status">
+										
+										<c:if test="${product.PRONM == color.PRONM}">
+											<c:if test="${color.PROCR == 'White'}">
+												&nbsp<div class="color_div_right" id="color_area" style="border:1px solid #A5A5A5; background-color:${color.PROCR}"></div>
+											</c:if>
+											<c:if test="${color.PROCR != 'White'}">
+												&nbsp<div class="color_div_right" id="color_area" style="background-color:${color.PROCR}"></div>
+											</c:if>
+										</c:if>
+									</c:forEach>
+							
+								</div>
+								<div class="detail">
+									<div class="description" style="color:#A5A5A5;">
+										${product.PRONM}
+									</div>
+									<div class="description">
+										<fmt:formatNumber value="${product.PROPR}" pattern="###,###" />원
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</c:if>
 			</c:forEach>
+			<script>
+			
+			document.querySelectorAll('.overlay-image').forEach(function(element) {
+				element.addEventListener('click', function(event) {
+					event.preventDefault();
+				});
+			});
+			
+			function fn_lk(pronm, ht){
 
+				var mbrid = "${sessionScope.loginfo.MBRID}";
+				
+				if(!mbrid) {
+					if (confirm("로그인이 필요한 서비스입니다.\n로그인 하시곘습니까?")) {
+						location.href = '${pageContext.request.contextPath}/Member/loginMain.jsp';
+					}
+					return;
+				}
+				var url = document.getElementById(pronm + "ht-image").src;
+				var fileName = url.split('/').pop();
+				
+				if (fileName == "main_ht.png") {
+					var URL = '<%=notWithFormTag%>liDelete';
+					document.getElementById(pronm + "ht-image").src = "${pageContext.request.contextPath}/Image/main_bht.png";
+					
+				} else if (fileName == "main_bht.png") {
+					var URL = '<%=notWithFormTag%>liInsert';
+					document.getElementById(pronm + "ht-image").src = "${pageContext.request.contextPath}/Image/main_ht.png";
+				}
+	
+				$.ajax({
+			        type: 'GET',
+			        url: URL,
+			        data: { pronm: pronm, mbrid: mbrid },
+			        error: function(xhr, status, error) {
+			            console.error(error);
+			        }
+			    });
+			}
+
+		</script>
 		</section>
 		<article></article>
 	</main>

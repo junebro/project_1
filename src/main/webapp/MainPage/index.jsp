@@ -15,6 +15,7 @@
 	List<Product> dataColor = dao.getDataColor();
 %>
 
+
 <!-- 
 
 ArrayList<String> imgPath = new ArrayList<String>();
@@ -42,26 +43,26 @@ ArrayList<String> imgPath = new ArrayList<String>();
 .menuwrap {
 	position: fixed;
 	text-align: center;
-}
+} 
 
-#topwrap {
+ #topwrap {
 	position: fixed;
 	width: 100%;
-	height: 180px;
+	height: 100px;
 	background-color: white;
 	text-align: center;
 	z-index: 99;
-}
+} 
 
-.visual {
+ .visual {
 	margin-top: 100px;
-}
+} 
 
-.d-block {
+ .d-block {
 	width: 100%;
 	height: 500px;
-}
-#demo {
+} 
+ #demo {
 	width: 1000px;
 	display: flex;
 	margin:auto;
@@ -70,10 +71,11 @@ ArrayList<String> imgPath = new ArrayList<String>();
 .detail{
 	 display: flex;
 	 justify-content: space-between;
-	 margin: 10px;
 	 margin-left: 23px;
 	 margin-right: 23px;
+	 margin-bottom:15px;
 	 pointer-events: none;
+	 height:14px;
 }
 
 .description {
@@ -105,16 +107,24 @@ ArrayList<String> imgPath = new ArrayList<String>();
 }
 
 #color_area {
-
 	/* padding: 5px 5px 5px 5px; */
 	padding: 4px;
 	text-align: left;
 }
 
 .color_div_left{
+	margin-top:5px;
 	color:Light Blue;
 	pointer-events: none;
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: "Raleway", sans-serif;
+	font-size: 15px;
+	font-weight: bold; /* 클릭 시 글자 굵기 */
+	
+}
+
+.color_div_right{
+	margin-top:7px;
+	height:17px;
 }
 
 .color_div_center{
@@ -126,8 +136,17 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-	
+#hiddenDiv {
+	display: none;
+}
+
+#visibleDiv {
+	/* 111 : 주석 */
+	 display: none; 
+}
+
 </style>
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
@@ -141,73 +160,44 @@ ArrayList<String> imgPath = new ArrayList<String>();
 	href="${pageContext.request.contextPath}/MainPage/alleffect/main.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/MainPage/alleffect/slick.min.js"></script>
 
-
 </head>
 <body>
-
-	<jsp:include page="top.jsp" />
-	<div class="hidden"></div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<!-- Carousel -->
-	<div id="demo" class="carousel slide" data-bs-ride="carousel" >
 	
-		<!-- Indicators/dots -->
-		<div class="carousel-indicators" >
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="0"
-				class="active"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="5"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="6"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="7"></button>
-		</div>
-		
-		<!-- The slideshow/carousel -->
-		<div class="carousel-inner" >
-			<div class="carousel-item active">
-				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240221/NB20240221131436453001.jpg" 
-					style="width: 100%;">
-			</div>
-			<div class="carousel-item">
-				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240221/NB20240221082612255001.jpg"
-					style="width: 100%;">
-			</div>
-			<div class="carousel-item">
-				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240207/NB20240207145118557001.jpg"
-					style="width: 100%;">
-			</div>
-			<div class="carousel-item">
-				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240119/NB20240119111110780001.jpg"
-					style="width: 100%;">
-			</div>
-			<div class="carousel-item">
-				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240213/NB20240213093206542001.jpg"
-					style="width: 100%;">
-			</div>
-			<div class="carousel-item">
-				<img class="d-block" src="https://image.nbkorea.com/NBRB_Site/20240207/NB20240207144546818001.jpg"
-					style="width: 100%;">
-			</div>
-		</div>
-		<!-- Left and right controls/icons -->
-		<button class="carousel-control-prev" type="button"
-			data-bs-target="#demo" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon"></span>
-		</button>
-		<button class="carousel-control-next" type="button"
-			data-bs-target="#demo" data-bs-slide="next">
-			<span class="carousel-control-next-icon"></span>
-		</button>
-	</div>
+
+	
+	
+	<div id="visibleDiv">
+       <jsp:include page="top.jsp" />
+    </div>
+    
+    <div id="hiddenDiv">
+        <jsp:include page="hidden_top.jsp" />
+    </div>
+    
+    <!-- 111 : 삭제 -->
+    <jsp:include page="top.jsp" />
+    
+   <%--  <jsp:include page="hidden_top.jsp" /> --%>
+	<!-- <div class="hidden"></div> -->
+	
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
 	<main class="main">
+		
 		<aside></aside>
 		<section>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<!-- 111 : 주석 품  -->
+			<!-- <video width="100%" src="https://image.nbkorea.com/NBRB_PC/event/imc/ML860v2/video.mp4" autoplay="" loop="" muted="" playsinline=""></video> -->
 			<br><br>
 			<div class="middelContents">
 				<p style="font-size: 40px;">NEW CLASSIC, NEW STYLE</p>
@@ -222,15 +212,17 @@ ArrayList<String> imgPath = new ArrayList<String>();
 						<div class="column">
 							<div class="thumbnail">
 								<%-- <a href="./img/${list}"> <img src="./img/${list}" alt="Product">--%>
-								<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
-									<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
-									<c:if test="${product.LK == 'LK'}">
-										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="test('${product.PRONM}', 'ht')">
-									</c:if>				
-									<c:if test="${product.LK != 'LK'}">
-										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="test('${product.PRONM}', 'bht')">
-									</c:if>
-								</a>
+								<div>
+									<a  href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
+										<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
+										<c:if test="${product.LK == 'LK'}">
+											<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
+										</c:if>				
+										<c:if test="${product.LK != 'LK'}">
+											<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="fn_lk('${product.PRONM}', 'bht')">
+										</c:if>
+									</a>
+								</div>
 								<div class="detail">
 									<div class="color_div_left">
 										<c:if test="${product.PRODT == 'new'}">
@@ -245,9 +237,9 @@ ArrayList<String> imgPath = new ArrayList<String>();
 										BEST
 										</c:if>
 									</div>
-									<div class="color_div_center" ></div>
+									<div class="color_div_center" ></div> 
 									
-									
+									 
 									<c:forEach var="color" items="${dataColor}" varStatus="status">
 										<c:if test="${product.PRONM == color.PRONM}">
 											<c:if test="${color.PROCR == 'White'}">
@@ -265,7 +257,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 										${product.PRONM}
 									</div>
 									<div class="description">
-										${product.PROPR}원
+										<fmt:formatNumber value="${product.PROPR}" pattern="###,###" />원
 									</div>
 								</div>
 							</div>
@@ -275,6 +267,10 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			</c:forEach>
 			
 			<br><br><br><br><br><br>
+			<!-- 111 : 주석 품  -->
+			<!-- <img width="100%" src="https://image.nbkorea.com/NBRB_Site/20240219/NB20240219105941806001.jpg" alt="">
+			
+			<br><br><br><br><br><br> -->
 			
 			<div class="middelContents">
 				<p style="font-size: 40px;">Newbalance lconic, LIFESTYLE</p>
@@ -292,10 +288,10 @@ ArrayList<String> imgPath = new ArrayList<String>();
 								<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
 									<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
 									<c:if test="${product.LK == 'LK'}">
-										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="test('${product.PRONM}', 'ht')">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
 									</c:if>				
 									<c:if test="${product.LK != 'LK'}">
-										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="test('${product.PRONM}', 'bht')">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="fn_lk('${product.PRONM}', 'bht')">
 									</c:if>
 								</a>
 								<div class="detail">
@@ -332,7 +328,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 										${product.PRONM}
 									</div>
 									<div class="description">
-										${product.PROPR}원
+										<fmt:formatNumber value="${product.PROPR}" pattern="###,###" />원
 									</div>
 								</div>
 							</div>
@@ -342,6 +338,10 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			</c:forEach>
 			
 			<br><br><br><br><br><br>
+			<!-- 111 : 주석 품  -->
+			<!-- <img width="100%" src="https://image.nbkorea.com/NBRB_Site/20240219/NB20240219091039501001.jpg" alt="">
+			
+			<br><br><br><br><br><br> -->
 			
 			<div class="middelContents">
 				<p style="font-size: 40px;">Intelligent choice, SANDLE</p>
@@ -359,10 +359,10 @@ ArrayList<String> imgPath = new ArrayList<String>();
 								<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
 									<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
 									<c:if test="${product.LK == 'LK'}">
-										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="test('${product.PRONM}', 'ht')">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
 									</c:if>				
 									<c:if test="${product.LK != 'LK'}">
-										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="test('${product.PRONM}', 'bht')">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="fn_lk('${product.PRONM}', 'bht')">
 									</c:if>
 								</a>
 								<div class="detail">
@@ -399,7 +399,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 										${product.PRONM}
 									</div>
 									<div class="description">
-										${product.PROPR}원
+										<fmt:formatNumber value="${product.PROPR}" pattern="###,###" />원
 									</div>
 								</div>
 							</div>
@@ -409,6 +409,10 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			</c:forEach>
 			
 			<br><br><br><br><br><br>
+			<!-- 111 : 주석 품  -->
+			<!-- <img width="100%" src="https://image.nbkorea.com/NBRB_Site/20240207/NB20240207145257499001.jpg" alt="">
+			
+			<br><br><br><br><br><br> -->
 			
 			<div class="middelContents">
 				<p style="font-size: 40px;">1906 Silver Metallic Styling, Sport</p>
@@ -426,10 +430,10 @@ ArrayList<String> imgPath = new ArrayList<String>();
 								<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
 									<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
 									<c:if test="${product.LK == 'LK'}">
-										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="test('${product.PRONM}', 'ht')">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
 									</c:if>				
 									<c:if test="${product.LK != 'LK'}">
-										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="test('${product.PRONM}', 'bht')">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="fn_lk('${product.PRONM}', 'bht')">
 									</c:if>
 								</a>
 								<div class="detail">
@@ -466,7 +470,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 										${product.PRONM}
 									</div>
 									<div class="description">
-										${product.PROPR}원
+										<fmt:formatNumber value="${product.PROPR}" pattern="###,###" />원
 									</div>
 								</div>
 							</div>
@@ -474,12 +478,12 @@ ArrayList<String> imgPath = new ArrayList<String>();
 					</div>
 				</c:if>
 			</c:forEach>
-			<br><br><br><br>
+			<br><br><br>
 		</section>
 		<article></article>
 		
 		<script>
-			
+			/* 하트 이미지 클릭 시 페이지 이동 안되게 막음*/
 			document.querySelectorAll('.overlay-image').forEach(function(element) {
 				element.addEventListener('click', function(event) {
 					event.preventDefault();
@@ -487,7 +491,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 				});
 			});
 			
-			function test(pronm, ht){
+			function fn_lk(pronm, ht){
 
 				var mbrid = "${sessionScope.loginfo.MBRID}";
 				
@@ -519,6 +523,30 @@ ArrayList<String> imgPath = new ArrayList<String>();
 			    });
 			}
 			
+			
+			 // 보이는 div와 숨겨진 div 요소를 가져옴
+	        var visibleDiv = document.getElementById('visibleDiv');
+	        var hiddenDiv = document.getElementById('hiddenDiv');
+
+	        // 스크롤 이벤트에 대한 핸들러 함수
+	        function handleScroll() {
+	        	// 111 : return; 삭제
+	        	return;
+	            // 스크롤 위치 확인
+	            var scrollPosition = window.scrollY;
+
+	            // 스크롤 위치에 따라 보이는 div와 숨겨진 div를 토글
+	            if (scrollPosition > 100) { // 스크롤 위치가 100보다 크면 숨겨진 div를 보이게 함
+	            	visibleDiv.style.display = 'none';
+	                hiddenDiv.style.display = 'block';
+	            } else { // 그 외의 경우에는 보이는 div를 보이게 하고 숨겨진 div를 숨김
+	            	visibleDiv.style.display = 'block';
+	                hiddenDiv.style.display = 'none';
+	            }
+	        }
+
+	        // 스크롤 이벤트에 핸들러 함수 연결
+	        window.addEventListener('scroll', handleScroll);
 			
 		</script>
 	</main>

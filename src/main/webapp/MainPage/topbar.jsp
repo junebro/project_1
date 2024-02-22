@@ -28,7 +28,8 @@ String notWithFormTag = withFormTag + "?command=";
 <style>
 
 /* 탑 메뉴의 위치 설정 */
-.topmenu ul {
+.topmenu ul
+}
 	display: flex;
 	justify-content: right;
 	margin-top: -5px;

@@ -73,7 +73,8 @@ String notWithFormTag = withFormTag + "?command=";
 <link
 	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
 	rel="stylesheet">
-
+	
+<link href="https://fonts.googleapis.com/css2?family=Gugi&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <style>
 

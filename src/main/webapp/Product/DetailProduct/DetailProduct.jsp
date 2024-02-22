@@ -71,8 +71,13 @@
 		<div class="text-container">
 			<h1 class="font-top">${bean.PRONM} | ${bean.PROCD}</h1>
 			<div class="marketing" id="iconOpt">
-				<img src="https://image.nbkorea.com/NBRB_Icon/NB20180727200053137001.png" alt="270130"> 
-				<img src="https://image.nbkorea.com/NBRB_Icon/NB20180727200034090001.png" alt="270130">
+			
+				<c:if test="${bean.PRONEW == 'new'}">
+					<img src="https://image.nbkorea.com/NBRB_Icon/NB20180727200034090001.png" alt="270130">	
+				</c:if>
+				<c:if test="${requestScope.Grade_total > 0}">
+					<img src="https://image.nbkorea.com/NBRB_Icon/NB20180727200053137001.png" alt="270130">
+				</c:if>
 			</div>
 		
 			<br>
