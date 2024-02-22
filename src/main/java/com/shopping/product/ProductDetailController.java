@@ -41,12 +41,10 @@ public class ProductDetailController extends SuperClass{
 
 		reviews_Paging paging = new reviews_Paging(pageNumber, pageSize, totalCount, url, sel_star, sel_color, isGrid);
 
-		Map<String, Object> dataList = dao.calculate(pronm, mbrid, paging);
-
+		Map<String, Object> dataList = dao.getTotalList(pronm, mbrid, paging);
+		
 		List<Grade> dataGrade = dao.getDataList(pronm);
 		double Grade_total = dao.getTotal(pronm);
-		
-		System.out.println("Grade_total : " + Grade_total);
 		
 		List<Map<String, Object>> resultSetPro = (List<Map<String, Object>>) dataList.get("resultSetPro");
 		Map<String, Object> firstRow = resultSetPro.get(0);

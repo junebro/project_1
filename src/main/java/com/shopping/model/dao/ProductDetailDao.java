@@ -156,7 +156,7 @@ public class ProductDetailDao extends SuperDao {
 		return total;
 	}
 
-	public Map<String, Object> calculate(String pronm, String mbrid, reviews_Paging paging) {
+	public Map<String, Object> getTotalList(String pronm, String mbrid, reviews_Paging paging) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -176,10 +176,12 @@ public class ProductDetailDao extends SuperDao {
 			sql += " WHERE A.pronm = ? ";
 			
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, mbrid);
 			pstmt.setString(2, pronm);
-			System.out.println(sql);
+
 			rs = pstmt.executeQuery();
+			
 			List<Map<String, Object>> resultSetProList = new ArrayList<>();
 			
             while (rs.next()) {

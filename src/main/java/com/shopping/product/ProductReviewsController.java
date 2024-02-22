@@ -19,16 +19,14 @@ public class ProductReviewsController extends SuperClass{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws Exception {
  
 		super.doGet(request, response);
-		
-		
-		
+
 		super.gotoPage(PREFIX + "DetailProduct.jsp");
 	}
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		super.doPost(request, response);
-		System.out.println("123123");
+		
 		String pronm = request.getParameter("pronm");
 		String mbrid = request.getParameter("mbrid");
 

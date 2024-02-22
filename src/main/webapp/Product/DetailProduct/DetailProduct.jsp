@@ -678,7 +678,7 @@
 		</ul>
 		<hr style="width:100%">
 	</div>
-
+	
 	<div class="product_bottom">
 		<div class="sticky_wrap" style="top: 0px;">
 		
@@ -840,7 +840,8 @@
 				view_tit.innerHTML = "REVIEW("+rsViews+")";
 				view_top.innerHTML = "상품리뷰("+rsViews+")";
 				
-				function review_search(PRONM){ /* 전체 검색 */
+				/* 전체 검색 아래 페이징이랑 같이 사용 할 수 있을 것 같음 */
+				function review_search(PRONM){ 
 					<%-- location.href = '<%=notWithFormTag%>DetailProduct' ; --%>
 					var sel_star = document.getElementById("sel_star");
 					var sel_color = document.getElementById("sel_color");
@@ -881,7 +882,7 @@
 			                $("#refreshableContent").html(data);
 			            },
 			            error: function() {
-			                alert("새로고침에 실패했습니다.");
+			                alert("리뷰 조회 오류");
 			            }
 			        });
 			    }
@@ -932,11 +933,7 @@
 			
 		</div>
 	</div>
-
-	<footer>
-		<jsp:include page="./../../MainPage/footer.jsp" />
-	</footer>
-
+	<jsp:include page="./../../MainPage/footer.jsp" />
 	<script>
 		// 스크롤 
 		let prevScrollPos = window.pageYOffset;

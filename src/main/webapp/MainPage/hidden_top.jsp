@@ -269,6 +269,6 @@ section {
               <a href="#">Link 3</a>
             </div>-->
 		
-		<div class="underline"></div>
+	<!-- 	<div class="underline"></div> -->
 	</div>
 </section>

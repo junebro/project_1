@@ -223,7 +223,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 								<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
 									<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
 									<c:if test="${product.LK == 'LK'}">
-										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/black_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
 									</c:if>				
 									<c:if test="${product.LK != 'LK'}">
 										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="fn_lk('${product.PRONM}', 'bht')">
@@ -232,7 +232,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 								<div class="detail">
 									<div class="color_div_left">
 										<c:if test="${product.PRODT == 'new'}">
-											NEW
+											<span style="color:#692D5D;">NEW</span>
 										</c:if>
 									</div>
 										<c:if test="${product.PRODT == 'new' && product.RVWGR > 3.5}">
@@ -240,7 +240,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 										</c:if>
 									<div class="color_div_left">
 										<c:if test="${product.RVWGR > 3.5}">
-										BEST
+											<span style="color:#5D9CA4;">BEST</span>
 										</c:if>
 									</div>
 									<div class="color_div_center" ></div>
@@ -272,6 +272,8 @@ ArrayList<String> imgPath = new ArrayList<String>();
 					</div>
 				</c:if>
 			</c:forEach>
+			<br><br><br>
+			<jsp:include page="footer.jsp" />
 			<script>
 			
 			document.querySelectorAll('.overlay-image').forEach(function(element) {
@@ -293,13 +295,13 @@ ArrayList<String> imgPath = new ArrayList<String>();
 				var url = document.getElementById(pronm + "ht-image").src;
 				var fileName = url.split('/').pop();
 				
-				if (fileName == "main_ht.png") {
+				if (fileName == "black_ht.png") {
 					var URL = '<%=notWithFormTag%>liDelete';
 					document.getElementById(pronm + "ht-image").src = "${pageContext.request.contextPath}/Image/main_bht.png";
 					
 				} else if (fileName == "main_bht.png") {
 					var URL = '<%=notWithFormTag%>liInsert';
-					document.getElementById(pronm + "ht-image").src = "${pageContext.request.contextPath}/Image/main_ht.png";
+					document.getElementById(pronm + "ht-image").src = "${pageContext.request.contextPath}/Image/black_ht.png";
 				}
 	
 				$.ajax({
@@ -316,6 +318,6 @@ ArrayList<String> imgPath = new ArrayList<String>();
 		</section>
 		<article></article>
 	</main>
-	<jsp:include page="footer.jsp" />
+	
 </body>
 </html>
