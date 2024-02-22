@@ -2,7 +2,7 @@ package com.shopping.board;
 
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -44,9 +44,8 @@ public class BoardListController extends SuperClass{
 		System.out.println("BeginRow" + paging.getBeginRow());
 		System.out.println("EndRow" + paging.getEndRow());
 		
-		
 		request.setAttribute("paging", paging);
-		request.setAttribute("bean", datalist);
+		request.setAttribute("dataList", datalist);
 		
 		super.gotoPage("/board/boList.jsp");
 		/*
@@ -56,7 +55,6 @@ public class BoardListController extends SuperClass{
 		 * e.printStackTrace(); }
 		 * 
 		 */
-
 	}
 
 }
