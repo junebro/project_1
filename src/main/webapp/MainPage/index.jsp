@@ -271,7 +271,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 									<a  href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
 										<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
 										<c:if test="${product.LK == 'LK'}">
-											<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
+											<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/black_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
 										</c:if>				
 										<c:if test="${product.LK != 'LK'}">
 											<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="fn_lk('${product.PRONM}', 'bht')">
@@ -343,7 +343,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 								<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
 									<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
 									<c:if test="${product.LK == 'LK'}">
-										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/black_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
 									</c:if>				
 									<c:if test="${product.LK != 'LK'}">
 										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="fn_lk('${product.PRONM}', 'bht')">
@@ -414,7 +414,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 								<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
 									<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
 									<c:if test="${product.LK == 'LK'}">
-										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/black_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
 									</c:if>				
 									<c:if test="${product.LK != 'LK'}">
 										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="fn_lk('${product.PRONM}', 'bht')">
@@ -485,7 +485,7 @@ ArrayList<String> imgPath = new ArrayList<String>();
 								<a href="<%=notWithFormTag%>DetailProduct&pronm=${product.PRONM}&mbrid=${sessionScope.loginfo.MBRID}"> 
 									<img src="${pageContext.request.contextPath}/Image/Detail_main/${product.PROIMG}" alt="Product" class="main-image">
 									<c:if test="${product.LK == 'LK'}">
-										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
+										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/black_ht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image" onclick="fn_lk('${product.PRONM}', 'ht')">
 									</c:if>				
 									<c:if test="${product.LK != 'LK'}">
 										<img id="${product.PRONM}ht-image" src="${pageContext.request.contextPath}/Image/main_bht.png" alt="ht Icon" style="width: 45px;height: 45px;" class="overlay-image"onclick="fn_lk('${product.PRONM}', 'bht')">
@@ -655,13 +655,13 @@ ArrayList<String> imgPath = new ArrayList<String>();
 				var url = document.getElementById(pronm + "ht-image").src;
 				var fileName = url.split('/').pop();
 				
-				if (fileName == "main_ht.png") {
+				if (fileName == "black_ht.png") {
 					var URL = '<%=notWithFormTag%>liDelete';
 					document.getElementById(pronm + "ht-image").src = "${pageContext.request.contextPath}/Image/main_bht.png";
 					
 				} else if (fileName == "main_bht.png") {
 					var URL = '<%=notWithFormTag%>liInsert';
-					document.getElementById(pronm + "ht-image").src = "${pageContext.request.contextPath}/Image/main_ht.png";
+					document.getElementById(pronm + "ht-image").src = "${pageContext.request.contextPath}/Image/black_ht.png";
 				}
 	
 				$.ajax({
