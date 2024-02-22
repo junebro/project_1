@@ -573,6 +573,10 @@ table .inputTypeText { /* 2열 입력칸 */
 			
 		}
 	}
+	// 임시
+	function findidpw(){
+		alert('준비중입니다...');
+	}
 </script>
 	<div class="wrap" style="justify-content: center;">
 		<div class="left">
@@ -595,7 +599,7 @@ table .inputTypeText { /* 2열 입력칸 */
 					<div class="spanbar" onclick="toggleReview('MyInfo.jsp')">
 						<a href="#">내 정보</a>
 					</div>
-					<div class="spanbar" onclick="toggleReview('MyUpdate.jsp')">
+					<div class="spanbar" onclick="findidpw()">
 						<a href="#">회원정보수정</a><br>
 					</div>
 					<div class="spanbar" onclick="logOut()">

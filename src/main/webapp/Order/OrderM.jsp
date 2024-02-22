@@ -380,7 +380,6 @@ td span {
 <%
 Order oBean = new Order();
 OrderDao oDao = new OrderDao();
-
 String MBRID = session.getAttribute("loginfo").toString();
 %>
 <body>
@@ -504,28 +503,45 @@ String MBRID = session.getAttribute("loginfo").toString();
 					</tr>
 					<!-- 상품 출력  -->
 					<%
+					/* 총액을 합산하기 위한 변수 totalPR 선언*/
 					int totalPR = 0;
+					/* 구매 가격에 따른 할인양을 계산하기 위한 discountAmount 선언 */
 					int discountAmount = 0;
 					String couponMessage = "보유한 쿠폰이 없습니다.";
+					/* 할인 가격에 대한 변수 */
 					int discountTotalPR = totalPR;
+					/* submit=White/996V5WH/245/2,White/996V5WH/270/1,White/996V5WH/275/1 
+							와 같은 형태로 URL에 담아 submit 파라미터를 넘겨받습니다. */
+					/* 장바구니와 상품 상세 페이지에서 넘겨받은 submit 파라미터 값을 String submitParam에 저장합니다. */
 					String submitParam = request.getParameter("submit");
+					/* 파라미터 값을 콤마로 잘라서 배열에 담습니다. */
+					/* 콤마로 잘린 값은 색상/상품코드/주문사이즈/수량 으로 저장됩니다.*/
 					String[] submitArray = submitParam.split(",");
 					CartDao cDao = new CartDao();
 					List<Product> pBean = new ArrayList<>();
+					/* 배열로 for 문을 순회하며 주문할 상품의 정보를 출력해줍니다. */
 					for (String data : submitArray) {
+						/* value0123 = 색상 상품코드 주문사이즈 수량*/
+						/* 다시 문자열을 잘라서 배열에 담아 출력합니다. */
 						String[] values = data.split("/");
-
+						
+						/* 색상 상품코드 주문사이즈 수량을 변수에 담습니다. */
 						String PROCR = values[0];
 						String PROCD = values[1];
 						int ORDSZ = Integer.parseInt(values[2]);
 						int ORDQTY = Integer.parseInt(values[3]);
-
+						
+						/* 가져온 상품 코드로 List<Product> 에 정보를 담습니다. */
 						pBean = cDao.getDataList1(PROCD);
+						/* 단일 상품의 가격 합을 구합니다. */
 						int TOTPR = ORDQTY * pBean.get(0).getPROPR();
+						/* 단일 상품의 가격 합을 전체 상품에 넣습니다. */
 						totalPR += TOTPR;
 						// 주문 번호를 통해 오더 빈에 오더 정보 저장
 						pBean.get(0).getPRONM();
 					%>
+					<!-- for 문을 닫지 않고 아래로 이어가 배열의 마지막 인덱스까지 반복합니다 -->
+					<!-- pBean에 담긴 정보를 get(0).get() 메소드로 불러옵니다. -->
 					<tr>
 						<td width="150px"><img
 							style="margin-left: 10px; margin-top: 10px; margin-bottom: 5px;"
@@ -537,6 +553,7 @@ String MBRID = session.getAttribute("loginfo").toString();
 					</tr>
 					<%
 					}%>
+					<!-- for 문을 마칩니다. -->
 					<tr>
 						<td colspan="2">
 							<nav
